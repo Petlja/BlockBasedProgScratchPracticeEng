@@ -19,7 +19,7 @@ import sys, os
 #sys.path.insert(0, os.path.abspath('../modules'))
 
 from runestone import runestone_static_dirs, runestone_extensions
-
+import runestone_petlja_ext
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -27,7 +27,7 @@ from runestone import runestone_static_dirs, runestone_extensions
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.mathjax'] + runestone_extensions()
+extensions = ['sphinx.ext.mathjax'] + runestone_extensions() + runestone_petlja_ext.extensions()
 
 #,'runestone.video','runestone.reveal','runestone.poll','runestone.tabbedStuff','runestone.disqus','runestone.codelens','runestone.activecode', 'runestone.assess', 'runestone.animation','runestone.meta', 'runestone.parsons', 'runestone.blockly', 'runestone.livecode','runestone.accessibility']
 
@@ -111,7 +111,7 @@ rst_prolog = (
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinx_bootstrap'
+html_theme = 'bootstrap_petlja_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -185,7 +185,7 @@ html_short_title ='Runestone Interactive Overview'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 
-html_static_path = ['_static']  + runestone_static_dirs()
+html_static_path = ['_static']  + runestone_static_dirs() + runestone_petlja_ext.static_dirs()
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -230,7 +230,7 @@ html_show_sourcelink = False
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'PythonCoursewareProjectdoc'
-
+runestone_petlja_ext.config_values_for_components(globals())
 # 'accessibility_style' config value is defined in the 'accessibility' extension. 
 # By this config value you can select what accessibility stylesheet
 # you want to add ('normal', 'light', 'darkest' or 'none')
