@@ -307,7 +307,7 @@ Bug 2
    A pupil wanted that his butterfly character, which had two costumes - with raised and lowered wings, constantly glides, waving his wings between the points whose coordinates were taken randomly. But his program did not do it. The butterfly slid from one to the other point either with the lowered or with the raised wings. What's wrong?
    
 .. image:: ../_images/5/greska5_4.png
-   :width: 625px   
+   :width: 285px   
    :align: center
    
      
@@ -320,7 +320,7 @@ Bug 2
    It was necessary to make two scripts running simultaneously.
 
    .. image:: ../_images/5/resenje5_4.png
-      :width: 625px   
+      :width: 460px   
       :align: center   
 
 
