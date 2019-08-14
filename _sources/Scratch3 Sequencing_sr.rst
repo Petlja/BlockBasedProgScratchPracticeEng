@@ -720,7 +720,9 @@ Bug 3
 
 **Наредбе**: |events_blocks| - |clicked_sprite|, |clicked_stage|; |control_blocks| - |wait_sec|, |stop|; 
 
-|looks_blocks| - |think_sec|, |next_costume|, |change_effect|, |clear_effects|, |set_size|, |change_size|; |operator_blocks| - |plus|, |minus|, |multiply|, |divide|, |pick_random|; |variables_blocks| - |*| |set_var|.
+|looks_blocks| - |think_sec|, |next_costume|, |change_effect|, |clear_effects|, |set_size|, |change_size|; 
+
+|operator_blocks| - |plus|, |minus|, |multiply|, |divide|, |pick_random|; |variables_blocks| - |*| |set_var|.
 
 Напомена. Наредбе означене знаком  |*| биће обрађене у наредним лекцијама.
 
