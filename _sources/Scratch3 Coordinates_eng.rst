@@ -415,7 +415,7 @@ Question 8
    
    Which side of the world will the Sprite look at after command |2_8|?
 
-.. |2_8| image:: ../_images/2/naredba2_8.png   
+.. |2_8| image:: ../_images/2/block2_8.png   
 
 Question 9
 ~~~~~~~~~~
