@@ -1,7 +1,7 @@
 Scratch 3
 ---------
 
-Here write some intro text.
+
 
 Content
 -------
