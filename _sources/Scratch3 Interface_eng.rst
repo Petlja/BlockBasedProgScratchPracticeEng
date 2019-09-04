@@ -1,5 +1,5 @@
-My First Program
-================
+Scratch Programming Environment
+================================
 
 .. include:: blocks.txt
 
@@ -10,15 +10,15 @@ My First Program
   |intro1|
 
    
-Would you like to create your own computer game, animated story, instruction or a presentation? Scratch is a programming language that enables you to create all of the above, and even more.
+Would you like to create your own computer game, animated story, instruction or presentation? Scratch is a programming language that enables you to create all of these things, and more.
 
-Unlike the most common programming languages, Scratch is a *visual* programming language – instead of typing the commands, you can program in Scratch by snapping color-coded blocks together like LEGO bricks.
+Unlike the majority of common programming languages, Scratch is a *visual* programming language – instead of typing commands by using the keyboard, programs are created by connecting color coded blocks, which represent different commands, something like making different objects by using LEGO bricks.
 
-In Scratch, **projects** are created. The first step in creating a project is adding the sprites that will participate in it. Different outlooks, sounds and behaviors can be linked to all of the sprites. The behavior of a sprite is described by the **script**. The project contains one or more scripts, each of which is associated with a sprite or a stage - the place where the project takes place.
+In Scratch, **projects** are created. The first step in creating a project is adding Sprites that will participate in it. Different looks, sounds and behaviors can be attached to all of the sprites. The behavior of a sprite is described by the **Script**. The project contains one or more scripts; each is associated with a sprite or a stage - the place where the project takes place.
 
-In order to write a program in Scratch, it is necessary to get to know the environment in which the programs are created, or its **interface**.
+In order to write a program in Scratch, first, it is necessary to get to know the environment in which the programs are created or its **interface**.
 
-.. topic:: Scratch Programming Environment
+.. topic:: Scratch Programming Interface.
 
  The following Figure shows the interface of the Scratch programming language. 
 
@@ -28,29 +28,29 @@ In order to write a program in Scratch, it is necessary to get to know the envir
 
  First, we will learn about the basic functions of its main parts, and in the following lessons we will get to know other components of the environment.
 
- **The Stage** is a place where your sprites move, draw and interact. The stage itself is immovable, but it has sprites on it that can be moved and interacted with other sprites.
+ **The Stage** is the place where your stories, games and animations will come to life. The stage itself is stationary, but it has sprites on it that can move and interact with one another.
 
- **The Block Palette** is an area where all of the available orders of the Scratch programming language are placed. It is called “the palette” because it looks like a palette which the painter uses to paint. Unlike the painter, the programmer creates live pictures with objects that interact with each other.
+ **The Blocks Palette** is the area where all available commands of the Scratch programming language are kept. It is called “palette” because it looks like a palette a painter uses while painting. However, unlike a painter, a programmer creates live pictures with objects that interact with each other.
 
- **Scripts Area** is a place where the scripts are created. To make a script, you need to drag blocks from the block palette to the Scripts area and snap them together.
+ **Scripts Area** is a place where the scripts are created. To make a script, you need to drag blocks from the Blocks Palette to the Scripts Area and snap them together.
 
- **The Sprite List** displays names and thumbnails for all the sprites in your project.
+ **The Sprite List** displays names and thumbnails of all sprites in your project.
 
- **The File Menu** allows you to set project management commands and adjust the environment itself.
+ **The Menu Bar** allows you to set project management commands and adjust the environment itself.
 
 .. topic:: My First Program
 
- Even the longest journeys begin with one first step. And that first step in learning a programming language is to write a program that displays "Hello World" on the screen. And that is how we will start conquering Scratch.
+ Even the longest journeys begin with a single step. That first step in learning a programming language would be to write a program which would display the words "Hello World" on the screen. This is how we will start mastering Scratch.
 
- Whenever Scratch is launched, a new project is created and it contains white Stage and a Cat Sprite.
+ Whenever Scratch is activated, the **stage** is automatically created, and it is composed of a white rectangle with a cat **sprite** in it.
 
- Stage and Sprites are **objects** whose behavior is programmed by Scratch commands. We build scripts describing the objects behavior by using blocks which correspond to language commands. Each object has its own behavior, even a fixed stage that, for example, can change its backdrop.
+ The stage and sprites are **objects** whose behavior is programmed by Scratch commands. We build **scripts**, which describe the behavior of the objects, by using blocks, which correspond to language commands. Every object has its own behavior, even the stationary stage, which, for example, can change its backdrop.
 
- Stages and Sprites can be associated with **graphics** (pictures - drawings, photos) and **sound** files in addition to scripts. Sprite pictures are called costumes, and stage pictures - backdrops.
+ Stages and sprites can be associated with **graphics** (pictures - drawings, photos) and **sound** files in addition to scripts. The look of a sprite is called the **costume**, and the look of the stage a **backdrop**.
 
- **The Sprite list** shows thumbnails of all the Sprites involved in the project. Each Sprite's name is writen in the bottom.
+ **The Sprite list** shows thumbnails of all the sprites involved in the project. The name of each sprite is written below the thumbnail.
 
- You can view and modify the current Sprite information in the space above the Sprite list.
+ You can view and modify the current sprite information in the window above the Sprite List.
 
  .. image:: ../_images/1/fig1_2.png
    :width: 650px   
@@ -58,84 +58,81 @@ In order to write a program in Scratch, it is necessary to get to know the envir
  
  .. infonote::
 
-  1. The name of the Sprite can be changed by typing a new name in the Sprite's name field.
+  1. The *Name* of the sprite can be changed by typing a new name in the sprite's name field.
 
-  2. The position of the Sprite on the stage is given by its coordinates x and y.
+  2. The *Position* of the sprite on the stage is defined by its coordinates x and y.
 
-  3. Whether the Sprite is visible or hidden from the Stage depends on what is checked in the Show checkbox.
+  3. Whether the sprite is visible or hidden on the Stage, depends on what is checked in the *Show* checkbox.
 
-  4. The size of the Sprite is expressed as a percentage of the original size. The number 100 indicates that the Sprite is at its normal size.
+  4. The *Size* of the sprite is expressed as a percentage of the original size. The number 100 indicates that the Sprite is viewed in its normal size.
 
-  5. The direction indicates the direction in which the Sprite will move. The blue arrow on the circle shows the direction of the Sprite. You can change the orientation by rotating the arrow or typing the appropriate number in the direction field (0: up, 90: right, 180: down, -90: left). The rotation style indicates the rotation mode, which can be: *All Around*, *Left/Right*, or *Do not rotate*.
+  5. The *Direction* indicates the direction in which the Sprite will move. The white arrow in the blue circle shows the direction of the sprite. You can change the direction by rotating the arrow or typing the appropriate number in the direction field (0: up, 90: right, 180: down, -90: left). |rot_style| indicates the rotation style, which can be: *all around*, *left-right*, or *don't rotate*.
 
- To create a script, you need to drag the appropriate commands from the command palette to the script area for the active object, and to link them.
+ To create a script, you need to drag the appropriate commands from the command palette to the script area of the active object and link them.
 
- **An active object** - a Sprite or a Stage, is recognized by the fact that there is a blue box around its thumbnail in the Sprite list. Everything we create: scripts that describe behavior, costumes that describe the look, sounds that will be heard when we start a project, is beeing conected to the object that is active.
+ **An active object** - a sprite or a stage, is recognized by the fact that there is a blue frame around its thumbnail in the Sprite list. Everything we create: scripts that describe behavior, costumes that describe the look, sounds that will be heard when we run our project, is associated with the object that is active in the moment of creation. 
 
- Creating scripts is done by placing blocks one the top of the other. Clicking anywhere within a series of blocks launches a complete script that runs from the top to the bottom.  
+ Scripts are created by snapping blocks together. Clicking anywhere within a series of blocks runs the complete script, which is executed from top to bottom.
 
 |study| Study the following examples
 -------------------------------------
 
-Example 1 - The “Hello World” Project
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example 1 - The “Hello World” Project 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The simplest possible script, which consists of a single command - a block that allows the Sprite to say text "Hello world" will be attached to the cat. After that, when you click on the block, the text will appear in a speech bubble. 
+The simplest possible script will be added to the Scratch trademark cat. It consists of a single command - a block that allows the Sprite to say *Hello World*, that is, the text will appear in a speech bubble next to the cat. This is how you do it:
 
-Let's do it!
+|1| Click on the *Looks* group of blocks located in the Blocks Palette. A group of purple blocks, designed for attributing visual effects to sprites, will appear. 
 
-|1| Click on the block group *Looks* in the block palette. A group of purple blocks for visual effects will appear. 
+|2| Drag the |say_sec| block to the script area.
 
-|2| Drag the |say_sec| block to the script area. 
-
-|3| Then instead of text *Hello*, type *Hello World* and click on the modified block.
+|3| Then, instead of the text *Hello*, type *Hello World* and click on the modified block.
 
 .. image:: ../_images/1/fig1_3.png
-   :width: 480px   
+   :width: 740px   
    :align: center
 
-“Hello World” text will stay on the Stage next to the cat for 2 seconds. As you can see, quite simple.
+The speech bubble with the text *Hello World* will remain on the Stage next to the cat for 2 seconds. As you can see, it is quite simple.
 
-Now we are going to add a few more  ``say`` blocks to make our Sprite say a few more sentences. 
+Now we are going to add a few more |say_sec| blocks to make our sprite say a few more sentences. 
 
-We will show two ways to add a block that already exists in the script area. 
+We will show here two different ways you can add a block that already exists in the scripts area.
 
-- 1. By repeating the procedure we have already done: drag an another ``say`` block  from the block palette and instead of the text „Hello“ type „I'm a cat“.
+- 1. By repeating the steps we have already done: one more time, drag another |say_sec| block from the Blocks Palette and instead of the text *Hello* type *I am a cat*. 
 
-- 2. Right-click on the block in the script area to open the shortcut menu and select  *Duplicate* from it. Then, in the copy of the block, enter the text you want, in our example – „I like to walk“. In this way you can work faster, as you can multiply stacked blocks that have been previously connected one to another.
+- 2. Right-click on the block in the Scripts Area to open the shortcut menu and select *Duplicate* from it. Then write the text you want in the copy of the block, in our example - *I like to walk*. This way you can work faster, since you can copy multiple blocks that have been previously linked, with just one move.
 
 .. image:: ../_images/1/fig1_4.png
-   :width: 500px   
+   :width: 740px   
    :align: center
  
-To make the blocks run automatically one after the other, you need to put them together in a stack. We do this by dragging blocks. When the blocks are close, a shadow appears bellow the block, indicating that the blocks will be connected. By connecting all three blocks in the stack,  after double clicking on it, the Sprite will say all three sentences, one after the other. 
+To make the blocks run automatically one after the other, you need to put them together in a stack. We do this by dragging blocks. When the blocks get close to one another, a shadow appears around the block above, which means that the blocks will be connected. When we connect all three blocks in a stack and then double click on them, the Sprite will say all three sentences one after another. 
 
-**Running project**
+**Running the Project**
 
-You noticed that the block you used has a notch at the top and a bump on the bottom. A block of this shape is called a **stack block**. Most of the commands are performend by stack blocks. However, the first block that indicates which event will trigger the script, are shaped with a rounded top, as there are no blocks that precede it. These blocks are called **hat blocks** and most of them can be found in  the *Events* group. Click the *Events* group in the block palette and drag the |clicked_flag| block to the script area. Then place this block on top of the previously formed stack and your first project is done. To run it click on |g_flag| above the top left corner of the stage. 
+You noticed that the block you used had a notch at the top and a bump on the bottom. A block that has this shape is called a **stack block**. Most of the Scratch commands are assigned to stack blocks. However, the first block, which indicates which event will trigger the script, does not need to have a notch at the top, since there are no blocks above it. These blocks are called **hat blocks** and most of them can be found in the *Events* group. Click on the *Events* group in the Blocks Palette and drag the |clicked_flag| block to the Scripts Area. Then place this block on top of the previously formed stack, and your project is done. To run it click on |g_flag| above the top left corner of the stage.  
 
-**Saving project**
+**Saving the Project**
 
-You can save the project to your computer as follows.
+This is how you can save the project on your computer:
 
-|1| Click *File* in the menu bar.
+|1| Click on *File* in the Menu Bar.
 
-|2| Select *Save to your computer* from the options.
+|2| Select the option *Save to your computer*.
 
-|3| In the dialog that opens, select the folder and enter the name of your project, then click on the *Save* button.
+|3| In the opened dialogue window, select a folder and enter the name under which you will save your project, and then click the *Save* button.
 
-**Upgrading project**
+**Upgrading the Project**
 
-Instead of displaying a speech bubble with a text, a cat could actually pronounce this text. You can do this by selecting the 
-|play_until| block from the *Sound* group, and in the sound editor, record the sentence you want to say. Then in the block ``play sound`` instead of sound "meow", select the recorded speech. 
+Instead of displaying a speech bubble with the text in it, the cat can actually say what is written. You can do this by selecting the |play_until| block from the *Sound* group, and then recording in the sound editor the sentence you want the cat to say. After you have done this, select the recorded speech instead of *meow* from the drop-down list of this block. 
 
-In this version of Scratch you can do more than that. Among the extensions, there is a *Text to Speech* group that allows Sprites in projects to start speaking for real. You can do it only if you are connected to the Internet because it uses *Amazon Web Services*. 
+However, in this version of Scratch, you can do more than that. Among the extensions, there is a *Text-to-Speech* group that allows sprites to start speaking for real. You can do this only if you are connected to the Internet because it uses *Amazon Web Services*.
 
 
 |ask| Did you understand?
-----------------------------
+-------------------------
 
-Let's try to answer some questions that have not been explained yet! Simply start Scratch and go!
+Are you confused as to how you can answer the questions which have not been explained in the text yet? Simply open Scratch and try!
 
 Question 1
 ~~~~~~~~~~
@@ -146,35 +143,35 @@ Question 1
    :answer_a: script
    :answer_b: object
    :answer_c: interface
-   :answer_d: program
+   :answer_d: code
    :correct: c
    :feedback_a:  
    :feedback_b: 
-   :feedback_c: 
+   :feedback_c: True.
    :feedback_d: 
    
-   The name for all windows and buttons that are visible when you launch Scratch is?
+   What is the name of all windows and icons, which are visible when you open Scratch?
   
 
 Question 2
 ~~~~~~~~~~
 .. level:: 1
 
-Some parts of the Scratch interface in the following figure are numbered from 1 to 5. 
+Some parts of the Scratch interface are marked with numbers from 1 to 5. 
 
 .. image:: ../_images/1/q1_2.png
    :width: 600px   
    :align: center
       
 .. dragndrop:: interface2
-    :feedback: Покушај поново
-    :match_1: позорница|||4
-    :match_2: палета наредби|||2
-    :match_3: област скрипти|||3
-    :match_4: листа ликова|||5
-    :match_5: линија менија|||1
+    :feedback: Try again
+    :match_1: stage|||4
+    :match_2: blocks palette|||2
+    :match_3: scripts area|||3
+    :match_4: sprite list|||5
+    :match_5: menu bar|||1
     
-    Drag the name of each environment part to the number corresponding its position in the image.
+    Drag the name of each part of the environment to the corresponding position in the image.
 
 
 Question 3
@@ -186,10 +183,10 @@ Question 3
    :answer_a: yes
    :answer_b: no
    :correct: b
-   :feedback_a:  Project needs to have а stage with at least one backdrop.
-   :feedback_b: 
+   :feedback_a: False. Project needs to have а stage with at least one backdrop.
+   :feedback_b: True.
    
-   Is there a project without a stage?
+   Can you make a project that doesn't have a stage?
 
 Question 4
 ~~~~~~~~~~
@@ -200,11 +197,24 @@ Question 4
    :answer_a: yes
    :answer_b: no
    :correct: a
-   :feedback_a:  
-   :feedback_b: It is possible that a project has only scripts for the stage.
+   :feedback_a: True.
+   :feedback_b: False. The project can have only scripts which are associated with the stage.
    
-   Is there a project without sprites?
+   Can you make a project that doesn't have sprites?
 
+Question 5
+~~~~~~~~~~
+
+.. level:: 1
+
+.. mchoice:: interface5
+   :answer_a: yes
+   :answer_b: no
+   :correct: b
+   :feedback_a: False. The object needs to have at least one look, the stage - backdrop, and the sprite - costume.
+   :feedback_b: True.
+   
+    Can you create a stage or a sprite without assigning a look to them?
 
 Question 6
 ~~~~~~~~~~
@@ -215,11 +225,24 @@ Question 6
    :answer_a: yes
    :answer_b: no
    :correct: b
-   :feedback_a:  Some sprites can be only decoration of the project.
-   :feedback_b: 
+   :feedback_a: False. Some sprites and stages can just be decoration for the project.
+   :feedback_b: True.
    
-   Does every project sprite need to be associated with at least one script?
+   Does every object in the project need to have at least one script associated with it?
 
+Question 7
+~~~~~~~~~~
+
+.. level:: 1
+
+.. mchoice:: interface7
+   :answer_a: yes
+   :answer_b: no
+   :correct: a
+   :feedback_a: True. 
+   :feedback_b: False. The project starts running when you click on the Green Flag, and it stops when you click on the Red Stop Sign.
+   
+   Do the Green Flag and the Red Stop Sign allow you to control script execution?
 
 Question 8
 ~~~~~~~~~~
@@ -227,17 +250,17 @@ Question 8
 .. level:: 1
 
 .. mchoice:: interface8
-   :answer_a: линија менија
-   :answer_b: листа ликова
-   :answer_c: област скрипти
-   :answer_d: палета наредби
+   :answer_a: menu bar
+   :answer_b: sprite list
+   :answer_c: scripts area
+   :answer_d: blocks palette
    :correct: b
    :feedback_a:  
-   :feedback_b: 
+   :feedback_b: True.
    :feedback_c: 
    :feedback_d: 
    
-   How do we call the place where we can find the sprites thumbnails?  
+   What is the name of the place where we can find thumbnails of all sprites participating in the project?  
 
 Question 9
 ~~~~~~~~~~
@@ -245,17 +268,17 @@ Question 9
 .. level:: 1
 
 .. mchoice:: interface9
-   :answer_a: look
-   :answer_b: suit
-   :answer_c: costume
-   :answer_d: mask
+   :answer_a: looks
+   :answer_b: suits
+   :answer_c: costumes
+   :answer_d: masks
    :correct: c
    :feedback_a:  
    :feedback_b: 
-   :feedback_c: 
+   :feedback_c: True.
    :feedback_d: 
    
-   You can change the appearance of a sprite by choosing a different: 
+   The sprite can have one or more _______, this enables it to change its appearance during the running of the project. 
 
 Question 10
 ~~~~~~~~~~~
@@ -274,140 +297,155 @@ Question 10
    :feedback_c: 
    :feedback_d: 
 
-   What can be assigned to the stage and to sprites? (Select All the Correct Answers)  
+   What can be assigned to stages and sprites?
+   (Select all correct answers)  
 
 
 
 It's time to explore.
 
-|try| Try it!
------------------
+|Try| Try it!
+-------------
 
-Exercise 1 - Exploring the Tutorials
+Exercise 1 - Exploring *Tutorials*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 1
 
-By clicking the Tutorials button |tutorial| from the menu bar (1) you will open a library of short instructions for creating different projects in Scratch. Then select the Tutorial First Steps (2), watch the associated video (3). By clicking on the green arrow (4), you can review the steps for making simple projects similar to our project "Hello World".
+.. infonote::
 
-.. image:: ../_images/1/ex1_1.png
+ By clicking on *Tutorials* in the Menu Bar (1) you will open a library of short instructions for creating different projects in Scratch. Select the tutorial *First Steps* (2) and watch the associated video (3), then by clicking on white arrows in green circles (4) you can review the steps for creating simple projects similar to our "Hello World".
+
+ .. image:: ../_images/1/ex1_1.png
    :width: 1000px   
    :align: center
 
-.....
+.......
 
 Exercise 2 - Sprite Information
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 1
 
-|1| In the current Sprite information, change the direction of movement of the Sprite so that it goes up. What will happen on stage?
+.. infonote::
 
-|2| How will the Sprite be directed if you set a value of 45 degrees as the direction of motion?
+ |1| In the active sprite's information, change the direction of movement of the sprite so that it goes up. What will happen on the stage?
 
-|3| Hover your mouse over the Sprite and track what's happening with the coordinates in the current Sprite information.
+ |2| How will the sprite be directed if you set a value of 45 degrees as the direction of movement?
 
-|4| Check what's going on with the Sprite if the Show box indicates that the Sprite is hidden? How can you get a Sprite back on stage?
+ |3| With the mouse-pointer move the sprite and follow what is happening with the coordinates in the active sprite's information.
 
-|5| Change the name of the active Sprite.
+ |4| Check what happens to the sprite if the option for it to be hidden is selected in the *Show* box. How can you get the sprite back on the stage? 
 
-.....
+ |5| Change the name of the active sprite.
 
-Exercise 3 - Introducing New Sprites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      
-.. level:: 1
+.......
 
 .. sidebar:: Choose a Sprite
     
-    You can add a new Sprite to the project by clicking the button |b_sprite| at the bottom right of the Sprite list.
+    You can add a new Sprite by clicking on the button located in the bottom right corner of the Sprite List.
 
     |new_sprite|
 
 .. |new_sprite| image:: ../_images/1/fig1_5.png
+
+Exercise 3 - Introducing New Sprites
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      
+.. level:: 1
+
+.. infonote::
   
-|1| Import a new Sprite from the Sprite library. By clicking the Select button you will open the Sprite library window. You need to click on the Sprite you want to choose - for example, the ballerina Sprite. 
+ |1| Import a new sprite from the Sprite Library. 
 
-|2| Draw a new Sprite using the built-in image editor. By clicking the Draw button instead of the Program tab opens the Costumes tab. At the place where the script area was, a graphic editor where you need to draw a new Sprite will be opened. When you're done, click the Program tab.
+ By clicking on the *Choose a Sprite* button you will open the Sprite Library. Now you need to click on the sprite you like - for example, the ballerina sprite. 
+
+ |2| Draw a new sprite using the built-in image editor. 
+
+ By clicking on the *Paint* option, instead of the *Code* tab you will open the *Costumes* tab. The Paint Editor, which you can use to draw your new sprite, will open where the Script Area was previously. When you are done just click the *Code* tab.
   
-|3| Import a few surprise Sprites from the Sprite library.
+ |3| Import a few surprise sprites from the Sprite Library.
 
-|4| Import a new Sprite from a file by clicking Upload Sprite.
+ |4| Import a new sprite from a file by clicking the *Upload Sprite* option.
 
-.....
+.......
 
 Exercise 4 - Duplicating and Deleting Sprites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 1
 
-|1| Right-click on a Sprite in the Sprite list to open the shortcut menu. Multiple the Sprite by making 3 copies.
+.. infonote::
 
-|2| Remove one of the Sprites' copies by selecting Delete from the shortcut menu.
+ |1| Right-click on the sprite in the Sprite List, choose the option *duplicate* from the shortcut menu and make 3 copies of the sprite.
 
-|3| By entering numbers 50 and 200 in the size box, set one copy to be twice as small and the other as twice as large as the original.
+ |2| Remove one of the copies by choosing *delete* from the shortcut menu.
 
-.....
+ |3| Enter numbers 50 and 200 in the *size* boxes so that one copy is half the size and one copy is double the size of the original.
+
+.......
 
 Exercise 5 - Using Sound  
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: You can only do this exercise if your computer has audio recording capability! 
+**Warning.** You can complete this exercise only if your computer has an audio recording option! 
 
-Explore the Tutorial Record sound, and try to create a project where the Sprite will say the phrase "Hello World" by your voice. As this exercise uses a sound editor which we will introduce later, you can skip it at this point.
+Explore the Tutorial *Record sound*, and try to create a project where the sprite will say the phrase "Hello World" in your voice. As this exercise uses the Sound Editor which we will introduce later, you can skip this and come back to it later.
 
 .. level:: 2
- 
-|1| Start Scratch.
 
-|2| Click on the Sound commands in the block palette. A group of light purple blocks for the sound effects that can be assigned to the Sprites will appear.
+.. infonote::
+
+ |1| Open Scratch.
+
+ |2| Click on *Sound* group of commands located in the Blocks Palette. A group of light purple blocks for the sound effects that can be assigned to the sprites will appear.
   
-|3| Drag |play_until| block to the script area. 
+ |3| Drag the |play_until| block to the Scripts Area. 
   
-|4| Click on the Sounds tab. The Sound Editor window will open.
+ |4| Click on the *Sound* tab. The Sound Editor window will open.
   
-|5| Click on the Choose a Sound button and select the recording option.
+ |5| Click on *Choose a Sound*, then select the recording option.
 
-|6| When the Recording dialog box appears, click on the record button, then say the phrase "Hello World" and stop recording.
+ |6| When the Recording dialogue box appears, click on the *record* button, then say the phrase "Hello World" and then stop recording.
 
-|7| Listen to the recording and if you like it, click Save. Another sound named *recording1* will appear in the list of sounds associated with the cat Sprite.
+ |7| Listen to the recording and if you like it click *Save*. Another sound named *recording1* will appear in the list of sounds associated with the cat sprite.
 
-|8| Return to the Programs tab and select *recording1* instead of the *meow* sound. If you click on the green flag, the cat will say the sentence you recorded.
+ |8| Go back to the *Code* tab and instead of the sound *meow* choose *recording1*. If you click on the green flag, the cat will say the sentence you recorded.
 
-|9| Add two more blocks  |play_until|, then add to them a snapshot of the other two sentences spoken by the cat.
+ |9| Add two more |play_until| blocks, then add to them the recordings of two more sentences you want the cat to say.
 
-|10| Connect the blocks to the stack and place |clicked_flag| block at the top. 
+ |10| Snap the blocks together to form a stack and place |clicked_flag| block on the top. Save this project under the name "Hello World2".
 
-|11| Save this project as "Hello World2".
+.......
 
-.....
+Exercise 6 - Using the Extension *Text to Speech*  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Exercise 6 - Using Text-to-Speech Extensions  
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Warning.**  You can complete this exercise only if your computer is connected to the Internet! 
 
-.. warning::  You can only do this exercise if your computer is connected to the Internet! 
-
-Explore the Tutorial  Create Animations That Talk, so try to create a project where the Sprite will say the phrase "Hello World" using a block of speech. This exercise also uses the commands we will discuss later. 
+Explore the Tutorial *Create Animations that Talk* then try to create a project in which your sprite will say "Hello World" with the |speak| block. This exercise uses commands which will be elaborated later, so you can skip this exercise also, and come back to it after.
  
 .. level:: 3
- 
-|1| Start Scratch.
 
-|2| Click on the button |extensions| at the bottom of the block palette. Extension block groups will appear.
-  
-|3| From the Add Extensions group, you need to select |voices_extension|. Three new blocks will appear in the block palette. Thanks to these blocks the Sprite will reproduce the text written in command input field |speak|, in the language set by  |set_language| command. You can also set the voice to: female (soprano or alt) or male (tenor or bass). This is set by |set_voice| command.  
-  
-|4| Drag the block |set_language| to the script area. 
-  
-|5| Drag the block |set_voice| to the script area and choose how the voice of the Sprite would sound like.
-  
-|6| Drag the block |speak| to the script area and type in "Hello World" in its input field . 
+.. infonote::
 
-|7| Add two more blocks to speak, then type in the other two sentences spoken by the cat.
+ |1| Open Scratch.
 
-|8| Connect the blocks to the stack and place |clicked_flag| block at the top.
+ |2| Click on the |extensions| icon located on the bottom of the Block Palette. The *Extension* blocks will appear.
+  
+ |3| From the *Extensions* blocks you need to select |voices_extension|. Three new blocks will appear in the block palette. These blocks will enable the sprite to say the text written in the block input field |speak|, in the language set in the |set_language| block. You can also set the type of voice which will be used: female (soprano or alt) or male (tenor or bass). This is done with the |set_voice| block.   
+  
+ |4| Drag the |set_language| block to the scripts area. 
+  
+ |5| Drag the |set_voice| block to the scripts area and choose the voice of the Sprite.
+  
+ |6| Drag the |speak| block to the scripts area and type in *Hello World* into its input field. 
 
-|9| Save this project as "Hello World3".
+ |7| Add two more |speak| blocks, then type in the other two sentences spoken by the cat.
+
+ |8| Snap the blocks together to form a stack and place the |clicked_flag| block on the top.
+
+ |9| Save this project under the name "Hello World3".
 
 |bug| Debug it!
 ---------------
@@ -415,31 +453,35 @@ Explore the Tutorial  Create Animations That Talk, so try to create a project wh
 Bug 1
 ~~~~~
 
-The pupil wanted to make his own version of the project "Hello World". In it, the Sprite should say one sentence after another: "Hello World", "My name is Mike", "I like programming". He attached the Sprite to the following script.
+The pupil wanted to make his/her own version of the project "Hello World". In it, the sprite should say one sentence after another: *Hello World*, *My name is Mike*, *I like programming*. He attached the sprite to the following script.
 
 .. image:: ../_images/1/bug1_1.png
-     :width: 220px   
+     :width: 160px   
      :align: center
 
-But after clicking on the green flag, the Sprite said only "I like to program". What's the mistake?
+But after clicking on the green flag, the Sprite said only *I like programming*. What's the bug?
 
 |book| Summary
------------------
+--------------
 
-This lesson provided a high-level overview of Scratch and its programming environment. We have written, run and saved our first project "Hello world". We did exercises on how to make sprites reproduce sentences that we register through the sound editor and those uoploaded from the Text-to-Speech extention (only if the comuter is connecte to the Inernet).
+In the first lesson we got to know the main parts of the Scratch programming language interface, and we created, ran and saved our first program - project "Hello World". By doing exercises, we showed how we can make sprites say sentences we recorded ourselves by using the Sound Editor or those uploaded from the Text to Speech extension (only if the computer is connected to the internet). 
 
-**New concepts**:  Interface, Project, Sprite, Costume, Stage, Backdrop, Script, Instruction.
+**Scratch projects**: 1Studio_
 
-**Strach commands**: |events_blocks| - |clicked_flag|; |looks_blocks| - |say_sec|,  |say|; |sound_blocks| - |*| |play_until|; |voices_extension| -  |*| |set_language|,  |*| |set_voice|,  |*| |speak|.
+.. _1Studio: https://scratch.mit.edu/studios/25119438/
 
+**New concepts**:  interface, Scratch project, active object, sprites, costumes, stage, backdrop, scripts, blocks.
 
-Note. Instructions marked with the |*| sign will be discussed in the  lessons that follow.
+**Scratch commands**: |events_blocks| - |clicked_flag|; |looks_blocks| - |say_sec|,  |say|; |sound_blocks| - |*| 
+|play_until|; |voices_extension| -  |*| |set_language|,  |*| |set_voice|,  |*| |speak|.
+
+Note. Instructions marked with the |*| sign will be discussed in the lessons that follow.
 
 |project| Create a project
 ---------------------------
 
-Project 1 - „About Me”
+Project 1 - "About me"
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Create a project which will represent you. Choose a boy or a girl Sprite from the Sprite library and attach a script that will make the sprite say the following three sentences: "My name is ...", "I'm ... years old" and "My school name is ...". Insert your data instead of dots.
+Create a project that will tell us something about you. Choose a boy or a girl sprite from the Sprite library and attach a script that will make the sprite say the following three sentences: "My name is ...", "I'm ... years old" and "My school is called ...". Insert your information instead of the dots.
 

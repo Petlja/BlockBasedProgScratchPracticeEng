@@ -1,5 +1,5 @@
-Tell Me Where To Go - Coordinates And  Direction
-================================================
+Tell Me Where To Go - Coordinates And Direction
+=================================================
 
 .. include:: blocks.txt
 
@@ -9,9 +9,10 @@ Tell Me Where To Go - Coordinates And  Direction
 
   |intro2|
 
-After learning the basics of the environment, it is time to learn how to send Sprites to the desired locations on the Stage. You will understand how the Stage is organized and learn the commands that allow you to move around.
 
-.. sidebar:: Coordinates of a sprite
+After getting to know the basics of the environment, it is time to learn about how you can send your sprites to the desired location on the stage. To do that, you need to know how the stage is organized and which commands enable movement.
+
+.. sidebar:: Sprite Coordinates
 
  |stage|
 
@@ -19,239 +20,234 @@ After learning the basics of the environment, it is time to learn how to send Sp
 
 .. topic:: The Stage
       
- When Scratch starts, a Stage is automatically created: a white rectangle with 480 dots in width and 360 dots in height. The smallest dot that can be displayed on a computer graphics screen is called Pixel.
+ When you open Scratch, the stage is automatically created: a white rectangle 480 dots wide and 360 dots high. The smallest dot that can be displayed on a computer graphics screen is called *Pixel*.
 
- The Stage is where your stories, games and animations will run. It is immovable, like an aquarium, but its inhabitants - the Sprites - are constantly moving and interacting. In order to easily control the movement of the Sprites, each point of the Stage is assigned an address - coordinates x and y, which represent the point's distance from the center of the Stage. The center point has the coordinates x=0 and y=0, or shorter: (0,0).
+ The Stage is where your stories, games and animations will run. It is stationary, like an aquarium, but its inhabitants - Sprites are always moving and interacting with each other. In order to control the sprites' movements easily, each spot on the stage is assigned an address - *coordinates x and y*, these coordinates represent the distance of that particular spot from the center of the stage. The spot, which is located at the center of the stage has the coordinates х=0 and у=0, or (0,0).
 
- Coordinates allow Sprites to be accurately guided around the Stage and can be brought to an arbitrary point (x, y). The Sprite's current position can be seen in the current Sprite's information.
+ The coordinates allow us to accurately move our sprites around the stage and position them anywhere we want (x, y). The current position of the sprite can be seen in the active sprite's information. 
 
 
-.. topic:: Motion blocks' functions
+.. topic:: Functions of the *Motion* Blocks
  
- All commands regarding setting the sprites to a desired position or moving and directing are placed in the *Motion* group. The Motion group details are available in the appendix. In this chapter you are going to learn more about motion commands and **reporter blocks** through various illustrations and by doing excercises. Reporter blocks are not commands, so they cannot form a layer of a scrip alone; instead, they are used as input to other blocks. Motion reporters' function is to mantain the current coordinates and the sprite's direction.
+ All commands, which enable positioning of the sprite in the desired location and control its direction and movement, are located in the group of blocks called *Motion*. In this lesson, you are going to learn more about motion blocks and how to use **reporter blocks**, by looking at examples and doing exercises. Reporter blocks do not correspond to language commands, and they cannot stand independently in a script. The function of a reporter block from the *Motion* group is to store the current coordinates and directions of Sprites.
 
-.. topic:: Motion reporters
+.. topic:: Motion Reporters
 
- In this group there are blocks |x_position| and |y_position| with the current data about the sprite's placement (about its x and y coordinates), as well as the block |direction| showing the sprite's direction. 
+ In this group there are |x_position| and |y_position| blocks, which contain the current information on the position of the sprite (its x and y coordinates), and the |direction| block, which represents the direction of the sprite.
 
- To see the current coordinates of a sprite and its direction you need to click on the check block next to a desired block. If you click on the check block next to a motion reporter, a display showing current coordinates and direction will appear on the stage.
-
+ If you want to see the current coordinates and the direction of the sprite, you need to click on the checkbox next to the desired block. If you click on the checkboxes next to motion reporters, displays with which you can monitor the current coordinates and direction of the sprite will appear on the stage.
+ 
  .. image:: ../_images/2/fig2_2.png
-   :width: 390px   
+   :width: 400px   
    :align: center
  
  
-.. sidebar:: Absolute and relative commands
+.. topic:: Absolute and Relative Motion
 
- An absolute command is one where the result of running the command does not depend on the current state, but only upon the values specified in the command.
+ You can send your sprite to a specific spot on the stage in two different ways: with absolute or relative motion.
 
- The result of running a relative command depends both upon the values specified in the command and the current state.
+ **Absolute Motion** is moving to a specific spot - destination, regardless of the current position of the sprite. 
 
-.. topic:: Absolute and relative motion
+ In Scratch you can send your sprite to a given position (х,у) on the stage, that is to say, you can perform absolute motion by using the following blocks:
 
- You can send a Sprite to a specific spot on the Stage in two ways: by absolute and relative motion.
+ - |goto_xy| - go to position (х,у), 
+ - |glide_xy| - glide to the position (х,у), 
+ - |set_x| - set coordinate x to the position, 
+ - |set_y| - set coordinate y to the position. 
 
- **Absolute motion** is a move to a specific place - target, independent of the Sprite's current position.
+ By using the |goto_xy| block the sprite will move instantly to the given position (х,у).
 
- In Scratch there are 4 blocks by which a Sprite can be sent to a given position (x, y) on the Stage, or to make an absolute movement:
+ Similarly, the target will be reached with the block |glide_xy|, but the move would not be instant; it would last a given number of seconds. The higher the number of given seconds, the longer it will take the sprite to reach its destination.
+
+ Another way to set a destination in absolute motion is to independently set the coordinates x and y, using the blocks |set_x| and |set_y|.
+
+ **Relative Motion** is moving to a location defined by the number of steps the sprite will make from the current position. Of course, you also need to set the direction in which the sprite should move (right, up, etc.).
+
+ Another way to set a destination in relative motion is to independently set the coordinates x and y, by using the |change_x| and |change_y| blocks.
+
+ In Scratch, you can send the sprite to a location defined by the number of steps from its current position, that is to say, you can perform relative motion by using the following blocks:
  
- .. hlist::
-    :columns: 2
-
-    * |goto_xy| - go to the position (x,y), 
-    * |glide_xy| - glide to to the position (x,y), 
-    * |set_x| - set the coordinate x of the position, 
-    * |set_y| - set the coordinate y in the positions. 
-
- The |goto_xy| command now moves to the given position (x,y).
-
- Similarly, from the starting point the target will be reached with the command |glide_xy|, but the move will not happen right away, but it will take a given number of seconds. The higher the number of time for the glide, the longer it will take to get to your target. 
-
- Another way to set a target in absolute motion is to independently set the coordinates of x and y, using the |set_x| and |set_y| commands.
-
- **Relative motion** is moving to a place defined by the number of steps that the Sprite should make from the current position. Of course, you need to set direction (right, up, etc.). Another way to set a target in relative motion is to independently set the coordinates of x and y, using the |change_x| and |change_y| commands.
-
- You can aim the sprite to a target defined by the number of steps from its current position and to perform relative motion by the following commands:
-
- - |change_x| - помери се задати број пиксела хоризонтално у односу на текућу позицију, 
- - |change_y| - помери се задати број пиксела вертикално у односу на текућу позицију (х,у), 
- - |turn_right| - окрени се удесно за задати број степени у односу на текући смер, 
- - |turn_left| - окрени се улево за задати број степени у односу на текући смер, 
- - |move_steps| - помери се задати број корака у задатом смеру у односу на текућу позицију.
+ - |change_x| - move a certain amount of pixels horizontally in relation to the current position, 
+ - |change_y| - move a certain amount of pixels vertically in relation to the current position (х,у), 
+ - |turn_right| - turn right a certain amount of degrees in relation to the current direction, 
+ - |turn_left| - turn left a certain amount of degrees in relation to the current direction, 
+ - |move_steps| - move a certain amount of steps in the given direction in relation to the current position.
     
 
-.. sidebar::  Direction blocks
-   :subtitle: |point_direction| и |point_towards|
+.. sidebar::  Direction Blocks
+   :subtitle: |point_direction| and |point_towards|
 
-   There are two ways to set a value in the input field of the first block:
+   There are three ways to set a value in the input field of the first block:
 
-   |usmerenje1|
+   |direction1|
 
-   (1) type in a new value, for example 45;
-   (2) to rotate the blue arrow indicating the orientation in the current Sprite information.
+   (1) to select one of the offered values ​​from the drop-down list, for example (0) up;
+   (2) type in a new value, instead of the old, for example 45;
+   (3) to rotate the blue arrow indicating the direction in the current Sprite information.
 
-   The |point_towards| command allows the Sprite to point to a mouse pointer or other Sprite in the project.
+   From the drop-down list you can choose towards which object the Sprite in the other block will be directed.
 
-   |usmerenje2|
+   |direction2|
 
-.. |usmerenje1| image:: ../_images/2/fig2_3.png
+.. |direction1| image:: ../_images/2/fig2_3.png
 
-.. |usmerenje2| image:: ../_images/2/fig2_4.png
+.. |direction2| image:: ../_images/2/fig2_4.png
 
-.. topic:: Direction and rotation
+.. topic:: Direction and Rotation
 
- In addition to the rotation commands that allow you to change orientation considering the Sprite's current direction, there is also possibility to use commands that set the orientation independently of the Sprite's current position. 
+ In addition to the rotation blocks |turn_right| and |turn_left|, which allow you to change the direction in relation to the current direction of the sprite, in Scratch, there is an option to use blocks that set the direction regardless of the current position of the Sprite. 
 
- These are  |point_direction| and |point_towards| commands. 
+ These are |point_direction| and |point_towards| blocks. 
 
- You can find below the values regarding the main directions that can be set in the frst block's input field: *up* (North), *right* (East), *down* (South) and *left* (West).
+ On the following Figure you can find the main direction values which you can set in the input field of the first block: *up* (North), *right* (East), *down* (South) and *left* (West).
 
  .. image:: ../_images/2/fig2_5.png
-   :width: 260px   
+   :width: 250px   
    :align: center
 
- You can also set some other values, for example, 45 directs the Sprite to the Northeast, and 135 to the Southeast. To direct it to the West you do not need to use negative numbers. You can type in numbers from 180 to 360 instead.
+ You can also set other values, for example, value 45 will point the sprite in the direction of the northeast, and 135 to southeast. To point it west, you do not need to use negative numbers. You can type in numbers from 180 to 360 instead.  
 
- The second block directs the Sprite to a mouse pointer od to some other Sprite in the project. The target needs to be chosen from a drop-down list in the value field. For example, in the project "Dinosaur walk"  that will be presented later in this lesson, the cat can be directed to the mouse pointer or to one of the three dinosaurs, the Sprites of this project.
+ The second block points the sprite towards a mouse-pointer or towards some other sprite in the project. By clicking on the white triangle in the value field, you can open the drop-down list and select towards which object you want to point your sprite. For example, in the project "Dinosaur Walk", which will be analyzed later in this lesson, the cat can be pointed towards the mouse-pointer or towards one of the three dinosaurs, which represent sprites in this project. 
   
 
 |study| Study the following examples
------------------------------------------
+------------------------------------
 
-Just like we showed an easy way for a Sprite to speak in the project "Hello World", and then we upgraded the project through the exercises so that the Sprite really pronounces the text, now we will show the basic commands for the Sprite's movement and then we’ll upgrade these possibilities through the exercises.
+As we have shown the easy way to make our sprite talk in our "Hello World" project, and then by doing exercises upgraded our project so that the sprite really pronounces the text, we will now show the basic commands which will enable us to move our sprite, and then we will upgrade them through different exercises.
 
-Example 1 - “The Walk” project
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example 1 - Project "The Walk"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-|1| Click on the block group *Motion*, then drag and drop |move_steps| block into the script area and click on it. The cat will move 10 steps to the right.
+|1| Click on the *Motion* blocks, then drag the |move_steps| block to the Script Area and click on it. The cat will move 10 steps to the right. 
 
-|2| Click on this block several times and take the cat to the right edge of the screen. 
+|2| Click several times on this block and take the cat to the right edge of the screen. 
 
-Clicking on the move block repeatedly has allowed the action to be repeated several times. Aciton repeating can also be programmed.
+Clicking repeatedly on the move block has allowed the action assigned by this block, to be repeated several times. Repeating of a particular action can also be achieved by coding. 
 
-|3| Return the cat to the middle of the screen and click the *Control* command group. In the Blocks palette some blocks will appear and they will be different in shape from the blocks you used - C-shaped blocks with a "mouth", in which you can insert other blocks.
+|3| Return the cat to the middle of the screen and click the *Control* blocks. Differently shaped blocks from the ones you were using will appear in the Blocks Palette - C shaped blocks with a "mouth" in which you can insert other blocks. 
 
-|4| Select a block |forever| and drag it to the script area. Clicking on this block allows all the blocks that make part of it to run forever (until you stop running the program by clicking the stop sign).
+|4| Select the block |forever| and drag it to the Scripts Area. Clicking on this block enables all the blocks which are inserted into it to run forever (until you stop the running of the program by clicking on the sign *stop*).
 
-|5| Insert a moving block into the "mouth" of the repeating block and click on it. The cat will go off screen again.
+|5| Insert a move block into the "mouth" of the repeat forever block and click on them. The cat will go off-screen again.
 
-There is a way that Sprite's movement can be kept within the edge of the screen. That is an order if you're on the edge, turn around. The corresponding block is in the *Motion* group.
+There is a way to keep the movement of the sprite inside the borders of the screen. That would be to use the block with the command *if on edge, bounce*. This block is located in *Motion* blocks. 
 
-|6| Stop running blocks by clicking on the stop sign, then drag the block |if_edge| into the script area and place it in the "mouth" of the repeat block, behind the move block. 
+|6| Stop the running of the blocks by clicking the *stop* sign, and then drag the block |if_edge| to the Scripts Area and insert it into the "mouth" of the repeat forever block, below the move block.  
 
-.. sidebar:: Project's script
+.. sidebar:: The Project Script
 
-  The cat's actions are defined by the following script.
+  The following Script is added to the cat sprite.
 
   |script|
 
 .. |script| image:: ../_images/2/fig2_6.png
 
-By running a script like this, the cat will constantly move from one edge to another, but it will also go upside down. Of course, there is a way to correct this as well. One is to change the way the Sprite moves in the Sprite's information, and the other is to use a motion command.
+By running this changed script, the cat will constantly move from one edge to the other, but when it moves to the left, it will be facing the wrong way. Of course, there is a way to fix this. One is to change the way the sprite is moving in the Sprite Information, and the other is to use one of the rotation blocks.
 
-|7| Drag the motion |rotation_style| block from the *Motion* group and place it above the repeat block. Make sure that the *left-right* rotation mode is selected from the drop-down list of this block.
+|7| Drag the block |rotation_style| from the *Motion* blocks and place it above the repeat forever block. Make sure that the *left-right* rotation mode is selected from the drop-down list of this block.
 
-|8| Put the |clicked_flag| block at the beginning of the script, and you have completed “The Walk” project.
+|8| Put the |clicked_flag| block at the top of the Script, and by doing this you have completed the "Walk" project. 
 
-You can now start the project by clicking on |g_flag| and stop it by clicking on the |stop|. Save the project and then continue the research.
+You can now run the project by clicking on the *green flag* and stop it by clicking on the *stop* sign. Save the project and continue exploring. 
 
-.....
+.......
 
-У следећем пројекту показаћемо како се уводе нови ликови и позадине и како се лик води коришћењем показивача миша. Зато, пре но што пређеш на овај пример, проучи приручнике *Додај лик* и *Додај позадину*.
+In our next project, we will show how you can introduce new sprites and backdrops, and how to guide a sprite by using the mouse-pointer. Therefore, before you move on to this example, watch the tutorials *Add a Sprite* and *Add a Backdrop*.
 
-Example 2 – „Обилазак диносауруса”
+Example 2 – "The Dinosaur Walk"
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-У претходном пројекту користили смо блок ``понављај заувек`` да постигнемо да се мачак заувек креће између рубова екрана, односно све док се не прекине извршавање пројекта кликом на на знак *стоп*. У овом пројекту учествују 4 лика и сваком од њих ћемо придружити скрипту која описује његово поношање. Мачак ће заувек да прати показивач миша, а остала 3 лика - диносауруси, ће заувек да се усмеравају ка мачку. На следећој слици приказан је изглед позорнице на почетку извршавања пројекта.
+In the previous example, we used the ``repeat forever`` block to make the cat sprite move continuously between the edges of the screen until we stop the running of the project by clicking the *stop* sign. In this project, we will have four sprites, and each of them will have their own scrip, which will determine their behavior. The cat will follow the mouse-pointer forever, and the remaining three sprites - the dinosaurs, will forever be directed towards the cat. The look of the stage at the beginning of the running of the project is presented in the following Figure.
 
 .. image:: ../_images/2/fig2_7.png
    :width: 490px   
    :align: center
 
-**Израда пројекта**
+**Creation of the Project**
 
-.. sidebar:: Избор позадине
+.. sidebar:: Selecting the Backdrop
 
-  Нову позадину можеш да додаш у пројекат кликом на дугме које се налази десно од дугмета за избор нових ликова.
+  You can add a new backdrop to the project by clicking the icon located on the right, next to the Choose a Sprite icon, which is used for selecting new sprites.
 
-  |nova_pozadina|
+  |new_backdrop|
 
-.. |nova_pozadina| image:: ../_images/2/fig2_8.png
+.. |new_backdrop| image:: ../_images/2/fig2_8.png
 
 
-|1| Кликни на дугме за избор позадина и изабери позадину *Jurassic* из библиотеке позадина.
+|1| Click on the icon for choosing backdrops and choose the *Jurassic* backdrop from the backdrop library.
 
-|2| Изабери ликове *Dinosaur1*, *Dinosaur2* и *Dinosaur3* из библиотеке ликова.
+|2| Choose the sprites *Dinosaur1*, *Dinosaur2* and *Dinosaur3* from the Sprites library.
 
-|3| Ликове распореди као на слици горе. Лику *Dinosaur2* треба променити усмерење. Подразумева се да је усмерење ликова постављено на 90 :sup:`о` (гледају на десно) и да им је начин окретања *на све стране*. Ове поставке могу се променити у информацијама о лику или коришћењем одговарајућих блокова у скриптама које су му придружене. У овом пројекту користићемо први начин. 
+|3| Place your sprites like they are on the Figure above. Yo need to change the direction of the *Dinosaur2*. The default direction value for all sprites is 90 :sup:`о` (they are looking to the right) and their rotation style is *All Around*. All of these settings can be changed in the Sprite Information part or by using appropriate blocks to form scripts added to a particular sprite. In this project, we will use the first option. 
 
-|4| У информацијама о лику постави да начин окретања буде за лик: *Dinosaur1* - *без окретања*, *Dinosaur2* - *лево/десно*, *Dinosaur3* - *на све стране*. 
+|4| In the Sprite information window set the rotation style as follows: *Dinosaur1* - *don't rotate*, *Dinosaur2* - *left/right*, *Dinosaur3* - *all around*. 
 
-|5| Свим диносаурусима придружи исту скрипту која налаже да се све време извршавања пројекта усмеравају ка мачку. Међутим, они ће се различито понашати зато што у информацијама о лику имају постављене различите начине окретања.
+|5| To all dinosaurs add the same script, which will command them to point towards the cat during the running of the entire project. However, they will behave differently because they don't have the same rotation style in their Sprite information settings.
    
-|6| Лику мачка придружи наредбе које му омогућавају да прати координате показивача миша, односно да се по позорници креће онако како корисник помера миша. 
+|6| For the cat sprite you need to set the commands, which will enable it to point towards the coordinates of the mouse-pointer, that is, to move across the stage the same way the user moves the mouse. 
 
-Скрипте које описују понашање диносауруса и мачка приказне су на следећој слици.
+The Scrips describing the behavior of the dinosaurs and the cat are presented in the following Figure.
 
 .. image:: ../_images/2/fig2_9.png
-   :width: 600px   
+   :width: 395px   
    :align: center
  
-Покрени пројекат и померај мачка по позорници. Обрати пажњу да диносауруси на различит начин прате његово кретање.
+Run the project and move the mouse across the stage. Note that the dinosaurs are tracking its movements in different ways.
 
-.....
+.......
 
-Example 3 – "Linear motion"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. sidebar:: Selection of the Keys
 
-|tutorial| Study the Use the arrow keys tutorial, and create a project where the cat is led around the Stage with the keyboard. 
-
-.. sidebar:: Key selection
-
-  The keyboard key that will run the script is selected by clicking on the white triangle next to the button name (space) and then selecting the desired race from the drop-down list. 
+  The keyboard key that will run the script is selected by clicking on the white triangle next to the key name (space) and then selecting the desired key from the drop-down list. 
 
   |fig2_11|
 
 .. |fig2_11| image:: ../_images/2/fig2_10.png
 
-|1|	The Sprite cat joins |clicked_key| command.
+Example 3 – "Linear Motion"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-|2| You select the *right arrow* button.
+Study the *Use the Arrow Keys* tutorial, and create a project where the cat is led around the stage with the keyboard. 
+
+|1|	Add the |clicked_key| block to the cat.
+
+|2| Choose the key *Right Arrow*.
  
-|3|	From the *Motion* group, select |point_direction| command and associate it with the previous command.   
+|3|	Choose the |point_direction| block from the *Motion* blocks and connect it to the previous block.
 
-|4|	From the *Motion* group, select |move_steps| command and associate it with the previous command.   
+|4|	Choose the |move_steps| block from the *Motion* blocks and connect it to the previous block.
 
-|5|	Press the right arrow key on the keyboard several times. What happens?
+|5|	Press the right arrow key on your keyboard a few times. What happens?
 
-|6|	Duplicate this script (right click on the first command, then select *Duplicate*).
+|6|	Duplicate this script (right-click on the first block, then select *Duplicate*).
 
-|7|	In the new script, replace the right arrow with the left arrow, and in the block ``point in direction`` instead of 90 select -90.
+|7|	In the new script, replace the right arrow with the left arrow, in the block *point in direction* instead of 90 choose -90.
 
-|8|	Press the left arrow key on the keyboard several times. What happens?
+|8|	Press the left arrow key on your keyboard a few times. What happens?
 
 |9|	Similarly, make two more scripts: to guide the cat 10 steps up by pressing the up arrow key, or 10 steps down by pressing the down arrow key.
  
 .. image:: ../_images/2/fig2_11.png
-   :width: 570px   
+   :width: 480px   
    :align: center
 
-.....
+.......
 
-Example 4 – "Motion and Turn"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example 4 – "Motion with a Turn"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We're going to do another project to run a Sprite using keyboard keys, but with modified keys settings. We will throw out directional commands, and with the left and right arrows, we will join the commands that rotate the Sprite 15 degrees left or right. With the up and down arrows we will join the commands go 10 steps, or go -10 steps. The corresponding scripts will have the following layout.
- 
+We are going to create one more project for moving sprites by using a keyboard, but with modified functions of the arrow keys. We will remove the blocks for direction, and we will join the *left arrow* key and *right arrow* key with the commands which rotate the sprite 15 degrees to the left or to the right. Also, we will join the *up arrow* key and the *down arrow* key with the block ``move 10 steps``, i.e. ``go -10 steps``. The corresponding scripts will have the following layout.
+
 .. image:: ../_images/2/fig2_12.png
-   :width: 555px   
+   :width: 435px   
    :align: center
 
-Run the project and test how it handles movement of the Sprite's.
+Run the project and test how you can manage sprite's movement.
+
 
 |ask| Did you understand?
-----------------------------------
+-------------------------
 
 Question 1
 ~~~~~~~~~~
@@ -259,17 +255,17 @@ Question 1
 .. level:: 1
 
 .. mchoice:: stage1
-   :answer_a: 1280 steps wide and 600 steps tall
-   :answer_b: 800 steps wide and 600 steps tall
-   :answer_c: 480 steps wide and 360 steps tall
-   :answer_d: 360 steps wide and 480 steps tall
+   :answer_a: 1280 pixels wide and 600 pixels high
+   :answer_b: 800 pixels wide and 600 pixels high
+   :answer_c: 480 pixels wide and 360 pixels high
+   :answer_d: 360 pixels wide and 480 pixels high
    :correct: c
    :feedback_a: 
    :feedback_b: 
-   :feedback_c: True
+   :feedback_c: Correct.
    :feedback_d: 
    
-   Колике су димензије позорнице?
+   What are the dimensions of the Stage?
    
 Question 2
 ~~~~~~~~~~
@@ -278,16 +274,16 @@ Question 2
 
 .. mchoice:: stage2
    :answer_a: in the upper left corner of the Stage
-   :answer_b: in the downer left corner of the Stage
+   :answer_b: in the bottom left corner of the Stage
    :answer_c: in the center of the Stage
-   :answer_d: зависи од придружене позадине
+   :answer_d: depends on the added backdrop
    :correct: c
    :feedback_a: 
    :feedback_b: 
-   :feedback_c: True
+   :feedback_c: Correct.
    :feedback_d: 
    
-   Где се налази тачка с координатама (0,0)?
+   Where is the location of the point with the coordinates (0,0)?
    
    
 Question 3
@@ -296,17 +292,17 @@ Question 3
 .. level:: 1
 
 .. mchoice:: blocks1
-   :answer_a: Sensing
+   :answer_a: Sensing 
    :answer_b: Motion
    :answer_c: Control
    :answer_d: Looks
    :correct: b
    :feedback_a: 
-   :feedback_b: True
+   :feedback_b: Correct.
    :feedback_c: 
    :feedback_d: 
    
-   Којој групи  припадају блокови који управљају положајем, оријентацијом, окретањем и кретањем ликова?
+   To which group of blocks do the position, direction, rotation and movement management blocks belong to?
    
 
 Question 4
@@ -319,16 +315,16 @@ Question 4
    :answer_b: no
    :correct: b
    :feedback_a:  
-   :feedback_b: 
+   :feedback_b: Correct.
    
-    Да ли позорница може да извршава наредбе кретања?
+    Can the Stage run Motion blocks?
 
 Question 5
 ~~~~~~~~~~
 
 .. level:: 2
 
-.. mchoice:: Absolute_Motion
+.. mchoice:: absolute_motion
    :multiple_answers:
    :answer_a: 
    :answer_b: 
@@ -340,10 +336,10 @@ Question 5
    :feedback_c: 
    :feedback_d: 
 
-   Which of the commands allows absolute mmovement? (Select all correct answers)
+   Which blocks enable absolute motion? (Select all correct answers)
 
    .. image:: ../_images/2/q2_5.png
-      :width: 545px   
+      :width: 530px   
       :align: center
 
 Question 6
@@ -351,22 +347,22 @@ Question 6
 
 .. level:: 2
 
-.. mchoice:: Relative_Motion
+.. mchoice:: relative_motion
    :multiple_answers:
    :answer_a: 
    :answer_b: 
    :answer_c: 
    :answer_d: 
    :correct: b, d
-   :feedback_a:  
+   :feedback_a: 
    :feedback_b: 
    :feedback_c: 
    :feedback_d: 
 
-   Which of the commands allows relative movement? (Select all correct answers)
+   Which blocks enable relative motion? (Select all correct answers)
 
    .. image:: ../_images/2/q2_6.png
-      :width: 630px   
+      :width: 530px   
       :align: center
 
 Question 7
@@ -381,15 +377,15 @@ Question 7
    :answer_c: 
    :answer_d: 
    :correct: b, c, d
-   :feedback_a: 
+   :feedback_a:  
    :feedback_b: 
    :feedback_c: 
    :feedback_d: 
 
-   Which of the blocks represent  motion reporters? (Select all correct answers)
+    Which of the blocks represent motion reporters? (Select all correct answers)
 
    .. image:: ../_images/2/q2_7.png
-      :width: 335px   
+      :width: 310px   
       :align: center
 
 
@@ -398,7 +394,7 @@ Question 8
 
 .. level:: 3
 
- image:: ../_images/2/q2_4.png
+.. image:: ../_images/2/q2_8.png
    :width: 400px   
    :align: center
 
@@ -408,12 +404,12 @@ Question 8
    :answer_c: Northeast
    :answer_d: Northwest
    :correct: d
-   :feedback_a: 
-   :feedback_b: 
-   :feedback_c: 
-   :feedback_d: 
+   :feedback_a: There it shows a 135 degrees angle.
+   :feedback_b: There it shows a -135 degrees angle.
+   :feedback_c: There it shows a 45 degrees angle.
+   :feedback_d: Correct.
    
-   Which side of the world will the Sprite look at after command |2_8|?
+   Which side of the world will the Sprite look at after running the |2_8| block?
 
 .. |2_8| image:: ../_images/2/block2_8.png   
 
@@ -422,7 +418,7 @@ Question 9
 
 .. level:: 1
 
-The following figure shows the positions of the 5 points on Stage.
+In the following Figure you can see a Stage with five different points.
 
 .. image:: ../_images/2/q2_9.png
    :width: 300px   
@@ -435,51 +431,52 @@ The following figure shows the positions of the 5 points on Stage.
    :answer_d: (200,40)
    :correct: b
    :feedback_a:  
-   :feedback_b: 
+   :feedback_b: Correct.
    :feedback_c: 
    :feedback_d: 
    
-   What are the coordinates of a point A?
+   What are the coordinates of the Point A? 
   
 .. mchoice:: coordinates2
    :multiple_answers:
-   :answer_a: A
-   :answer_b: B
-   :answer_c: D
-   :answer_d: E
+   :answer_a: Point A
+   :answer_b: Point B
+   :answer_c: Point D
+   :answer_d: Point E
    :correct: b, d
    :feedback_a:  
    :feedback_b: 
    :feedback_c: 
    :feedback_d: 
 
-   What points have a negative y coordinate? (Select all correct answers)
+   Which points have a negative *y* coordinate?
+   (Select all correct answers)
 
 
-.. dragndrop:: coordinates3
-    :feedback: 
-    :match_1: A|||(-200,40)
-    :match_2: B|||(-160,-60)
-    :match_3: C|||(20,0)
-    :match_4: D|||(100,120)
-    :match_5: E|||(180,-80)
+.. dragndrop:: coordinates_various
+   :feedback: Try again
+   :match_1: A|||(-200,40)
+   :match_2: B|||(-160,-60)
+   :match_3: C|||(20,0)
+   :match_4: D|||(100,120)
+   :match_5: E|||(180,-80)
     
-    Pair the points with their coordinates.
+   By dragging the rectangles, pair the points with their coordinates.
 
 Question 10
 ~~~~~~~~~~~
 
 .. level:: 2
 
-The following figure shows the positions of the 6 points on Stage.
+In the following Figure you can see a Stage with six different points.
 
 .. image:: ../_images/2/q2_10.png
    :width: 300px   
    :align: center
       
 
-.. dragndrop:: coordinates4
-    :feedback: Покушај поново
+.. dragndrop:: coordinates_symmetrical
+    :feedback: Try again
     :match_1: A|||(-160,80)
     :match_2: B|||(-160,-80)
     :match_3: C|||(160,-80)
@@ -487,207 +484,216 @@ The following figure shows the positions of the 6 points on Stage.
     :match_5: E|||(160,80)
     :match_6: F|||(0,80)
     
-    Pair the points with their coordinates.
+    By dragging the rectangles, pair the points with their coordinates.
 
 
-.. mchoice:: coordinates5
-   :answer_a: Тачка А
-   :answer_b: Тачка В
-   :answer_c: Тачка С
-   :answer_d: Тачка D
+.. mchoice:: symmetry_х
+   :answer_a: Point А
+   :answer_b: Point В
+   :answer_c: Point С
+   :answer_d: Point D
    :correct: c
-   :feedback_a: 
-   :feedback_b: 
-   :feedback_c: 
+   :feedback_a: This should be the point which has the same x, and the opposite value of the y coordinate as the Point E. 
+   :feedback_b: This should be the point which has the same x, and the opposite value of the y coordinate as the Point E.
+   :feedback_c: Correct.
+   :feedback_d: This should be the point which has the same x, and the opposite value of the y coordinate as the Point E.
    
-   Which point is symmetric to point E with respect to the x-axis?
+   Which point is symmetrical to the Point E with respect to the *x* axis?
 
-.. mchoice:: coordinates6
-   :answer_a: Тачка А
-   :answer_b: Тачка В
-   :answer_c: Тачка С
-   :answer_d: Тачка D
+.. mchoice:: symmetry_у
+   :answer_a: Point А
+   :answer_b: Point В
+   :answer_c: Point С
+   :answer_d: Point D
    :correct: a
+   :feedback_a: Correct.
+   :feedback_b: This should be the point which has the opposite value of the x coordinate, and the same y coordinate as the Point E.
+   :feedback_c: This should be the point which has the opposite value of the x coordinate, and the same y coordinate as the Point E.
+   :feedback_d: This should be the point which has the opposite value of the x coordinate, and the same y coordinate as the Point E.
+   
+   Which point is symmetrical to the Point E with respect to the *y* axis?
+ 
+.. mchoice:: symmetry2
+   :multiple_answers:
+   :answer_a: A and B
+   :answer_b: A and C
+   :answer_c: A and E
+   :answer_d: D and F
+   :correct: a, b, c
    :feedback_a: 
    :feedback_b: 
    :feedback_c: 
    :feedback_d: 
-   
-   Which point is symmetric to point E with respect to the y-axis? 
 
-
-.. mchoice:: coordinates7
-   :multiple_answers:
-   :answer_a: A и B
-   :answer_b: A и C
-   :answer_c: A и E
-   :answer_d: D и F
-   :correct: a, b, c
-   :feedback_a:  
-   :feedback_b: 
-   :feedback_c: 
-   :feedback_d: 
-
-   Which points are equidistant from the y-axis? (Select all correct answers) 
+   Which points are equidistant from the *y* axis? (Select all correct answers) 
 
 |try| Try it!
------------------
+-------------
 
-Exercise 1 - Tracking the position of the Sprites
+Exercise 1 - Tracking the Position of the Sprite
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 1
 
 .. infonote::
 
-  |1| Drag the cat Sprite to the upper left corner of the Stage, and then check the Sprite information for the coordinates of the point at which you left it.
+  |1| Drag the cat Sprite to the upper left corner of the Stage, and then check the Sprite information to see the coordinates of the new position.
 
-  |2| Then drag it to the upper right corner of the Stage and check again the coordinates of the point where you left it.
+  |2| Then drag it to the upper right corner of the Stage and check again the coordinates of the position where you left it.
 
-  |3| Repeat the previous procedure for the points in the lower corners of the Stage. At what points on the Stage did the coordinate x have a minus sign and at which coordinate y was negative?
+  |3| Repeat what you have just done by moving your Sprite to the bottom part of the Stage. In which positions on the Stage did the coordinate x have the negative value, and in which did the coordinate y?
 
-  |4| Import an Apple Sprite from the Sprite library. A blue frame should appear around the thumbnail of a new Sprite in the Sprite list, which means that the Sprite is in focus. If not, click on its thumbnail in the Sprite list.
+  |4| Import the *Apple* Sprite from the Sprite library. A blue frame should appear around the thumbnail of the new Sprite in the Sprite list, which means that the Sprite is active. If not, click on its thumbnail in the Sprite list. 
        
-  |5| Check the variables *x position* and *y position* at the bottom of the block group *Motion*. *Apple: x position* and *Apple: y position* will appear on Stage.
+  |5| Check the variables *х position* and *у position* at the bottom of the *Motion* group of blocks. *Apple: x position* and *Apple: y position* monitors will appear on Stage.
 
-  |6| It now drags the Apple Sprite to different places on the Stage and monitors how its coordinates change.
+  |6| Now drag the *Apple* Sprite to different positions on the Stage and track how its coordinates change by looking at the monitors.
 
-.....
+.......
 
-Exercise 2 - Setting the position of a Sprite with absolute motion commands
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-|tutorial| Before doing this exercise, study the *Add a Backdrop* tutorial.
+Exercise 2 - Setting the Position of the Sprite by Using the Absolute Motion Blocks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 2
 
 .. infonote::
 
-  |1| Click on the Stage picture next to the list of Sprites. A blue box will appear around the Stage image, so the Stage is in focus.
+  |1| Click on the Stage picture next to the Sprite list. A blue box will appear around the Stage thumbnail, which means that the Stage is in focus.
 
-  |2| Click the |b_back| button, and from the Backdrop library window that opens, select the  *Xy-grid*.
+  |2| Click on the *Choose a backdrop* icon, and then choose the *Xy-grid* backdrop from the *Backdrop library*.
 
-  |3| Now click on the |code| Code tab to get a block palette instead of a |costume| Backdrops tab.
+  |3| Now click on the *Code* tab to get the Block Palette instead of the backdrop list. 
 
-  |4| You will get the message *Stage selected: no motion blocks* in the *Motion* group, which is understandable because the Stage that is now in focus can't move.
+  |4| In the *Motion* blocks you will see a message *Stage selected: no motion blocks*, which is understandable because the Stage, which is now active, cannot move.
   
-  |5| Click on the cat Sprite in the Sprite list. When a blue frame appears around the thumbnail, blocks of the *Motion* group will return.
+  |5| Click on the cat sprite in the sprite list. When a blue frame appears around the sprite's thumbnail, the *Motion* blocks will return.
 
-  |6| Drag the |goto_xy| block into the script area, then change the value of x to 120 and the value of y to 100.
+  |6| Drag the |goto_xy| block to the scripts area, and then change the value of x to 120, and the value of y to 100.
 
-  |7| Click on the modified block in the script area. What happened?
+  |7| Click on the changed block in the scripts area. What happens?
 
-  |8| Drag the |glide_xy| block into the scripting area, then change the value of x to -120 and the value of y to 100. What happens when you click on this block?
+  |8| Drag the |glide_xy| block to the script area, and then change the value of x to -120, and the value of y to 100. What happens when you click on this block?
 
-  |9| Follow where to find the Sprite after clicking on a block where you previously typed different values for x and y. For example, where will the Sprite be if both coordinates are negative, if off Stage etc.
+  |9| Look where you can find the sprite after clicking the block in which you have previously changed the values for x and y. For example, where will the Sprite be if both coordinates are negative, if they are off-stage, etc? 
 
-.....
+........
 
-Exercise 3 - Absolute and relative motion
+Exercise 3 - Absolute and Relative Motion
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 3
 
 .. infonote::
 
-  Try to guide the Sprite from point A to point B by using different *Motion* commands.
+  Try to guide the Sprite from point A to point B by using different *Motion* blocks.
    
-  |1| Set *Хy-grid* from the Backdrop library as the bacdrop.
+  |1| Set *Хy-grid* from the Backdrop library as the backdrop.
 
-  |2| Select two new Sprites from the Sprite library - letters A and B (Block-A and Block-B).
+  |2| Select two new sprites from the sprite library - letters A and B (Block-A and Block-B).
   
-  |3| Set the letter A in the lower left corner of the Stage to the position (-200, -120), and the letter B in the upper right corner to the position (200,120). This is most precisely done by assigning the letter A to the go_xy block (dragging it into the script area while the letter A is in focus), entering the appropriate coordinates x and y, and clicking on the block. Repeat the procedure for the letter B.
+  |3| Set the letter A in the lower-left corner of the Stage in the position (-200, -120), and the letter B in the upper right corner in the position (200, 120). The most precise way to do this is to add the |goto_xy| block to the letter A (drag it to the scripts area while the letter A is active) and enter the appropriate coordinates х and у, and then click on the block. Follow the same steps for the letter B.
   
-  |4| Join the cat with the |goto| command and select Block-A from the drop-down list (which you will get when you click on the white triangle in the selection box). **Note**. |goto| |!=| |goto_xy|. 
+  |4| Add the |goto| block to the cat, and select *Block-A* from the drop-down list (which will appear when you click on the white triangle in the selection box). **Note**. |goto| |!=| |goto_xy|. 
    
-  |5| Click on the |goto| block and the cat will be located below the letter A.
+  |5| Click on the |goto| block and the cat will be behind the letter A. 
   
-  |6|  Click on the |goto_layer| from the *Looks* group and Cat will be located above the letter A.
+  |6| Click on the |goto_layer| block from the *Looks* group of blocks and the cat will be in front the letter A.
   
   .. image:: ../_images/2/ex2_3.png
      :width: 220px   
      :align: center
 
-  |7| Now in block  |goto| choose *Block-B*, then click on it. The cat will immediately find itself above the letter B.
+  |7| Now in the |goto| block select *Block-B*, and then click on it. The cat will immediately be in front of the letter B. 
 
-  |8| The cat is joined by a block |glide_to|, and select *Block-A* from the drop-down list, then click on it. The cat will move up to the letter A for 1 second. **Note**.  |glide_to| |!=| |glide_xy|. 
-
-  |9| Now select *Block-B* from the drop-down list and set a longer glide time, for example 5 seconds. Click on the block.
+  |8| Add the |glide_to| block to the cat, and select *Block-A* from the drop-down list, then click on it. The cat will glide for 1 second to the letter A. **Note**.  |glide_to| |!=| |glide_xy|. 
     
-  |10| Try the third way. First, the cat joins the block |point_towards|, and from the drop-down list chooses to point to the Block-A Sprite. **Note**.  |point_towards| |!=| |point_direction|
+  |9| Try the third way. First, add the |point_towards| block to the cat, and from the drop-down list select the option where the cat points towards the *Block-A* sprite. **Note**.  |point_towards| |!=| |point_direction|
 
-  Click on the |move_steps| block until the cat reaches letter A.
+  Click on the |move_steps| block until the cat reaches the letter A.
 
-.....
+.......
 
-Exercise 4 - Commands for rotation style and direction
+Exercise 4 - Using the Rotation Style and Direction Blocks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Направи пројекат у коме ће се ликови понашати потпуно исто као у пројекту „Обилазак диносауруса”, али немој вршити измене у информацијама о лику. Уместо тога, начин окретања и усмерења ликова постави у скриптама придруженим ликовима. Упамти овај пројекат под називом „Обилазак диносауруса2”
+.. level:: 2
 
-.....
+.. infonote::
 
-Exercise 5 - Adding new Sprites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Create a project in which sprites will behave the same as the sprites in the "Dinosaur Walk" project, but don't make any changes in the Sprite information window. Instead, set the rotation style and the direction with scripts added to the sprites. Save this project under the name "Dinosaur Walk2".
 
-Iскористи пројекат „Шетња” за креирање новог пројекта у који ћеш увести нови лик. То може да буде, на пример, пас или миш, који све време треба да се усмерава према мачку. Додај позадину по избору. У скрипти која описује понашање новог лика задај и начин окретања. Немој вршити измене у скрипти придруженој мачку. Упамти овај пројекат под називом „Шетња2”.
+.......
+
+Exercise 5 - Adding New Sprites to Existing Projects 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 2
+
+.. infonote::
+
+ Use the "Walk" project for creating a new project where you will introduce a new sprite. This can be a dog or a mouse, which should always point towards the cat. Add the backdrop of your choosing. Add the rotation style to the script determining the behavior of this new sprite. Don't make any changes to the script added to the cat. Save this project under the name "Walk2".
 
 |bug| Debug it!
---------------------
+---------------
 
 Bug 1
 ~~~~~~~~
 
-The pupil wanted to make a simple animation of the cat's movement by changing his costume. So he joined him with the following script. 
+The pupil wanted to make a simple animation of the cat’s movement by changing his costume. Therefore, he/she added the following script. 
 
 .. image:: ../_images/2/bug2_1.png
     :width: 220px 
     :align: center
 
-However, nothing was happening. What was the mistake?
+However, nothing happened. What did the pupil do wrong? 
 
 Bug 2
 ~~~~~~~~
 
-The pupil wanted his Sprite to step between the left and right edges of the Stage. That is why he put in an endless cycle of constantly changing costumes and stepping 10 steps until he reaches the edge of the Stage as he turns. However, he didn't like the Sprite stepping upstairs to the left edge of the Stage. What should he do to fix this error?
-  
+The pupil wanted his sprite to step between the left and the right edge of the Stage. So he/she inserted the *switch costume*, *move 10 steps*, and the *if on edge bounce* blocks into the repeat forever block. However, he/she didn't like the fact that the sprite is facing the wrong way when moving towards the left edge of the stage. What does he/she need to do to correct this?
+   
   
 |book| Summary
-----------------
+--------------
 
-У овој лекцији смо показали како се помоћу две координате може прецизно одредити положај тачке на позорници. Ликове можемо послати на задату локацију наредбама апсолутног и релативног кретања. Апсолутно кретање је померање на одређено место – одредиште, независно од тренутне позиције лика, док је релативно кретање померање на место које је од тренутне позиције лика удаљено задати број корака у задатом смеру. Позорница не може да извршава наредбе кретања. Кроз примере пројеката и вежбе показали смо како се кретањем ликова може управљати диркама  тастатуре и помоћу миша.
+In this lesson, we showed how we can determine the exact position of a point on the stage by looking at the two coordinates. We can send sprites to a particular position on the stage by using the absolute and the relative motion blocks. Absolute motion is moving the sprite to a new location on the stage - destination, regardless of its previous position. On the other hand, Relative motion is changing the position of the sprite in relation to its previous position on the stage. The stage cannot run motion blocks. By looking at project examples and by doing the exercises, we learned how we can control the movement of our sprites by using our keyboard and our mouse.
 
-**New concepts**:  pixel, coordinate system, coordinates, motion commands, motion reporters, absolute motion, relative motion, orientation, rotation mode.
+**Scratch projects**: 2Studio_
 
-**Strach commands**: |motion_blocks| - |move_steps|, |turn_right|, |turn_left|, |point_direction|, |point_towards|, |goto_xy|, |goto|,  |glide_xy|, |glide_to|, |set_x|, |set_y|, |change_x|, |change_y|, |if_edge|, |rotation_style|, |x_position|, |y_position|, |direction|; |events_blocks| - |clicked_key|; |looks_blocks| - |*| |goto_layer|,  |*| |switch_costume|; |control_blocks| - |*| |forever|.
+.. _2Studio: https://scratch.mit.edu/studios/25119440/
 
-Note. commands marked with the |*| sign will be discussed in the  lessons that follow.
+**New concepts**:  pixel, coordinate system, coordinates, motion blocks, motion reporters, absolute motion, relative motion, direction, rotation mode.
+
+**Scratch commands**: |motion_blocks| - |move_steps|, |turn_right|, |turn_left|, |point_direction|, |point_towards|, |goto_xy|, |goto|,  |glide_xy|, |glide_to|, |set_x|, |set_y|, |change_x|, |change_y|, |if_edge|, |rotation_style|, |x_position|, |y_position|, |direction|; 
+
+|events_blocks| - |clicked_key|; |looks_blocks| - |*| |goto_layer|,  |*| |switch_costume|; |control_blocks| - |*| |forever|.
+
+Note. Blocks marked with the |*| sign will be discussed in the lessons that follow.
 
 |project| Create a projects
-----------------------------
+---------------------------
 
-Project 1 - “Two Players”
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Project 1 - "Two Players"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Start a new project that you will call “Two Players”. Put two Sprites on the Stage, one on the left and the other on the right. Set the Sprites to be pointing at each other. Join Sprites with scripts that allow them to *Motion* back and rotate clockwise and counterclockwise.
+Start a new project that you will call “Two Players”. Put two sprites on the stage, one on the left and the other on the right. Set the sprites to point at each other. Add scripts which will allow them to move back and forth, and to turn clockwise and counter-clockwise.
 
 The control keys for the first Sprite should be:
 
-- Up Arrow - The Sprite goes straight ahead,
+•	Up Arrow - The Sprite goes forward in a straight line,
 
-- Down Arrow - The Sprite goes straight back,
+•	Down Arrow - The Sprite goes back in a straight line,
 
-- Left arrow - The Sprite rotates counterclockwise,
+•	Left arrow - The Sprite turns counter-clockwise,
 
-- Right arrow - The Sprite rotates clockwise.
+•	Right arrow - The Sprite turns clockwise.
 
 The control keys for the second Sprite should be:
 
-- Button W - The Sprite goes straight ahead,
+•	Key W - The Sprite goes forward in a straight line,
 
-- Button S - The Sprite goes straight back,
+•	Key S - The Sprite goes back in a straight line,
 
-- Button A - The Sprite rotates counterclockwise,
+•	Key A - The Sprite turns counter-clockwise,
 
-- Button D - The Sprite rotates clockwise.
-
+•	Key D - The Sprite turns clockwise.

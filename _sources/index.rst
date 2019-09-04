@@ -9,13 +9,9 @@ Content
 .. toctree::
     :maxdepth: 2
 
-    Scratch3 Interface_srp
-    Scratch3 Coordinates_srp
-    Scratch3 Sequencing_sr
-    Scratch3 Graphics_sr
-    Scratch3 Repeating_sr
-    Scratch3 Branching_sr
-    Scratch3 Variables_sr
-    Scratch3 Procedures_sr
-    Scratch3 Lists_sr
-    Scratch3 Strings_sr
+    Scratch3 Interface_eng.rst
+    Scratch3 Coordinates_eng.rst
+    Scratch3 Sequencing_eng.rst
+    Scratch3 Graphics_eng.rst
+    Scratch3 Repeating_eng
+
