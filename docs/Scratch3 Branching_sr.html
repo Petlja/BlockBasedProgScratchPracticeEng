@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Yes Or No - Making Decisions &#8212; Block-based programming in Scratch - practice lessons</title>
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/activecode.css" />
+    <link rel="stylesheet" type="text/css" href="_static/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="_static/clickable.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pytutor.css" />
+    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/datafile.css" />
+    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css" />
+    <link rel="stylesheet" type="text/css" href="_static/fitb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css" />
+    <link rel="stylesheet" type="text/css" href="_static/parsons.css" />
+    <link rel="stylesheet" type="text/css" href="_static/lib/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="_static/poll.css" />
+    <link rel="stylesheet" type="text/css" href="_static/showEval.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/video.css" />
+    <link rel="stylesheet" type="text/css" href="_static/karel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/notes.css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/flatly.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/petlja.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/runestonebase.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/clike.js"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/mchoice.js"></script>
+    <script type="text/javascript" src="_static/timedmc.js"></script>
+    <script type="text/javascript" src="_static/timed.js"></script>
+    <script type="text/javascript" src="_static/mchoice-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/clickable.js"></script>
+    <script type="text/javascript" src="_static/timedclickable.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
+    <script type="text/javascript" src="_static/codelens.js"></script>
+    <script type="text/javascript" src="_static/datafile.js"></script>
+    <script type="text/javascript" src="_static/dragndrop.js"></script>
+    <script type="text/javascript" src="_static/timeddnd.js"></script>
+    <script type="text/javascript" src="_static/dragndrop-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/fitb.js"></script>
+    <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/fitb-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/matrixeq.js"></script>
+    <script type="text/javascript" src="_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="_static/parsons.js"></script>
+    <script type="text/javascript" src="_static/parsons-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/timedparsons.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
+    <script type="text/javascript" src="_static/reveal.js"></script>
+    <script type="text/javascript" src="_static/shortanswer.js"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/showEval.js"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js"></script>
+    <script type="text/javascript" src="_static/karelCorner.js"></script>
+    <script type="text/javascript" src="_static/karelRobot.js"></script>
+    <script type="text/javascript" src="_static/karelWorld.js"></script>
+    <script type="text/javascript" src="_static/karelRobotDrawer.js"></script>
+    <script type="text/javascript" src="_static/karelUI.js"></script>
+    <script type="text/javascript" src="_static/karel.js"></script>
+    <script type="text/javascript" src="_static/karel-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/notes.js"></script>
+    <script type="text/javascript" src="_static/pygamelib-init.js"></script>
+    <script type="text/javascript" src="_static/blockly/blockly_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/blocks_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/python_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/msg-sr.js"></script>
+    <script type="text/javascript" src="_static/blockpy/utilities.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_errors.js"></script>
+    <script type="text/javascript" src="_static/blockpy/ast_node_visitor.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter.js"></script>
+    <script type="text/javascript" src="_static/blockpy/pytifa.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter_definitions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_to_blockly.js"></script>
+    <script type="text/javascript" src="_static/blockpy/imported.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/class.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comment.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comprehensions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/dict.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/if.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/io.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/lists.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/sets.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/loops.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/parking.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/tuple.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/turtles.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/text.js"></script>
+    <script type="text/javascript" src="_static/blockpy-modal.js"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="_static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'Scratch_eng';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'Scratch_eng';
+  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.imagesDir = '_images/';
+  eBookConfig.staticDir = '_static/';
+  if(typeof(Sk) != "undefined")
+      Sk.imgPath = eBookConfig.imagesDir;
+</script>
+
+<div id="fb-root"></div>
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+
+<nav id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <img src="_static/img/logo.png" style="width:80px; height: 80px;"> 
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px; margin-left: 25px;">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="./">Block-based programming in Scratch - practice lessons</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container col-md-12" id="continue-reading"></div>
+
+<div class="container col-md-8 col-md-offset-2" id="main-content">
+  
+  <div class="section" id="yes-or-no-making-decisions">
+<h1>Yes Or No - Making Decisions<a class="headerlink" href="#yes-or-no-making-decisions" title="Permalink to this headline">¶</a></h1>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p><img alt="intro6" src="_images/intro6.png" /></p>
+
+    </p></div></div>
+<p>У овоj лекцији ћемо научити како се користе управљачки блокови који омогућавају гранања и како се граде сложени услови на основу којих се доносе одлуке. Систематизоваћемо блокове који омогућавају реализацију основних елемената програмске логике у Скречу. Упознаћемо више блокова из групе <em>Осећаји</em> и показати како се користи едитор слика у векторском режиму.</p>
+<div class="topic">
+<p class="topic-title first">Наредбе гранања</p>
+<p>У пројектима са простом линијском структуром, свака наредба извршава се тачно једанпут.
+У претходној лекцији упознали смо се са С-блоковима за опис циклуса који омогућавају да се наредбе које се у њих уметну извршавају више пута - блоковима за опис циклуса. Осим блокова који описују циклусе, и блокови који омогућавају гранање имају улаз за скрипте. У зависности од тога да ли је испуњен услов гранања, уложене наредбе ће се извршити или се неће извршити.</p>
+<p>Наредба гранања којој одговaра С-блок, осим улаза за логички израз, има и један улаз за скрипте, а она којој одговара Е-блок - два улаза за скрипте. Прва наредба омогућава да се изврше наредбе уложене у <em>ако…онда</em> “уста” када је услов гранања испуњен, а ако није, онда се неће извршити ни једанпут и прећи ће се на извршавање прве наредбе која следи за наредбом условног преласка.</p>
+<a class="reference internal image-reference" href="_images/fig6_1.png"><img alt="_images/fig6_1.png" class="align-center" src="_images/fig6_1.png" style="width: 500px;" /></a>
+<p>Друга наредба условног гранања прескаче неке наредбе било да је услов гранања испуњен или не. Ако је услов гранања испуњен, неће се извршити наредбе из НЕ гране, а ако услов није испуњен, неће се извршити наредбе из ДА гране.
+Дакле, за разлику од простих линијских програма у којима се свака наредба извршава тачно једанпут, цикличних у којима постоје наредбе које се могу извршавати више пута (у оквиру тела циклуса), код програма са разгранатом структуром постоје наредбе које се неће извршити ниједном.</p>
+<a class="reference internal image-reference" href="_images/fig6_2.png"><img alt="_images/fig6_2.png" class="align-center" src="_images/fig6_2.png" style="width: 520px;" /></a>
+</div>
+<div class="topic">
+<p class="topic-title first">Основни елементи програмске логике у Скречу</p>
+<p>Као што смо рекли, скрипте описују понашање објеката којима су придружене. Сви сценарији понашања објеката, ма како сложени били, састоје се од комбинација основних елемената програмске логике, а то су:</p>
+<ul class="simple">
+<li><p>низови корака,</p></li>
+<li><p>понављање и</p></li>
+<li><p>гранање.</p></li>
+</ul>
+<p>У информатици се уместо речи <em>скрипта</em> користи термин <strong>алгоритам</strong>. Појам алгоритма је познат вековима, али посебан значај добија тек појавом рачунара. Можемо рећи да сваки скуп разумљивих и прецизних упутстава како да се реши постављени задатак представља алгоритам.</p>
+<p>Прелазак улице, припрема хране по рецепту, обављање телефонског разговора, решавање математичког задатка – све то се своди на извршавање појединих елементарних операција задатим редоследом. Елементарне операције се у алгоритмима називају <strong>команде</strong>, <strong>кораци</strong> или <strong>наредбе</strong>.</p>
+<p>Алгоритам можемо мање или више прецизно задати речима. Међутим, много бољи увид у структуру и редослед извршавања инструкција даје графички запис алгоритма. Графичка шема која својим симболима указује на природу појединих алгоритамских корака назива се <strong>блок дијаграм</strong>. У блок дијаграмима се користе специјални симболи за запис појединих врста алгоритамских корака.</p>
+</div>
+<div class="sidebar">
+<p class="sidebar-title">Симболи појединих врста алгоритамских корака</p>
+<p><img alt="simboli" src="_images/fig6_3.png" /></p>
+</div>
+<p>Основни циљ блок дијаграма је да укаже на редослед извршавања појединих алгоритамских корака. Он даје прегледну везу између детаља и целине алгоритма и омогућава лако откривање грешака у његовој структури.</p>
+<p>Алгоритми могу имати просту линијску, разгранату и цикличну структуру. Код алгоритама са простом линијском структуром кораци се извршавају један за другим од почетка до краја. Код алгоритама са разгранатом структуром постоји неколико алтернативних праваца извршавања. Тако се, у зависности од података, неки кораци уопште неће извршити. Код алгоритама са цикличном структуром неки кораци се могу извршавати више пута.</p>
+<p>На следећој слици приказане су блок шеме за израчунавање вредности <em>х</em> на основу задате улазне вредности по три типа алгоритма: са простом линијском, разгранатом и цикличном структуром.</p>
+<a class="reference internal image-reference" href="_images/fig6_4.png"><img alt="_images/fig6_4.png" class="align-center" src="_images/fig6_4.png" style="width: 600px;" /></a>
+<p>Примери су преузети из уџбеника математике за други разред основне школе. Покушајте да на основу њих одговорите на следећа питања.</p>
+<ul class="simple">
+<li><p>Колика ће бити вредност <em>х</em> по извршавању сваког од алгоритама ако је улазна вредност <em>а=5</em>, а колика ако је <em>а=16</em>?</p></li>
+<li><p>Који од корака у алгоритму са разгранатом структуром се неће извршити ако је <em>а=5</em>, а који ако је <em>а=16</em>?</p></li>
+<li><p>Колико пута ће се извршити додела <em>х=х+3</em> у алгоритму са цикличном структуром ако је <em>а=5</em>, а колико пута ако је <em>а=16</em>?</p></li>
+</ul>
+<p>Запис ових алгоритама у Скречу приказан је на следећим сликама.</p>
+<p>Првом алгоритму просте линијске структуре одговара скрипта са низањем корака.</p>
+<a class="reference internal image-reference" href="_images/fig6_5.png"><img alt="_images/fig6_5.png" class="align-center" src="_images/fig6_5.png" style="width: 690px;" /></a>
+<p>Другом алгоритму разгранате структуре одговара скрипта са гранањем.</p>
+<a class="reference internal image-reference" href="_images/fig6_6.png"><img alt="_images/fig6_6.png" class="align-center" src="_images/fig6_6.png" style="width: 950px;" /></a>
+<p>Трећем алгоритму цикличне структуре одговара скрипта са понављањем.</p>
+<a class="reference internal image-reference" href="_images/fig6_7.png"><img alt="_images/fig6_7.png" class="align-center" src="_images/fig6_7.png" style="width: 755px;" /></a>
+<p><strong>Скрипте у Скречу изгледају као запис алгоритама блок дијаграмима.</strong></p>
+<div class="topic">
+<p class="topic-title first">Функције блокова из групе <em>Осећаји</em></p>
+<p>Групу <em>Осећаји</em> чине блокови који омогућавају да Project прихвата улазне податке са различитих уређаја, слично као што човек чулима прикупља информације из свог окружења. Тако постоје блокови чувају податке који одговарају подацима које човек прикупља чулом додира, чулом вида или чулом слуха. Неки блокови ове групе омогућавају да се покрену различите акције у зависности од положаја лика, у зависности од времена, датума и слично. У овој лекцији упознаћемо блокове који:</p>
+<ul class="simple">
+<li><p>чувају информација о положају лика у односу на показивач миша и друге објекте,</p></li>
+<li><p>омогућавају уношење улазних података са тастатуре,</p></li>
+<li><p>чувају информација о текућим операцијама миша и тастатуре.</p></li>
+</ul>
+<p>Преостале блокове из групе <em>Осећаји</em> упознаћемо у наредним лекцијама, а комплетан преглед њихових функција дат је у <em>Додацима</em>.</p>
+</div>
+<div class="section" id="study-study-the-following-examples">
+<h2><img alt="study" src="_images/study.png" /> Study the following examples<a class="headerlink" href="#study-study-the-following-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-1-project">
+<h3>Example 1 - Project „Избор”<a class="headerlink" href="#example-1-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<p>У овом пројекту стари чаробњак треба да изабере помоћника.</p>
+<a class="reference internal image-reference" href="_images/fig6_8.png"><img alt="_images/fig6_8.png" class="align-center" src="_images/fig6_8.png" style="width: 300px;" /></a>
+<p>Сам не може да одлучи кога, па тражи од корисника да му помогне тако што ће унети редни број кандидата за помоћника.</p>
+<a class="reference internal image-reference" href="_images/fig6_9.png"><img alt="_images/fig6_9.png" class="align-center" src="_images/fig6_9.png" style="width: 475px;" /></a>
+<p>Ова вредност пореди се наредбом условног преласка са бројем кандидата. Ако је корисник унео број 1, чаробњак се окреће улево ка кандидату 1,
+а у супротном удесно ка кандидату 2.</p>
+<a class="reference internal image-reference" href="_images/fig6_10.png"><img alt="_images/fig6_10.png" class="align-center" src="_images/fig6_10.png" style="width: 400px;" /></a>
+<p>Комплетна скрипта која описује понашање чаробњака приказана је на следећој слици.</p>
+<a class="reference internal image-reference" href="_images/fig6_11.png"><img alt="_images/fig6_11.png" class="align-center" src="_images/fig6_11.png" style="width: 300px;" /></a>
+</div>
+<div class="section" id="example-2-project">
+<h3>Example 2 - Project „Опасне пахуље”<a class="headerlink" href="#example-2-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p>Пројекат <em>Опасне пахуље</em> је једноставна игра у којој корисник покушава да спасе Снешка Белића од крупних опасних пахуља које непрестано падају.
+Корисник помоћу дирки са стрелицама на тастатури води Снешка лево-десно и покушава да избегне пахуље које са врха екрана падају различитом брзином и под различитим угловима.
+Ако пахуља додирне Снешка, он се надује и деформише и игра је готова.</p>
+<p><strong>Ликови и позадина</strong></p>
+<p>Када започнеш нови пројекат, учитај из библиотеке позадину <em>Slopes</em> и ликове <em>Snow flake</em> и <em>Snowman</em>. Први лик преименуј у <em>Пахуља</em>, а други у <em>Снешко</em>.
+Постави Снешка у доњи десни угао позорнице и можеш да почнеш са програмирањем.</p>
+<p><strong>Понашање пахуље</strong></p>
+<p>Да би се унела неизвесност потребно је да се пахуље појављују на различитим местима и падају различитим брзинама и у различитим правцима.
+Све те неизвесности постижемо коришћењем блока <img alt="pick_random" src="_images/pick_random.png" />.</p>
+<p>Пахуља треба да се појави при врху позорнице и да клизи до њеног дна. Следећи блок наредби описује њено кретање.</p>
+<a class="reference internal image-reference" href="_images/fig6_12.png"><img alt="_images/fig6_12.png" class="align-center" src="_images/fig6_12.png" style="width: 600px;" /></a>
+<p>Прва наредба поставља пахуљу на место чија се х координата генерише на случајан начин. Трећа наредба задаје тачку до које пахуља клизи између 0.5 и 3.5 секунди и нестаје.</p>
+<p>Овај блок наредби уметнућемо у петљу која ће се понављати све док пахуља не додирне Снешка. Када га додирне, игра се завршава.</p>
+<a class="reference internal image-reference" href="_images/fig6_13.png"><img alt="_images/fig6_13.png" class="align-center" src="_images/fig6_13.png" style="width: 620px;" /></a>
+<p><strong>Понашање Снешка</strong></p>
+<p>Снешку су придружене 3 скрипте – рекације на клик на зелену заставицу и притисак на дирке лева и десна стрелица.
+На почетку Снешко даје упутство за игру и у бесконачној петљи проверава да ли га је додирнула пахуља.
+Ако јесте, саопштава да је крај игре и зауставља све скрипте.</p>
+<a class="reference internal image-reference" href="_images/fig6_14.png"><img alt="_images/fig6_14.png" class="align-center" src="_images/fig6_14.png" style="width: 650px;" /></a>
+<p>Да би игра била атрактивнија, додаћемо и специјалне ефекте које можемо остварити блоковима из групе <em>Изглед</em>.
+Као што смо видели у примеру 2 лекције <em>Низање корака</em>, наредба <img alt="change_effect" src="_images/change_effect.png" />  може да промени лик на више начина.</p>
+<p>Када пахуља додирне Снешка, ми ћемо мењати његову величину и применити ефекте рибље око и боја. Те промене ћемо поновити 5 пута уз малу паузу после сваке промене (сл. A).
+Да Снешко при поновном покретању програма не би био деформисан, на почетку ћемо уклонити све графичке ефекте и поставити величину на 100%.  (сл. Б).</p>
+<a class="reference internal image-reference" href="_images/fig6_15.png"><img alt="_images/fig6_15.png" class="align-center" src="_images/fig6_15.png" style="width: 490px;" /></a>
+</div>
+<div class="section" id="example-3-project">
+<h3>Example 3 - Project „Дан и ноћ”<a class="headerlink" href="#example-3-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>У овом пројекту се два лика, куца и маца, различито понашају у зависности од тога да ли је дан или ноћ.</p>
+<p>На позорници се налазе две кућице од којих једна припада маци, а друга куци. Придружене су им две позадине – <em>дан</em> и <em>ноћ</em>.</p>
+<p>У позадини <em>дан</em> виде се сунце, светло плаво небо и трава.
+У позадини <em>ноћ</em> све осим кућица је тамно плаве боје, а на небу се виде звезде и млад месец. Позадине дан и ноћ смењују се сваких 5 секунди.</p>
+<p>Када је дан, маца и куца излазе из својих кућица и јуре се. Маца трчи у круг, а куца се усмерава према маци и покушава да јој приђе.</p>
+<p>Када је ноћ, маца и куца иду у своје кућице и мирују.</p>
+<a class="reference internal image-reference" href="_images/fig6_16.png"><img alt="_images/fig6_16.png" class="align-center" src="_images/fig6_16.png" style="width: 500px;" /></a>
+<p><strong>Креирање ликова</strong></p>
+<p>Обриши <em>Лик1</em> па унеси из библиотеке ликове пса (<em>Dog2</em>) и мачка (<em>Cat2</em>). Преименуј ликове у <em>куца</em> и <em>маца</em>.
+Куца има 3 костима, од којих ћемо користити само прва два, па трећи обриши. Маца има само један костим, па треба да нацртамо још један, како бисмо могли да направимо анимацију кретања.
+За креирање другог костима маце користићемо едитор слика у векторском режиму. Десним кликом на костим маце отварамо приручни мени и бирамо <em>Умножи</em>.
+Добијамо нови костим (<em>Cat3</em>) који ћемо изменити у корацима које илуструје следећа слика.</p>
+<a class="reference internal image-reference" href="_images/fig6_17.png"><img alt="_images/fig6_17.png" class="align-center" src="_images/fig6_17.png" style="width: 380px;" /></a>
+<p><strong>Креирање позадине</strong></p>
+<p>Кликни на дугме <em>Одабери позадину</em> (десно од листе ликова), па изабери опцију <em>Насликај</em>.
+Из палете векторских алата изабери <img alt="v_rectan" src="_images/v_rectan.png" />, а начин цртања нека буде без попуњавања. Нацртај кућицу као што је приказано на следећој слици.</p>
+<a class="reference internal image-reference" href="_images/fig6_18.png"><img alt="_images/fig6_18.png" class="align-center" src="_images/fig6_18.png" style="width: 380px;" /></a>
+<p>Пошто си алатком <img alt="v_group" src="_images/v_group.png" /> груписаo објекте од којих је састављена кућица, коришћењем алатке <img alt="copy" src="_images/copy.png" /> умножи кућицу и копију премести у дољи десни угао позорнице, а оригинал у горњи леви угао.
+Затим подеси величине ликова тако да могу да стану у кућице.</p>
+<p>Сада прелазимо на бојење алатком <img alt="v_fill" src="_images/v_fill.png" />. Примена овог алата се код попуњавања области разликује од рада у растерском режиму.
+Наиме, ако област није затворена, у растерском режиму боја „исцури“ на читаву слику. У векторском режиму се то не дешава – уопште не можеш да извршиш бојење.
+Зато на увећаној слици треба прво „затворити“ област. То се ради тако што се помоћу алатке <img alt="v_select" src="_images/v_select.png" /> кликне на слику, па део слике који није повезан (2) изабереш и повежеш са остатком слике (3).
+Онда коришћењем алатке <img alt="v_fill" src="_images/v_fill.png" /> можеш да обојиш како унутрашњост (4), тако и саме линије које образују област (5).</p>
+<a class="reference internal image-reference" href="_images/fig6_19.png"><img alt="_images/fig6_19.png" class="align-center" src="_images/fig6_19.png" style="width: 500px;" /></a>
+<p>Како смо приликом цртања кућице користили алатку <img alt="v_rectan" src="_images/v_rectan.png" />, не би требало да буде проблема приликом бојења.
+На следећој слици приказан је начин и резултат попуњавања делова кућице.</p>
+<a class="reference internal image-reference" href="_images/fig6_20.png"><img alt="_images/fig6_20.png" class="align-center" src="_images/fig6_20.png" style="width: 380px;" /></a>
+<p>Пошто си обојио кућице, умножи ову позадину.</p>
+<p>Прву позадину ћемо допунити тако да представља ноћ, а другу тако да представља дан.</p>
+<p><strong>Креирање позадине ноћ</strong></p>
+<p>Нацртај попуњен тамно плави правоугаоник преко целе позорнице, а затим помоћу алатке <em>Назад</em> <img alt="v_back" src="_images/v_back.png" /> постави овај правоугаоник иза обе кућице. Исто се може постићи и алатком <em>Слој назад</em> <img alt="v_backward" src="_images/v_backward.png" />, али биће потребно да кликнеш на позорницу онолико пута колико слојева има слика.
+Када се буду виделе обе кућице, пређи на цртање месеца и звездица.</p>
+<p>Млад месец може се нацртати тако да се прво нацрта попуњен жути круг (1), а затим делимично преко њега већи круг попуњен бојом позадине (2).</p>
+<p>Звездицу формирамо тако што белом бојом нацртамо троугао (3), па га умножимо и заротирамо (4) и на крају цео облик попунимо белом бојом (5).</p>
+<a class="reference internal image-reference" href="_images/fig6_21.png"><img alt="_images/fig6_21.png" class="align-center" src="_images/fig6_21.png" style="width: 400px;" /></a>
+<p>На крају ископирај готове звездице, распореди их на позадини, неке увећај, а неке смањи и ноћна позадина је завршена.</p>
+<a class="reference internal image-reference" href="_images/fig6_22.png"><img alt="_images/fig6_22.png" class="align-center" src="_images/fig6_22.png" style="width: 380px;" /></a>
+<p><strong>Креирање позадине дан</strong></p>
+<p>Нацртај сунце алатком <img alt="v_circle" src="_images/v_circle.png" />, а зраке алатком <img alt="v_line" src="_images/v_line.png" />. Затим великим светло плавим попуњеним правоугаоником ширине позорнице нацртај небо и пошаљи га онолико слојева испод колико је потребно да се виде сви детаљи.
+(Да си прво цртао небо, а после сунце брже би небо поставио у доњи слој, овако треба да га ставиш иза свих зракова сунца).</p>
+<p>Затим зеленим попуњеним правоугаоником ширине позорнице нацртај траву и пошаљи и њега у позадину слике.</p>
+<p>Поступак креирања позадине дан илуструје следећа слика.</p>
+<a class="reference internal image-reference" href="_images/fig6_23.png"><img alt="_images/fig6_23.png" class="align-center" src="_images/fig6_23.png" style="width: 500px;" /></a>
+<p>Пошто смо завршили са позадином дан, можемо да кренемо са писањем скрипте за понашање ликова.</p>
+<p><strong>Синхронизација догађаја у пројекту Дан и ноћ</strong></p>
+<p>У овом пројекту основно понашање диктира позадина. Она разглашава поруке <em>дан</em> и <em>ноћ</em>, на које реагују оба лика.</p>
+<a class="reference internal image-reference" href="_images/fig6_24.png"><img alt="_images/fig6_24.png" class="align-center" src="_images/fig6_24.png" style="width: 250px;" /></a>
+<p>На следећим сликама приказане су скрипте придружене ликовима из којих се види како реагује на ове поруке.</p>
+<a class="reference internal image-reference" href="_images/fig6_25.png"><img alt="_images/fig6_25.png" class="align-center" src="_images/fig6_25.png" style="width: 680px;" /></a>
+<a class="reference internal image-reference" href="_images/fig6_26.png"><img alt="_images/fig6_26.png" class="align-center" src="_images/fig6_26.png" style="width: 680px;" /></a>
+</div>
+</div>
+<div class="section" id="ask-did-you-understand">
+<h2><img alt="ask" src="_images/ask.png" /> Did you understand?<a class="headerlink" href="#ask-did-you-understand" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if01">
+            <p>Q-1: Да ли ће лик изговорити <em>Здраво</em> по извршењу наредбе условног преласка?</p>
+<a class="reference internal image-reference" href="_images/q6_01.png"><img alt="_images/q6_01.png" class="align-center" src="_images/q6_01.png" style="width: 250px;" /></a>
+
+            <li data-component="answer" data-correct id="if01_opt_a">да</li><li data-component="feedback" id="if01_opt_a"></li>
+            
+            <li data-component="answer"  id="if01_opt_b">не</li><li data-component="feedback" id="if01_opt_b">Услов 1=1 увек је испуњен.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-2">
+<h3>Question 2<a class="headerlink" href="#question-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if02">
+            <p>Q-2: Да ли ће лик изговорити <em>Здраво</em> по извршењу наредбе условног преласка?</p>
+<a class="reference internal image-reference" href="_images/q6_02.png"><img alt="_images/q6_02.png" class="align-center" src="_images/q6_02.png" style="width: 255px;" /></a>
+
+            <li data-component="answer"  id="if02_opt_a">да</li><li data-component="feedback" id="if02_opt_a">Пошто је вредност израза 1=2 увек нетачна, неће се извршити наредба из да гране.</li>
+            
+            <li data-component="answer" data-correct id="if02_opt_b">не</li><li data-component="feedback" id="if02_opt_b"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-3">
+<h3>Question 3<a class="headerlink" href="#question-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="if03">
+            <p>Q-3: Који од одговора корисника ће омогућити извршавање наредбе у ДА грани?</p>
+<a class="reference internal image-reference" href="_images/q6_03.png"><img alt="_images/q6_03.png" class="align-center" src="_images/q6_03.png" style="width: 215px;" /></a>
+
+            <li data-component="answer"  id="if03_opt_a">5</li><li data-component="feedback" id="if03_opt_a">Није 5<5</li>
+            
+            <li data-component="answer" data-correct id="if03_opt_b">-5</li><li data-component="feedback" id="if03_opt_b">Тачно.</li>
+            
+            <li data-component="answer" data-correct id="if03_opt_c">0</li><li data-component="feedback" id="if03_opt_c">Тачно.</li>
+            
+            <li data-component="answer"  id="if03_opt_d">10</li><li data-component="feedback" id="if03_opt_d">Није 10<5.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-4">
+<h3>Question 4<a class="headerlink" href="#question-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if04">
+            <p>Q-4: Шта ће изговорити лик ако корисник на питање <em>Да ли пада киша</em> одговори са <em>да</em>?</p>
+<a class="reference internal image-reference" href="_images/q6_04.png"><img alt="_images/q6_04.png" class="align-center" src="_images/q6_04.png" style="width: 310px;" /></a>
+
+            <li data-component="answer" data-correct id="if04_opt_a">Понеси кишобран.</li><li data-component="feedback" id="if04_opt_a"></li>
+            
+            <li data-component="answer"  id="if04_opt_b">ништа неће изговорити</li><li data-component="feedback" id="if04_opt_b">У том случају услов гранања је испуњен.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-5">
+<h3>Question 5<a class="headerlink" href="#question-5" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if05">
+            <p>Q-5: Шта ће изговорити лик по извршењу наредбе условног преласка?</p>
+<a class="reference internal image-reference" href="_images/q6_05.png"><img alt="_images/q6_05.png" class="align-center" src="_images/q6_05.png" style="width: 315px;" /></a>
+
+            <li data-component="answer" data-correct id="if05_opt_a">Услов је испуњен.</li><li data-component="feedback" id="if05_opt_a"></li>
+            
+            <li data-component="answer"  id="if05_opt_b">Услов није испуњен.</li><li data-component="feedback" id="if05_opt_b">Пошто је вредност израза А=А увек тачна извршава се наредба из да гране.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-6">
+<h3>Question 6<a class="headerlink" href="#question-6" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if06">
+            <p>Q-6: Да ли ће се приказати лик по извршењу наредбе условног преласка?</p>
+<a class="reference internal image-reference" href="_images/q6_06.png"><img alt="_images/q6_06.png" class="align-center" src="_images/q6_06.png" style="width: 165px;" /></a>
+
+            <li data-component="answer"  id="if06_opt_a">да</li><li data-component="feedback" id="if06_opt_a">Пошто је вредност израза А=Б увек нетачна извршава се наредба из не гране.</li>
+            
+            <li data-component="answer" data-correct id="if06_opt_b">не</li><li data-component="feedback" id="if06_opt_b"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-7">
+<h3>Question 7<a class="headerlink" href="#question-7" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if07">
+            <p>Q-7: Какав је резултат извршавања блокова наредби (А) и (В)?</p>
+<a class="reference internal image-reference" href="_images/q6_07.png"><img alt="_images/q6_07.png" class="align-center" src="_images/q6_07.png" style="width: 600px;" /></a>
+
+            <li data-component="answer"  id="if07_opt_a">различит без обзира на позицију лика</li><li data-component="feedback" id="if07_opt_a">У оба случаја је исти услов да се изговори "У центру си позорнице".</li>
+            
+            <li data-component="answer" data-correct id="if07_opt_b">исти без обзира на позицију лика</li><li data-component="feedback" id="if07_opt_b"></li>
+            
+            <li data-component="answer"  id="if07_opt_c">различит ако је у различито од 0</li><li data-component="feedback" id="if07_opt_c">Тада није испуњен услов да се изговори "У центру си позорнице" ни у једном од блокова (А) и (В).</li>
+            
+            <li data-component="answer"  id="if07_opt_d">различит ако је х различито од 0</li><li data-component="feedback" id="if07_opt_d">Тада није испуњен услов да се изговори "У центру си позорнице" ни у једном од блокова (А) и (В).</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-8">
+<h3>Question 8<a class="headerlink" href="#question-8" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="if08">
+            <p>Q-8: Која од наредби условног преласка има исправан услов за тврдњу да су координате места лика (0,0),
+односно да се лик налази у центру позорнице?  (Изабери све тачне одговоре)</p>
+<a class="reference internal image-reference" href="_images/q6_08.png"><img alt="_images/q6_08.png" class="align-center" src="_images/q6_08.png" style="width: 1020px;" /></a>
+
+            <li data-component="answer" data-correct id="if08_opt_a"></li><li data-component="feedback" id="if08_opt_a">Експлицитно се утврђује да је х=0 и у=0.</li>
+            
+            <li data-component="answer"  id="if08_opt_b"></li><li data-component="feedback" id="if08_opt_b">То су координате неке од тачака на дијагонали координатног система, може бити (0,0), али не мора.</li>
+            
+            <li data-component="answer"  id="if08_opt_c"></li><li data-component="feedback" id="if08_opt_c">То су координате неке од тачака на х оси или у оси. Може бити и тачка њиховог пресека, али не мора.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-9">
+<h3>Question 9<a class="headerlink" href="#question-9" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="if09">
+            <p>Q-9: У пројекту <em>Одлучивање</em> показано је како се операција <em>мод</em> користи за проверу да ли је број дељив са 2.
+Који од следећих услова омогућава да се провери да ли је унети број дељив са 6?  (Изабери све тачне одговоре)</p>
+<a class="reference internal image-reference" href="_images/q6_09.png"><img alt="_images/q6_09.png" class="align-center" src="_images/q6_09.png" style="width: 640px;" /></a>
+
+            <li data-component="answer" data-correct id="if09_opt_a"></li><li data-component="feedback" id="if09_opt_a">Остатак при дељењу са 6 је нула.</li>
+            
+            <li data-component="answer"  id="if09_opt_b"></li><li data-component="feedback" id="if09_opt_b">Бројеви 2 и 3 задовољавају овај услов, а нису дељиви са 6.</li>
+            
+            <li data-component="answer"  id="if09_opt_c"></li><li data-component="feedback" id="if09_opt_c">Број 11 задовољава овај услов, а нијe дељив са 6.</li>
+            
+            <li data-component="answer" data-correct id="if09_opt_d"></li><li data-component="feedback" id="if09_opt_d">Број је дељив са оба проста фактора броја 6.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+</div>
+<div class="section" id="try-try-it">
+<h2><img alt="try" src="_images/try.png" /> Try it!<a class="headerlink" href="#try-try-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Када се од корисника очекује да унесе неки податак потребно је поставити питање које сугерише и форму одговора, на пример: “Унеси датум рођења (дд.мм.гггг)”.
+Формулиши како треба да гласе питања за унос:</p>
+<p>а) Броја између 1 и 10</p>
+<p>б) Броја између -1.0 и 2.25</p>
+<p>в) Имена и презимена</p>
+<p>г) Тежине</p>
+<p>д) Висине</p>
+
+    </p></div></div>
+</div>
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>У прогрaму за рачунање идеалне тежине од корисника се тражи да унесе своју тежину (у кг) и висину (у cm).
+Напиши делове програма који проверавају да ли је корисник унео коректан податак за тежину, нпр. из интервала [40,160] и висину, нпр.  [140,210].</p>
+
+    </p></div></div>
+</div>
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши шта треба да буду аргументи операције <img alt="pick_random" src="_images/pick_random.png" /> да би се генерисали бројеви из скупа:</p>
+<p>а) {0, 1}</p>
+<p>б) {0, 1, 2, 3, … , 10}</p>
+<p>в) {–2, 0, 2, 4, 6, 8}</p>
+<p>г) {0, 10, 20, 30, … , 100}</p>
+<p>д) {0, 0.1, 0.15, 0.26, 0.38, … , 1.0}</p>
+<p>Провери своје одговоре тако што ћеш за сваки пример у циклусу који се понавља 5 пута тестирати шта одговарајућа операција враћа.</p>
+
+    <div data-component="reveal" id="упутство11"   data-showtitle="Прикажи упутство" data-hidetitle="Сакриј упутство">
+    <p><strong>Упутство:</strong></p>
+<p>За пример а) дат је цео блок наредби, а за остале само део са генерисањем бројева који треба да поставиш у блок <code class="docutils literal notranslate"><span class="pre">изговори</span></code>.</p>
+<p>Из примера д) можеш да видиш да је довољно да једну границу наведеш са децималном тачком да би се генерисали децимални бројеви.</p>
+<a class="reference internal image-reference" href="_images/ex6_3.png"><img alt="_images/ex6_3.png" class="align-center" src="_images/ex6_3.png" style="width: 400px;" /></a>
+
+    </div>
+    
+    </p></div></div>
+</div>
+<div class="section" id="exercise-4">
+<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши наредбу условног преласка са сложеним условом еквивалентну следећим композицијама наредби условног преласка:</p>
+<a class="reference internal image-reference" href="_images/ex6_4.png"><img alt="_images/ex6_4.png" class="align-center" src="_images/ex6_4.png" style="width: 530px;" /></a>
+<p>Провери своје одговоре тако што ћеш тестирати своје одговоре у Скреч окружењу.</p>
+
+    </p></div></div>
+</div>
+<div class="section" id="exercise-5">
+<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Креирај минипројекат <em>Већи</em> у коме лик тражи од корисника да унесе број између 1 и 100.
+Затим сам замисли (коришћењем операције случајан број) број од 1 до 100 и саопштава кориснику чији број је већи.
+Дијалог треба да се покрене кликом на лик.</p>
+
+    <div data-component="reveal" id="упутство12"   data-showtitle="Прикажи упутство" data-hidetitle="Сакриј упутство">
+    <p><strong>Упутство:</strong></p>
+<a class="reference internal image-reference" href="_images/ex6_5.png"><img alt="_images/ex6_5.png" class="align-center" src="_images/ex6_5.png" style="width: 390px;" /></a>
+
+    </div>
+    
+    </p></div></div>
+</div>
+</div>
+<div class="section" id="bug-debug-it">
+<h2><img alt="bug" src="_images/bug.png" /> Debug it!<a class="headerlink" href="#bug-debug-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bug-1">
+<h3>Bug 1<a class="headerlink" href="#bug-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<dl class="field-list simple">
+<dt class="field-odd">Питање</dt>
+<dd class="field-odd"><p>Ученик је желео да направи скрипту која омогућава да се кретањем лика управља помоћу дирки са стрелицама. Написао је програм приказан на слици лево.
+Онда је приметио да се 4 пута понавља наредба <img alt="move_steps" src="_images/move_steps.png" />, па је преправио скрипту у прогрaм приказан на слици десно. Међутим, његовим извршавањем није постигао
+жељено понашање лика. У чему је грешка?</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/bug6_1.png"><img alt="_images/bug6_1.png" class="align-center" src="_images/bug6_1.png" style="width: 500px;" /></a>
+
+    <div data-component="reveal" id="сакривање13"   data-showtitle="Прикажи одговор" data-hidetitle="Сакриј одговор">
+    <p><strong>Одговор:</strong></p>
+<p>У преправљеном програму наредба <img alt="move_steps" src="_images/move_steps.png" /> ће се стално извршавати и лик ће ићи у смеру који је последњи пут био изабран, без обзира да ли је притиснута или не дирка са тим смером.</p>
+
+    </div>
+    </div>
+<div class="section" id="bug-2">
+<h3>Bug 2<a class="headerlink" href="#bug-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<dl class="field-list simple">
+<dt class="field-odd">Питање</dt>
+<dd class="field-odd"><p>Ученик је желео да измени понашање кандидата за избор помоћника чаробњака у пројекту “Избор”. Када чаробњак изабере девојчицу за помоћника,
+дечак треба да замисли: “Зашто си изабрао њу?”. Зато је дечаку придружио следећу скрипту. Али, дечак је то замислио на самом почетку, још пре но што је чаробњак
+извршио избор. Како да се ускладе акције чаробњака и дечака?</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/bug6_2.png"><img alt="_images/bug6_2.png" class="align-center" src="_images/bug6_2.png" style="width: 220px;" /></a>
+
+    <div data-component="reveal" id="сакривање16"   data-showtitle="Прикажи одговор" data-hidetitle="Сакриј одговор">
+    <p><strong>Одговор:</strong></p>
+<p>Један начин је да чаробњак разгласи поруком да је извршио избор и да дечак одреагује тек када прими ту поруку. Разуме се, ако желимо да дечак не реагује ако је чаробњак изабрао њега,
+треба ову комуникацију порукама проширити и провером ко је изабран.</p>
+<a class="reference internal image-reference" href="_images/ans6_2.png"><img alt="_images/ans6_2.png" class="align-center" src="_images/ans6_2.png" style="width: 595px;" /></a>
+
+    </div>
+    </div>
+<div class="section" id="bug-3">
+<h3>Bug 3<a class="headerlink" href="#bug-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<dl class="field-list simple">
+<dt class="field-odd">Питање</dt>
+<dd class="field-odd"><p>Ученик је желео да његов лик који се води диркама стрелица лево и стрелица десно упоредо са кретањем изговара и реч “лево” док се налази на левој половини позорнице,
+а реч “десно” када је на десној половини. Придружио је лику следеће скрипте, али лик уопште није мењао реч коју би изговорио на почетку, без обзира на то
+што је прелазио на другу страну позорнице. Шта треба променити у скриптама?</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/bug6_3.png"><img alt="_images/bug6_3.png" class="align-center" src="_images/bug6_3.png" style="width: 510px;" /></a>
+
+    <div data-component="reveal" id="сакривање17"   data-showtitle="Прикажи одговор" data-hidetitle="Сакриј одговор">
+    <p><strong>Одговор:</strong></p>
+<p>Провера на којој је страни позорнице врши се само једном по покретању пројекта. Потребно је испитивање уметнути у бесконачан циклус.</p>
+<a class="reference internal image-reference" href="_images/ans6_3.png"><img alt="_images/ans6_3.png" class="align-center" src="_images/ans6_3.png" style="width: 240px;" /></a>
+
+    </div>
+    </div>
+</div>
+<div class="section" id="book-summary">
+<h2><img alt="book" src="_images/book.png" /> Summary<a class="headerlink" href="#book-summary" title="Permalink to this headline">¶</a></h2>
+<p>У овој лекцији бавили смо се наредбама гранања које омогућавају креирање скрипти разгранате структуре. Представили смо блокове из групе <em>Осећаји</em> и показали како се у Скречу извршава наредба за унос података са тастатуре. Научили смо и како се може синхронизовати понашање ликова разменом порука. Показали смо како се користе алати у векторском режиму уграђеног едитора слика.</p>
+<p><strong>New concepts</strong>:  разграната линијска структура, сложени услов.</p>
+<p><strong>Strach commands</strong>: <img alt="control_blocks" src="_images/control.png" /> - <img alt="if_then" src="_images/if_then.png" />, <img alt="if_then_else" src="_images/if_then_else.png" />, <img alt="wait_until" src="_images/wait_until.png" />; <img alt="looks_blocks" src="_images/looks.png" /> - <img alt="switch_backdrop" src="_images/switch_backdrop.png" />, <img alt="backdrop" src="_images/backdrop.png" />; <img alt="sensing_blocks" src="_images/sensing.png" /> - <img alt="touching" src="_images/touching.png" />; <img alt="operator_blocks" src="_images/operators.png" /> - <img alt="equal" src="_images/equal.png" /></p>
+</div>
+<div class="section" id="project-create-a-projects">
+<h2><img alt="project" src="_images/project.png" /> Create a projects<a class="headerlink" href="#project-create-a-projects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-1">
+<h3>Project 1 – „Падају јабуке”<a class="headerlink" href="#project-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<p>Направи игру чији је сценарио сличан сценарију пројекта <em>Опасне пахуље</em>. Главни лик овог пројекта треба да буде дечак кога корисник може да води лево-десно диркама са тастатуре. Он треба да избегава јабуке које се појављују на случајној позицији у горњем делу позорнице и клизе до случајне позиције у доњем делу позорнице. Ако при том додирну дечака, игра је готова, а ако не, сакривају се и поново појављују на горњем делу позорнице и клизе наниже. Брзина клизања такође треба да буде одређена на случајан начин, на пример између 1 и 3 секунде. Да би игра била узбудљивија, пошто креираш одговарајућу скрипту за једну јабуку, умножи овај лик тако да, на пример, три јабуке понављају одговарајуће понашање.</p>
+</div>
+<div class="section" id="project-2">
+<h3>Project 2 - „Гладна ајкула”<a class="headerlink" href="#project-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p>Направи пројекат у коме ће главни лик - ајкула ловити рибе. Ајкула треба стално да крстари лево-десно, а када се кликне на размак, треба да се помери навише. Ако ајкула дотакне неку рибу, риба нестаје, али се поново појављује после 3-5 секунди на случајно изабраном месту. Различито трајање паузе између два појављивања риба и различито место на коме ће се појављивати обезбеди коришћењем операције <em>случајан број</em>. Ајкула (Shark2) има три костима па се променом костима може приказати њена реакција када дотакне рибу. Рибама, раку и медузи придружи различита кретања, на пример, нека медуза иде горе-доле, рак нека се окреће лево-десно, а рибе нека пливају различитим брзинама. Све ликове: ајкулу, различите рибе, рака, медузу и позадину учитај из библиотека ликова и позадина. Различите рибе можеш добити коришћењем различитих костима лика <em>Fish</em>.</p>
+</div>
+<div class="section" id="project-3">
+<h3>Project 3 - „Пас и мачак”<a class="headerlink" href="#project-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Направи пројекат у коме ћеш користити два лика – пса и мачку, и две позадине.  На почетку се мачак полако шета лево-десно  између рубова позорнице, а у облачку блока <code class="docutils literal notranslate"><span class="pre">замисли</span></code> треба да се појављују његова размишљања. После десетак секунди појављује се пас, који залаје и уплаши мачка. Мачак бежи, а кад стигне до руба позорнице са првом позадином, треба да се појави друга позадина. Када мачак пређе целу позорницу са овом позадином треба да нестане - успео је да се сакрије. Тек тада се појављује пас, зауставља се, а у облачку блока <code class="docutils literal notranslate"><span class="pre">замисли</span></code> се појављује знак питања.</p>
+<p>За реализацију овог пројекта треба да:</p>
+<ul class="simple">
+<li><p>напишеш скрипте које описују понашање мачка,</p></li>
+<li><p>из библиотеке позадина увезеш лик пса коме ћеш придружити звучни фајл са лавежом и скрипте које описују његово понашање,</p></li>
+<li><p>увезеш две позадине, <em>Playng Field</em> и <em>Garden-rock</em>: прву на којој се мачак сусреће са псом и другу у коју мачак бежи кад зачује лавеж пса,</p></li>
+<li><p>синхронизујеш догађај лајања пса и мачкову реакцију на њега – бежање,</p></li>
+<li><p>синхронизујеш „понашање“ двеју позадина, односно тренутак њихове замене.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+  
+      <div class="col-md-12">
+<ul class="pager">
+</ul>
+
+<!-- <ul class="pager"> -->
+    <!-- -->
+    <!-- -->
+<!-- </ul> -->
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+</div>
+  
+</div>
+<footer class="footer col-md-12">
+    <div class="container">
+        <div class="text-center">
+            <hr>
+            <p class="text-muted">
+                <span class="pull-left">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
+                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+                  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/Petlja/TxtProgInPythonEng" rel="dct:source">https://github.com/Petlja/TxtProgInPythonEng</a>
+                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

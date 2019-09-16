@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>My Scratch quiz - Lists &#8212; Block-based programming in Scratch - practice lessons</title>
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/activecode.css" />
+    <link rel="stylesheet" type="text/css" href="_static/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="_static/clickable.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pytutor.css" />
+    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/datafile.css" />
+    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css" />
+    <link rel="stylesheet" type="text/css" href="_static/fitb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css" />
+    <link rel="stylesheet" type="text/css" href="_static/parsons.css" />
+    <link rel="stylesheet" type="text/css" href="_static/lib/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="_static/poll.css" />
+    <link rel="stylesheet" type="text/css" href="_static/showEval.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/video.css" />
+    <link rel="stylesheet" type="text/css" href="_static/karel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/notes.css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/flatly.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/petlja.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/runestonebase.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/clike.js"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/mchoice.js"></script>
+    <script type="text/javascript" src="_static/timedmc.js"></script>
+    <script type="text/javascript" src="_static/timed.js"></script>
+    <script type="text/javascript" src="_static/mchoice-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/clickable.js"></script>
+    <script type="text/javascript" src="_static/timedclickable.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
+    <script type="text/javascript" src="_static/codelens.js"></script>
+    <script type="text/javascript" src="_static/datafile.js"></script>
+    <script type="text/javascript" src="_static/dragndrop.js"></script>
+    <script type="text/javascript" src="_static/timeddnd.js"></script>
+    <script type="text/javascript" src="_static/dragndrop-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/fitb.js"></script>
+    <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/fitb-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/matrixeq.js"></script>
+    <script type="text/javascript" src="_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="_static/parsons.js"></script>
+    <script type="text/javascript" src="_static/parsons-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/timedparsons.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
+    <script type="text/javascript" src="_static/reveal.js"></script>
+    <script type="text/javascript" src="_static/shortanswer.js"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/showEval.js"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js"></script>
+    <script type="text/javascript" src="_static/karelCorner.js"></script>
+    <script type="text/javascript" src="_static/karelRobot.js"></script>
+    <script type="text/javascript" src="_static/karelWorld.js"></script>
+    <script type="text/javascript" src="_static/karelRobotDrawer.js"></script>
+    <script type="text/javascript" src="_static/karelUI.js"></script>
+    <script type="text/javascript" src="_static/karel.js"></script>
+    <script type="text/javascript" src="_static/karel-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/notes.js"></script>
+    <script type="text/javascript" src="_static/pygamelib-init.js"></script>
+    <script type="text/javascript" src="_static/blockly/blockly_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/blocks_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/python_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/msg-sr.js"></script>
+    <script type="text/javascript" src="_static/blockpy/utilities.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_errors.js"></script>
+    <script type="text/javascript" src="_static/blockpy/ast_node_visitor.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter.js"></script>
+    <script type="text/javascript" src="_static/blockpy/pytifa.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter_definitions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_to_blockly.js"></script>
+    <script type="text/javascript" src="_static/blockpy/imported.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/class.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comment.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comprehensions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/dict.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/if.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/io.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/lists.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/sets.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/loops.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/parking.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/tuple.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/turtles.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/text.js"></script>
+    <script type="text/javascript" src="_static/blockpy-modal.js"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="_static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'Scratch_eng';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'Scratch_eng';
+  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.imagesDir = '_images/';
+  eBookConfig.staticDir = '_static/';
+  if(typeof(Sk) != "undefined")
+      Sk.imgPath = eBookConfig.imagesDir;
+</script>
+
+<div id="fb-root"></div>
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+
+<nav id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <img src="_static/img/logo.png" style="width:80px; height: 80px;"> 
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px; margin-left: 25px;">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="./">Block-based programming in Scratch - practice lessons</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container col-md-12" id="continue-reading"></div>
+
+<div class="container col-md-8 col-md-offset-2" id="main-content">
+  
+  <div class="section" id="my-scratch-quiz-lists">
+<h1>My Scratch quiz - Lists<a class="headerlink" href="#my-scratch-quiz-lists" title="Permalink to this headline">¶</a></h1>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p><img alt="intro9" src="_images/intro9.png" /></p>
+
+    </p></div></div>
+<p>У програмима које смо креирали у претходним лекцијама користили смо само просте типове података – свака променљива чувала је вредност једног податка. Међутим , често је потребно под једним именом чувати читав низ података, на пример, низ бројева. Ако желимо да чувамо бројеве телефона својих 10 пријатеља, требало би да направимо 10 променљивих што није баш лако одржавати, па користимо сложени тип података који се у Скречу назива <strong>листа</strong>.</p>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p><strong>Шта је листа?</strong></p>
+<p>Листа је сложена променљива која се састоји од више елемената – више променљивих. То могу бити различити типови података, у овом примеру то су стрингови.
+Креира се слично ономе како се креирају обичне променљиве.</p>
+<ol class="arabic simple">
+<li><p>У групи <em>Подаци</em> кликне се на дугме <em>Направи листу</em>.</p></li>
+<li><p>У дијалошки прозор који се потом појави упише се име листе и потврди кликом на дугме <em>У реду</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/fig9_1.png"><img alt="_images/fig9_1.png" class="align-center" src="_images/fig9_1.png" style="width: 575px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>На позорници ће се појавити празан монитор листе на чијем дну пише да листа тренутно има дужину 0.</p></li>
+<li><p>Кликом на знак „+“, који се налази у доњем левом углу, отвара се поље за упис првог елемента, а дужина листе се повећава за 1.</p></li>
+<li><p>У празно поље треба уписати први елемент листе.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/fig9_2.png"><img alt="_images/fig9_2.png" class="align-center" src="_images/fig9_2.png" style="width: 370px;" /></a>
+<p>Понављањем овог поступка може се уписати жељени број елемената листе.</p>
+<p>Истовремено се у палети блокова појављује блок придружен листи и још 11 блокова који омогућавају коришћење листе и њених елемената у програму.</p>
+<a class="reference internal image-reference" href="_images/fig9_3.png"><img alt="_images/fig9_3.png" class="align-center" src="_images/fig9_3.png" style="width: 420px;" /></a>
+
+    </p></div></div>
+<div class="section" id="study-study-the-following-examples">
+<h2><img alt="study" src="_images/study.png" /> Study the following examples<a class="headerlink" href="#study-study-the-following-examples" title="Permalink to this headline">¶</a></h2>
+<p>У пројекту “Kвиз” постоје листа питања и листа тачних одговора. Питања и одговори могу се
+ручно унети унапред или се читају из текстуалне датотеке.
+Кориснику се на случајан начин постављају питања и проверава се да ли је дао тачан одговор.
+Ако јесте, добија поен, ако не - саопштава му се тачан одговор.
+На крају се, на основу броја тачних одговора, може дати оцена.</p>
+<div class="section" id="example-1-project">
+<h3>Example 1 - Project „Квиз знања”<a class="headerlink" href="#example-1-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<p>У овом примеру илустроваћемо како се може направити квиз из математике. Квизом се проверава да ли учесници умеју да одреде највећи заједнички делилац за два или три броја.
+Питања се налазе у листи <em>бројеви</em>, а одговори у листи <em>нзд</em> (највећи заједнички делилац).
+Да би се могло пролазити кроз листе користимо променљиву <strong>к</strong> чија вредност се мења од 1 до 8 (број елемената листе), а број тачних одговора памтимо у променљивој <strong>б</strong>.</p>
+<a class="reference internal image-reference" href="_images/fig9_4.png"><img alt="_images/fig9_4.png" class="align-center" src="_images/fig9_4.png" style="width: 440px;" /></a>
+<p>Следи приказ скрипте овог пројекта.</p>
+<a class="reference internal image-reference" href="_images/fig9_5.png"><img alt="_images/fig9_5.png" class="align-center" src="_images/fig9_5.png" style="width: 615px;" /></a>
+<p>Следећи пројекат илуструје како се на случајан начин могу бирати елементи листе.
+Ми ћемо користити репортер који враћа вредност оног елемента листе чији се редни број
+упише у поље за редни број. Тако, ако на случајан начин генеришемо променљиву број,
+његовим постављањем у поље за редни број добићемо онај елемент листе који се налази на
+тој позицији.
+У пројекту је такође показано како се бројеви генерисани на случајан начин могу
+искористити за разглашавање различитих порука.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-2-project">
+<h3>Example 2 - Project „Глад”<a class="headerlink" href="#example-2-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p>У пројекту учествује 10 ликова - гладни мачак и 9 врста хране о којој мачак машта.</p>
+<a class="reference internal image-reference" href="_images/fig9_6.png"><img alt="_images/fig9_6.png" class="align-center" src="_images/fig9_6.png" style="width: 460px;" /></a>
+<p>Мачак шета лево -десно и “замишља” по 3 секунде једну од 11 реченицa које се на случајан начин бирају из листе реченица под називом <em>храна</em>.</p>
+<a class="reference internal image-reference" href="_images/fig9_7.png"><img alt="_images/fig9_7.png" class="align-center" src="_images/fig9_7.png" style="width: 220px;" /></a>
+<p>У време док се види облачак <img alt="think_sec" src="_images/think_sec.png" /> у белом облаку на средини позорнице појављује се храна коју мачак замишља.</p>
+<a class="reference internal image-reference" href="_images/fig9_8.png"><img alt="_images/fig9_8.png" class="align-center" src="_images/fig9_8.png" style="width: 920px;" /></a>
+<p>Усклађивање појављивања хране и мачковог замишљања обавља се разменом порука.</p>
+<p>Наиме, променљива <em>број</em> која се генерише на случајан начин, користи се како за бирање реченице из листе <em>храна</em>, тако и за генерисање поруке 1 до 11. На поруке 1 и 11 нико не одговара, а на поруке од 2 до 9 реагују ликови чија су имена ти бројеви.</p>
+<p>На пример, миш који је лик “2” реагује на поруку 2, птица која је лик “3” реагује на поруку 3 и тако редом.</p>
+<a class="reference internal image-reference" href="_images/fig9_9.png"><img alt="_images/fig9_9.png" class="align-center" src="_images/fig9_9.png" style="width: 660px;" /></a>
+<p>Реакција сваког лика је иста: покажу се 2 секунде док се види облачак са мачковим размишљањем и онда поново сакрију. Сви ликови (осим мачка) по клику на зелену заставицу иду на позицију (0,110) у средини белог облака и сакривају се.</p>
+<p>Све скрипте придружене главном лику овог пројекта приказане су на следећој слици.</p>
+<a class="reference internal image-reference" href="_images/fig9_10.png"><img alt="_images/fig9_10.png" class="align-center" src="_images/fig9_10.png" style="width: 415px;" /></a>
+<hr class="docutils" />
+<p>Следећи пројекат илуструје како све објекте можемо поделити у групе пожељних, непожељних
+и неутралних. Списак пожељних чува се у једној листи, а непожељних у другој. Када се
+изабере објекат, проверава се какав је: ако је пожељан добијају се позитивни бодови, ако је
+непожељан негативни, а ако је неутралан не мења број бодова. На пример, ако правите игру
+за малишана у којој он треба да сакупи што више корисних ствари, али да избегава опасне
+предмете, ово би могла да буде стратегија (види пројектне задатке).</p>
+</div>
+<div class="section" id="example-3-project">
+<h3>Example 3 - Project „Храна”<a class="headerlink" href="#example-3-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p><strong>Сценарио пројекта</strong></p>
+<p>Главни лик овог пројекта, девојчица Зара, за време школског одмора може да поједе нешто од хране, попије воду или узме поклон.
+Ти бираш за Зару шта ће да узме кликом на ствари које се појаве на позорници. Ако изабереш храну која гоји - сендвич, смоки или крофну, добијаш негативне бодове.
+Ако пак изабереш воће - наранџу, банану или јабуку, добијаш позитивне бодове.
+Узимање воде или поклона не доноси никакве бодове.</p>
+<a class="reference internal image-reference" href="_images/fig9_11.png"><img alt="_images/fig9_11.png" class="align-center" src="_images/fig9_11.png" style="width: 400px;" /></a>
+<p>Називи предмета који доносе позитивне бодове налазе се у једној листи (код нас “воће”), а оних који доносе негативне у другој (код нас “гоји”).</p>
+<p><strong>Понашање ликова</strong></p>
+<p>Сви предмети имају исто понашање. По клику на зелену заставицу појављују се на случајној позицији на десној страни позорнице. Када се кликне на њих додељују променљивој
+<em>јело</em> своје име, разглашавају поруку <em>узето</em> и сакривају се.</p>
+<a class="reference internal image-reference" href="_images/fig9_12.png"><img alt="_images/fig9_12.png" class="align-center" src="_images/fig9_12.png" style="width: 815px;" /></a>
+<p>Скрипте придружене Зари омогућавају израчунавање броја бодова у зависности од тога која је храна изабрана.</p>
+<a class="reference internal image-reference" href="_images/fig9_13.png"><img alt="_images/fig9_13.png" class="align-center" src="_images/fig9_13.png" style="width: 495px;" /></a>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-4-project">
+<h3>Example 4 - Project „Чаробњак Збуњенко”<a class="headerlink" href="#example-4-project" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Главни лик ове игре је чаробњак Збуњенко. Он својим чаробним штапићем уме да направи више примерака исте ствари,
+али често се збуни и заборави колико је тачно обећао па направи неку ствар мање или више.</p>
+<p>Ту је и његова помоћница која пажљиво прати шта је Збуњенко обећао и колико је примерака направио, па га опомиње ако погреши.</p>
+<a class="reference internal image-reference" href="_images/fig9_14.png"><img alt="_images/fig9_14.png" class="align-center" src="_images/fig9_14.png" style="width: 600px;" /></a>
+<p><strong>Како чаробњак обећава различите ствари</strong></p>
+<p>Да би чаробњак могао да обећава ствари креира се лик чији костими су различити предмети. Осим тога направи се листа са називима тих предмета.
+У нашем пројекту креирали смо лик који смо назвали <em>Створење</em> које може да се појави у 5 различитих костима.</p>
+<a class="reference internal image-reference" href="_images/fig9_15.png"><img alt="_images/fig9_15.png" class="align-center" src="_images/fig9_15.png" style="width: 630px;" /></a>
+<p>Да би чаробњак могао да изговара називе костима увели смо листу којој смо дали име <em>ствари</em> и у њу уписали 5 назива костима (у множини и падежу).
+На случајан начин генерише се број између 1 и 5 и онда чаробњак изговара реченицу у којој се повезују текст „Сада ћу да створим“ и одговарајући елемент ове листе.
+На пример, ако се генерише број 2 чаробњак ће да каже „Сада ћу да створим јабуке“, а ако се генерише број 4 каже „Сада ћу да створим лептире“.</p>
+<p>На следећој слици приказана је скрипта која описује понашање чаробњака Збуњенка када се кликне на њега. Прво генерише вредност променљиве <em>број</em> као случајан број
+из интервала [1,5]. Затим у реченици коју потом изговара каже да ће створити неки од костима лика <em>створење</em> и то онај који се у листи налази под редним бројем једнаким генерисаном броју.
+Затим разглашава поруку <em>хвалим се</em> на коју реагује мала чаробница тако што током 2 секунде пита колико ће примерака створења Збуњенко створити.
+Зато је у скрипту Збуњенка уметнуто чекање од 2 секунде. После ове паузе Збуњенко генерише вредност променљиве <em>колико</em> из интервала [1,10].
+Како су димензије костима лика <em>створење</em> подешене на око 50х50 пиксела за максималан број примерака створења које ће „створити“ Збуњенко изабрали смо број 10 да би се сви примерци видели на екрану.
+Збуњенко изговара колико ће примерака створити и разглашава поруку <em>стварам</em>.</p>
+<a class="reference internal image-reference" href="_images/fig9_16.png"><img alt="_images/fig9_16.png" class="align-center" src="_images/fig9_16.png" style="width: 560px;" /></a>
+<p>На следећој слици приказанае су скрипте које описују понашање мале чаробнице. Чаробница реагује на обе поруке Збуњенка, а такође и сама
+разглашава поруку <em>сакриј</em> 4 секунде пошто је примила поруку <em>стварам</em>. Порука <em>сакриј</em> је сигнал створењу да уклони своје клонове и себе самог са позорнице.</p>
+<a class="reference internal image-reference" href="_images/fig9_17.png"><img alt="_images/fig9_17.png" class="align-center" src="_images/fig9_17.png" style="width: 510px;" /></a>
+<p>На следећој слици приказане су скрипте које описују понашање лика <em>створење</em>. Овај лик реагује на 4 догађаја: клик на зелену заставицу, разглашавање порука стварам и сакриј и догађај клонирања.
+По клику на зелену заставицу створење се сакрива, а по пријему поруке <em>сакриј</em> мења вредност променљиве <em>следећи</em>. Ова променљива, за разлику од глобалних променљивих број и колико које могу да користе сви ликови, креирана је само за лик створење (види репортере на сл. 6.20), дакле то је локална променљива. Карактеристика локалних променљивих је да њихову вредност може да мења само лик за који су креирани. Други ликови могу да виде њихове вредности, али не могу да их мењају. Променљива следећи користи се као окидач. Када се њена вредност промени из 0, на колико је постављена на почетку рекације на поруку стварам, у 1 почиње уништавање клонова и сакрива се.</p>
+<a class="reference internal image-reference" href="_images/fig9_18.png"><img alt="_images/fig9_18.png" class="align-center" src="_images/fig9_18.png" style="width: 180px;" /></a>
+<p><strong>Како чаробњак приказује различит број примерака лика</strong></p>
+<p>Остаје још да објаснимо како чаробњак може да прикаже више примерака неког лика (односно костима лика створење). За ову сврху користи  <strong>клонирање</strong> (умножавање)ликова. Већ смо показали да се лик (и све скрипте које су му придружене) може умножити ако се из приручног менија који се добије десним кликом на лик у листи ликова изабере опција умножи у време креирања програма.
+У Скречу постоји и могућност да се лик умножава и за време извршавања програма. (Слично као што у листе могу да се уписују елементи и у време креирања и за време извршавања програма.) За клонирање лика и управљање понашањем клона користе се инструкције <img alt="create_clone" src="_images/create_clone.png" /> и <img alt="when_clone" src="_images/when_clone.png" /> из групе <em>Управљање</em>.
+У срипти која описију понашање створења када прими чаробњакову поруку <em>стварам</em> на левом рубу екрана приказује се лик, а затим се праве и приказују његови клонови – умножци. Сваки клон се приказује на растојању 50 корака од претходног тако да стоје један поред другог у низу. Ово се реализује у петљи која се понавља (колико-1) пута чиме се скупа са оригиналним ликом добије обећанброј примерака лика.
+Како је променљива <em>следећи</em> локална за лик који се клонира, сваки од његових клонова има сопствену вредност ове променљиве и сваки од њих се види на позорници све док променљива следећи не добије вредност 1 (када лик добије поруку сакриј). Тада сваки клон брише самог себе, а изворни лик се сакрива.</p>
+<a class="reference internal image-reference" href="_images/fig9_19.png"><img alt="_images/fig9_19.png" class="align-center" src="_images/fig9_19.png" style="width: 470px;" /></a>
+<p><strong>Надоградња пројекта Чаробњак Збуњенко2</strong></p>
+<p>Идеја је да чаробњак не створи онолико предмета колико је обећао, већ нешто више или нешто мање. Корисник треба да каже колико више или колико мање
+предмета је чаробњак створио, односно дете треба да научи да сабира и одузима бројеве до 10. Ово постижемо тако што генеришемо променљиву <em>грешка</em>
+чије вредности могу да буду цели бројеви из интервала [-3,3]. Разуме се, ако буде генерисана грешка 0, чаробњак ће створити тачно онолико предмета
+колико је обећао, али у осталим случајевима треба утврдити колико је направио више или мање предмета. На следећој слици приказани су неки од случајева
+„збуњивања“ чаробњака.</p>
+<a class="reference internal image-reference" href="_images/fig9_20.png"><img alt="_images/fig9_20.png" class="align-center" src="_images/fig9_20.png" style="width: 610px;" /></a>
+<p>Понашање створења описује следећа скрипта.</p>
+<a class="reference internal image-reference" href="_images/fig9_21.png"><img alt="_images/fig9_21.png" class="align-center" src="_images/fig9_21.png" style="width: 495px;" /></a>
+<p>Следи скрипта која описује понашање мале Чаробнице.</p>
+<a class="reference internal image-reference" href="_images/fig9_22.png"><img alt="_images/fig9_22.png" class="align-center" src="_images/fig9_22.png" style="width: 645px;" /></a>
+<p>Упамтите овако измењен пројекат под називом <em>Чаробњак Збуњенко 2</em>.</p>
+<p>Напомена. Ако се пројекат користи за увежбавање сабирања и одузимања бројева до 10 корисно је уметнути „празно“ питање <img alt="ask_wait" src="_images/ask_wait.png" />  у скрипту мале чаробнице
+уместо задршке блоком <img alt="wait_sec" src="_images/wait_sec.png" /> . Тек када дете да одговор притиснућемо дирку <em>Enter</em> и проверити одговор.</p>
+</div>
+</div>
+<div class="section" id="ask-did-you-understand">
+<h2><img alt="ask" src="_images/ask.png" /> Did you understand?<a class="headerlink" href="#ask-did-you-understand" title="Permalink to this headline">¶</a></h2>
+<p>За сва питања која следе подразумева се да листа на почетку има следеће елементе</p>
+<a class="reference internal image-reference" href="_images/q9_1.png"><img alt="_images/q9_1.png" class="align-center" src="_images/q9_1.png" style="width: 125px;" /></a>
+<div class="section" id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="lista1">
+            <p>Q-38: Шта је резултат извршавања наредбе <img alt="l1" src="_images/l1.png" />? (Изабери све тачне одговоре)</p>
+
+            <li data-component="answer" data-correct id="lista1_opt_a">листа ће имати један елемент мање</li><li data-component="feedback" id="lista1_opt_a">Избацује се елемент који је претходно био на позицији 1.</li>
+            
+            <li data-component="answer" data-correct id="lista1_opt_b">на првом месту налазиће се елемент наранџа</li><li data-component="feedback" id="lista1_opt_b">Остали елементи листе се померају једно место унапред.</li>
+            
+            <li data-component="answer"  id="lista1_opt_c">елемент се пребацује на крај листе</li><li data-component="feedback" id="lista1_opt_c">Елемент се потпуно избацује из листе.</li>
+            
+            <li data-component="answer"  id="lista1_opt_d">избацује се последњи елемент листе</li><li data-component="feedback" id="lista1_opt_d">Избацује се први елемент.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-2">
+<h3>Question 2<a class="headerlink" href="#question-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="lista2">
+            <p>Q-39: Шта је резултат извршавања наредбе  <img alt="l2" src="_images/l2.png" />?</p>
+
+            <li data-component="answer"  id="lista2_opt_a">елемент ће бити додат на почетак листе</li><li data-component="feedback" id="lista2_opt_a">Ова наредба додаје на крај листе.</li>
+            
+            <li data-component="answer" data-correct id="lista2_opt_b">елемент ће бити додат на крај листе</li><li data-component="feedback" id="lista2_opt_b"></li>
+            
+            <li data-component="answer"  id="lista2_opt_c">елемент ће бити додат под условом да претходно није био у листи</li><li data-component="feedback" id="lista2_opt_c">Не врши се никаква провера.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-3">
+<h3>Question 3<a class="headerlink" href="#question-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="lista3">
+            <p>Q-40: Колико пута ће лик изговорити “Волим воће”?</p>
+<a class="reference internal image-reference" href="_images/q9_3.png"><img alt="_images/q9_3.png" class="align-center" src="_images/q9_3.png" style="width: 270px;" /></a>
+
+            <li data-component="answer"  id="lista3_opt_a">ниједном</li><li data-component="feedback" id="lista3_opt_a">Листа има 3 елемента.</li>
+            
+            <li data-component="answer"  id="lista3_opt_b">једном</li><li data-component="feedback" id="lista3_opt_b">Листа има 3 елемента.</li>
+            
+            <li data-component="answer"  id="lista3_opt_c">2 пута</li><li data-component="feedback" id="lista3_opt_c">Листа има 3 елемента.</li>
+            
+            <li data-component="answer" data-correct id="lista3_opt_d">3 пута</li><li data-component="feedback" id="lista3_opt_d"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-4">
+<h3>Question 4<a class="headerlink" href="#question-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="lista4">
+            <p>Q-41: Које наредбе ће у листу <em>воће</em> поставити елемент <em>јагода</em> на позицију 2? (Изабери све тачне одговоре)</p>
+<a class="reference internal image-reference" href="_images/q9_4.png"><img alt="_images/q9_4.png" class="align-center" src="_images/q9_4.png" style="width: 650px;" /></a>
+
+            <li data-component="answer"  id="lista4_opt_a"></li><li data-component="feedback" id="lista4_opt_a">Ова наредба поставља елемент на крај листе.</li>
+            
+            <li data-component="answer" data-correct id="lista4_opt_b"></li><li data-component="feedback" id="lista4_opt_b">Наредба умеће елемент на место број 2.</li>
+            
+            <li data-component="answer" data-correct id="lista4_opt_c"></li><li data-component="feedback" id="lista4_opt_c">Наредба поставља елемент на место број 2, a избацујe из листе елемент који је ту био.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-5">
+<h3>Question 5<a class="headerlink" href="#question-5" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="lista5">
+            <p>Q-42: После извршења којих наредби ће се повећати број елемената листе? (Изабери све тачне одговоре)</p>
+<a class="reference internal image-reference" href="_images/q9_4.png"><img alt="_images/q9_4.png" class="align-center" src="_images/q9_4.png" style="width: 650px;" /></a>
+
+            <li data-component="answer" data-correct id="lista5_opt_a"></li><li data-component="feedback" id="lista5_opt_a">Ова наредба поставља елемент на крај листе.</li>
+            
+            <li data-component="answer" data-correct id="lista5_opt_b"></li><li data-component="feedback" id="lista5_opt_b">Наредба умеће елемент на место број 2.</li>
+            
+            <li data-component="answer"  id="lista5_opt_c"></li><li data-component="feedback" id="lista5_opt_c">Наредба поставља елемент на место број 2, a избацујe из листе елемент који је ту био.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-6">
+<h3>Question 6<a class="headerlink" href="#question-6" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="lista6">
+            <p>Q-43: Шта је резултат извршавања следећих наредби?</p>
+<a class="reference internal image-reference" href="_images/q9_6.png"><img alt="_images/q9_6.png" class="align-center" src="_images/q9_6.png" style="width: 300px;" /></a>
+
+            <li data-component="answer" data-correct id="lista6_opt_a">Ако је листа имала елемент јагода, њена величина се неће променити, а ако није, додаје јагоду на крај листе.</li><li data-component="feedback" id="lista6_opt_a"></li>
+            
+            <li data-component="answer"  id="lista6_opt_b">Без обзира да ли је у листи постојао елемент јагода, додаће га на крај листе.</li><li data-component="feedback" id="lista6_opt_b">Упис у листу остварује се ако листа претходно није имла елемент јагода.</li>
+            
+            <li data-component="answer"  id="lista6_opt_c">Ако је листа имала елемент јагода, њена величина се неће променити, а ако није, додаје јагоду на почетак листе.</li><li data-component="feedback" id="lista6_opt_c">Ако се додаје, додаје се на крај листе.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+</div>
+<div class="section" id="try-try-it">
+<h2><img alt="try" src="_images/try.png" /> Try it!<a class="headerlink" href="#try-try-it" title="Permalink to this headline">¶</a></h2>
+<p>У прве 3 вежбе претпоставља се да  имамо листу <strong>оригинал</strong> чији су елементи редом бројеви од 1 до 10.</p>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши скрипту која креира  листу <strong>дупликат</strong> и у њу уписује све елементе постојеће листе <strong>оригинал</strong>.</p>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши скрипту која креира  листу <strong>уназад</strong> и у њу уписује све елементе постојеће листе <strong>оригинал</strong> обрнутим редоследом,
+тј. први елемент листе <em>уназад</em> треба да буде последњи елемент листе <em>оригинал</em>, други - претпоследњи из <em>оригинал</em> и
+тако све до првог елемента листе <em>оригинал</em> који треба да буде последњи у листи <em>уназад</em>.</p>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши скрипту која креира  листу <strong>парни</strong> и у њу уписује сваки други елемент постојеће листе <strong>оригинал</strong>.</p>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-4">
+<h3>Exercise 4<a class="headerlink" href="#exercise-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши скрипту која креира  листу <strong>случајни1</strong> и у њу уписује 10 бројева из интервала [1,100]
+генерисаних операцијом случајан број.</p>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-5">
+<h3>Exercise 5<a class="headerlink" href="#exercise-5" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Напиши скрипту која креира листу <strong>случајни2</strong> и у њу уписује 10 РАЗЛИЧИТИХ бројева из интервала [1,100]
+генерисаних операцијом случајан број.</p>
+
+    </p></div></div>
+</div>
+</div>
+<div class="section" id="bug-debug-it">
+<h2><img alt="bug" src="_images/bug.png" /> Debug it!<a class="headerlink" href="#bug-debug-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bug-1">
+<h3>Bug 1<a class="headerlink" href="#bug-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Ученик је желео да промени пример 3 овог поглавља тако да се у нову листу <em>поједено</em> уписују називи хране које Зара изабере. Зари је придружио
+скрипте за кретање помоћу дирки стрелица  и скрипту која је приказана на следећој слици. На слици су и скрипте придружене осталим ликовима пројекта.
+Већина догађаја се извршавала онако како је ученик желео, али јабуку и наранџу никако није успевао да упише у листу. У чему је грешка?</p>
+<a class="reference internal image-reference" href="_images/bug9_1.png"><img alt="_images/bug9_1.png" class="align-center" src="_images/bug9_1.png" style="width: 805px;" /></a>
+
+    <div data-component="reveal" id="сакривање24"   data-showtitle="Прикажи одговор" data-hidetitle="Сакриј одговор">
+    <p><strong>Одговор:</strong></p>
+<p>У скриптама јабуке и наранџе у наредби “чекај док не” није добро постављен лик са којим треба да се додирну.</p>
+
+    </div>
+    
+    </p></div></div>
+</div>
+</div>
+<div class="section" id="book-summary">
+<h2><img alt="book" src="_images/book.png" /> Summary<a class="headerlink" href="#book-summary" title="Permalink to this headline">¶</a></h2>
+<p>У овој лекцији  поглављу научили смо како се у Скречу користе листе – тип података сложене структуре који омогућава чување више вредности истовремено. Видели смо да елементи листе могу бити различити типови података и да се, поред осталог, могу искористити за бирање једног од костима неког лика или за бирање једног од ликова из листе ликова. Кроз примере пројеката смо илустровали и сложене синхронизације понашања више ликова коришћењем порука. Такође смо показали како се програмским путем могу умножавати ликови и како се клонови могу понашати на различите начине ако лик који их је створио има своје локалне променљиве.</p>
+<p><strong>New concepts</strong>:  листа, елемент листе, умножак (клон).</p>
+<p><strong>Strach commands</strong>: <img alt="variables_blocks" src="_images/variables.png" /> - <img alt="add_to" src="_images/add_to.png" />,  <img alt="delete_of" src="_images/delete_of.png" />, <img alt="delete_all" src="_images/delete_all.png" />, <img alt="insert_at" src="_images/insert_at.png" />,  <img alt="replace_with" src="_images/replace_with.png" />, <img alt="show_list" src="_images/show_list.png" />, <img alt="hide_list" src="_images/hide_list.png" />, <img alt="item_of" src="_images/item_of.png" />,  <img alt="length_of" src="_images/length_of.png" />,  <img alt="item_index" src="_images/item_index.png" />, <img alt="list_contains" src="_images/list_contains.png" />;</p>
+<p><img alt="control_blocks" src="_images/control.png" /> - <img alt="when_clone" src="_images/when_clone.png" />, <img alt="create_clone" src="_images/create_clone.png" />, <img alt="delete_clone" src="_images/delete_clone.png" />.</p>
+</div>
+<div class="section" id="project-create-a-projects">
+<h2><img alt="project" src="_images/project.png" /> Create a projects<a class="headerlink" href="#project-create-a-projects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-1">
+<h3>Project 1 - „Квиз из историје”<a class="headerlink" href="#project-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p>Учитај листу питања из текстуалног фајла.</p>
+<ol class="arabic simple">
+<li><p>Коришћењем програма Notepad испиши листу питања из историје, свако у засебном реду.</p></li>
+<li><p>Упамти текст као текстуални фајл под именом <em>Историја.txt</em>  са начином кодирања UTF-8</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/projekat9_1a.png"><img alt="_images/projekat9_1a.png" class="align-center" src="_images/projekat9_1a.png" style="width: 430px;" /></a>
+<ol class="arabic simple" start="3">
+<li><p>У Скречу направи листу под називом <em>питања</em>.</p></li>
+<li><p>Десним кликом на монитор листе отвори падајући мени и изабери операцију <em>увези</em>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/projekat9_1b.png"><img alt="_images/projekat9_1b.png" class="align-center" src="_images/projekat9_1b.png" style="width: 230px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>У поље за име фајла упиши <em>Историја</em></p></li>
+<li><p>У твојој листи појавиће се листа питања која си претходно саставио у Notepad-у.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/projekat9_1c.png"><img alt="_images/projekat9_1c.png" class="align-center" src="_images/projekat9_1c.png" style="width: 470px;" /></a>
+<p>Формирај затим листу тачних одговора, па онда  скрипту која на случајан начин бира питање из листе питања,
+тражи од корисника одговор и пореди га са тачним одговором. Ако је корисник тачно одговорио повећај му број поена.</p>
+</div>
+<div class="section" id="project-2">
+<h3>Project 2 - „Телефонски именик”<a class="headerlink" href="#project-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p>Направи три листе  у којима се налазе имена, датуми рођења и бројеви телефона твојих другара.
+Напиши скрипту која проверава да ли се име које се уноси са улаза налази у листи имена.
+Ако је име у листи, треба да се приказује датум рођења и телефон особе  чије је име унето,
+а ако није треба да се прикаже одговарајућа порука.</p>
+</div>
+<div class="section" id="project-3">
+<h3>Project 3 - „Близанци”<a class="headerlink" href="#project-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Направи процедуре које треба повезати у пројекат Близанци.</p>
+<p>Процедура <strong>Провера</strong> треба да проверава да ли је број који се задаје као параметар прост.</p>
+<p>Процедура <strong>Формирај</strong> треба да формира листу <em>Прости</em> у коју ће уписати све просте бројеве из интервала [2,1000].</p>
+<p>Главни програм треба да приказује све бројеве близанце (просте бројеве који се разликују за 2) из интервала [2,1000].</p>
+</div>
+<div class="section" id="project-4">
+<h3>Project 4 - Игра „Опасни предмети”<a class="headerlink" href="#project-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Креирај игру у којој корисник (мало дете) из групе предмета треба да издвоји неколико који нису опасни.
+Називи (или редни бројеви костима, као у примеру 4 овог поглавља)  опасних предмета са позорнице треба да буду уписани у листу <em>опасан</em>.
+Предмети се бирају кликом на њих. Затим се проверава да ли је тај предмет у листи опасних.
+За избор предмета који није опасан добија се позитиван, а за избор опасних негативан поен. Циљ је сакупити бар 3 (рецимо од 5 могућих) поена.
+Тада се игра завршава или се прелази на следећи ниво.</p>
+<p>Игра може да има више нивоа, на пример опасности у кухињи (нож, посуда са врелом водом, ватра,…),
+опасности у дворишту, опасности у природи и слично.</p>
+</div>
+</div>
+</div>
+
+
+  
+      <div class="col-md-12">
+<ul class="pager">
+</ul>
+
+<!-- <ul class="pager"> -->
+    <!-- -->
+    <!-- -->
+<!-- </ul> -->
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+</div>
+  
+</div>
+<footer class="footer col-md-12">
+    <div class="container">
+        <div class="text-center">
+            <hr>
+            <p class="text-muted">
+                <span class="pull-left">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
+                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+                  Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/Petlja/TxtProgInPythonEng" rel="dct:source">https://github.com/Petlja/TxtProgInPythonEng</a>
+                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
