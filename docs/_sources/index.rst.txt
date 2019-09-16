@@ -1,7 +1,3 @@
-|
-|
-|
-|
 
 Block-based programming in Scratch - practice lessons
 -----------------------------------------------------
