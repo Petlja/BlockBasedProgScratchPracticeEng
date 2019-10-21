@@ -26,4 +26,6 @@ Content
     Scratch3 Sequencing.rst
     Scratch3 Graphics.rst
     Scratch3 Repeating.rst
+    Scratch3 Branching.rst
+    Scratch3 Variables.rst
 
