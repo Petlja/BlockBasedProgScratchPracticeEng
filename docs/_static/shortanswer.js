@@ -39,9 +39,6 @@ ShortAnswer.prototype.init = function (opts) {
 
     this.renderHTML();
     this.checkServer("shortanswer");
-    this.caption = "shortanswer";
-    this.addCaption("runestone");
-
 };
 
 ShortAnswer.prototype.renderHTML = function() {
@@ -80,7 +77,6 @@ ShortAnswer.prototype.renderHTML = function() {
 
     this.jTextArea = document.createElement("textarea");
     this.jTextArea.id = this.divid + "_solution";
-    $(this.jTextArea).attr("aria-label", "textarea");
     $(this.jTextArea).css("display:inline, width:530px");
     $(this.jTextArea).addClass("form-control");
     this.jTextArea.rows = 4;
@@ -105,7 +101,7 @@ ShortAnswer.prototype.renderHTML = function() {
         this.submitJournal();
     }.bind(this);
     this.buttonDiv.appendChild(this.submitButton);
-
+  
     // barb - removed since we aren't really giving instructor feedback here
     /* this.randomSpan = document.createElement("span");
     this.randomSpan.innerHTML = "Instructor's Feedback";
@@ -137,7 +133,7 @@ ShortAnswer.prototype.submitJournal = function () {
 
 
     this.setLocalStorage({answer: value, timestamp: new Date()})
-    this.logBookEvent({'event': 'shortanswer', 'act': value, 'div_id': this.divid});
+    this.logBookEvent({'event': 'shortanswer', 'act': JSON.stringify(value), 'div_id': this.divid});
     this.feedbackDiv.innerHTML = "Your answer has been saved.";
     $(this.feedbackDiv).removeClass("alert-danger");
     $(this.feedbackDiv).addClass("alert alert-success");
@@ -145,7 +141,7 @@ ShortAnswer.prototype.submitJournal = function () {
 
 ShortAnswer.prototype.setLocalStorage = function(data) {
     if (! this.graderactive ) {
-        let key = this.localStorageKey()
+        let key = eBookConfig.email + ":" + this.divid + "-given"
         localStorage.setItem(key, JSON.stringify(data));
     }
 };
@@ -153,13 +149,9 @@ ShortAnswer.prototype.setLocalStorage = function(data) {
 ShortAnswer.prototype.checkLocalStorage = function () {
     // Repopulates the short answer text
     // which was stored into local storage.
-    if (this.graderactive) {
-        return;
-    }
-
     var len = localStorage.length;
     if (len > 0) {
-        var ex = localStorage.getItem(this.localStorageKey());
+        var ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
         if (ex !== null) {
             try {
                 var storedData = JSON.parse(ex);
@@ -167,7 +159,7 @@ ShortAnswer.prototype.checkLocalStorage = function () {
             } catch (err) {
                 // error while parsing; likely due to bad value stored in storage
                 console.log(err.message);
-                localStorage.removeItem(this.localStorageKey());
+                localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
                 return;
             }
             let solution = $("#" + this.divid + "_solution");
@@ -186,9 +178,9 @@ ShortAnswer.prototype.restoreAnswers = function (data) {
     if (!data.answer) {
         data.answer = "";
     }
-    this.answer = data.answer;
-    this.jTextArea.value = this.answer;
 
+    let solution = $("#" + this.divid + "_solution");
+    solution.text(data.answer);
     this.feedbackDiv.innerHTML = "Your current saved answer is shown above.";
     $(this.feedbackDiv).removeClass("alert-danger");
     $(this.feedbackDiv).addClass("alert alert-success");

@@ -7,7 +7,7 @@
 
 .. infonote::
 
- |intro8s|
+ |intro8|
 
 The projects we are about to study have a complex structure.
 To cope with this complexity, we will use an approach known as **structured programming** developed in the 1960s. This approach has simplified the process of writing, understanding, and maintaining complex programs. Instead of writing complex programs, which are hard to rewrite if there is a need for that (this is called maintenance), and where mistakes are hard to detect, we can separate them into small parts, each of which solves one part of the overall problem.
@@ -51,7 +51,7 @@ To make projects with complex structure faster and easier, we will split large s
 ----------------------------------------
 
 Example 1 - Project "Grid of Squares"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. level:: 3
 

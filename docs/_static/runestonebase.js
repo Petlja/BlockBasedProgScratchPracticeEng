@@ -31,59 +31,25 @@ RunestoneBase.prototype.init = function(opts) {
 };
 
 RunestoneBase.prototype.logBookEvent = function (eventInfo) {
-    if (this.graderactive) {
-        return;
-    }
     eventInfo.course = eBookConfig.course;
-    eventInfo.clientLoginStatus = eBookConfig.isLoggedIn;
-    eventInfo.timezoneoffset = (new Date()).getTimezoneOffset()/60
     if (eBookConfig.useRunestoneServices && eBookConfig.logLevel > 0) {
-        var post_return = jQuery.post(eBookConfig.ajaxURL + 'hsblog', eventInfo,
-            function(jsondata) {
-                if (jsondata.log == false) {
-                    alert(jsondata.message);
-                    location.href = eBookConfig.app + '/default/user/login?_next=' + location.pathname;
-                }
-            }, 'json');
+        jQuery.get(eBookConfig.ajaxURL + 'hsblog', eventInfo); // Log the run event
     }
     console.log("logging event " + JSON.stringify(eventInfo));
-    if (typeof pageProgressTracker.updateProgress === "function"
-        && eventInfo.act != 'edit') {
-        pageProgressTracker.updateProgress(eventInfo.div_id);
-    }
-    return post_return;
 };
 
 RunestoneBase.prototype.logRunEvent = function (eventInfo) {
-    if (this.graderactive) {
-        return;
-    }
     eventInfo.course = eBookConfig.course;
-    eventInfo.clientLoginStatus = eBookConfig.isLoggedIn;
-    eventInfo.timezoneoffset = (new Date()).getTimezoneOffset()/60
     if ( this.forceSave || (! 'to_save' in eventInfo) ) {
         eventInfo.save_code = "True"
     }
     if (eBookConfig.useRunestoneServices && eBookConfig.logLevel > 0) {
-        jQuery.post(eBookConfig.ajaxURL + 'runlog.json', eventInfo) // Log the run event
-            .done((function(data, status, whatever) {
-                // data = JSON.parse(data);
-                if (data.message) {
-                    alert(data.message);
-                    if (data.log == false) {
-                        location.href = eBookConfig.app + '/default/user/login?_next=' + location.pathname;
-                    }
-                }
-                this.forceSave = false;
-            }).bind(this))
+        jQuery.post(eBookConfig.ajaxURL + 'runlog', eventInfo) // Log the run event
+            .done((function() {this.forceSave = false; }).bind(this))
             .fail((function() {alert("WARNING:  Your code was not saved!  Please Try again.");
                 this.forceSave = true; }).bind(this))
     }
     console.log("running " + JSON.stringify(eventInfo));
-    if (typeof pageProgressTracker.updateProgress === "function") {
-        pageProgressTracker.updateProgress(eventInfo.div_id);
-    }
-
 };
 
 /* Checking/loading from storage */
@@ -130,7 +96,7 @@ RunestoneBase.prototype.shouldUseServer = function (data) {
     if (data.correct === "T" || localStorage.length === 0 || this.graderactive === true) {
         return true;
     }
-    let ex = localStorage.getItem(this.localStorageKey());
+    let ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
     if (ex === null) {
         return true;
     }
@@ -140,7 +106,7 @@ RunestoneBase.prototype.shouldUseServer = function (data) {
     } catch (err){
         // error while parsing; likely due to bad value stored in storage
         console.log(err.message);
-        localStorage.removeItem(this.localStorageKey());
+        localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
         // definitely don't want to use local storage here
         return true;
     }
@@ -151,22 +117,4 @@ RunestoneBase.prototype.shouldUseServer = function (data) {
 
     return serverDate >= storageDate;
 
-};
-
-
-// Return the key which to be used when accessing local storage.
-RunestoneBase.prototype.localStorageKey = function () {
-    return eBookConfig.email + ":" + eBookConfig.course + ":" + this.divid + "-given";
-}
-
-
-RunestoneBase.prototype.addCaption = function(elType) {
-    //someElement.parentNode.insertBefore(newElement, someElement.nextSibling);
-    var capDiv = document.createElement('p');
-    $(capDiv).html(this.caption + " (" + this.divid + ")");
-    $(capDiv).addClass(`${elType}_caption`);
-    $(capDiv).addClass(`${elType}_caption_text`);
-    this.capDiv = capDiv;
-    //this.outerDiv.parentNode.insertBefore(capDiv, this.outerDiv.nextSibling);
-    this.containerDiv.appendChild(capDiv);
 };

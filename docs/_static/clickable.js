@@ -54,10 +54,6 @@ ClickableArea.prototype.init = function (opts) {
     this.getQuestion();
     this.getFeedback();
     this.renderNewElements();
-
-    this.caption="Clickable"
-	this.addCaption('runestone')
-
 };
 
 /*===========================
@@ -160,14 +156,11 @@ ClickableArea.prototype.restoreAnswers = function (data) {
 
 
 ClickableArea.prototype.checkLocalStorage = function () {
-    if (this.graderactive) {
-        return;
-    }
     // Gets previous answer data from local storage if it exists
     this.hasStoredAnswers = false;
     var len = localStorage.length;
     if (len > 0) {
-        var ex = localStorage.getItem(this.localStorageKey());
+        var ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
         if (ex !== null) {
             this.hasStoredAnswers = true;
             try {
@@ -176,7 +169,7 @@ ClickableArea.prototype.checkLocalStorage = function () {
             } catch (err) {
                 // error while parsing; likely due to bad value stored in storage
                 console.log(err.message);
-                localStorage.removeItem(this.localStorageKey());
+                localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
                 this.hasStoredAnswers = false;
                 this.restoreAnswers({});
                 return;
@@ -216,7 +209,7 @@ ClickableArea.prototype.setLocalStorage = function (data) {
     var timeStamp = new Date();
     var correct = data.correct;
     var storageObject = {"answer": answer, "correct": correct, "timestamp": timeStamp};
-    localStorage.setItem(this.localStorageKey(), JSON.stringify(storageObject));
+    localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given", JSON.stringify(storageObject));
 };
 
 /*==========================
@@ -372,7 +365,7 @@ ClickableArea.prototype.renderFeedback = function () {
 
     if (this.correct) {
         $(this.feedBackDiv).html("You are Correct!");
-        $(this.feedBackDiv).attr("class", "alert alert-info");
+        $(this.feedBackDiv).attr("class", "alert alert-success");
 
     } else {
         $(this.feedBackDiv).html("Incorrect. You clicked on " + this.correctNum + " of the " + this.correctArray.length.toString() + " correct elements and " + this.incorrectNum + " of the " + this.incorrectArray.length.toString() + " incorrect elements. " + this.feedback);
@@ -385,7 +378,8 @@ ClickableArea.prototype.renderFeedback = function () {
 == Find the custom HTML tags and ==
 ==   execute our code on them    ==
 =================================*/
-$(document).bind("runestone:login-complete", function () {
+//$(document).bind("runestone:login-complete", function () {
+$(document).ready(function () {
     $("[data-component=clickablearea]").each(function (index) {
         if ($(this).closest('[data-component=timedAssessment]').length == 0) { // If this element exists within a timed component, don't render it here
             CAList[this.id] = new ClickableArea({"orig": this, "useRunestoneServices":eBookConfig.useRunestoneServices});

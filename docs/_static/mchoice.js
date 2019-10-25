@@ -34,8 +34,6 @@ MultipleChoice.prototype.init = function (opts) {
     this.useRunestoneServices = opts.useRunestoneServices;
     this.multipleanswers = false;
     this.divid = orig.id;
-    this.caption = 'Multiple Choice'
-    this.showcomparebutton = $(orig).data('showcomparebutton');
 
     if ($(this.origElem).data("multipleanswers") === true) {
         this.multipleanswers = true;
@@ -62,8 +60,6 @@ MultipleChoice.prototype.init = function (opts) {
     this.createCorrectList();
     this.createMCForm();
     this.checkServer("mChoice");
-
-    this.addCaption('runestone');
 };
 
 /*====================================
@@ -185,20 +181,24 @@ MultipleChoice.prototype.renderMCFormOpts = function () {
         var k = this.indexArray[j];
         var optid = this.divid + "_opt_" + k;
 
+        // Create the input
+        var input = document.createElement("input");
+        input.type = input_type;
+        input.name = "group1";
+        input.value = String(k);
+        input.id = optid;
+
         // Create the label for the input
         var label = document.createElement("label");
-        // If the content begins with a ``<p>``, put the label inside of it. (Sphinx 2.0 puts all content in a ``<p>``, while Sphinx 1.8 doesn't).
-        var content = this.answerList[k].content;
-        var prefix = '';
-        if (content.startsWith('<p>')) {
-            prefix = '<p>';
-            content = content.slice(3);
-        }
-        $(label).html(`${prefix}<input type="${input_type}" name="group1" value=${k} id=${optid}>${String.fromCharCode('A'.charCodeAt(0) + j)}. ${content}`);
+        var labelspan = document.createElement("span");
+        label.appendChild(input);
+        label.appendChild(labelspan);
+        //$(label).attr("for", optid);
+        $(labelspan).html(String.fromCharCode(65 + j) + '. ' + this.answerList[k].content);
 
         // create the object to store in optionArray
         var optObj = {
-            input: $(label).find('input')[0],
+            input: input,
             label: label
         };
         this.optionArray.push(optObj);
@@ -215,7 +215,7 @@ MultipleChoice.prototype.renderMCFormButtons = function () {
     // submit and compare me buttons
     // Create submit button
     this.submitButton = document.createElement("button");
-    this.submitButton.textContent = "Check Me";
+    this.submitButton.textContent = $.i18n("msg_mchoice_check_me");
     $(this.submitButton).attr({
         "class": "btn btn-success",
         "name": "do answer",
@@ -234,7 +234,7 @@ MultipleChoice.prototype.renderMCFormButtons = function () {
     this.optsForm.appendChild(this.submitButton);
 
     // Create compare button
-    if (this.useRunestoneServices && this.showcomparebutton) {
+    if (this.useRunestoneServices) {
         this.compareButton = document.createElement("button");
         $(this.compareButton).attr({
             "class": "btn btn-default",
@@ -246,7 +246,7 @@ MultipleChoice.prototype.renderMCFormButtons = function () {
         this.compareButton.addEventListener("click", function () {
             this.compareAnswers(this.divid);
         }.bind(this), false);
-        this.optsForm.appendChild(this.compareButton);
+        // this.optsForm.appendChild(this.compareButton);
     }
 };
 
@@ -310,7 +310,7 @@ MultipleChoice.prototype.checkLocalStorage = function () {
     }
     var len = localStorage.length;
     if (len > 0) {
-        var ex = localStorage.getItem(this.localStorageKey());
+        var ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
         if (ex !== null) {
             try {
                 var storedData = JSON.parse(ex);
@@ -318,7 +318,7 @@ MultipleChoice.prototype.checkLocalStorage = function () {
             } catch (err) {
                 // error while parsing; likely due to bad value stored in storage
                 console.log(err.message);
-                localStorage.removeItem(this.localStorageKey());
+                localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
                 return;
             }
             for (var a = 0; a < answers.length; a++) {
@@ -345,7 +345,7 @@ MultipleChoice.prototype.checkLocalStorage = function () {
 MultipleChoice.prototype.setLocalStorage = function (data) {
     var timeStamp = new Date();
     var storageObj = {"answer": data.answer, "timestamp": timeStamp, "correct": data.correct};
-    localStorage.setItem(this.localStorageKey(), JSON.stringify(storageObj));
+    localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given", JSON.stringify(storageObj));
 };
 
 /*===============================
@@ -428,12 +428,10 @@ MultipleChoice.prototype.renderMCMAFeedBack = function () {
     var feedbackText = this.feedbackString;
 
     if (this.correct) {
-        $(this.feedBackDiv).html('✔️ <ol type="A">' + feedbackText + "</ul>");
-        $(this.feedBackDiv).attr("class", "alert alert-info");
+        $(this.feedBackDiv).html($.i18n("msg_mchoice_correct_answer"));
+        $(this.feedBackDiv).attr("class", "alert alert-success");
     } else {
-        $(this.feedBackDiv).html("✖️ " + "You gave " + numGiven +
-            " " + answerStr + " and got " + numCorrect + " correct of " +
-            numNeeded + ' needed.<ol type="A">' + feedbackText + "</ul>");
+        $(this.feedBackDiv).html($.i18n("msg_mchoice_incorrect_answer"));
         $(this.feedBackDiv).attr("class", "alert alert-danger");
     }
 };
@@ -471,13 +469,13 @@ MultipleChoice.prototype.logMCMFsubmission = function () {
 
 MultipleChoice.prototype.renderMCMFFeedback = function (correct, feedbackText) {
     if (correct) {
-        $(this.feedBackDiv).html("✔️ " + feedbackText);
-        $(this.feedBackDiv).attr("class", "alert alert-info"); // use blue for better red/green blue color blindness
+        $(this.feedBackDiv).html(feedbackText);
+        $(this.feedBackDiv).attr("class", "alert alert-success");
     } else {
         if (feedbackText == null) {
             feedbackText = "";
         }
-        $(this.feedBackDiv).html("✖️ " + feedbackText);
+        $(this.feedBackDiv).html(feedbackText);
         $(this.feedBackDiv).attr("class", "alert alert-danger");
     }
 };
@@ -561,7 +559,8 @@ MultipleChoice.prototype.compareAnswers = function () {
 == Find the custom HTML tags and ==
 ==   execute our code on them    ==
 =================================*/
-$(document).bind("runestone:login-complete", function () {
+//$(document).bind("runestone:login-complete", function () {
+$(document).ready(function() {
     $("[data-component=multiplechoice]").each(function (index) {    // MC
         var opts = {"orig": this, 'useRunestoneServices':eBookConfig.useRunestoneServices};
         if ($(this).closest('[data-component=timedAssessment]').length == 0) { // If this element exists within a timed component, don't render it here

@@ -4,10 +4,9 @@
  */
 
 var isMouseDown = false;
-document.onmousedown = function() { isMouseDown = true };
-document.onmouseup   = function() { isMouseDown = false };
+document.onmousedown = function () { isMouseDown = true };
+document.onmouseup = function () { isMouseDown = false };
 var edList = {};
-var allDburls = {};
 
 ActiveCode.prototype = new RunestoneBase();
 var socket, connection, doc;
@@ -18,11 +17,11 @@ var chatcodesServer = 'chat.codes';
 function ActiveCode(opts) {
     if (opts) {
         this.init(opts);
-        }
     }
+}
 
-ActiveCode.prototype.init = function(opts) {
-    RunestoneBase.apply( this, arguments );  // call parent constructor
+ActiveCode.prototype.init = function (opts) {
+    RunestoneBase.apply(this, arguments);  // call parent constructor
     RunestoneBase.prototype.init.apply(this, arguments);
     var suffStart;
     var orig = opts.orig;
@@ -38,21 +37,12 @@ ActiveCode.prototype.init = function(opts) {
     this.hidecode = $(orig).data('hidecode');
     this.chatcodes = $(orig).data('chatcodes');
     this.hidehistory = $(orig).data('hidehistory');
-    this.tie = $(orig).data('tie')
-    this.dburl = $(orig).data('dburl');
     this.runButton = null;
     this.enabledownload = $(orig).data('enabledownload');
     this.downloadButton = null;
     this.saveButton = null;
     this.loadButton = null;
     this.outerDiv = null;
-    this.partner = ""
-    if ((! eBookConfig.allow_pairs) || $(orig).data('nopair')) {
-        this.enablePartner = false;
-    } else {
-        this.enablePartner = true;
-    }
-
     this.output = null; // create pre for output
     this.graphics = null; // create div for turtle graphics
     this.codecoach = null;
@@ -61,44 +51,144 @@ ActiveCode.prototype.init = function(opts) {
     this.historyScrubber = null;
     this.timestamps = ["Original"];
     this.autorun = $(orig).data('autorun');
+    this.testParameters = $(orig).data('runortest');
+    this.runortest = this.testParameters ? true : false;
+    this.playtask = $(orig).data('playtask');
+    this.help = $(orig).data('help');
+    this.passivecodestr = $(orig).data('passivecode');
+    this.passivecode = this.passivecodestr ? true : false;
+    this.modaloutput = $(orig).data('modaloutput');
+    this.includesrc = $(orig).data('includesrc');
+    this.includehsrc = $(orig).data('includehsrc');
+    this.includexsrc = $(orig).data('includexsrc');
+    this.enablecopy = $(orig).data('enablecopy');
 
-    if(this.chatcodes && eBookConfig.enable_chatcodes) {
-        if(!socket) {
-            socket = new WebSocket('wss://'+chatcodesServer);
+    if (this.includesrc) {
+        this.code = this.includesrc + this.code;
+    } else if (this.includehsrc) {
+        this.code = this.code + "====\n" + this.includehsrc;
+    } else if (this.includexsrc) {
+        var tmp = this.includexsrc.split('\n');
+        var c = 0;
+        var insertBefore = "";
+        var insertAfter = "";
+        var generalInitSec = -1;
+        var varInitSec = -1;
+        var mainSec = -1;
+        var afterMainSec = -1;
+        for (var i = 0; i < tmp.length; i++) {
+            if (tmp[i].indexOf('acsection: general-init') > -1) {
+                generalInitSec = c;
+            }
+            if (tmp[i].indexOf('acsection: var-init') > -1) {
+                varInitSec = c;
+            }
+            if (tmp[i].indexOf('acsection: main') > -1) {
+                mainSec = c;
+                insertBefore += tmp[i] + "\n";
+            }
+            if (tmp[i].indexOf('acsection: after-main') > -1) {
+                afterMainSec = c;
+            }
+            if (this.varInitSec == -1 && this.generalInitSec > -1) {
+                this.generalInitContent += tmp[i] + "\n";
+            }
+            if (mainSec == -1) {
+                insertBefore += tmp[i] + "\n";
+            }
+            else if (afterMainSec > -1) {
+                insertAfter += tmp[i] + "\n";
+            }
+            c++;
         }
-        if(!connection) {
+        if (!this.help) {
+            this.code = insertBefore + this.code + insertAfter + "====\n" + this.includexsrc;
+        } else {
+            this.helpCode = this.code;
+            this.code = insertBefore + "\n" + insertAfter + "====\n" + this.includexsrc;
+            this.afterMainSec = this.mainSec + 1;
+        }
+    }
+
+    if (this.chatcodes && eBookConfig.enable_chatcodes) {
+        if (!socket) {
+            socket = new WebSocket('wss://' + chatcodesServer);
+        }
+        if (!connection) {
             connection = new sharedb.Connection(socket);
         }
-        if(!doc) {
+        if (!doc) {
             doc = connection.get('chatcodes', 'channels');
         }
     }
 
-    if(this.graderactive) {
+    if (this.graderactive) {
         this.hidecode = false;
     }
 
-    if(this.includes !== undefined) {
+    if (this.includes !== undefined) {
         this.includes = this.includes.split(/\s+/);
     }
 
     suffStart = this.code.indexOf('====');
     if (suffStart > -1) {
-        this.suffix = this.code.substring(suffStart+5);
-        this.code = this.code.substring(0,suffStart);
+        this.suffix = this.code.substring(suffStart + 5);
+        this.code = this.code.substring(0, suffStart);
     }
-
+    var re = /#\s-\*-.+(acsection:).+-\*-/
+    this.markedText = false;
+    if (re.exec(this.code)) {
+        this.markedText = true;
+        var tmp = this.code.split('\n');
+        var c = 0;
+        var replacement = "";
+        this.generalInitContent = "";
+        this.generalInitSec = -1;
+        this.varInitSec = -1;
+        this.mainSec = -1;
+        this.afterMainSec = -1;
+        this.mainSecContent = "";
+        for (var i = 0; i < tmp.length; i++) {
+            if (tmp[i].indexOf('acsection: general-init') > -1) {
+                this.generalInitSec = c;
+                continue;
+            }
+            if (tmp[i].indexOf('acsection: var-init') > -1) {
+                this.varInitSec = c;
+                continue;
+            }
+            if (tmp[i].indexOf('acsection: main') > -1) {
+                this.mainSec = c;
+                continue;
+            }
+            if (tmp[i].indexOf('acsection: after-main') > -1) {
+                this.afterMainSec = c;
+                continue;
+            }
+            replacement += tmp[i] + "\n";
+            if (this.varInitSec == -1 && this.generalInitSec > -1) {
+                this.generalInitContent += tmp[i] + "\n";
+            }
+            if (this.mainSec != -1 && this.afterMainSec == -1) {
+                this.mainSecContent += tmp[i] + "\n";
+            }
+            c++;
+        }
+        this.code = replacement;
+    }
+    this.code = this.code.replace(/^\s+|\s+$/g, '') + "\n";
     this.history = [this.code];
     this.createEditor();
     this.createOutput();
     this.createControls();
+    this.runAttempts = 0; // number of times the program has been run
+
     if ($(orig).data('caption')) {
         this.caption = $(orig).data('caption');
     } else {
-        this.caption = "ActiveCode"
+        this.caption = ""
     }
-    this.addCaption('runestone');
-    this.addJSONLibrary();
+    this.addCaption();
 
     if (this.autorun) {
         $(document).ready(this.runProg.bind(this));
@@ -108,10 +198,15 @@ ActiveCode.prototype.init = function(opts) {
 ActiveCode.prototype.createEditor = function (index) {
     this.containerDiv = document.createElement('div');
     var linkdiv = document.createElement('div');
-    linkdiv.id = this.divid.replace(/_/g,'-').toLowerCase();  // :ref: changes _ to - so add this as a target
+    linkdiv.id = this.divid.replace(/_/g, '-').toLowerCase();  // :ref: changes _ to - so add this as a target
     $(this.containerDiv).addClass("ac_section alert alert-warning");
+    $(this.containerDiv).attr("style", "padding: 0 !important; margin-top: 15px;");
     var codeDiv = document.createElement("div");
-    $(codeDiv).addClass("ac_code_div col-md-12");
+    if (this.code.trim() == '')
+        $(codeDiv).attr("style", "display: none;");
+    else
+        $(codeDiv).addClass("ac_code_div col-md-12");
+
     this.codeDiv = codeDiv;
     this.containerDiv.id = this.divid;
     this.containerDiv.lang = this.language;
@@ -122,38 +217,49 @@ ActiveCode.prototype.createEditor = function (index) {
         this.containerDiv.appendChild(linkdiv);
     }
     this.containerDiv.appendChild(codeDiv);
-    var edmode = this.containerDiv.lang;
-    if (edmode === 'sql')  {
-        edmode = 'text/x-sql'
-    } else if (edmode === 'java') {
-        edmode = 'text/x-java'
-    }
-
-    var editor = CodeMirror(codeDiv, {value: this.code, lineNumbers: true,
-        mode: edmode, indentUnit: 4,
+    var editor = CodeMirror(codeDiv, {
+        value: this.passivecodestr == 'onlymain' ? this.mainSecContent : this.code, lineNumbers: true,
+        mode: this.containerDiv.lang, indentUnit: 4,
         matchBrackets: true, autoMatchParens: true,
-        extraKeys: {"Tab": "indentMore", "Shift-Tab": "indentLess"}
+        extraKeys: { "Tab": "indentMore", "Shift-Tab": "indentLess" },
+        readOnly: this.passivecode
     });
+
+    if (this.markedText && !this.passivecode) {
+        this.lineHandles = [];
+        for (var i = this.generalInitSec; i < this.mainSec; i++) {
+            this.lineHandles.push(editor.addLineClass(i, "background", "shaded"));
+        }
+        editor.markText({ line: 0, ch: 0 }, { line: this.mainSec, ch: 0 }, {
+            readOnly: true,
+            inclusiveLeft: true,
+            atomic: true
+        });
+        for (var i = this.afterMainSec; i < editor.lineCount() + 1; i++) {
+            this.lineHandles.push(editor.addLineClass(i, "background", "shaded"));
+        }
+        editor.markText({ line: this.afterMainSec, ch: 0 }, { line: editor.lineCount(), ch: 0 }, {
+            readOnly: true,
+            inclusiveLeft: true,
+            inclusiveRight: true,
+            atomic: true
+        });
+    }
 
     // Make the editor resizable
     $(editor.getWrapperElement()).resizable({
-        resize: function() {
-            editor.setSize($(this).width(), $(this).height());
+        resize: function () {
+            editor.setSize($(this).outerWidth() + event.movementX, $(this).outerHeight() + event.movementY);
             editor.refresh();
         }
     });
 
     // give the user a visual cue that they have changed but not saved
-    editor.on('change', (function (ev) {
+    editor.on('change', (function () {
         if (editor.acEditEvent == false || editor.acEditEvent === undefined) {
-            // change events can come before any real changes for various reasons, some unknown
-            // this avoids unneccsary log events and updates to the activity counter
-            if (this.origElem.textContent === editor.getValue()) {
-                return;
-            }
             $(editor.getWrapperElement()).css('border-top', '2px solid #b43232');
             $(editor.getWrapperElement()).css('border-bottom', '2px solid #b43232');
-            this.logBookEvent({'event': 'activecode', 'act': 'edit', 'div_id': this.divid});
+            this.logBookEvent({ 'event': 'activecode', 'act': 'edit', 'div_id': this.divid });
         }
         editor.acEditEvent = true;
     }).bind(this));  // use bind to preserve *this* inside the on handler.
@@ -163,10 +269,10 @@ ActiveCode.prototype.createEditor = function (index) {
         var code = (e.keyCode ? e.keyCode : e.which);
         if (code == 9 && $('textarea:focus').length === 0) {
             editor.setOption("extraKeys", {
-                "Tab": function(cm) {
+                "Tab": function (cm) {
                     $(document.activeElement).closest('.tab-content').nextSibling.focus();
                 },
-                "Shift-Tab": function(cm) {
+                "Shift-Tab": function (cm) {
                     $(document.activeElement).closest('.tab-content').previousSibling.focus();
                 }
             });
@@ -175,254 +281,203 @@ ActiveCode.prototype.createEditor = function (index) {
 
     this.editor = editor;
     if (this.hidecode) {
-        $(this.codeDiv).css("display","none");
+        $(this.codeDiv).css("display", "none");
     }
 };
+
+ActiveCode.prototype.BUILD_TYPE_DEFAULT =  0;
+ActiveCode.prototype.BUILD_TYPE_RUNORTEST = 1;
+ActiveCode.prototype.BUILD_TYPE_PLAYTASK = 2;
 
 ActiveCode.prototype.createControls = function () {
     var ctrlDiv = document.createElement("div");
-    $(ctrlDiv).addClass("ac_actions");
+    $(ctrlDiv).addClass("ac_actions mb-2");
     $(ctrlDiv).addClass("col-md-12");
-    // Run
-    var butt = document.createElement("button");
-    $(butt).text($.i18n("msg_activecode_run_code"));
-    $(butt).addClass("btn btn-success run-button");
-    ctrlDiv.appendChild(butt);
-    this.runButton = butt;
-    $(butt).click(this.runProg.bind(this));
-    $(butt).attr("type","button")
-
-    if (this.enabledownload || eBookConfig.downloadsEnabled) {
-      var butt = document.createElement("button");
-      $(butt).text("Download");
-      $(butt).addClass("btn save-button");
-      ctrlDiv.appendChild(butt);
-      this.downloadButton = butt;
-      $(butt).click(this.downloadFile.bind(this, this.language));
-      $(butt).attr("type","button")
-    }
-
-    if (!this.hidecode && !this.hidehistory) {
+    if (!this.passivecode) {
+        // Run
         var butt = document.createElement("button");
-        $(butt).text($.i18n("msg_activecode_load_history"));
-        $(butt).addClass("btn btn-default");
-        $(butt).attr("type","button")
-        ctrlDiv.appendChild(butt);
-        this.histButton = butt;
-        $(butt).click(this.addHistoryScrubber.bind(this));
-        if (this.graderactive) {
-            this.addHistoryScrubber(true);
+        $(butt).text($.i18n("msg_activecode_run_code"));
+        $(butt).addClass("btn btn-success run-button");
+        if (this.code.trim() != "")
+             ctrlDiv.appendChild(butt);
+        if (this.runortest) {
+            var testButton = document.createElement("button");
+            $(testButton).text("Test");
+            $(testButton).addClass("btn btn-success test-button");
+            ctrlDiv.appendChild(testButton);
+            this.testButton = testButton;
+            $(testButton).click(this.runProg.bind(this, [this.BUILD_TYPE_RUNORTEST]));
+            $(testButton).attr("type", "button");
+        }
+        if (this.playtask) {
+            var playTaskButton = document.createElement("button");
+            $(playTaskButton).text($.i18n("msg_activecode_play_task"));
+            $(playTaskButton).addClass("btn btn-success test-button")
+            ctrlDiv.appendChild(playTaskButton);
+            this.plaTaskButton = playTaskButton;
+            $(playTaskButton).click(this.runProg.bind(this, [this.BUILD_TYPE_PLAYTASK]));
+            $(playTaskButton).attr("type", "button");
+        }
+        if (this.help) {
+            var helpButton =  document.createElement("button");
+            $(helpButton).text($.i18n("msg_activecode_help"));
+            $(helpButton).addClass("btn btn-success test-button")
+            ctrlDiv.appendChild(helpButton);
+            this.helpButton = helpButton;
+            $(helpButton).click(this.showHelp.bind(this));
+            $(helpButton).attr("type", "button");
+            
+        }
+        this.runButton = butt;
+        $(butt).click(this.runProg.bind(this, [this.BUILD_TYPE_DEFAULT]));
+        $(butt).attr("type", "button")
+
+        if (this.enabledownload || eBookConfig.downloadsEnabled) {
+            var butt = document.createElement("button");
+            $(butt).text("Download");
+            $(butt).addClass("btn save-button");
+            ctrlDiv.appendChild(butt);
+            this.downloadButton = butt;
+            $(butt).click(this.downloadFile.bind(this, this.language));
+            $(butt).attr("type", "button")
+        }
+
+        if (!this.hidecode && !this.hidehistory) {
+            var butt = document.createElement("button");
+            $(butt).text($.i18n("msg_activecode_load_history"));
+            $(butt).addClass("btn btn-default");
+            $(butt).attr("type", "button")
+            ctrlDiv.appendChild(butt);
+            this.histButton = butt;
+            $(butt).click(this.addHistoryScrubber.bind(this));
+            if (this.graderactive) {
+                this.addHistoryScrubber(true);
+            }
+        }
+
+        if ($(this.origElem).data('gradebutton') && !this.graderactive) {
+            butt = document.createElement("button");
+            $(butt).addClass("ac_opt btn btn-default");
+            $(butt).text($.i18n("msg_activecode_show_feedback"));
+            $(butt).css("margin-left", "10px");
+            $(butt).attr("type", "button")
+            this.gradeButton = butt;
+            ctrlDiv.appendChild(butt);
+            $(butt).click(this.createGradeSummary.bind(this))
+        }
+        // Show/Hide Code
+        if (this.hidecode) {
+            $(this.runButton).attr('disabled', 'disabled');
+            butt = document.createElement("button");
+            $(butt).addClass("ac_opt btn btn-default");
+            $(butt).text($.i18n("msg_activecode_show_code"));
+            $(butt).css("margin-left", "10px");
+            $(butt).attr("type", "button")
+            this.showHideButt = butt;
+            ctrlDiv.appendChild(butt);
+            $(butt).click((function () {
+                $(this.codeDiv).toggle();
+                if (this.historyScrubber == null) {
+                    this.addHistoryScrubber(true);
+                } else {
+                    $(this.historyScrubber.parentElement).toggle();
+                }
+                if ($(this.showHideButt).text() == $.i18n("msg_activecode_show_code")) {
+                    $(this.showHideButt).text($.i18n("msg_activecode_hide_code"));
+                } else {
+                    $(this.showHideButt).text($.i18n("msg_activecode_show_code"));
+                }
+                if ($(this.runButton).attr('disabled')) {
+                    $(this.runButton).removeAttr('disabled');
+                } else {
+                    $(this.runButton).attr('disabled', 'disabled');
+                }
+            }).bind(this));
+        }
+
+        // CodeLens
+        if ($(this.origElem).data("codelens") && !this.graderactive) {
+            butt = document.createElement("button");
+            $(butt).addClass("ac_opt btn btn-default");
+            $(butt).text($.i18n("msg_activecode_show_codelens"));
+            this.clButton = butt;
+            ctrlDiv.appendChild(butt);
+            $(butt).click(this.showCodelens.bind(this));
+        }
+
+        // Audio Tour
+        if ($(this.origElem).data("audio")) {
+            butt = document.createElement("button");
+            $(butt).addClass("ac_opt btn btn-default");
+            $(butt).text($.i18n("msg_activecode_audio_tour"));
+            $(butt).css("margin-left", "10px");
+            this.atButton = butt;
+            ctrlDiv.appendChild(butt);
+            $(butt).click((function () { new AudioTour(this.divid, this.code, 1, $(this.origElem).data("audio")) }).bind(this));
+        }
+
+        if (this.chatcodes && eBookConfig.enable_chatcodes) {
+            var chatBar = document.createElement("div");
+            var channels = document.createElement("span");
+            var topic = window.location.host + '-' + this.divid;
+            ctrlDiv.appendChild(chatBar);
+            $(chatBar).text("Chat: ");
+            $(chatBar).append(channels);
+            butt = document.createElement("a");
+            $(butt).addClass("ac_opt btn btn-default");
+            $(butt).text("Create Channel");
+            $(butt).css("margin-left", "10px");
+            $(butt).attr("type", "button")
+            $(butt).attr("target", "_blank")
+            $(butt).attr("href", 'http://' + chatcodesServer + "/new?" + $.param({
+                topic: window.location.host + '-' + this.divid,
+                code: this.editor.getValue(),
+                lang: 'Python'
+            }));
+            this.chatButton = butt;
+            chatBar.appendChild(butt);
+            var updateChatCodesChannels = function () {
+                var data = doc.data;
+                var i = 1;
+                $(channels).html('');
+                data['channels'].forEach(function (channel) {
+                    if (!channel.archived && topic === channel.topic) {
+                        var link = $('<a />');
+                        var href = 'http://' + chatcodesServer + "/" + channel.channelName;
+                        link.attr({
+                            'href': href,
+                            'target': '_blank'
+                        });
+                        link.text(' ' + channel.channelName + '(' + i + ') ');
+                        $(channels).append(link);
+                        i++;
+                    }
+                });
+                if (i === 1) {
+                    $(channels).text('(no active converstations on this problem)');
+                }
+            };
+            doc.subscribe(updateChatCodesChannels);
+            doc.on('op', updateChatCodesChannels);
         }
     }
 
-    if ($(this.origElem).data('gradebutton') && ! this.graderactive) {
-        butt = document.createElement("button");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text($.i18n("msg_activecode_show_feedback"));
-        $(butt).css("margin-left","10px");
-        $(butt).attr("type","button")
-        this.gradeButton = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click(this.createGradeSummary.bind(this))
-    }
-    // Show/Hide Code
-    if (this.hidecode) {
-        $(this.runButton).attr('disabled', 'disabled');
-        butt = document.createElement("button");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text($.i18n("msg_activecode_show_code"));
-        $(butt).css("margin-left", "10px");
-        $(butt).attr("type","button")
-        this.showHideButt = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click( (function() {
-            $(this.codeDiv).toggle();
-            if (this.historyScrubber == null) {
-                this.addHistoryScrubber(true);
-            } else {
-                $(this.historyScrubber.parentElement).toggle();
-            }
-            if ($(this.showHideButt).text() == $.i18n("msg_activecode_show_code")) {
-                $(this.showHideButt).text($.i18n("msg_activecode_hide_code"));
-            } else {
-                $(this.showHideButt).text($.i18n("msg_activecode_show_code"));
-            }
-            if ($(this.runButton).attr('disabled')) {
-                $(this.runButton).removeAttr('disabled');
-            } else {
-                $(this.runButton).attr('disabled', 'disabled');
-            }
+    if (this.enablecopy) {
+        var button = document.createElement("button");
+        $(button).addClass("btn btn-success btn-copy float-right");
+        $(button).text($.i18n("msg_activecode_copy"));
+        $(button).on('click', (function () {
+            var $tempInput = $("<textarea>");
+            $("body").append($tempInput);
+            $tempInput.val(this.editor.getValue()).select();
+            document.execCommand("copy");
+            $tempInput.remove();
         }).bind(this));
+        ctrlDiv.appendChild(button);
     }
-
-    // CodeLens
-    if ($(this.origElem).data("codelens") && ! this.graderactive) {
-        butt = document.createElement("button");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text($.i18n("msg_activecode_show_codelens"));
-        $(butt).css("margin-left", "10px");
-        this.clButton = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click(this.showCodelens.bind(this));
-    }
-
-    // TIE
-    if(this.tie) {
-        butt = document.createElement("button");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text("Open Code Coach");
-        this.tieButt = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click(this.showTIE.bind(this))
-    }
-    // CodeCoach
-    // bnm - disable code coach until it is revamped  2017-7-22
-    // if (this.useRunestoneServices && $(this.origElem).data("coach")) {
-    //     butt = document.createElement("button");
-    //     $(butt).addClass("ac_opt btn btn-default");
-    //     $(butt).text("Code Coach");
-    //     $(butt).css("margin-left", "10px");
-    //     this.coachButton = butt;
-    //     ctrlDiv.appendChild(butt);
-    //     $(butt).click(this.showCodeCoach.bind(this));
-    // }
-
-    // Audio Tour
-    if ($(this.origElem).data("audio")) {
-        butt = document.createElement("button");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text($.i18n("msg_activecode_audio_tour"));
-        $(butt).css("margin-left", "10px");
-        this.atButton = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click((function() {new AudioTour(this.divid, this.code, 1, $(this.origElem).data("audio"))}).bind(this));
-    }
-
-    if (eBookConfig.isInstructor) {
-        let butt = document.createElement("button");
-        $(butt).addClass("btn btn-info");
-        $(butt).text("Share Code");
-        $(butt).css("margin-left", "10px");
-        this.shareButt = butt;
-        ctrlDiv.appendChild(butt);
-        $(butt).click((function() {
-            if (! confirm("You are about to share this code with ALL of your students.  Are you sure you want to continue?")) {
-                return;
-            }
-             let data = {
-                 divid: this.divid,
-                 code: this.editor.getValue(),
-                 lang: this.language,
-             };
-             $.post('/runestone/ajax/broadcast_code.json',
-                data,
-                function (status) {
-                    if (status.mess === 'success') {
-                        alert(`Shared Code with ${status.share_count} students`);
-                    } else {
-                        alert("Sharing Failed");
-                    }
-
-                }, 'json');
-                }).bind(this));
-    }
-
-    if (this.enablePartner) {
-        var checkPartner = document.createElement("input");
-        checkPartner.type = 'checkbox'
-        checkPartner.id = `${this.divid}_part`
-        ctrlDiv.appendChild(checkPartner);
-        var plabel = document.createElement('label');
-        plabel.for = `${this.divid}_part`;
-        $(plabel).text("Pair?");
-        ctrlDiv.appendChild(plabel);
-        $(checkPartner).click((function () {
-            if (this.partner) {
-                this.partner = false;
-                $(partnerTextBox).hide()
-                this.partner = ''
-                partnerTextBox.value = ''
-                $(plabel).text("Pair?");
-            } else {
-                let didAgree = localStorage.getItem("partnerAgree")
-                if( ! didAgree) {
-                    didAgree = confirm("Pair Programming should only be used with the consent of your instructor." +
-                      "Your partner must be a registered member of the class and have agreed to pair with you." +
-                      "By clicking OK you certify that both of these conditions have been met."
-                      );
-                    if (didAgree) {
-                        localStorage.setItem("partnerAgree", "true");
-                    } else {
-                        return;
-                    }
-                }
-                this.partner = true;
-                $(plabel).text('with: ');
-                $(partnerTextBox).show();
-            }
-        }).bind(this))
-        var partnerTextBox = document.createElement("input")
-        partnerTextBox.type = 'text'
-        ctrlDiv.appendChild(partnerTextBox);
-        $(partnerTextBox).hide()
-        $(partnerTextBox).change((function () {
-            this.partner = partnerTextBox.value;
-        }).bind(this))
-    }
-
-    if(this.chatcodes && eBookConfig.enable_chatcodes) {
-        var chatBar = document.createElement("div");
-        var channels = document.createElement("span");
-        var topic = window.location.host+'-'+this.divid;
-        ctrlDiv.appendChild(chatBar);
-        $(chatBar).text("Chat: ");
-        $(chatBar).append(channels);
-        butt = document.createElement("a");
-        $(butt).addClass("ac_opt btn btn-default");
-        $(butt).text("Create Channel");
-        $(butt).css("margin-left","10px");
-        $(butt).attr("type","button")
-        $(butt).attr("target","_blank")
-        $(butt).attr("href", 'http://'+chatcodesServer+"/new?"+$.param({
-            topic: window.location.host+'-'+this.divid,
-            code: this.editor.getValue(),
-            lang: 'Python'
-        }));
-        this.chatButton = butt;
-        chatBar.appendChild(butt);
-        var updateChatCodesChannels = function() {
-            var data = doc.data;
-            var i = 1;
-            $(channels).html('');
-            data['channels'].forEach(function(channel) {
-                if(!channel.archived && topic === channel.topic) {
-                    var link = $('<a />');
-                    var href = 'http://'+chatcodesServer+"/"+channel.channelName;
-                    link.attr({
-                        'href': href,
-                        'target': '_blank'
-                    });
-                    link.text(' ' + channel.channelName + '('+i+') ');
-                    $(channels).append(link);
-                    i++;
-                }
-            });
-            if(i===1) {
-                $(channels).text('(no active converstations on this problem)');
-            }
-        };
-        doc.subscribe(updateChatCodesChannels);
-        doc.on('op', updateChatCodesChannels);
-    }
-
-
     $(this.outerDiv).prepend(ctrlDiv);
     this.controlDiv = ctrlDiv;
 
-};
-
-ActiveCode.prototype.enableSaveLoad = function () {
-    $(this.runButton).text($.i18n("msg_activecode_save_run"));
 };
 
 // Activecode -- If the code has not changed wrt the scrubber position value then don't save the code or reposition the scrubber
@@ -432,46 +487,46 @@ ActiveCode.prototype.enableSaveLoad = function () {
 
 ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
 
-    var data = {acid: this.divid};
+    var data = { acid: this.divid };
     var deferred = jQuery.Deferred();
 
     if (this.sid !== undefined) {
         data['sid'] = this.sid;
     }
     console.log("before get hist");
-    var helper = function() {
+    var helper = function () {
         console.log("making a new scrubber");
         var scrubberDiv = document.createElement("div");
-        $(scrubberDiv).css("display","inline-block");
-        $(scrubberDiv).css("margin-left","10px");
-        $(scrubberDiv).css("margin-right","10px");
-        $(scrubberDiv).css({"min-width": "200px",
-            "max-width": "300px"});
+        $(scrubberDiv).css("display", "inline-block");
+        $(scrubberDiv).css("margin-left", "10px");
+        $(scrubberDiv).css("margin-right", "10px");
+        $(scrubberDiv).width("180px");
         var scrubber = document.createElement("div");
-        this.timestampP = document.createElement("span");
-        this.slideit = function() {
+        this.slideit = function () {
+            console.log("slideit was called");
             this.editor.setValue(this.history[$(scrubber).slider("value")]);
             var curVal = this.timestamps[$(scrubber).slider("value")];
-            let pos = $(scrubber).slider("value");
-            let outOf = this.history.length;
-            $(this.timestampP).text(`${curVal} - ${pos+1} of ${outOf}`);
-            this.logBookEvent({'event': 'activecode', 'act': 'slide:'+curVal, 'div_id': this.divid})
+            var tooltip = '<div class="sltooltip"><div class="sltooltip-inner">' +
+                curVal + '</div><div class="sltooltip-arrow"></div></div>';
+            $(scrubber).find(".ui-slider-handle").html(tooltip);
+            setTimeout(function () {
+                $(scrubber).find(".sltooltip").fadeOut()
+            }, 4000);
         };
         $(scrubber).slider({
-            max: this.history.length-1,
-            value: this.history.length-1,
+            max: this.history.length - 1,
+            value: this.history.length - 1,
         });
-        $(scrubber).css('margin','10px');
-        $(scrubber).on("slide",this.slideit.bind(this));
-        $(scrubber).on("slidechange",this.slideit.bind(this));
+        $(scrubber).on("slide", this.slideit.bind(this));
+        $(scrubber).on("slidechange", this.slideit.bind(this));
         scrubberDiv.appendChild(scrubber);
-        scrubberDiv.appendChild(this.timestampP);
+
         // If there is a deadline set then position the scrubber at the last submission
         // prior to the deadline
         if (this.deadline) {
             let i = 0;
             let done = false;
-            while (i < this.history.length && ! done) {
+            while (i < this.history.length && !done) {
                 if ((new Date(this.timestamps[i])) > this.deadline) {
                     done = true;
                 } else {
@@ -479,40 +534,38 @@ ActiveCode.prototype.addHistoryScrubber = function (pos_last) {
                 }
             }
             i = i - 1;
-            scrubber.value = Math.max(i,0);
+            scrubber.value = Math.max(i, 0);
             this.editor.setValue(this.history[scrubber.value]);
-            $(scrubber).slider('value', scrubber.value);
         }
         else if (pos_last) {
-            scrubber.value = this.history.length-1;
+            scrubber.value = this.history.length - 1;
             this.editor.setValue(this.history[scrubber.value]);
         } else {
             scrubber.value = 0;
         }
-        let pos = $(scrubber).slider("value");
-        let outOf = this.history.length;
-        let ts = this.timestamps[$(scrubber).slider("value")];
-        $(this.timestampP).text(`${ts} - ${pos+1} of ${outOf}`);
+
         $(this.histButton).remove();
         this.histButton = null;
         this.historyScrubber = scrubber;
         $(scrubberDiv).insertAfter(this.runButton);
+        console.log("resoving deferred in addHistoryScrubber");
         deferred.resolve();
     }.bind(this)
-    if (eBookConfig.practice_mode){
+    if (eBookConfig.practice_mode) {
         helper();
-        }
-    else{
-        jQuery.getJSON(eBookConfig.ajaxURL + 'gethist.json', data, function(data, status, whatever) {
+    }
+    else {
+        jQuery.getJSON(eBookConfig.ajaxURL + 'gethist.json', data, function (data, status, whatever) {
             if (data.history !== undefined) {
                 this.history = this.history.concat(data.history);
                 for (t in data.timestamps) {
-                    this.timestamps.push( (new Date(data.timestamps[t])).toLocaleString() )
+                    this.timestamps.push((new Date(data.timestamps[t])).toLocaleString())
                 }
+                console.log("gethist successful history updated")
             }
         }.bind(this))
             .always(helper); // For an explanation, please look at https://stackoverflow.com/questions/336859/var-functionname-function-vs-function-functionname
-        }
+    }
     return deferred;
 };
 
@@ -525,8 +578,8 @@ ActiveCode.prototype.createOutput = function () {
     $(outDiv).addClass("ac_output col-md-12");
     this.outDiv = outDiv;
     this.output = document.createElement('pre');
-    this.output.id = this.divid+'_stdout';
-    $(this.output).css("visibility","hidden");
+    this.output.id = this.divid + '_stdout';
+    $(this.output).css("visibility", "hidden");
 
     this.graphics = document.createElement('div');
     this.graphics.id = this.divid + "_graphics";
@@ -534,83 +587,99 @@ ActiveCode.prototype.createOutput = function () {
     // This bit of magic adds an event which waits for a canvas child to be created on our
     // newly created div.  When a canvas child is added we add a new class so that the visible
     // canvas can be styled in CSS.  Which a the moment means just adding a border.
-    $(this.graphics).on("DOMNodeInserted", 'canvas', (function(e) {
+    $(this.graphics).on("DOMNodeInserted", 'canvas', (function (e) {
         $(this.graphics).addClass("visible-ac-canvas");
+        $(outDiv).css("height", "400px");
     }).bind(this));
-
-    var clearDiv = document.createElement("div");
-    $(clearDiv).css("clear","both");  // needed to make parent div resize properly
-    this.outerDiv.appendChild(clearDiv);
 
     outDiv.appendChild(this.output);
     outDiv.appendChild(this.graphics);
     this.outerDiv.appendChild(outDiv);
 
+    var clearDiv = document.createElement("div");
+    $(clearDiv).css("clear", "both");  // needed to make parent div resize properly
+    this.outerDiv.appendChild(clearDiv);
+
 
     var lensDiv = document.createElement("div");
-    $(lensDiv).addClass("col-md-12");
-    $(lensDiv).css("display","none");
+    $(lensDiv).addClass("col-md-6");
+    $(lensDiv).css("display", "none");
     this.codelens = lensDiv;
     this.outerDiv.appendChild(lensDiv);
 
     var coachDiv = document.createElement("div");
     $(coachDiv).addClass("col-md-12");
-    $(coachDiv).css("display","none");
+    $(coachDiv).css("display", "none");
     this.codecoach = coachDiv;
     this.outerDiv.appendChild(coachDiv);
 
 
     var clearDiv = document.createElement("div");
-    $(clearDiv).css("clear","both");  // needed to make parent div resize properly
+    $(clearDiv).css("clear", "both");  // needed to make parent div resize properly
     this.outerDiv.appendChild(clearDiv);
 
+    if (this.modaloutput) {
+        var canvasDiv = document.createElement("div");
+        document.body.prepend(canvasDiv);
+        this.canvasDiv = canvasDiv;
+        this.canvasDiv.id = this.divid + "_canvas";
+    }
 };
 
-ActiveCode.prototype.disableSaveLoad = function() {
+ActiveCode.prototype.disableSaveLoad = function () {
     $(this.saveButton).addClass('disabled');
-    $(this.saveButton).attr('title','Login to save your code');
+    $(this.saveButton).attr('title', 'Login to save your code');
     $(this.loadButton).addClass('disabled');
-    $(this.loadButton).attr('title','Login to load your code');
+    $(this.loadButton).attr('title', 'Login to load your code');
 };
 
-var languageExtensions = { python:     'py',
-                           html:       'html',
-                           javascript: 'js',
-                           java:       'java',
-                           python2:    'py',
-                           python3:    'py',
-                           cpp:        'cpp',
-                           c:          'c'};
+var languageExtensions = {
+    python: 'py',
+    html: 'html',
+    javascript: 'js',
+    java: 'java',
+    python2: 'py',
+    python3: 'py'
+};
 
 ActiveCode.prototype.downloadFile = function (lang) {
-  var fnb = this.divid;
-  var d = new Date();
-  var fileName = fnb + '_' + d.toJSON()
-                              .substring(0,10) // reverse date format
-                              .split('-')
-                              .join('') + '.' + languageExtensions[lang];
-  var code = this.editor.getValue();
+    var fnb = this.divid;
+    var d = new Date();
+    var fileName = fnb + '_' + d.toJSON()
+        .substring(0, 10) // reverse date format
+        .split('-')
+        .join('') + '.' + languageExtensions[lang];
+    var code = this.editor.getValue();
 
-  if ('Blob' in window) {
-      var textToWrite = code.replace(/\n/g, '\r\n');
-      var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
+    if ('Blob' in window) {
+        var textToWrite = code.replace(/\n/g, '\r\n');
+        var textFileAsBlob = new Blob([textToWrite], { type: 'text/plain' });
 
-      if ('msSaveOrOpenBlob' in navigator) {
-        navigator.msSaveOrOpenBlob(textFileAsBlob, fileName);
-      } else {
-        var downloadLink = document.createElement('a');
-        downloadLink.download = fileName;
-        downloadLink.innerHTML = 'Download File';
-        downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-      }
-  } else {
-    alert('Your browser does not support the HTML5 Blob.');
-  }
+        if ('msSaveOrOpenBlob' in navigator) {
+            navigator.msSaveOrOpenBlob(textFileAsBlob, fileName);
+        } else {
+            var downloadLink = document.createElement('a');
+            downloadLink.download = fileName;
+            downloadLink.innerHTML = 'Download File';
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.style.display = 'none';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+        }
+    } else {
+        alert('Your browser does not support the HTML5 Blob.');
+    }
 };
 
+ActiveCode.prototype.addCaption = function () {
+    //someElement.parentNode.insertBefore(newElement, someElement.nextSibling);
+    var capDiv = document.createElement('p');
+    $(capDiv).html(this.caption + " (" + this.divid + ")");
+    $(capDiv).addClass("ac_caption");
+    $(capDiv).addClass("ac_caption_text");
+
+    this.outerDiv.parentNode.insertBefore(capDiv, this.outerDiv.nextSibling);
+};
 
 
 
@@ -620,18 +689,20 @@ ActiveCode.prototype.loadEditor = function () {
         var res = eval(data)[0];
         if (res.source) {
             this.editor.setValue(res.source);
-            setTimeout(function() {
+            setTimeout(function () {
                 this.editor.refresh();
-            }.bind(this),500);
-            $(this.loadButton).tooltip({'placement': 'bottom',
-                             'title': $.i18n("msg_activecode_loaded_code"),
-                             'trigger': 'manual'
-                            });
+            }.bind(this), 500);
+            $(this.loadButton).tooltip({
+                'placement': 'bottom',
+                'title': $.i18n("msg_activecode_loaded_code"),
+                'trigger': 'manual'
+            });
         } else {
-            $(this.loadButton).tooltip({'placement': 'bottom',
-                             'title': $.i18n("msg_activecode_no_saved_code"),
-                             'trigger': 'manual'
-                            });
+            $(this.loadButton).tooltip({
+                'placement': 'bottom',
+                'title': $.i18n("msg_activecode_no_saved_code"),
+                'trigger': 'manual'
+            });
         }
         $(this.loadButton).tooltip('show');
         setTimeout(function () {
@@ -639,15 +710,15 @@ ActiveCode.prototype.loadEditor = function () {
         }.bind(this), 4000);
     }).bind(this);
 
-    var data = {acid: this.divid};
+    var data = { acid: this.divid };
     if (this.sid !== undefined) {
         data['sid'] = this.sid;
     }
     // This function needs to be chainable for when we want to do things like run the activecode
     // immediately after loading the previous input (such as in a timed exam)
     var dfd = jQuery.Deferred();
-    this.logBookEvent({'event': 'activecode', 'act': 'load', 'div_id': this.divid}); // Log the run event
-    jQuery.get(eBookConfig.ajaxURL + 'getprog', data, loadEditor).done(function () {dfd.resolve();});
+    this.logBookEvent({ 'event': 'activecode', 'act': 'load', 'div_id': this.divid }); // Log the run event
+    jQuery.get(eBookConfig.ajaxURL + 'getprog', data, loadEditor).done(function () { dfd.resolve(); });
     return dfd;
 
 };
@@ -660,18 +731,18 @@ ActiveCode.prototype.createGradeSummary = function () {
         var report = eval(data)[0];
         // check for report['message']
         if (report) {
-            if (report['version'] == 2){
+            if (report['version'] == 2) {
                 // new version; would be better to embed this in HTML for the activecode
                 var body = "<h4>Grade Report</h4>" +
-                       "<p>This question: " + report['grade'] + " out of " + report['max'] + "</p>" +
-                       "<p>" + report['comment'] + "</p>"
+                    "<p>This question: " + report['grade'] + " out of " + report['max'] + "</p>" +
+                    "<p>" + report['comment'] + "</p>"
             }
-            else{
+            else {
                 var body = "<h4>Grade Report</h4>" +
-                       "<p>This assignment: " + report['grade'] + "</p>" +
-                       "<p>" + report['comment'] + "</p>" +
-                       "<p>Number of graded assignments: " + report['count'] + "</p>" +
-                       "<p>Average score: " +  report['avg'] + "</p>"
+                    "<p>This assignment: " + report['grade'] + "</p>" +
+                    "<p>" + report['comment'] + "</p>" +
+                    "<p>Number of graded assignments: " + report['count'] + "</p>" +
+                    "<p>Average score: " + report['avg'] + "</p>"
             }
 
         } else {
@@ -694,7 +765,7 @@ ActiveCode.prototype.createGradeSummary = function () {
         var el = $(html);
         el.modal();
     };
-    var data = {'div_id': this.divid};
+    var data = { 'div_id': this.divid };
     jQuery.get(eBookConfig.ajaxURL + 'getassignmentgrade', data, showGradeSummary);
 };
 
@@ -715,9 +786,9 @@ ActiveCode.prototype.showCodelens = function () {
 
     var cl = this.codelens.firstChild;
     if (cl) {
-        this.codelens.removeChild(cl)
+        div.removeChild(cl)
     }
-    var code = this.buildProg(false);
+    var code = this.editor.getValue();
     var myVars = {};
     myVars.code = code;
     myVars.origin = "opt-frontend.js";
@@ -727,32 +798,26 @@ ActiveCode.prototype.showCodelens = function () {
     myVars.textReferences = false;
     myVars.showOnlyOutputs = false;
     myVars.rawInputLstJSON = JSON.stringify([]);
-    if (this.language == 'python') {
-        if (this.python3) {
-            myVars.py = 3;
-        } else {
-            myVars.py = 2;
-        }
-    } else if (this.langauge == 'javascript') {
-        myVars.py = 'js'
+    if (this.python3) {
+        myVars.py = 3;
     } else {
-        myVars.py = this.language;
+        myVars.py = 2;
     }
-
     myVars.curInstr = 0;
     myVars.codeDivWidth = 350;
     myVars.codeDivHeight = 400;
-    var srcURL = 'https://pythontutor.com/iframe-embed.html';
+    var srcURL = '//pythontutor.com/iframe-embed.html';
     var embedUrlStr = $.param.fragment(srcURL, myVars, 2 /* clobber all */);
     var myIframe = document.createElement('iframe');
     myIframe.setAttribute("id", this.divid + '_codelens');
     myIframe.setAttribute("width", "800");
     myIframe.setAttribute("height", "500");
-    myIframe.setAttribute("style", "display:block");
+    myIframe.setAttribute("style", "display:block; max-width: 100%; max-height: 100%;");
     myIframe.style.background = '#fff';
     //myIframe.setAttribute("src",srcURL)
     myIframe.src = embedUrlStr;
     this.codelens.appendChild(myIframe);
+    this.codelens.style.maxWidth = "100%";
     this.logBookEvent({
         'event': 'codelens',
         'act': 'view',
@@ -798,79 +863,19 @@ ActiveCode.prototype.showCodeCoach = function () {
     });
 };
 
-ActiveCode.prototype.showTIE = function() {
-    var tieDiv = document.createElement("div");
-    $(this.tieButt).attr("disabled","disabled");
-    $(tieDiv).addClass("tie-container");
-    $(tieDiv).data("tie-id", this.divid)
-    var ifm = document.createElement('iframe')
-    $(ifm).addClass("tie-frame")
-    ifm.src = `https://tech-interview-exercises.appspot.com/client/question.html?qid=${this.tie}`
-
-    setIframeDimensions = function() {
-        $('.tie-container').css('width', $('.tie-container').parent().width());
-    //    $('.tie-frame').css('width', $('.tie-frame').parent().width() - 120);
-    };
-    ifm.onload = setIframeDimensions;
-
-    $(function() {
-        $(window).resize(setIframeDimensions);
-      });
-
-    window.addEventListener('message', (function(evt) {
-        if (evt.origin != 'https://tech-interview-exercises.appspot.com') {
-          return;
-        }
-        // Handle the event accordingly.
-        // evt.data contains the code
-        this.logRunEvent({
-            'div_id': this.divid,
-            'code': JSON.parse(evt.data),
-            'lang': this.language,
-            'errinfo': 'TIEresult',
-            'to_save': true,
-            'prefix': this.pretext,
-            'suffix': this.suffix
-        });
-      }).bind(this), false)
-
-    this.logBookEvent({'event': 'tie', 'act': 'open', 'div_id': this.divid});
-    tieDiv.appendChild(ifm)
-    this.outerDiv.appendChild(tieDiv)
-}
 
 ActiveCode.prototype.toggleEditorVisibility = function () {
 
 };
 
 ActiveCode.prototype.addErrorMessage = function (err) {
-    // Add the error message
+    //logRunEvent({'div_id': this.divid, 'code': this.prog, 'errinfo': err.toString()}); // Log the run event
     var errHead = $('<h3>').html('Error');
     this.eContainer = this.outerDiv.appendChild(document.createElement('div'));
     this.eContainer.className = 'error alert alert-danger';
     this.eContainer.id = this.divid + '_errinfo';
     this.eContainer.appendChild(errHead[0]);
     var errText = this.eContainer.appendChild(document.createElement('pre'));
-
-    // But, adjust the line numbers.  If the line number is <= pretextLines then it is in included code
-    // if it is greater than the number of included lines but less than the pretext + current editor then it is in the student code.
-    // adjust the line number we display by eliminating the pre-included code.
-    if (err.traceback.length >= 1) {
-        errorLine = err.traceback[0].lineno;
-        if (errorLine <= this.pretextLines){
-            errText.innerHTML = "An error occurred in the hidden, included code. Sorry we can't give you a more helpful error message";
-            return;
-        }
-        else if (errorLine > (this.progLines + this.pretextLines)) {
-            errText.innerHTML = "An error occurred after the end of your code. One possible reason is that you have an unclosed parenthesis or string. Another possibility is that there is an error in the hidden test code.";
-            return;
-        }
-        else {
-            if (this.pretextLines > 0) {
-                err.traceback[0].lineno = err.traceback[0].lineno - this.pretextLines + 1;
-            }
-        }
-    }
     var errString = err.toString();
     var to = errString.indexOf(":");
     var errName = errString.substring(0, to);
@@ -889,8 +894,8 @@ ActiveCode.prototype.addErrorMessage = function (err) {
 
 var errorText = {};
 
-errorText.ParseError = $.i18n("msg_sctivecode_parse_error");
-errorText.ParseErrorFix = $.i18n( "msg_sctivecode_parse_error_fix");
+errorText.ParseError = $.i18n("msg_activecode_parse_error");
+errorText.ParseErrorFix = $.i18n("msg_activecode_parse_error_fix");
 errorText.TypeError = $.i18n("msg_activecode_type_error");
 errorText.TypeErrorFix = $.i18n("msg_activecode_type_error_fix");
 errorText.NameError = $.i18n("msg_activecode_name_error");
@@ -900,7 +905,7 @@ errorText.ValueErrorFix = $.i18n("msg_activecode_value_error_fix");
 errorText.AttributeError = $.i18n("msg_activecode_attribute_error");
 errorText.AttributeErrorFix = $.i18n("msg_activecode_attribute_error_fix");
 errorText.TokenError = $.i18n("msg_activecode_token_error");
-errorText.TokenErrorFix =  $.i18n("msg_activecode_token_error_fix");
+errorText.TokenErrorFix = $.i18n("msg_activecode_token_error_fix");
 errorText.TimeLimitError = $.i18n("msg_activecode_time_limit_error");
 errorText.TimeLimitErrorFix = $.i18n("msg_activecode_time_limit_error_fix");
 errorText.Error = $.i18n("msg_activecode_general_error");
@@ -925,39 +930,25 @@ errorText.IndentationError = $.i18n("msg_activecode_indentation_error");
 errorText.IndentationErrorFix = $.i18n("msg_activecode_indentation_error_fix");
 errorText.NotImplementedError = $.i18n("msg_activecode_not_implemented_error");
 errorText.NotImplementedErrorFix = $.i18n("msg_activecode_not_implemented_error_fix");
-errorText.KeyError = $.i18n("msg_activecode_key_error");
-errorText.KeyErrorFix = $.i18n("msg_activecode_key_error_fix");
 
-ActiveCode.prototype.addJSONLibrary = function () {
-    var jsonExternalLibInfo = {
-            path : eBookConfig.app + '/static/' + eBookConfig.course + '/_static/json.sk-master/__init__.js',
-            dependencies : [
-                eBookConfig.app + '/static/' + eBookConfig.course + '/_static/json.sk-master/stringify.js'
-            ]
-        };
-    if (Sk.externalLibraries) {
-        Sk.externalLibraries.json = jsonExternalLibInfo;
-    } else {
-        Sk.externalLibraries = {
-            json: jsonExternalLibInfo
-        };
-    }
-};
+
+
 
 ActiveCode.prototype.setTimeLimit = function (timer) {
     var timelimit = this.timelimit;
-    if (timer !== undefined ) {
+    if (timer !== undefined) {
         timelimit = timer
     }
     // set execLimit in milliseconds  -- for student projects set this to
     // 25 seconds -- just less than Chrome's own timer.
     if (this.code.indexOf('ontimer') > -1 ||
         this.code.indexOf('onclick') > -1 ||
-        this.code.indexOf('onkey') > -1  ||
-        this.code.indexOf('setDelay') > -1 ) {
+        this.code.indexOf('onkey') > -1 ||
+        this.code.indexOf('setDelay') > -1 ||
+        this.code.indexOf('display.set_mode') > -1) {
         Sk.execLimit = null;
     } else {
-        if (timelimit === "off") {
+        if (timelimit === "off" || this.modaloutput == true || this.autorun == true) {
             Sk.execLimit = null;
         } else if (timelimit) {
             Sk.execLimit = timelimit;
@@ -968,37 +959,21 @@ ActiveCode.prototype.setTimeLimit = function (timer) {
 
 };
 
+
 ActiveCode.prototype.builtinRead = function (x) {
-        if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
-            throw $.i18n("msg_activecode_file_not_found",x);
-        return Sk.builtinFiles["files"][x];
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw $.i18n("msg_activecode_file_not_found", x);
+    return Sk.builtinFiles["files"][x];
 };
 
-ActiveCode.prototype.fileReader = function(divid) {
+ActiveCode.prototype.fileReader = function (divid) {
     let elem = document.getElementById(divid);
     let data = ""
-    let result = ""
-    if (elem == null && Sk.builtinFiles.files.hasOwnProperty(divid)) {
+    if (elem == null && Sk.builtinFiles["files"][divid]) {
         return Sk.builtinFiles["files"][divid];
-    } else {
-        // try remote file unless it ends with .js or .py -- otherwise we'll ask the server for all
-        // kinds of modules that we are trying to import
-        if ( ! (divid.endsWith('.js') || divid.endsWith('.py')) ) {
-            $.ajax({async: false,
-                    url: `/runestone/ajax/get_datafile?course_id=${eBookConfig.course}&acid=${divid}`,
-                    success: function(data) {
-                        result = JSON.parse(data).data;
-                        },
-                    error: function(err) {
-                        result = null;
-                        }})
-            if (result) {
-                return result
-            }
-        }
     }
-    if (elem == null && result === null) {
-        throw new Sk.builtin.IOError($.i18n("msg_activecode_no_file_or_dir",divid));
+    if (elem == null) {
+        throw new Sk.builtin.IOError($.i18n("msg_activecode_no_file_or_dir", divid));
     } else {
         if (elem.nodeName.toLowerCase() == "textarea") {
             data = elem.value;
@@ -1009,9 +984,9 @@ ActiveCode.prototype.fileReader = function(divid) {
     return data;
 }
 
-ActiveCode.prototype.outputfun = function(text) {
+ActiveCode.prototype.outputfun = function (text) {
     // bnm python 3
-    pyStr = function(x) {
+    pyStr = function (x) {
         if (x instanceof Array) {
             return '[' + x.join(", ") + ']';
         } else {
@@ -1020,7 +995,7 @@ ActiveCode.prototype.outputfun = function(text) {
     };
 
     var x = text;
-    if (! this.python3 ) {
+    if (!this.python3) {
         if (x.charAt(0) == '(') {
             x = x.slice(1, -1);
             x = '[' + x + ']';
@@ -1032,96 +1007,61 @@ ActiveCode.prototype.outputfun = function(text) {
             }
         }
     }
-    $(this.output).css("visibility","visible");
+    $(this.output).css("visibility", "visible");
     text = x;
     text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br/>");
-        $(this.output).append(text);
-    };
+    $(this.output).append(text);
+};
 
-ActiveCode.prototype.filewriter = function(fobj, bytes) {
-    let filecomponent = document.getElementById(fobj.name);
-    if (! filecomponent) {
-        let container = document.createElement('div')
-        $(container).addClass('runestone')
-        let tab = document.createElement('div');
-        $(tab).addClass('datafile_caption');
-        tab.innerHTML = `Data file: <code>${fobj.name}</code>`;
-        filecomponent = document.createElement('textarea')
-        filecomponent.rows = 10;
-        filecomponent.cols = 50;
-        filecomponent.id = fobj.name;
-        $(filecomponent).css('margin-bottom','5px');
-        $(filecomponent).addClass('ac_output');
-        container.appendChild(tab);
-        container.appendChild(filecomponent);
-        this.outerDiv.appendChild(container)
-    } else {
-        if (fobj.pos$ == 0) {
-            $(filecomponent).val("")
-        }
-    }
-
-    let current = $(filecomponent).val()
-    current = current + bytes.v;
-    $(filecomponent).val(current);
-    $(filecomponent).css('display', 'block');
-    fobj.pos$ = current.length;
-
-    return current.length;
-}
-
-ActiveCode.prototype.getIncludedCode = function(divid) {
-    var wresult;
-    if(edList[divid]) {
-        return edList[divid].editor.getValue();
-    } else {
-        wresult = $.ajax({
-            async: false,
-            url: `/runestone/ajax/get_datafile?course_id=${eBookConfig.course}&acid=${divid}`,
-            success: function(data) {
-                result = JSON.parse(data).data;
-                },
-            error: function(err) {
-                result = null;
-            }})
-
-        return result;
-    }
-}
-
-
-ActiveCode.prototype.buildProg = function(useSuffix) {
+ActiveCode.prototype.buildProg = function (buildType = ActiveCode.prototype.BUILD_TYPE_DEFAULT) {
     // assemble code from prefix, suffix, and editor for running.
-    var pretext;
-    var prog = this.editor.getValue() + "\n";
-    this.pretext = "";
-    this.pretextLines = 0
-    this.progLines = prog.match(/\n/g).length + 1
+    var prog = "";
 
     if (this.includes !== undefined) {
         // iterate over the includes, in-order prepending to prog
-
-        pretext = "";
-        for (var x=0; x < this.includes.length; x++) {
-            let iCode = this.getIncludedCode(this.includes[x]);
-            pretext = pretext + iCode + "\n";
+        this.pretext = "";
+        for (var x = 0; x < this.includes.length; x++) {
+            this.pretext += edList[this.includes[x]].editor.getValue();
         }
-        this.pretext = pretext;
-        if(this.pretext) {
-            this.pretextLines = (this.pretext.match(/\n/g) || '').length
-        }
-        prog = pretext + prog
+        prog = this.pretext + prog;
     }
+    
+    if (buildType == this.BUILD_TYPE_DEFAULT) {
+        if (this.passivecodestr == 'onlymain')
+            prog += this.code;
+        else
+            prog += this.editor.getValue() + "\n";
+    } else if (buildType == this.BUILD_TYPE_RUNORTEST) {
+        var tmp = this.editor.getValue().split('\n');
+        var readOnlyLines = [];
+        var main = "";
+        for (var i = 0; i < this.lineHandles.length; i++)
+            readOnlyLines.push(this.editor.getLineNumber(this.lineHandles[i]));
+        for (var i = 0; i < tmp.length; i++) {
+            if (readOnlyLines.includes(i)) continue;
+            main += "\t" + tmp[i] + "\n";
+        }
+        var parameters = this.testParameters.trim().split(' ');
 
-    if(useSuffix && this.suffix) {
-        prog = prog + this.suffix;
-}
+        var parametersString = "";
+        var returnString = "";
+        for (var i = 0; i < parameters.length; i++) {
+            parametersString += parameters[i] + "=None" + (i < parameters.length - 1 ? ',' : '');
+            returnString += parameters[i] + "=" + parameters[i] + (i < parameters.length - 1 ? ',' : '');
+        }
+        this.pretext = this.generalInitContent + "def acMainSection(" + parametersString + "):\n";
+        returnString = "\treturn dict(" + returnString + ")\n";
+        prog += this.pretext + main + returnString + this.suffix;
+    } else if (buildType == this.BUILD_TYPE_PLAYTASK) {
+        prog += this.suffix;
+    }
 
     return prog;
 };
 
 ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, saveCode) {
     if (this.historyScrubber === null && !this.autorun) {
+        console.log("Need a new scrubber");
         scrubber_dfd = this.addHistoryScrubber();
     } else {
         scrubber_dfd = jQuery.Deferred();
@@ -1131,12 +1071,14 @@ ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, save
     history_dfd = jQuery.Deferred();
     scrubber_dfd.done((function () {
         if (this.historyScrubber && (this.history[$(this.historyScrubber).slider("value")] != this.editor.getValue())) {
+            console.log("updating scrubber with changed code");
             saveCode = "True";
             this.history.push(this.editor.getValue());
             this.timestamps.push((new Date()).toLocaleString());
             $(this.historyScrubber).slider("option", "max", this.history.length - 1);
             $(this.historyScrubber).slider("option", "value", this.history.length - 1);
             this.slideit();
+            console.log("finished scrubber update")
         } else {
             saveCode = "False";
         }
@@ -1150,153 +1092,336 @@ ActiveCode.prototype.manage_scrubber = function (scrubber_dfd, history_dfd, save
             console.log("Scrubber deferred failed - this should not happen");
             history_dfd.resolve();
         });
-    return {history_dfd: history_dfd, saveCode: saveCode};
+    return { history_dfd: history_dfd, saveCode: saveCode };
 };
 
+ActiveCode.prototype.showHelp = function()  {
+    if (this.runAttempts == 0) {
+        if (!confirm('Savetujemo ti da uvek pokušaš samostalno da rešiš problem pre nego što pogledaš pomoć. Da li sigurno želiš da vidiš pomoć?')) {
+            return;
+        }
+    }
 
-ActiveCode.prototype.runProg = function () {
-    var prog = this.buildProg(true);
+    var marks = this.editor.getAllMarks();
+    var mainSecStart = marks[0].lines.length - 1;
+    var mainSecEnd = this.editor.lineCount() - marks[1].lines.length;
+    this.editor.replaceRange(this.helpCode, {line: mainSecStart, ch: 0}, {line: mainSecEnd, ch: 0});
+}
+
+var pygameModalUse = true;
+ActiveCode.prototype.runProg = function (params = [ActiveCode.prototype.BUILD_TYPE_DEFAULT]) {
+    Sk.hardInterrupt = false;
+    Sk.builtin.KeyboardInterrupt = null;
+    var prog = this.buildProg(params[0]);
+    
+    if (prog.indexOf("???") != -1) {
+        if (!confirm('Treba da umesto ??? otkucаš svoj kod.\nSve naredbe koje sadrže ??? će biti preskočene prilikom izvršavanja programa.\nDa li želiš da izvršiš kod?')) {
+            return;
+        }
+    }
+
+    this.runAttempts++; // the number of times the program has been run
+
+    // skip lines containing ???
+
+    // count characters in a string
+    function cntChar(s, c) {
+        c = c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return (s.match(new RegExp(c, "g"))||[]).length;
+    }
+
+    // extract program lines 
+    var progLines = prog.split("\n");
+    // join statements spanning multiple lines
+    var progStatements = []
+    var i = 0;
+    while (i < progLines.length) {
+        var open_parent = cntChar(progLines[i], "(");
+        var close_parent = cntChar(progLines[i], ")");
+        var open_bracket = cntChar(progLines[i], "[");
+        var close_bracket = cntChar(progLines[i], "]");
+        var open_brace = cntChar(progLines[i], "{");
+        var close_brace = cntChar(progLines[i], "}");
+        var statement = progLines[i];
+        while (i + 1 < progLines.length &&
+               (open_parent > close_parent ||
+                open_bracket > close_bracket ||
+                open_brace > close_brace ||
+                statement[statement.length - 1] == "\\")) {
+            i++;
+            statement += " " + progLines[i];
+            open_parent += cntChar(progLines[i], "(");
+            close_parent += cntChar(progLines[i], ")");
+            open_bracket += cntChar(progLines[i], "[");
+            close_bracket += cntChar(progLines[i], "]");
+            open_brace += cntChar(progLines[i], "{");
+            close_brace += cntChar(progLines[i], "}");
+        }
+        progStatements.push(statement);
+        i++;
+    }
+    
+    // remove statements containing ??? and join all statements back
+    // into a program
+    prog = progStatements.filter(line => line.indexOf("???") == -1).join("\n");
+
+    console.log("About to run:")
+    console.log(prog);
+    console.log("----");
+
     var saveCode = "True";
     var scrubber_dfd, history_dfd, skulpt_run_dfd;
+    console.log("starting a new run of " + this.divid);
     $(this.output).text('');
-
+    if (this.runortest) {
+        $(this.output).css("visibility", "hidden");
+        var el = document.getElementById(this.divid + '_unit_results');
+        if (el) {
+            el.parentNode.removeChild(el);
+        }
+    }
     $(this.eContainer).remove();
-    if (this.codelens) {
-        this.codelens.style.display = 'none';
-    }
-    if (this.clButton) {
-        this.clButton.innerText = $.i18n("msg_activecode_show_in_codelens");
-    }
     Sk.configure({
         output: this.outputfun.bind(this),
         read: this.fileReader,
-        filewrite: this.filewriter.bind(this),
-        __future__: Sk.python3,
-        nonreadopen : true,
-//        python3: this.python3,
+        python3: this.python3,
         imageProxy: 'http://image.runestone.academy:8080/320x',
         inputfunTakesPrompt: true,
-        jsonpSites : ['https://itunes.apple.com'],
     });
+
+    Sk.builtinFiles["files"]["src/lib/petljapg.py"] = `import pygame as pg
+
+__version__ = "0.9.3"
+
+def open_window(width, height, caption):
+    pg.init()
+    surface = pg.display.set_mode((width,height))
+    pg.display.set_caption(caption)
+    return surface
+
+def wait_loop():
+    pg.display.update()
+    while pg.event.wait().type != pg.QUIT:
+        pass
+    pg.quit()
+
+def frame_loop(rate, update_frame, handle_event=None):
+    clock = pg.time.Clock()
+    while True:
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
+                return
+            _call_event_handler(handle_event, event)
+        update_frame()
+        pg.display.update()
+        clock.tick(rate)
+
+def event_loop(draw, handle_event):
+    draw()
+    pg.display.update()
+    while True:
+        need_to_redraw = False
+        for event in [pg.event.wait()] + pg.event.get():
+            if event.type == pg.QUIT:
+                pg.quit()
+                return
+            if _call_event_handler(handle_event, event):
+                need_to_redraw = True
+        if need_to_redraw:
+            draw()
+            pg.display.update()
+
+def _call_event_handler(handle_event, event):
+    if isinstance(handle_event, dict):
+        if event.type in handle_event:
+            return handle_event[event.type](event)
+    elif handle_event:
+        return handle_event(event)
+    return None
+`;
+    Sk.builtinFiles["files"]["src/lib/pygamebg.py"] = Sk.builtinFiles["files"]["src/lib/petljapg.py"]; 
+    
     Sk.divid = this.divid;
     this.setTimeLimit();
-    (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = this.graphics;
-    Sk.canvas = this.graphics.id; //todo: get rid of this here and in image
-    $(this.runButton).attr('disabled', 'disabled');
+    (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = this.modaloutput ? this.canvasDiv : this.graphics;
+    if (this.modaloutput) {
+        pygameModalUse = true;
+
+    }
+    else {
+        pygameModalUse = false;
+    }
+    createPyCanvas();
+    Sk.canvas = this.modaloutput ? this.canvasDiv.id : this.graphics.id; //todo: get rid of this here and in image
+    switch (params[0]) {
+        case 0:
+            $(this.runButton).attr('disabled', 'disabled');
+            break;
+        case 1:
+            $(this.testButton).attr('disabled', 'disabled');
+            break;
+        case 2:
+            $(this.playTaskButton).attr('disabled', 'disabled');
+            break;
+    }
     $(this.historyScrubber).off("slidechange");
     $(this.historyScrubber).slider("disable");
-    $(this.outDiv).show({duration: 700, queue: false});
+    //if (!this.modaloutput) {
+    //$(this.codeDiv).switchClass("col-md-12", "col-md-7", {duration: 500, queue: false});
+    $(this.outDiv).show({ duration: 700, queue: false });
+    //}
+    // var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
+    // history_dfd = __ret.history_dfd;
+    // saveCode = __ret.saveCode;
+    history_dfd = null;
+    saveCode = false;
 
-    var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
-    history_dfd = __ret.history_dfd;
-    saveCode = __ret.saveCode;
-
-
+    Sk.builtin.KeyboardInterrupt = function (args) {
+        var o;
+        if (!(this instanceof Sk.builtin.KeyboardInterrupt)) {
+            o = Object.create(Sk.builtin.KeyboardInterrupt.prototype);
+            o.constructor.apply(o, arguments);
+            return o;
+        }
+        Sk.builtin.BaseException.apply(this, arguments);
+    };
+    Sk.abstr.setUpInheritance("KeyboardInterrupt", Sk.builtin.KeyboardInterrupt, Sk.builtin.BaseException);
+    var interruptHandler = function (susp) {
+        if (Sk.hardInterrupt === true) {
+            throw new Sk.builtin.KeyboardInterrupt('force-quit');
+        } else {
+            return null; // should perform default action
+        }
+    };
     skulpt_run_dfd = Sk.misceval.asyncToPromise(function () {
 
         return Sk.importMainWithBody("<stdin>", false, prog, true);
-    });
+    }, { "*": interruptHandler });
 
     // Make sure that the history scrubber is fully initialized AND the code has been run
     // before we start logging stuff.
     var self = this;
-
     Promise.all([skulpt_run_dfd, history_dfd]).then((function (mod) { // success
-            $(this.runButton).removeAttr('disabled');
-            if (this.slideit) {
-                $(this.historyScrubber).on("slidechange", this.slideit.bind(this));
-            }
-            $(this.historyScrubber).slider("enable");
-            this.logRunEvent({
-                'div_id': this.divid,
-                'code': this.editor.getValue(),
-                'lang': this.language,
-                'errinfo': 'success',
-                'to_save': saveCode,
-                'prefix': this.pretext,
-                'suffix': this.suffix,
-                'partner': this.partner
-            }); // Log the run event
-        }).bind(this),
-        (function (err) {  // fail
-            history_dfd.done(function () {
-                $(self.runButton).removeAttr('disabled');
-                $(self.historyScrubber).on("slidechange", self.slideit.bind(self));
-                $(self.historyScrubber).slider("enable");
-                self.logRunEvent({
-                    'div_id': self.divid,
-                    'code': self.editor.getValue(),
-                    'lang': this.langauge,
-                    'errinfo': err.toString(),
-                    'to_save': saveCode,
-                    'prefix': self.pretext,
-                    'suffix': self.suffix,
-                    'partner': this.partner,
-                }); // Log the run event
-                self.addErrorMessage(err)
-            });
-        }));
+        $(this.runButton).removeAttr('disabled');
+        switch (params[0]) {
+            case 0:
+                $(this.runButton).removeAttr('disabled');
+                break;
+            case 1:
+                $(this.testButton).removeAttr('disabled');
+                break;
+            case 2:
+                $(this.playTaskButton).removeAttr('disabled');
+                break;
+        }
 
-    if (typeof(allVisualizers) != "undefined") {
+        if (this.modaloutput) {
+            if (typeof PygameLib !== 'undefined')
+                PygameLib.running = false;
+            $('.modal').modal('hide');
+        }
+        // if (this.slideit) {
+        //     $(this.historyScrubber).on("slidechange", this.slideit.bind(this));
+        // }
+        // $(this.historyScrubber).slider("enable");
+        $(this.output).css("visibility", "visible");
+        $(this.output).parent().show({ duration: 700, queue: false });
+
+
+        Sk.builtin.KeyboardInterrupt = null;
+        Sk.hardInterrupt = false;
+        this.logRunEvent({
+            'div_id': this.divid,
+            'code': this.editor.getValue(),
+            'lang': this.language,
+            'errinfo': 'success',
+            'to_save': saveCode,
+            'prefix': this.pretext,
+            'suffix': this.suffix
+        }); // Log the run event
+    }).bind(this),
+        (function (err) {  // fail
+            $(self.runButton).removeAttr('disabled');
+            if (this.modaloutput) {
+                if (typeof PygameLib !== 'undefined')
+                    PygameLib.running = false;
+                $('.modal').modal('hide');
+            }
+            self.logRunEvent({
+                'div_id': self.divid,
+                'code': self.editor.getValue(),
+                'lang': this.langauge,
+                'errinfo': err.toString(),
+                'to_save': saveCode,
+                'prefix': self.pretext,
+                'suffix': self.suffix
+            }); // Log the run event
+            if (err.toString().indexOf("force-quit") == -1)
+                self.addErrorMessage(err);
+            Sk.builtin.KeyboardInterrupt = null;
+            Sk.hardInterrupt = false;
+
+        }).bind(this));
+
+    if (typeof (allVisualizers) != "undefined") {
         $.each(allVisualizers, function (i, e) {
             e.redrawConnectors();
         });
     }
 
+
 };
-
-
-
 
 JSActiveCode.prototype = new ActiveCode();
 
 function JSActiveCode(opts) {
     if (opts) {
         this.init(opts)
-        }
     }
+}
 
-JSActiveCode.prototype.init = function(opts) {
-    ActiveCode.prototype.init.apply(this,arguments)
-    };
+JSActiveCode.prototype.init = function (opts) {
+    ActiveCode.prototype.init.apply(this, arguments)
+};
 
 JSActiveCode.prototype.outputfun = function (a) {
-    $(this.output).css("visibility","visible");
+    $(this.output).css("visibility", "visible");
     var str = "[";
-    if (typeof(a) == "object" && a.length) {
+    if (typeof (a) == "object" && a.length) {
         for (var i = 0; i < a.length; i++)
-            if (typeof(a[i]) == "object" && a[i].length) {
+            if (typeof (a[i]) == "object" && a[i].length) {
                 str += (i == 0 ? "" : " ") + "[";
                 for (var j = 0; j < a[i].length; j++)
                     str += a[i][j] + (j == a[i].length - 1 ?
-                    "]" + (i == a.length - 1 ? "]" : ",") + "\n" : ", ");
+                        "]" + (i == a.length - 1 ? "]" : ",") + "\n" : ", ");
             } else str += a[i] + (i == a.length - 1 ? "]" : ", ");
-        } else {
-    try {
+    } else {
+        try {
             str = JSON.stringify(a);
-    } catch (e) {
+        } catch (e) {
             str = a;
-    }
+        }
     }
     return str;
 };
 
-JSActiveCode.prototype.runProg = function() {
+JSActiveCode.prototype.runProg = function () {
     var _this = this;
-    var prog = this.buildProg(true);
+    var prog = this.buildProg();
     var einfo;
     var scrubber_dfd, history_dfd;
     var saveCode = "True";
 
 
-    var write = function(str) {
+    var write = function (str) {
         _this.output.innerHTML += _this.outputfun(str);
     };
 
-    var writeln = function(str) {
-        if (!str) str="";
-        _this.output.innerHTML += _this.outputfun(str)+"<br />";
-            };
+    var writeln = function (str) {
+        if (!str) str = "";
+        _this.output.innerHTML += _this.outputfun(str) + "<br />";
+    };
 
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
     history_dfd = __ret.history_dfd;
@@ -1304,25 +1429,24 @@ JSActiveCode.prototype.runProg = function() {
 
     $(this.eContainer).remove();
     $(this.output).text('');
-    $(this.outDiv).show({duration:700,queue:false});
+    $(this.codeDiv).switchClass("col-md-12", "col-md-6", { duration: 500, queue: false });
+    $(this.outDiv).show({ duration: 700, queue: false });
 
     try {
         eval(prog)
         einfo = "success";
-    } catch(e) {
+    } catch (e) {
         this.addErrorMessage(e);
         einfo = e;
     }
 
     this.logRunEvent({
-    'div_id': this.divid,
-    'code': this.editor.getValue(),
-    'errinfo': einfo,
-    'lang': this.language,
-    'to_save': saveCode,
-    'prefix': this.pretext,
-    'suffix': this.suffix,
-    'partner': this.partner
+        'div_id': this.divid,
+        'code': this.editor.getValue(),
+        'errinfo': einfo,
+        'to_save': saveCode,
+        'prefix': this.pretext,
+        'suffix': this.suffix
     }); // Log the run event
 
 
@@ -1330,82 +1454,68 @@ JSActiveCode.prototype.runProg = function() {
 
 HTMLActiveCode.prototype = new ActiveCode();
 
-function HTMLActiveCode (opts) {
+function HTMLActiveCode(opts) {
     if (opts) {
         this.init(opts);
     }
 }
 
 HTMLActiveCode.prototype.runProg = function () {
-    var prog = this.buildProg(true);
+    var prog = this.buildProg();
     var scrubber_dfd, history_dfd, saveCode;
-    var saveCode = "True"
+
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
     history_dfd = __ret.history_dfd;
     saveCode = __ret.saveCode;
-
-//    $('#'+myDiv+'_iframe').remove();
-//    $('#'+myDiv+'_htmlout').show();
-//    $('#'+myDiv+'_htmlout').append('<iframe class="activehtml" id="' + myDiv + '_iframe" srcdoc="' +
-//        prog.replace(/"/g,"'") + '">' + '</iframe>');
     $(this.output).text('');
-    if (! this.alignVertical ) {
-        $(this.codeDiv).switchClass("col-md-12", "col-md-6", {duration: 500, queue: false});
+    if (!this.alignVertical) {
+        $(this.codeDiv).switchClass("col-md-12", "col-md-6", { duration: 500, queue: false });
     }
-    $(this.outDiv).show({duration:700,queue:false});
+    $(this.outDiv).show({ duration: 700, queue: false });
     prog = "<script type=text/javascript>window.onerror = function(msg,url,line) {alert(msg+' on line: '+line);};</script>" + prog;
     this.output.srcdoc = prog;
 
     this.logRunEvent({
-    'div_id': this.divid,
-    'code': this.editor.getValue(),
-    'errinfo': 'success',
-    'to_save': saveCode,
-    'prefix': this.pretext,
-    'suffix': this.suffix,
-    'lang': this.language,
-    'partner': this.partner
+        'div_id': this.divid,
+        'code': this.editor.getValue(),
+        'errinfo': 'success',
+        'to_save': saveCode,
+        'prefix': this.pretext,
+        'suffix': this.suffix
     }); // Log the run event
 
 
 };
 
-HTMLActiveCode.prototype.init = function(opts) {
-    opts.alignVertical = true;
-    ActiveCode.prototype.init.apply(this,arguments);
+HTMLActiveCode.prototype.init = function (opts) {
+    ActiveCode.prototype.init.apply(this, arguments);
     this.code = $('<textarea />').html(this.origElem.innerHTML).text();
     $(this.runButton).text('Render');
     this.editor.setValue(this.code);
 };
 
 HTMLActiveCode.prototype.createOutput = function () {
-    this.alignVertical = true;
     var outDiv = document.createElement("div");
     $(outDiv).addClass("ac_output");
-    if(this.alignVertical) {
+    if (this.alignVertical) {
         $(outDiv).addClass("col-md-12");
     } else {
         $(outDiv).addClass("col-md-5");
     }
     this.outDiv = outDiv;
     this.output = document.createElement('iframe');
-    $(this.output).css("background-color","white");
-    $(this.output).css("position","relative");
-    $(this.output).css("height","400px");
-    $(this.output).css("width","100%");
+    $(this.output).css("background-color", "white");
+    $(this.output).css("position", "relative");
+    $(this.output).css("height", "400px");
+    $(this.output).css("width", "100%");
     outDiv.appendChild(this.output);
     this.outerDiv.appendChild(outDiv);
 
     var clearDiv = document.createElement("div");
-    $(clearDiv).css("clear","both");  // needed to make parent div resize properly
+    $(clearDiv).css("clear", "both");  // needed to make parent div resize properly
     this.outerDiv.appendChild(clearDiv);
 
 };
-
-HTMLActiveCode.prototype.enableSaveLoad = function () {
-    $(this.runButton).text($.i18n("msg_activecode_render"));
-};
-
 
 
 String.prototype.replaceAll = function (target, replacement) {
@@ -1415,7 +1525,7 @@ String.prototype.replaceAll = function (target, replacement) {
 AudioTour.prototype = new RunestoneBase();
 
 // function to display the audio tours
-function AudioTour (divid, code, bnum, audio_text) {
+function AudioTour(divid, code, bnum, audio_text) {
     this.audio_tour = null;
     this.audio_code = null;
     this.windowcode = null;
@@ -1475,7 +1585,7 @@ function AudioTour (divid, code, bnum, audio_text) {
     for (var i = 0; i < audio_type.length - 1; i++) {
         var newButton = document.createElement("button");
         newButton.className = "btn btn-success";
-        newButton.innerHTML = bval[i].replace(/\"/g,"");
+        newButton.innerHTML = bval[i].replace(/\"/g, "");
         this.tourButtons.push(newButton);
         bcount++;
     }
@@ -1539,21 +1649,21 @@ function AudioTour (divid, code, bnum, audio_text) {
     this.stop_button.innerHTML = "Stop tour";
 
     $(this.audio_tour).append(this.audio_code, this.windowcode, document.createElement("br"), this.first_audio, this.prev_audio, this.pause_audio, this.next_audio, this.last_audio, document.createElement("br"), this.status, document.createElement("br"), this.tourButtons, this.stop_button);
-    $("#"+divid+" .ac_code_div").append(this.audio_tour);
-    $("#"+divid+" .ac_code_div").css("width", "50%");
-    $('#'+divid+' .CodeMirror.cm-s-default.ui-resizable').hide();
-    $('#'+divid+' .ac_opt.btn.btn-default:last-child').hide();
+    $("#" + divid + " .ac_code_div").append(this.audio_tour);
+    $("#" + divid + " .ac_code_div").css("width", "50%");
+    $('#' + divid + ' .CodeMirror.cm-s-default.ui-resizable').hide();
+    $('#' + divid + ' .ac_opt.btn.btn-default:last-child').hide();
 
-    $(this.stop_button).click( (function () {
+    $(this.stop_button).click((function () {
         if (this.playing) {
             this.elem.pause();
         }
         //log change to db
-        this.logBookEvent({'event': 'Audio', 'act': 'closeWindow', 'div_id': divid});
+        this.logBookEvent({ 'event': 'Audio', 'act': 'closeWindow', 'div_id': divid });
         $(this.audio_tour).remove();
-        $('#'+divid+' .CodeMirror.cm-s-default.ui-resizable').show();
-        $('#'+divid+' .ac_opt.btn.btn-default:last-child').show();
-        $("#"+divid+" .ac_code_div").css("width", "");
+        $('#' + divid + ' .CodeMirror.cm-s-default.ui-resizable').show();
+        $('#' + divid + ' .ac_opt.btn.btn-default:last-child').show();
+        $("#" + divid + " .ac_code_div").css("width", "");
     }).bind(this));
 
     $(this.tourButtons[0]).click((function () {
@@ -1635,7 +1745,7 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
     $(this.status).html($.i18n("msg_activecode_starting", name));
 
     //log tour type to db
-    this.logBookEvent({'event': 'Audio', 'act': name, 'div_id': divid});
+    this.logBookEvent({ 'event': 'Audio', 'act': name, 'div_id': divid });
 
     var max = atype.length;
     var str = "";
@@ -1649,20 +1759,13 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
         var akey = temp_aname.substring(1, temp_aname.length);
         var lnums = temp_line.substring(1, temp_line.length);
 
-        //alert("akey:"+akey+"lnum:"+lnums);
-
-        // str+="<audio id="+akey+" preload='auto'><source src='http://ice-web.cc.gatech.edu/ce21/audio/"+
-        // akey+".mp3' type='audio/mpeg'><source src='http://ice-web.cc.gatech.edu/ce21/audio/"+akey+
-        // ".ogg' type='audio/ogg'>Your browser does not support the audio tag</audio>";
-
         var dir = "http://media.interactivepython.org/" + eBookConfig.basecourse.toLowerCase() + "/audio/";
-        //var dir = "../_static/audio/"
         str += "<audio id=" + akey + " preload='auto' >";
         str += "<source src='" + dir + akey + ".wav' type='audio/wav'>";
         str += "<source src='" + dir + akey + ".mp3' type='audio/mpeg'>";
         str += "<source src='" + dir + akey + ".wav' type='audio/wav'>";
         str += "<source src='" + dir + akey + ".mp3' type='audio/mpeg'>";
-        str +=  "<br />Your browser does not support the audio tag</audio>";
+        str += "<br />Your browser does not support the audio tag</audio>";
         this.ahash[akey] = lnums;
         this.aname.push(akey);
     }
@@ -1673,7 +1776,7 @@ AudioTour.prototype.tour = function (divid, audio_type, bcount) {
     this.playCurrIndexAudio();
 };
 
-AudioTour.prototype.handlePlaying = function() {
+AudioTour.prototype.handlePlaying = function () {
     this.elem.pause();
     // unbind current ended
     $('#' + this.afile).unbind('ended');
@@ -1687,7 +1790,7 @@ AudioTour.prototype.firstAudio = function () {
     this.handlePlaying();
 
     //log change to db
-    this.logBookEvent({'event': 'Audio', 'act': 'first', 'div_id': this.theDivid});
+    this.logBookEvent({ 'event': 'Audio', 'act': 'first', 'div_id': this.theDivid });
 
 
     // move to the first audio
@@ -1707,7 +1810,7 @@ AudioTour.prototype.prevAudio = function () {
         this.handlePlaying();
 
         //log change to db
-        this.logBookEvent({'event': 'Audio', 'act': 'prev', 'div_id': this.theDivid});
+        this.logBookEvent({ 'event': 'Audio', 'act': 'prev', 'div_id': this.theDivid });
 
 
         // move to previous to the current (but the current index has moved to the next)
@@ -1725,7 +1828,7 @@ AudioTour.prototype.nextAudio = function () {
     this.handlePlaying();
 
     //log change to db
-    this.logBookEvent({'event': 'Audio', 'act': 'next', 'div_id': this.theDivid});
+    this.logBookEvent({ 'event': 'Audio', 'act': 'next', 'div_id': this.theDivid });
 
     // if not at the end
     if (this.currIndex < (this.len - 1)) {
@@ -1744,7 +1847,7 @@ AudioTour.prototype.lastAudio = function () {
     this.handlePlaying();
 
     //log change to db
-    this.logBookEvent({'event': 'Audio', 'act': 'last', 'div_id': this.theDivid});
+    this.logBookEvent({ 'event': 'Audio', 'act': 'last', 'div_id': this.theDivid });
 
     // move to the last audio
     this.currIndex = this.len - 1;
@@ -1828,13 +1931,13 @@ AudioTour.prototype.playWhenReady = function (afile, divid, ahash) {
     if (this.pause_audio.className === "btn-default glyphicon glyphicon-pause") {
         $(this.status).html($.i18n("msg_activecode_playing", this.tourName));
         $('#' + afile).bind('ended', (function () {
-        this.outerAudio();
+            this.outerAudio();
         }).bind(this));
         this.elem.play();
     }
     else {
         $('#' + afile).bind('ended', (function () {
-        this.outerAudio();
+            this.outerAudio();
         }).bind(this));
     }
 };
@@ -1846,7 +1949,6 @@ AudioTour.prototype.playaudio = function (i, aname, divid, ahash) {
     this.elem = document.getElementById(this.afile);
 
     // if this isn't ready to play yet - no duration yet then wait
-    //console.log("in playaudio " + elem.duration);
     if (isNaN(this.elem.duration) || this.elem.duration == 0) {
         // set the status
         $(this.status).html($.i18n("msg_activecode_loading_audio"));
@@ -1874,7 +1976,7 @@ AudioTour.prototype.pauseAndPlayAudio = function (divid) {
         this.pause_audio.setAttribute("aria-label", $.i18n("msg_activecode_pause_audio"));
         $(this.status).html($.i18n("msg_activecode_playing", this.tourName));
         //log change to db
-        this.logBookEvent({'event': 'Audio', 'act': 'play', 'div_id': this.theDivid});
+        this.logBookEvent({ 'event': 'Audio', 'act': 'play', 'div_id': this.theDivid });
     }
 
     // if audio was this.playing pause it
@@ -1885,7 +1987,7 @@ AudioTour.prototype.pauseAndPlayAudio = function (divid) {
         this.pause_audio.setAttribute("aria-label", $.i18n("msg_activecode_play_paused_audio"));
         $(this.status).html($.i18n("msg_activecode_audio_paused", this.tourName));
         //log change to db
-        this.logBookEvent({'event': 'Audio', 'act': 'pause', 'div_id': this.theDivid});
+        this.logBookEvent({ 'event': 'Audio', 'act': 'pause', 'div_id': this.theDivid });
     }
 
 };
@@ -1923,19 +2025,15 @@ AudioTour.prototype.setBackgroundForLines = function (divid, lnum, color) {
         var start = parseInt(hyphen[0]);
         var end = parseInt(hyphen[1]) + 1;
         for (var k = start; k < end; k++) {
-            //alert(k);
             var str = "#" + divid + "_l" + k;
             if ($(str).text() != "") {
                 $(str).css('background-color', color);
             }
-            //$(str).effect("highlight",{},(dur*1000)+4500);
         }
     }
     else {
-        //alert(lnum);
         var str = "#" + divid + "_l" + lnum;
         $(str).css('background-color', color);
-        //$(str).effect("highlight",{},(dur*1000)+4500);
     }
 };
 
@@ -1945,8 +2043,8 @@ LiveCode.prototype = new ActiveCode();
 function LiveCode(opts) {
     if (opts) {
         this.init(opts)
-        }
     }
+}
 function unescapeHtml(safe) {
     if (safe) {
         return safe.replace(/&amp;/g, '&')
@@ -1956,8 +2054,8 @@ function unescapeHtml(safe) {
             .replace(/&#x27;/g, "'");
     }
 }
-LiveCode.prototype.init = function(opts) {
-    ActiveCode.prototype.init.apply(this,arguments);
+LiveCode.prototype.init = function (opts) {
+    ActiveCode.prototype.init.apply(this, arguments);
 
     var orig = opts.orig;
     this.stdin = $(orig).data('stdin');
@@ -1970,20 +2068,17 @@ LiveCode.prototype.init = function(opts) {
     this.API_KEY = "67033pV7eUUvqo07OJDIV8UZ049aLEK1";
     this.USE_API_KEY = true;
 
-    this.JOBE_SERVER = eBookConfig.jobehost || eBookConfig.host;
-    this.resource = eBookConfig.proxyuri_runs ||  '/runestone/proxy/jobeRun';
-    this.jobePutFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobePushFile/';
-    this.jobeCheckFiles = eBookConfig.proxyuri_files || '/runestone/proxy/jobeCheckFile/';
-    // TODO:  should add a proper put/check in pavement.tmpl as this is misleading and will break on runestone
+    this.JOBE_SERVER = eBookConfig.jobehost;
+    this.resource = eBookConfig.proxyuri_runs;
 
     this.div2id = {};
     if (this.stdin) {
         this.createInputElement();
     }
     this.createErrorOutput();
-    };
+};
 
-LiveCode.prototype.outputfun = function (a) {};
+LiveCode.prototype.outputfun = function (a) { };
 
 LiveCode.prototype.createInputElement = function () {
 
@@ -2009,19 +2104,19 @@ LiveCode.prototype.createErrorOutput = function () {
  * In order to check for supplemental files in java and deal with asynchronicity
  * I split the original runProg into two functions: runProg and runProg_callback
  */
-LiveCode.prototype.runProg = function() {
+LiveCode.prototype.runProg = function () {
     var stdin;
     var scrubber_dfd, history_dfd;
     var saveCode = "True";
-    var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
+    var sfilemap = { java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py' };
     var source = this.editor.getValue();
-    source = this.buildProg(true);
+    source = this.buildProg();
 
     var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
     history_dfd = __ret.history_dfd;
     saveCode = __ret.saveCode;
 
-    var paramlist = ['compileargs','linkargs','runargs','interpreterargs'];
+    var paramlist = ['compileargs', 'linkargs', 'runargs', 'interpreterargs'];
     var paramobj = {}
     for (param of paramlist) {
         if (this[param]) {
@@ -2033,40 +2128,41 @@ LiveCode.prototype.runProg = function() {
         stdin = $(this.stdin_el).val();
     }
 
-    if (! this.sourcefile ) {
+    if (!this.sourcefile) {
         this.sourcefile = sfilemap[this.language];
     }
 
     $(this.output).html($.i18n("msg_activecode_compiling_running"));
 
     var files = [];
-    if (this.datafile != undefined) {
-        var ids = this.datafile.split(",");
-        for (var i = 0; i < ids.length; i++) {
-            file = document.getElementById(ids[i].trim());
-            if (file === null || file === undefined) {
-                // console.log("No file with given id");
-            } else if (file.className === "javaFiles") {
-                files = files.concat(this.parseJavaClasses(file.textContent));
-            } else if (file.className === "image") {
-                var fileName = file.id;
-                var extension = fileName.substring(fileName.indexOf('.') + 1);
-                var base64 = file.toDataURL('image/' + extension);
-                base64 = base64.substring(base64.indexOf(',') + 1);
-                files.push({name: fileName, content: base64});
-            } else {
-                // if no className or un recognized className it is treated as an individual file
-                // this could be any type of file, .txt, .java, .csv, etc
-                files.push({name: file.id, content: file.textContent});
+    if (this.language === "java") {
+        if (this.datafile != undefined) {
+            var ids = this.datafile.split(",");
+            for (var i = 0; i < ids.length; i++) {
+                file = document.getElementById(ids[i].trim());
+                if (file === null || file === undefined) {
+                } else if (file.className === "javaFiles") {
+                    files = files.concat(this.parseJavaClasses(file.textContent));
+                } else if (file.className === "image") {
+                    var fileName = file.id;
+                    var extension = fileName.substring(fileName.indexOf('.') + 1);
+                    var base64 = file.toDataURL('image/' + extension);
+                    base64 = base64.substring(base64.indexOf(',') + 1);
+                    files.push({ name: fileName, content: base64 });
+                } else {
+                    // if no className or un recognized className it is treated as an individual file
+                    // this could be any type of file, .txt, .java, .csv, etc
+                    files.push({ name: file.id, content: file.textContent });
+                }
             }
         }
     }
 
     runspec = {
-            language_id: this.language,
-            sourcecode: source,
-            parameters: paramobj,
-            sourcefilename: this.sourcefile
+        language_id: this.language,
+        sourcecode: source,
+        parameters: paramobj,
+        sourcefilename: this.sourcefile
     };
 
     if (stdin) {
@@ -2074,133 +2170,121 @@ LiveCode.prototype.runProg = function() {
     }
 
 
-    if(files.length === 0) {
-        data = JSON.stringify({'run_spec': runspec});
+    if (this.language !== "java" || files.length === 0) {
+        data = JSON.stringify({ 'run_spec': runspec });
         this.runProg_callback(data);
     } else {
         runspec['file_list'] = [];
         var promises = [];
         var instance = this;
-        //todo: Not sure why this is loaded like this. It could be loaded once.
-        $.getScript('https://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function()
-        {
-            for(var i = 0; i < files.length; i++) {
+        $.getScript('http://cdn.rawgit.com/killmenot/webtoolkit.md5/master/md5.js', function () {
+            for (var i = 0; i < files.length; i++) {
                 var fileName = files[i].name;
                 var fileContent = files[i].content;
                 instance.div2id[fileName] = "runestone" + MD5(fileName + fileContent);
                 runspec['file_list'].push([instance.div2id[fileName], fileName]);
                 promises.push(new Promise((resolve, reject) => {
-                     instance.checkFile(files[i], resolve, reject);
+                    instance.checkFile(files[i], resolve, reject);
                 }));
             }
-            data = JSON.stringify({'run_spec': runspec});
+            data = JSON.stringify({ 'run_spec': runspec });
             this.div2id = instance.div2id;
-            Promise.all(promises).then(function() {
-                // console.log("All files on Server");
+            Promise.all(promises).then(function () {
                 instance.runProg_callback(data);
-            }).catch(function(err) {
-                // console.log("Error: " + err);
+            }).catch(function (err) {
             });
         });
     }
 
 }
-LiveCode.prototype.runProg_callback = function(data) {
+LiveCode.prototype.runProg_callback = function (data) {
 
-        var xhr, stdin;
-        var runspec = {};
-        var scrubber_dfd, history_dfd;
-        var host, source, editor;
-        var saveCode = "True";
-        var sfilemap = {java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py'};
-        source = this.editor.getValue();
+    var xhr, stdin;
+    var runspec = {};
+    var scrubber_dfd, history_dfd;
+    var host, source, editor;
+    var saveCode = "True";
+    var sfilemap = { java: '', cpp: 'test.cpp', c: 'test.c', python3: 'test.py', python2: 'test.py' };
 
-        xhr = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 
-        host = this.JOBE_SERVER + this.resource;
+    host = this.JOBE_SERVER + this.resource;
 
-        var odiv = this.output;
-        $(this.runButton).attr('disabled', 'disabled');
-        $(this.outDiv).show({duration:700,queue:false});
-        $(this.errDiv).remove();
-        $(this.output).css("visibility","visible");
+    var odiv = this.output;
+    $(this.runButton).attr('disabled', 'disabled');
+    $(this.codeDiv).switchClass("col-md-12", "col-md-6", { duration: 500, queue: false });
+    $(this.outDiv).show({ duration: 700, queue: false });
+    $(this.errDiv).remove();
+    $(this.output).css("visibility", "visible");
 
-        xhr.open("POST", host, true);
-        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-        xhr.setRequestHeader('Accept', 'application/json');
-        xhr.setRequestHeader('X-API-KEY', this.API_KEY);
+    xhr.open("POST", host, true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('X-API-KEY', this.API_KEY);
 
-        xhr.onload = (function () {
-            var logresult;
-            $(this.runButton).removeAttr('disabled');
-            try {
-                var result = JSON.parse(xhr.responseText);
-            } catch (e) {
-                result = {};
-                result.outcome = -1;
-            }
+    xhr.onload = (function () {
+        var logresult;
+        $(this.runButton).removeAttr('disabled');
+        try {
+            var result = JSON.parse(xhr.responseText);
+        } catch (e) {
+            result = {};
+            result.outcome = -1;
+        }
 
-            if (result.outcome === 15) {
-                logresult = 'success';
-            } else {
-                logresult = result.outcome;
-            }
-            this.logRunEvent({'div_id': this.divid,
-                 'code': source,
-                 'errinfo': logresult,
-                 'to_save':saveCode,
-                 'lang': this.language,
-                 'event':'livecode',
-                 'partner': this.partner,
-                });
-            switch (result.outcome) {
-                case 15:
-                    $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
-                    break;
-                case 11: // compiler error
-                    $(odiv).html($.i18n("msg_activecode_were_compiling_err"));
-                    this.addJobeErrorMessage(result.cmpinfo);
-                    break;
-                case 12:  // run time error
-                    $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
-                    if (result.stderr) {
-                        this.addJobeErrorMessage(result.stderr);
-                    }
-                    break;
-                case 13:  // time limit
-                    $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
-                    this.addJobeErrorMessage($.i18n("msg_activecode_time_limit_exc"));
-                    break;
-                default:
-                    if(result.stderr){
-                        $(odiv).html(result.stderr.replace(/\n/g, "<br>"));
-                    } else {
-                        this.addJobeErrorMessage($.i18n("msg_activecode_server_err", xhr.status, xhr.statusText));
-                    }
-            }
-            // todo: handle server busy and timeout errors too
-        }).bind(this);
+        if (result.outcome === 15) {
+            logresult = 'success';
+        } else {
+            logresult = result.outcome;
+        }
+        this.logRunEvent({ 'div_id': this.divid, 'code': source, 'errinfo': logresult, 'to_save': saveCode, 'event': 'livecode' });
+        switch (result.outcome) {
+            case 15:
+                $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
+                break;
+            case 11: // compiler error
+                $(odiv).html($.i18n("msg_activecode_were_compiling_err"));
+                this.addJobeErrorMessage(result.cmpinfo);
+                break;
+            case 12:  // run time error
+                $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
+                if (result.stderr) {
+                    this.addJobeErrorMessage(result.stderr);
+                }
+                break;
+            case 13:  // time limit
+                $(odiv).html(result.stdout.replace(/\n/g, "<br>"));
+                this.addJobeErrorMessage($.i18n("msg_activecode_time_limit_exc"));
+                break;
+            default:
+                if (result.stderr) {
+                    $(odiv).html(result.stderr.replace(/\n/g, "<br>"));
+                } else {
+                    this.addJobeErrorMessage($.i18n("msg_activecode_server_err", xhr.status, xhr.statusText));
+                }
+        }
+        // todo: handle server busy and timeout errors too
+    }).bind(this);
+    
 
-        ///$("#" + divid + "_errinfo").remove();
+    xhr.onerror = (function () {
+        this.addJobeErrorMessage($.i18n("msg_activecode_server_comm_err"));
+        $(this.runButton).removeAttr('disabled');
+    }).bind(this);
 
-        xhr.onerror = (function () {
-            this.addJobeErrorMessage($.i18n("msg_activecode_server_comm_err"));
-            $(this.runButton).removeAttr('disabled');
-        }).bind(this);
+    xhr.send(data);
 
-        xhr.send(data);
-
-    };
+};
 LiveCode.prototype.addJobeErrorMessage = function (err) {
-        var errHead = $('<h3>').html('Error');
-        var eContainer = this.outerDiv.appendChild(document.createElement('div'));
-        this.errDiv = eContainer;
-        eContainer.className = 'error alert alert-danger';
-        eContainer.id = this.divid + '_errinfo';
-        eContainer.appendChild(errHead[0]);
-        var errText = eContainer.appendChild(document.createElement('pre'));
-        errText.innerHTML = err;
-    };
+    var errHead = $('<h3>').html('Error');
+    var eContainer = this.outerDiv.appendChild(document.createElement('div'));
+    this.errDiv = eContainer;
+    eContainer.className = 'error alert alert-danger';
+    eContainer.id = this.divid + '_errinfo';
+    eContainer.appendChild(errHead[0]);
+    var errText = eContainer.appendChild(document.createElement('pre'));
+    errText.innerHTML = err;
+};
 
 
 /**
@@ -2210,9 +2294,9 @@ LiveCode.prototype.addJobeErrorMessage = function (err) {
  * @param  {function} resolve promise resolve function
  * @param  {function} reject  promise reject function
  */
-LiveCode.prototype.checkFile = function(file, resolve, reject) {
+LiveCode.prototype.checkFile = function (file, resolve, reject) {
     var file_id = this.div2id[file.name];
-    var resource = this.jobeCheckFiles + file_id;
+    var resource = eBookConfig.proxyuri_files + file_id;
     var host = this.JOBE_SERVER + resource;
 
     var xhr = new XMLHttpRequest();
@@ -2226,24 +2310,19 @@ LiveCode.prototype.checkFile = function(file, resolve, reject) {
     };
 
     xhr.onload = (function () {
-        switch(xhr.status) {
+        switch (xhr.status) {
             case 208:
-            case 404:
-                // console.log("File not on Server");
                 this.pushDataFile(file, resolve, reject);
                 break;
             case 400:
-                // console.log("Bad Request");
                 reject();
                 break;
             case 204:
-                // console.log("File already on Server");
                 resolve();
                 break;
             default:
-                //console.log("This case should never happen");
                 reject();
-            }
+        }
     }).bind(this);
 
     xhr.send();
@@ -2270,9 +2349,9 @@ LiveCode.prototype.pushDataFile = function (file, resolve, reject) {
         contentsb64 = contents;
     }
 
-    var data = JSON.stringify({ 'file_contents' : contentsb64 });
+    var data = JSON.stringify({ 'file_contents': contentsb64 });
 
-    var resource = this.jobePutFiles + file_id;
+    var resource = eBookConfig.proxyuri_files + file_id;
     var host = this.JOBE_SERVER + resource;
 
     var xhr = new XMLHttpRequest();
@@ -2283,28 +2362,22 @@ LiveCode.prototype.pushDataFile = function (file, resolve, reject) {
     xhr.setRequestHeader('X-API-KEY', this.API_KEY);
 
     xhr.onload = (function () {
-        switch(xhr.status) {
+        switch (xhr.status) {
             case 403:
-                // console.log("Forbidden");
                 reject();
                 break;
             case 400:
-                // console.log("Bad Request");
                 reject();
                 break;
             case 204:
-                //console.log("successfully sent file " + xhr.responseText);
-                //console.log("File " + fileName +", " + file_id +" placed on server");
                 resolve();
                 break;
             default:
-                // console.log("This case should never happen");
                 reject();
-            }
+        }
     }).bind(this);
 
     xhr.onerror = function () {
-        // console.log("error sending file" + xhr.responseText);
         reject();
     };
 
@@ -2318,344 +2391,106 @@ LiveCode.prototype.pushDataFile = function (file, resolve, reject) {
  * @return {array of objects}  .name gives the name of the java file with .java extension
  *                   .content gives the contents of the file
  */
- LiveCode.prototype.parseJavaClasses = function(text) {
+LiveCode.prototype.parseJavaClasses = function (text) {
 
-     text = text.trim();
+    text = text.trim();
 
-     var found = false;
-     var stack = 0;
-     var startIndex = 0;
-     var classes = [];
-     var importIndex = 0;
+    var found = false;
+    var stack = 0;
+    var startIndex = 0;
+    var classes = [];
+    var importIndex = 0;
 
-     var endOfLastCommentBeforeClassBegins = 0;
+    var endOfLastCommentBeforeClassBegins = 0;
 
-     for(var i = 0; i < text.length; i++) {
+    for (var i = 0; i < text.length; i++) {
 
-         var char = text.charAt(i);
-         if(char === '/') {
-             i++;
-             if(text.charAt(i) === '/') {
-                 i++;
-                 while(text.charAt(i) !== '\n' && i < text.length) {
-                     i++;
-                 }
-                 if(!found) {
-                     endOfLastCommentBeforeClassBegins = i;
-                 }
-             } else if(text.charAt(i) == '*') {
-                 i++;
-                 while((text.charAt(i) !== '*' || text.charAt(i+1) !== '/') && i + 1 < text.length) {
-                     i++;
-                 }
-                 if(!found) {
-                     endOfLastCommentBeforeClassBegins = i;
-                 }
-             }
+        var char = text.charAt(i);
+        if (char === '/') {
+            i++;
+            if (text.charAt(i) === '/') {
+                i++;
+                while (text.charAt(i) !== '\n' && i < text.length) {
+                    i++;
+                }
+                if (!found) {
+                    endOfLastCommentBeforeClassBegins = i;
+                }
+            } else if (text.charAt(i) == '*') {
+                i++;
+                while ((text.charAt(i) !== '*' || text.charAt(i + 1) !== '/') && i + 1 < text.length) {
+                    i++;
+                }
+                if (!found) {
+                    endOfLastCommentBeforeClassBegins = i;
+                }
+            }
 
-         } else if(char === '"') {
+        } else if (char === '"') {
 
-             i++;
-             while(text.charAt(i) !== '"' && i < text.length) {
-                 i++;
-             }
-         } else if(char === '\'') {
-             while(text.charAt(i) !== '\'' && i < text.length) {
-                 i++;
-             }
-         } else if(char === '(') {
-             var pCount = 1;
-             i++;
-         	while(pCount > 0 && i < text.length){
-                if(text.charAt(i) === '(') {
+            i++;
+            while (text.charAt(i) !== '"' && i < text.length) {
+                i++;
+            }
+        } else if (char === '\'') {
+            while (text.charAt(i) !== '\'' && i < text.length) {
+                i++;
+            }
+        } else if (char === '(') {
+            var pCount = 1;
+            i++;
+            while (pCount > 0 && i < text.length) {
+                if (text.charAt(i) === '(') {
                     pCount++;
-                } else if(text.charAt(i) === ')') {
+                } else if (text.charAt(i) === ')') {
                     pCount--;
                 }
-                 i++;
-             }
-         }
-
-
-         if(!found && text.charAt(i) === '{') {
-             startIndex = i;
-             found = true;
-             stack = 1;
-         } else if(found) {
-             if(text.charAt(i) === '{') {
-                 stack++;
-             }
-             if(text.charAt(i) === '}') {
-                 stack--;
-             }
-         }
-         if(found && stack === 0) {
-             endIndex = i+1;
-
-             var words = text.substring(endOfLastCommentBeforeClassBegins, startIndex).trim().split(" ");
-             var className = "";
-             for (var w = 0; w < words.length; w++) {
-                 className = words[w];
-                 if(words[w] === "extends" || words[w] === "implements") {
-                     className = words[w-1];
-                     w = words.length;
-                 }
-             }
-             className = className.trim() + ".java";
-
-             classes.push({name: className, content: text.substring(importIndex, endIndex)});
-             found = false;
-             importIndex = endIndex;
-             endOfLastCommentBeforeClassBegins = endIndex;
-         }
-
-     }
-     return classes;
- }
-
- //
- // SQL
- //
-
- SQLActiveCode.prototype = new ActiveCode();
-
- function SQLActiveCode(opts) {
-     if (opts) {
-         this.init(opts)
-         }
-     }
-
-SQLActiveCode.prototype.init = function(opts) {
-
-    ActiveCode.prototype.init.apply(this,arguments);
-
-    if (eBookConfig.useRunestoneServices) {
-        var fnprefix = '/runestone/books/published/' + eBookConfig.basecourse + '/_static';
-    } else {
-        var fnprefix = '/_static';
-    }
-    this.config = {
-        locateFile: filename => `${fnprefix}/${filename}`
-    }
-
-    var self = this;
-
-    initSqlJs(this.config).then(function (SQL) {
-    // set up call to load database asynchronously if given
-        if (self.dburl) {
-            if (! self.dburl.startsWith("http")) {
-                self.dburl = window.location.protocol + '//' + window.location.host + self.dburl;
+                i++;
             }
-            $(self.runButton).attr('disabled','disabled')
-            if (! (self.dburl in allDburls)) {
-                allDburls[self.dburl] = {status: 'loading', xWaitFor: jQuery.Deferred() };
-            } else {
-                if (allDburls[self.dburl].status == 'loading') {
-                    allDburls[self.dburl].xWaitFor.done(function() {
-                        self.db = new SQL.Database(allDburls[self.dburl].db);
-                        $(self.runButton).removeAttr('disabled')
-                    });
-                    return;
+        }
+
+
+        if (!found && text.charAt(i) === '{') {
+            startIndex = i;
+            found = true;
+            stack = 1;
+        } else if (found) {
+            if (text.charAt(i) === '{') {
+                stack++;
+            }
+            if (text.charAt(i) === '}') {
+                stack--;
+            }
+        }
+        if (found && stack === 0) {
+            endIndex = i + 1;
+
+            var words = text.substring(endOfLastCommentBeforeClassBegins, startIndex).trim().split(" ");
+            var className = "";
+            for (var w = 0; w < words.length; w++) {
+                className = words[w];
+                if (words[w] === "extends" || words[w] === "implements") {
+                    className = words[w - 1];
+                    w = words.length;
                 }
-                self.db = new SQL.Database(allDburls[self.dburl].db);
-                $(self.runButton).removeAttr('disabled')
-                return;
             }
-            var xhr = new XMLHttpRequest();
+            className = className.trim() + ".java";
 
-            // For example: https://github.com/lerocha/chinook-database/raw/master/ChinookDatabase/DataSources/Chinook_Sqlite.sqlite
-            xhr.open('GET', self.dburl, true);
-            xhr.responseType = 'arraybuffer';
-
-            xhr.onload = e => {
-                var uInt8Array = new Uint8Array(xhr.response);
-                self.db = new SQL.Database(uInt8Array);
-                $(self.runButton).removeAttr('disabled')
-                allDburls[self.dburl].db = uInt8Array;
-                allDburls[self.dburl].status = 'ready';
-                allDburls[self.dburl].xWaitFor.resolve();
-                // contents is now [{columns:['col1','col2',...], values:[[first row], [second row], ...]}]
-                };
-            xhr.send();
-        } else {
-            self.db = new SQL.Database();
+            classes.push({ name: className, content: text.substring(importIndex, endIndex) });
+            found = false;
+            importIndex = endIndex;
+            endOfLastCommentBeforeClassBegins = endIndex;
         }
-    });
-};
 
-
-SQLActiveCode.prototype.runProg = function()  {
-    var result_mess = "success"
-    var scrubber_dfd, history_dfd, saveCode
-    // Clear any old results
-    saveCode = "True"
-    let divid = this.divid+'_sql_out';
-    let respDiv = document.getElementById(divid);
-    if (respDiv) {
-        respDiv.parentElement.removeChild(respDiv)
     }
-    $(this.output).text("")
-    // Run this query
-    let query = this.buildProg(false);  // false --> Do not include suffix
-    if (! this.db ) {
-        $(this.output).text(`Error: Database not initialized! DBURL: ${this.dburl}`)
-        return;
-    }
-    try {
-        var res = this.db.exec(query);
-    } catch(error) {
-        result_mess = error.toString();
-        $(this.output).text(error);
-        $(this.outDiv).show();
-    }
-    this.logRunEvent({
-        'div_id': this.divid,
-        'code': this.editor.getValue(),
-        'lang': this.language,
-        'errinfo': result_mess,
-        'to_save': saveCode,
-        'prefix': this.pretext,
-        'suffix': this.suffix,
-        'partner': this.partner
-    }); // Log the run event
-
-    var __ret = this.manage_scrubber(scrubber_dfd, history_dfd, saveCode);
-    history_dfd = __ret.history_dfd;
-    saveCode = __ret.saveCode;
-
-    history_dfd.then(function() {
-        if (this.slideit) {
-            $(this.historyScrubber).on("slidechange", this.slideit.bind(this));
-        }
-        $(this.historyScrubber).slider("enable");
-    });
-
-    if (result_mess != "success") {
-        return;
-    }
-    // Create a nice table to show the result of the query
-    if (res[0].values.length > 100) {
-        $(this.output).text("Result set is longer than 100 rows limiting output to first 100")
-    }
-    let table = createTable(res[0]);
-    respDiv = document.createElement('div')
-    respDiv.id = divid;
-    $(respDiv).addClass('table-responsive-md')
-    $(respDiv).css('max-height', '500px')
-    $(respDiv).css('overflow', 'scroll')
-    this.outDiv.appendChild(respDiv)
-    respDiv.appendChild(table)
-    $(this.outDiv).show()
-
-    // Now handle autograding
-    if (this.suffix) {
-        result = this.autograde(res[0]);
-        $(this.output).text(result);
-    }
-
+    return classes;
 }
 
-SQLActiveCode.prototype.autograde = function(result_table) {
-    tests = this.suffix.split(/\n/);
-    this.passed = 0;
-    this.failed = 0;
-    // Tests should be of the form
-    // assert row,col oper value for example
-    // assert 4,4 == 3
-    result = ""
-    tests = tests.filter(function(s) {
-        return s.indexOf('assert') > -1
-    })
-    for (let test of tests) {
-        let wlist = test.split(/\s+/);
-        wlist.shift();
-        loc = wlist.shift()
-        oper = wlist.shift();
-        expected = wlist.join(' ');
-        [row,col] = loc.split(',');
-        result += this.testOneAssert(row, col, oper, expected, result_table);
-        result += "\n"
-    }
-    pct = 100 * this.passed / (this.passed + this.failed);
-    pct = pct.toLocaleString(undefined, { maximumFractionDigits: 2});
-    result += `You passed ${this.passed} out of ${this.passed+this.failed} tests for ${pct}%`
-    this.logBookEvent({event: 'unittest',
-                       div_id: this.divid,
-                       course: eBookConfig.course,
-                       act: `percent:${pct}:passed:${this.passed}:failed:${this.failed}`
-                    });
-    return result;
-}
-
-SQLActiveCode.prototype.testOneAssert = function(row, col, oper, expected, result_table) {
-    let actual  = result_table.values[row][col]
-    const operators = {
-        "==" : function (operand1, operand2) {
-            return operand1 == operand2;
-        },
-        "!=" : function (operand1, operand2) {
-            return operand1 != operand2;
-        },
-        ">" : function (operand1, operand2) {
-            return operand1 > operand2;
-        },
-        "<" : function (operand1, operand2) {
-            return operand1 > operand2;
-        }
-    };
-
-    res = operators[oper](actual, expected)
-    if (res) {
-        output = `Pass: ${actual} ${oper} ${expected} in row ${row} column ${result_table.columns[col]}`;
-        this.passed++;
-    } else {
-        output = `Failed ${actual} ${oper} ${expected} in row ${row} column ${result_table.columns[col]}`;
-        this.failed++
-    }
-    return output;
-}
-
-
-function createTable(tableData) {
-    var table = document.createElement('table');
-    var head = document.createElement('thead');
-    var tableBody = document.createElement('tbody');
-    var theads = document.createElement('tr')
-
-    tableData.columns.forEach(function(colData) {
-        let th = document.createElement('th');
-        th.appendChild(document.createTextNode(colData));
-        theads.appendChild(th);
-    });
-    table.appendChild(head);
-    head.appendChild(theads);
-    tableData.values.slice(0,100).forEach(function(rowData) {
-      var row = document.createElement('tr');
-
-      rowData.forEach(function(cellData) {
-        var cell = document.createElement('td');
-        cell.appendChild(document.createTextNode(cellData));
-        row.appendChild(cell);
-      });
-
-      tableBody.appendChild(row);
-    });
-
-    table.appendChild(tableBody);
-    $(table).css('background', 'white');
-    $(table).addClass('table-striped table-light thead-dark')
-    return table;
-  }
-
-
-//
-// ActiveCode Factory Class
-//
 
 ACFactory = {};
 
 ACFactory.createActiveCode = function (orig, lang, addopts) {
-    var opts = {'orig' : orig, 'useRunestoneServices': eBookConfig.useRunestoneServices, 'python3' : eBookConfig.python3 };
+    var opts = { 'orig': orig, 'useRunestoneServices': eBookConfig.useRunestoneServices, 'python3': eBookConfig.python3 };
     if (addopts) {
         for (var attrname in addopts) {
             opts[attrname] = addopts[attrname];
@@ -2665,8 +2500,6 @@ ACFactory.createActiveCode = function (orig, lang, addopts) {
         return new JSActiveCode(opts);
     } else if (lang === 'htmlmixed') {
         return new HTMLActiveCode(opts);
-    } else if (lang === 'sql') {
-        return new SQLActiveCode(opts);
     } else if (['java', 'cpp', 'c', 'python3', 'python2'].indexOf(lang) > -1) {
         return new LiveCode(opts);
     } else {   // default is python
@@ -2675,10 +2508,9 @@ ACFactory.createActiveCode = function (orig, lang, addopts) {
 
 };
 
-
 // used by web2py controller(s)
-ACFactory.addActiveCodeToDiv = function(outerdivid, acdivid, sid, initialcode, language) {
-    var  thepre, newac;
+ACFactory.addActiveCodeToDiv = function (outerdivid, acdivid, sid, initialcode, language) {
+    var thepre, newac;
 
     var acdiv = document.getElementById(acdivid);
     $(acdiv).empty();
@@ -2687,32 +2519,39 @@ ACFactory.addActiveCodeToDiv = function(outerdivid, acdivid, sid, initialcode, l
     thepre.id = outerdivid;
     $(thepre).data('lang', language);
     $(acdiv).append(thepre);
-    var opts = {'orig' : thepre, 'useRunestoneServices': true };
-    var addopts = {'sid': sid, 'graderactive':true};
-    if(language === 'htmlmixed') {
+    var opts = { 'orig': thepre, 'useRunestoneServices': true };
+    var addopts = { 'sid': sid, 'graderactive': true };
+    if (language === 'htmlmixed') {
         addopts['vertical'] = true;
     }
-    newac = ACFactory.createActiveCode(thepre,language,addopts);
+    newac = ACFactory.createActiveCode(thepre, language, addopts);
     var savediv = newac.divid;
     newac.divid = savediv;
-    newac.editor.setSize(500,300);
-    setTimeout(function() {
-            newac.editor.refresh();
-        },500);
+    newac.editor.setSize(500, 300);
+    setTimeout(function () {
+        newac.editor.refresh();
+    }, 500);
 
 };
 
-ACFactory.createActiveCodeFromOpts = function(opts) {
+ACFactory.createActiveCodeFromOpts = function (opts) {
     return ACFactory.createActiveCode(opts.orig, opts.lang, opts)
 }
 
-ACFactory.createScratchActivecode = function() {
+ACFactory.createScratchActivecode = function () {
     /* set up the scratch Activecode editor in the search menu */
     // use the URL to assign a divid - each page should have a unique Activecode block id.
     // Remove everything from the URL but the course and page name
     // todo:  this could probably be eliminated and simply moved to the template file
-    var divid = eBookConfig.course + "_scratch_ac";
-    divid = divid.replace(/[#.]/g,''); // in case book title has characters that will mess up our selectors
+    var divid = document.URL.split('#')[0];
+    if (divid.indexOf('static') > -1) {
+        divid = divid.split('static')[1];
+    } else {
+        divid = divid.split('/');
+        divid = divid.slice(-2).join("");
+    }
+    divid = divid.split('?')[0];  // remove any query string (e.g ?lastPosition)
+    divid = divid.replaceAll('/', '').replace('.html', '').replace(':', '');
     eBookConfig.scratchDiv = divid;
     var lang = eBookConfig.acDefaultLanguage ? eBookConfig.acDefaultLanguage : 'python'
     // generate the HTML
@@ -2724,7 +2563,7 @@ ACFactory.createScratchActivecode = function() {
         '        <h4 class="modal-title">Scratch ActiveCode</h4>' +
         '      </div> ' +
         '      <div class="modal-body">' +
-        '      <textarea data-component="activecode" data-codelens="true" id="' + divid + '" data-lang="'+ lang +'">' +
+        '      <textarea data-component="activecode" id="' + divid + '" data-lang="' + lang + '">' +
         '\n' +
         '\n' +
         '\n' +
@@ -2742,11 +2581,7 @@ ACFactory.createScratchActivecode = function() {
             e.CodeMirror.focus();
         });
     });
-
-    //$(document).bind('keypress', '\\', function(evt) {
-    //    ACFactory.toggleScratchActivecode();
-    //    return false;
-    //});
+    
 };
 
 
@@ -2754,30 +2589,20 @@ ACFactory.toggleScratchActivecode = function () {
     var divid = "ac_modal_" + eBookConfig.scratchDiv;
     var div = $("#" + divid);
 
-    $(`#${eBookConfig.scratchDiv}`).removeClass('ac_section');
     div.modal('toggle');
 
 };
 
-
-//
-// Page Initialization
-//
-
-$(document).ready(function() {
+$(document).ready(function () {
     ACFactory.createScratchActivecode();
-    $('[data-component=activecode]').each( function(index ) {
-        if ($(this).closest('[data-component=timedAssessment]').length == 0 ) {   // If this element exists within a timed component, don't render it here
+    $('[data-component=activecode]').each(function (index) {
+        if ($(this).closest('[data-component=timedAssessment]').length == 0) {   // If this element exists within a timed component, don't render it here
             edList[this.id] = ACFactory.createActiveCode(this, $(this).data('lang'));
         }
     });
     if (loggedout) {
         for (k in edList) {
             edList[k].disableSaveLoad();
-        }
-    } else {
-        for (k in edList) {
-            edList[k].enableSaveLoad();
         }
     }
 
@@ -2788,16 +2613,217 @@ if (typeof component_factory === 'undefined') {
 }
 component_factory['activecode'] = ACFactory.createActiveCodeFromOpts;
 
+$(document).ready(function () {
+    $(".run-button").text($.i18n("msg_activecode_run_code"));
+    $(".reset-button").text($.i18n("msg_activecode_reset"));
+});
 
 // This seems a bit hacky and possibly brittle, but its hard to know how long it will take to
 // figure out the login/logout status of the user.  Sometimes its immediate, and sometimes its
 // long.  So to be safe we'll do it both ways..
 var loggedout;
-$(document).bind("runestone:logout",function() { loggedout=true;});
-$(document).bind("runestone:logout",function() {
+$(document).bind("runestone:logout", function () { loggedout = true; });
+$(document).bind("runestone:logout", function () {
     for (k in edList) {
         if (edList.hasOwnProperty(k)) {
             edList[k].disableSaveLoad();
         }
     }
 });
+
+function createPyCanvas() {
+    Sk.main_canvas = document.createElement("canvas");
+    Sk.quitHandler = function () {
+        $('.modal').modal('hide');
+        if (typeof PygameLib !== 'undefined')
+            PygameLib.running = false;
+    };
+    openPyCanvas();
+}
+
+
+function openPyCanvas() {
+    var currentTarget = resetTarget();
+    if (pygameModalUse) {
+        var div1 = document.createElement("div");
+        currentTarget.appendChild(div1);
+        $(div1).addClass("modal");
+        $(div1).css("text-align", "center");
+
+
+
+
+        var btn1 = document.createElement("span");
+        $(btn1).addClass("btn btn-primary btn-sm float-right mr-1 mt-1");
+        var ic = document.createElement("i");
+        $(ic).addClass("fas fa-times");
+        btn1.appendChild(ic);
+
+        $(btn1).on('click', function (e) {
+            Sk.insertEvent('quit');
+            $(forceQBtn).css("display", "block");
+        });
+
+        var forceQBtn = document.createElement("span");
+        $(forceQBtn).addClass("btn btn-primary btn-sm float-right mr-1 mt-1");
+        $(forceQBtn).css("display", "none");
+        var ic = document.createElement("i");
+        $(ic).addClass("fas fa-sign-out-alt");
+        forceQBtn.appendChild(ic);
+
+        $(forceQBtn).on('click', function (e) {
+            Sk.hardInterrupt = true;
+            Sk.quitHandler();
+            $('.run-button').removeAttr('disabled');
+        });
+
+        var div2 = document.createElement("div");
+        $(div2).addClass("modal-dialog modal-lg");
+        $(div2).css("display", "inline-block");
+        if (screen.width >= 900)
+            $(div2).width(self.width + 42);
+        else {
+            $(div2).attr("style", "display: inline-block; width: 98%; height: 98%; margin: 1px 1px 1px 1%;");
+        }
+        $(div2).attr("role", "document");
+        div1.appendChild(div2);
+
+        var div3 = document.createElement("div");
+        $(div3).addClass("modal-content");
+        $(div3).css("background-color", "#E8E8E8");
+        if (screen.width < 900)
+            $(div3).height("100%");
+        div2.appendChild(div3);
+
+        var div4 = document.createElement("div");
+        $(div4).addClass("modal-heade justify-content-between");
+        var div5 = document.createElement("div");
+        $(div5).addClass("modal-body");
+        if (screen.width < 900) {
+            $(div5).attr("style", "padding: 0");
+        }
+        var div6 = document.createElement("div");
+        $(div6).addClass("modal-footer");
+        $(div6).css("border-top: none !important;")
+        var div7 = document.createElement("div");
+        $(div7).addClass("col-md-8");
+        var div8 = document.createElement("div");
+        $(div8).addClass("col-md-4");
+        var header = document.createElement("h5");
+        $(header).addClass("modal-title float-left ml-1");
+        Sk.title_container = header;
+
+        div3.appendChild(div4);
+        div3.appendChild(div5);
+        div3.appendChild(div6);
+
+        div4.appendChild(header);
+        div4.appendChild(btn1);
+        div4.appendChild(forceQBtn);
+
+        div5.appendChild(Sk.main_canvas);
+        createArrows(div6);
+        $(div1).modal({
+            backdrop: 'static',
+            keyboard: false
+        });
+    }
+    else {
+        currentTarget.appendChild(Sk.main_canvas);
+    }
+}
+
+
+
+function resetTarget() {
+    var selector = Sk.TurtleGraphics.target;
+    var target = typeof selector === "string" ? document.getElementById(selector) : selector;
+    // clear canvas container
+    while (target.firstChild) {
+        target.removeChild(target.firstChild);
+    }
+    return target;
+}
+
+
+function createArrows(div) {
+    var arrows = new Array(4);
+    var direction = ["left", "right", "up", "down"];
+    $(div).addClass("d-flex justify-content-center");
+    for (var i = 0; i < 4; i++) {
+        arrows[i] = document.createElement("span");
+        div.appendChild(arrows[i]);
+        $(arrows[i]).addClass("btn btn-primary btn-arrow");
+        var ic = document.createElement("i");
+        $(ic).addClass("fas fa-arrow-" + direction[i]);
+        $(ic).width(11);
+        arrows[i].appendChild(ic);
+    }
+    var swapIcon = function (id) {
+        $(arrows[id].firstChild).removeClass("fa-arrow-" + direction[id]).addClass("fa-arrow-circle-" + direction[id]);
+    }
+    var returnIcon = function (id) {
+        $(arrows[id].firstChild).removeClass("fa-arrow-circle-" + direction[id]).addClass("fa-arrow-" + direction[id]);
+    }
+    $(arrows[0]).on('mousedown', function () {
+        Sk.insertEvent("left");
+        swapIcon(0);
+    });
+    $(arrows[0]).on('mouseup', function () {
+        returnIcon(0);
+    });
+    $(arrows[1]).on('mousedown', function () {
+        Sk.insertEvent("right");
+        swapIcon(1);
+    });
+    $(arrows[1]).on('mouseup', function () {
+        returnIcon(1);
+    });
+    $(arrows[2]).on('mousedown', function () {
+        Sk.insertEvent("up");
+        swapIcon(2);
+    });
+    $(arrows[2]).on('mouseup', function () {
+        returnIcon(2);
+    });
+    $(arrows[3]).on('mousedown', function () {
+        Sk.insertEvent("down");
+        swapIcon(3);
+    });
+    $(arrows[3]).on('mouseup', function () {
+        returnIcon(3);
+    });
+    $(document).keydown(function (e) {
+        switch (e.which) {
+            case 37:
+                swapIcon(0);
+                break;
+            case 38:
+                swapIcon(2);
+                break;
+            case 39:
+                swapIcon(1);
+                break;
+            case 40:
+                swapIcon(3);
+                break;
+        }
+    });
+    $(document).keyup(function (e) {
+        switch (e.which) {
+            case 37:
+                returnIcon(0);
+                break;
+            case 38:
+                returnIcon(2);
+                break;
+            case 39:
+                returnIcon(1);
+                break;
+            case 40:
+                returnIcon(3);
+                break;
+        }
+    });
+};
+

@@ -6,26 +6,22 @@
     <title>Variables &#8212; Block-based programming in Scratch - practice lessons</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/activecode.css?v=78EE59F" />
-    <link rel="stylesheet" type="text/css" href="_static/codemirror.css?v=B28E0910" />
-    <link rel="stylesheet" type="text/css" href="_static/clickable.css?v=343A135B" />
-    <link rel="stylesheet" type="text/css" href="_static/pytutor.css?v=D101CC50" />
-    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css?v=931EACB9" />
-    <link rel="stylesheet" type="text/css" href="_static/datafile.css?v=BCD38BE" />
-    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css?v=A828DAB1" />
-    <link rel="stylesheet" type="text/css" href="_static/fitb.css?v=71852D76" />
-    <link rel="stylesheet" type="text/css" href="_static/CodeChat.css" />
-    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css?v=EA7C0F6C" />
-    <link rel="stylesheet" type="text/css" href="_static/parsons.css?v=A1E2433E" />
-    <link rel="stylesheet" type="text/css" href="_static/js_lib/prettify.css?v=2A364B6B" />
-    <link rel="stylesheet" type="text/css" href="_static/poll.css?v=431459C5" />
-    <link rel="stylesheet" type="text/css" href="_static/reveal.css?v=7BF74A61" />
-    <link rel="stylesheet" type="text/css" href="_static/showEval.css?v=F960C0B4" />
-    <link rel="stylesheet" type="text/css" href="_static/spreadsheet.css?v=28549A88" />
-    <link rel="stylesheet" type="text/css" href="_static/jexcel.css" />
-    <link rel="stylesheet" type="text/css" href="_static/japp.css" />
-    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css?v=8435FFC1" />
-    <link rel="stylesheet" type="text/css" href="_static/video.css?v=E589DE38" />
+    <link rel="stylesheet" type="text/css" href="_static/activecode.css" />
+    <link rel="stylesheet" type="text/css" href="_static/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="_static/clickable.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pytutor.css" />
+    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/datafile.css" />
+    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css" />
+    <link rel="stylesheet" type="text/css" href="_static/fitb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css" />
+    <link rel="stylesheet" type="text/css" href="_static/parsons.css" />
+    <link rel="stylesheet" type="text/css" href="_static/lib/prettify.css" />
+    <link rel="stylesheet" type="text/css" href="_static/poll.css" />
+    <link rel="stylesheet" type="text/css" href="_static/showEval.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css" />
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/video.css" />
     <link rel="stylesheet" type="text/css" href="_static/karel.css" />
     <link rel="stylesheet" type="text/css" href="_static/notes.css" />
     <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
@@ -39,73 +35,67 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
-    <script type="text/javascript" src="_static/jquery.highlight.js?v=F48946A5"></script>
-    <script type="text/javascript" src="_static/bookfuncs.js?v=269D65E7"></script>
-    <script type="text/javascript" src="_static/codemirror.js?v=77018329"></script>
-    <script type="text/javascript" src="_static/xml.js?v=2D028995"></script>
-    <script type="text/javascript" src="_static/css.js?v=DCA90274"></script>
-    <script type="text/javascript" src="_static/python.js?v=24485A53"></script>
-    <script type="text/javascript" src="_static/htmlmixed.js?v=372C094F"></script>
-    <script type="text/javascript" src="_static/javascript.js?v=CEA7EE5E"></script>
-    <script type="text/javascript" src="_static/sql.js?v=4CD470E6"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js?v=6F1F5263"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js?v=998C78A1"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js?v=8EBB15E7"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js?v=5824D9C3"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js?v=98DF5447"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js?v=55219209"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js?v=4F0BEBCB"></script>
-    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=15D4678A"></script>
-    <script type="text/javascript" src="_static/activecode-i18n.en.js?v=DA169A22"></script>
-    <script type="text/javascript" src="_static/skulpt.min.js?v=EEB8131E"></script>
-    <script type="text/javascript" src="_static/skulpt-stdlib.js?v=A9BBDEEE"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
-    <script type="text/javascript" src="_static/activecode.js?v=E17275B9"></script>
-    <script type="text/javascript" src="_static/clike.js?v=B985002B"></script>
-    <script type="text/javascript" src="_static/timed_activecode.js?v=C841A5EC"></script>
-    <script type="text/javascript" src="_static/sql-wasm.js?v=DE2A0975"></script>
-    <script type="text/javascript" src="_static/animationbase.js?v=B45130AE"></script>
-    <script type="text/javascript" src="_static/mchoice.js?v=E53F18B1"></script>
-    <script type="text/javascript" src="_static/timedmc.js?v=9304523A"></script>
-    <script type="text/javascript" src="_static/timed.js?v=9D71EDF0"></script>
-    <script type="text/javascript" src="_static/clickable.js?v=FAD84541"></script>
-    <script type="text/javascript" src="_static/timedclickable.js?v=5BA90747"></script>
-    <script type="text/javascript" src="_static/d3.v2.min.js?v=ADE5D104"></script>
-    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js?v=C6DC1D07"></script>
-    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
-    <script type="text/javascript" src="_static/pytutor.js?v=DF08F5B7"></script>
-    <script type="text/javascript" src="_static/codelens.js?v=68D45700"></script>
-    <script type="text/javascript" src="_static/datafile.js?v=C14D6F8"></script>
-    <script type="text/javascript" src="_static/dragndrop.js?v=3019AEEE"></script>
-    <script type="text/javascript" src="_static/timeddnd.js?v=1A222EDB"></script>
-    <script type="text/javascript" src="_static/fitb.js?v=DDB11AB0"></script>
-    <script type="text/javascript" src="_static/timedfitb.js?v=D4FEAAC3"></script>
-    <script type="text/javascript" src="_static/lp.js?v=2701088E"></script>
-    <script type="text/javascript" src="_static/gas.js?v=D2930CED"></script>
-    <script type="text/javascript" src="_static/matrixeq.js?v=1FB22B23"></script>
-    <script type="text/javascript" src="_static/js_lib/prettify.js?v=D560DBAE"></script>
-    <script type="text/javascript" src="_static/js_lib/hammer.min.js?v=15E24CE5"></script>
-    <script type="text/javascript" src="_static/parsons.js?v=9072276F"></script>
-    <script type="text/javascript" src="_static/timedparsons.js?v=4BB0E482"></script>
-    <script type="text/javascript" src="_static/poll.js?v=BE3B3078"></script>
-    <script type="text/javascript" src="_static/reveal.js?v=83C3F10"></script>
-    <script type="text/javascript" src="_static/shortanswer.js?v=E01AA3D3"></script>
-    <script type="text/javascript" src="_static/timed_shortanswer.js?v=90301BA9"></script>
-    <script type="text/javascript" src="_static/showEval.js?v=4F1D310E"></script>
-    <script type="text/javascript" src="_static/spreadsheet.js?v=80650DE7"></script>
-    <script type="text/javascript" src="_static/jexcel.js"></script>
-    <script type="text/javascript" src="_static/japp.js"></script>
-    <script type="text/javascript" src="_static/tabbedstuff.js?v=196A23BC"></script>
-    <script type="text/javascript" src="_static/runestonevideo.js?v=255DE041"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/xml.js"></script>
+    <script type="text/javascript" src="_static/css.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="_static/javascript.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/clike.js"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/mchoice.js"></script>
+    <script type="text/javascript" src="_static/timedmc.js"></script>
+    <script type="text/javascript" src="_static/timed.js"></script>
+    <script type="text/javascript" src="_static/mchoice-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/clickable.js"></script>
+    <script type="text/javascript" src="_static/timedclickable.js"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/pytutor.js"></script>
+    <script type="text/javascript" src="_static/codelens.js"></script>
+    <script type="text/javascript" src="_static/datafile.js"></script>
+    <script type="text/javascript" src="_static/dragndrop.js"></script>
+    <script type="text/javascript" src="_static/timeddnd.js"></script>
+    <script type="text/javascript" src="_static/dragndrop-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/fitb.js"></script>
+    <script type="text/javascript" src="_static/timedfitb.js"></script>
+    <script type="text/javascript" src="_static/fitb-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/matrixeq.js"></script>
+    <script type="text/javascript" src="_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/lib/hammer.min.js"></script>
+    <script type="text/javascript" src="_static/parsons.js"></script>
+    <script type="text/javascript" src="_static/parsons-i18n.en.js"></script>
+    <script type="text/javascript" src="_static/timedparsons.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
+    <script type="text/javascript" src="_static/reveal.js"></script>
+    <script type="text/javascript" src="_static/shortanswer.js"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="_static/showEval.js"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js"></script>
     <script type="text/javascript" src="_static/karelCorner.js"></script>
     <script type="text/javascript" src="_static/karelRobot.js"></script>
     <script type="text/javascript" src="_static/karelWorld.js"></script>
     <script type="text/javascript" src="_static/karelRobotDrawer.js"></script>
     <script type="text/javascript" src="_static/karelUI.js"></script>
     <script type="text/javascript" src="_static/karel.js"></script>
-    <script type="text/javascript" src="_static/karel-i18n.en.js?v=4ACA8461"></script>
+    <script type="text/javascript" src="_static/karel-i18n.en.js"></script>
     <script type="text/javascript" src="_static/notes.js"></script>
     <script type="text/javascript" src="_static/pygamelib-init.js"></script>
     <script type="text/javascript" src="_static/blockly/blockly_compressed.js"></script>
@@ -414,7 +404,7 @@ This command takes two separate strings of characters and makes one string, whic
 Then we entered the costume number of the sprite <em>Number1</em> into the first input field of the block performing the arithmetic operation, and in the second input field, we entered the costume number of the sprite <em>Number2</em>. Is this explanation clear enough?</p>
 <p>If you are still not sure how to do this, see a more detailed explanation.</p>
 
-    <div data-component="reveal" id="објашњење"   data-showtitle="Show the explanation" data-hidetitle="Hide the explanation" >
+    <div data-component="reveal" id="објашњење"   data-showtitle="Show the explanation" data-hidetitle="Hide the explanation">
     <p>In the chapter <em>Loops</em> we made a classification of blocks used in Scratch and indicated that so-called <em>Function blocks</em> are inserted into the so-called <em>Command blocks</em>. As we start creating projects that are more complex, we will have to use more complex function blocks, which are composed of several other function blocks, as in the example we are describing here. This is why we will use images to show step-by-step how the complex argument block <em>think of</em> is created. Doing this, we will go backward, from the end to the beginning.
 We should get:</p>
 <p>We should get <img alt="expr1" src="_images/fig7_21.png" /></p>
@@ -497,14 +487,12 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
         <div class="course-box course-box-question course-content">
-        
-        <div data-component="fillintheblank" id="ai11" data-showcomparebutton=true>
-        <p>Q-1:</p>
-<a class="reference internal image-reference" href="_images/q7_1.png"><img alt="_images/q7_1.png" class="align-center" src="_images/q7_1.png" style="width: 150px;" /></a>
+        <div data-component="fillintheblank" id="ai11">
+            <a class="reference internal image-reference" href="_images/q7_1.png"><img alt="_images/q7_1.png" class="align-center" src="_images/q7_1.png" style="width: 150px;" /></a>
 <p>What is the value of the variable <em>а</em> after the execution of the commands: <input type="text"></p>
 
         <script type="application/json">
-            [[{"number": [4, 4], "feedback": "<p>True</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
+            [[{"number": [4, 4], "feedback": "<p>True</p>\n"}, {"regex": "^ *x *$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
         </script>
 
         </div>
@@ -518,14 +506,12 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
         <div class="course-box course-box-question course-content">
-        
-        <div data-component="fillintheblank" id="ai13" data-showcomparebutton=true>
-        <p>Q-2:</p>
-<a class="reference internal image-reference" href="_images/q7_2.png"><img alt="_images/q7_2.png" class="align-center" src="_images/q7_2.png" style="width: 180px;" /></a>
+        <div data-component="fillintheblank" id="ai13">
+            <a class="reference internal image-reference" href="_images/q7_2.png"><img alt="_images/q7_2.png" class="align-center" src="_images/q7_2.png" style="width: 180px;" /></a>
 <p>What is the value of the variable <em>а</em> after the execution of the commands: <input type="text"></p>
 
         <script type="application/json">
-            [[{"number": [0, 0], "feedback": "<p>True</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
+            [[{"number": [0, 0], "feedback": "<p>True</p>\n"}, {"regex": "^ *x *$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
         </script>
 
         </div>
@@ -539,14 +525,12 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
         <div class="course-box course-box-question course-content">
-        
-        <div data-component="fillintheblank" id="ai14" data-showcomparebutton=true>
-        <p>Q-3:</p>
-<a class="reference internal image-reference" href="_images/q7_3.png"><img alt="_images/q7_3.png" class="align-center" src="_images/q7_3.png" style="width: 190px;" /></a>
+        <div data-component="fillintheblank" id="ai14">
+            <a class="reference internal image-reference" href="_images/q7_3.png"><img alt="_images/q7_3.png" class="align-center" src="_images/q7_3.png" style="width: 190px;" /></a>
 <p>What is the value of the variable y after the execution of the commands: <input type="text"></p>
 
         <script type="application/json">
-            [[{"number": [-2, -2], "feedback": "<p>True</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
+            [[{"number": [-2, -2], "feedback": "<p>True</p>\n"}, {"regex": "^ *x *$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
         </script>
 
         </div>
@@ -560,14 +544,12 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
         <div class="course-box course-box-question course-content">
-        
-        <div data-component="fillintheblank" id="ai15" data-showcomparebutton=true>
-        <p>Q-4:</p>
-<a class="reference internal image-reference" href="_images/q7_4.png"><img alt="_images/q7_4.png" class="align-center" src="_images/q7_4.png" style="width: 190px;" /></a>
+        <div data-component="fillintheblank" id="ai15">
+            <a class="reference internal image-reference" href="_images/q7_4.png"><img alt="_images/q7_4.png" class="align-center" src="_images/q7_4.png" style="width: 190px;" /></a>
 <p>What is the value of the variable y after the execution of the commands: <input type="text"></p>
 
         <script type="application/json">
-            [[{"number": [180, 180], "feedback": "<p>True</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
+            [[{"number": [180, 180], "feedback": "<p>True</p>\n"}, {"regex": "^ *x *$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
         </script>
 
         </div>
@@ -581,15 +563,15 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="true"  data-showcomparebutton=true id="ai16">
-           <p>Q-5: Which of the following series of commands exchanges the values of the variables a and b? (Select all correct answers)</p>
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="ai16">
+            <p>Q-83: Which of the following series of commands exchanges the values of the variables a and b? (Select all correct answers)</p>
 <a class="reference internal image-reference" href="_images/q7_5.png"><img alt="_images/q7_5.png" class="align-center" src="_images/q7_5.png" style="width: 500px;" /></a>
 
-            <li data-component="answer" data-correct id="ai16_opt_a"></li><li data-component="feedback">с is an auxiliary variable.</li>
+            <li data-component="answer" data-correct id="ai16_opt_a"></li><li data-component="feedback" id="ai16_opt_a">с is an auxiliary variable.</li>
             
-            <li data-component="answer"  id="ai16_opt_b"></li><li data-component="feedback">а is an auxiliary variable, b and C exchange the values.</li>
+            <li data-component="answer"  id="ai16_opt_b"></li><li data-component="feedback" id="ai16_opt_b">а is an auxiliary variable, b and C exchange the values.</li>
             
-            <li data-component="answer"  id="ai16_opt_c"></li><li data-component="feedback">If b=0, the division is not defined.</li>
+            <li data-component="answer"  id="ai16_opt_c"></li><li data-component="feedback" id="ai16_opt_c">If b=0, the division is not defined.</li>
             
 
             </ul>
@@ -603,17 +585,17 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="for10a">
-           <p>Q-6: What will the sprite say after the execution of the command stack a) and what after the stack b)?</p>
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="for10a">
+            <p>Q-84: What will the sprite say after the execution of the command stack a) and what after the stack b)?</p>
 <a class="reference internal image-reference" href="_images/q7_6.png"><img alt="_images/q7_6.png" class="align-center" src="_images/q7_6.png" style="width: 450px;" /></a>
 
-            <li data-component="answer"  id="for10a_opt_a">6 and 6</li><li data-component="feedback"></li>
+            <li data-component="answer"  id="for10a_opt_a">6 and 6</li><li data-component="feedback" id="for10a_opt_a"></li>
             
-            <li data-component="answer"  id="for10a_opt_b">3 and 3</li><li data-component="feedback">The branching condition has been fulfilled; therefore, the initial value of the variable is increased.</li>
+            <li data-component="answer"  id="for10a_opt_b">3 and 3</li><li data-component="feedback" id="for10a_opt_b">The branching condition has been fulfilled; therefore, the initial value of the variable is increased.</li>
             
-            <li data-component="answer" data-correct id="for10a_opt_c">6 and 3</li><li data-component="feedback"></li>
+            <li data-component="answer" data-correct id="for10a_opt_c">6 and 3</li><li data-component="feedback" id="for10a_opt_c"></li>
             
-            <li data-component="answer"  id="for10a_opt_d">3 and 6</li><li data-component="feedback"></li>
+            <li data-component="answer"  id="for10a_opt_d">3 and 6</li><li data-component="feedback" id="for10a_opt_d"></li>
             
 
             </ul>
@@ -628,16 +610,16 @@ The following figures represent the scripts added to the sprites <em>Number1</em
 <a class="reference internal image-reference" href="_images/q7_7.png"><img alt="_images/q7_7.png" class="align-center" src="_images/q7_7.png" style="width: 200px;" /></a>
 
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="true"  data-showcomparebutton=true id="if08a">
-           <p>Q-7: For which values of the variable <em>а</em> will the variable <em>b</em> receive the value 1? (Select all correct answers).</p>
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="if08a">
+            <p>Q-85: For which values of the variable <em>а</em> will the variable <em>b</em> receive the value 1? (Select all correct answers).</p>
 
-            <li data-component="answer"  id="if08a_opt_a">a=5</li><li data-component="feedback">It is false that 5<5, the branching condition is not fulfilled.</li>
+            <li data-component="answer"  id="if08a_opt_a">a=5</li><li data-component="feedback" id="if08a_opt_a">It is false that 5<5, the branching condition is not fulfilled.</li>
             
-            <li data-component="answer" data-correct id="if08a_opt_b">a=0</li><li data-component="feedback">0<5.</li>
+            <li data-component="answer" data-correct id="if08a_opt_b">a=0</li><li data-component="feedback" id="if08a_opt_b">0<5.</li>
             
-            <li data-component="answer"  id="if08a_opt_c">a=10</li><li data-component="feedback">It is false that 10<5, the branching condition is not fulfilled.</li>
+            <li data-component="answer"  id="if08a_opt_c">a=10</li><li data-component="feedback" id="if08a_opt_c">It is false that 10<5, the branching condition is not fulfilled.</li>
             
-            <li data-component="answer" data-correct id="if08a_opt_d">a=4</li><li data-component="feedback">4<5.</li>
+            <li data-component="answer" data-correct id="if08a_opt_d">a=4</li><li data-component="feedback" id="if08a_opt_d">4<5.</li>
             
 
             </ul>
@@ -651,17 +633,17 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="true"  data-showcomparebutton=true id="if09a">
-           <p>Q-8: For which values of the variables <em>а</em> and <em>b</em> will the variable <em>min</em> receive the value of the variable <em>a</em>? (Select all correct answers).</p>
+            <ul data-component="multiplechoice" data-multipleanswers="true"  id="if09a">
+            <p>Q-86: For which values of the variables <em>а</em> and <em>b</em> will the variable <em>min</em> receive the value of the variable <em>a</em>? (Select all correct answers).</p>
 <a class="reference internal image-reference" href="_images/q7_8.png"><img alt="_images/q7_8.png" class="align-center" src="_images/q7_8.png" style="width: 200px;" /></a>
 
-            <li data-component="answer" data-correct id="if09a_opt_a">a=5 b=10</li><li data-component="feedback">5<10.</li>
+            <li data-component="answer" data-correct id="if09a_opt_a">a=5 b=10</li><li data-component="feedback" id="if09a_opt_a">5<10.</li>
             
-            <li data-component="answer"  id="if09a_opt_b">a=0 b=-1</li><li data-component="feedback">Since 0>-1, the branching condition is not fulfilled.</li>
+            <li data-component="answer"  id="if09a_opt_b">a=0 b=-1</li><li data-component="feedback" id="if09a_opt_b">Since 0>-1, the branching condition is not fulfilled.</li>
             
-            <li data-component="answer"  id="if09a_opt_c">a=10 b=5</li><li data-component="feedback">Since 10>5, the branching condition is not fulfilled.</li>
+            <li data-component="answer"  id="if09a_opt_c">a=10 b=5</li><li data-component="feedback" id="if09a_opt_c">Since 10>5, the branching condition is not fulfilled.</li>
             
-            <li data-component="answer"  id="if09a_opt_d">a=4 b=4</li><li data-component="feedback">Since 4=4, the branching condition is not fulfilled.</li>
+            <li data-component="answer"  id="if09a_opt_d">a=4 b=4</li><li data-component="feedback" id="if09a_opt_d">Since 4=4, the branching condition is not fulfilled.</li>
             
 
             </ul>
@@ -675,14 +657,12 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
         <div class="course-box course-box-question course-content">
-        
-        <div data-component="fillintheblank" id="if11a" data-showcomparebutton=true>
-        <p>Q-9:</p>
-<a class="reference internal image-reference" href="_images/q7_9.png"><img alt="_images/q7_9.png" class="align-center" src="_images/q7_9.png" style="width: 200px;" /></a>
+        <div data-component="fillintheblank" id="if11a">
+            <a class="reference internal image-reference" href="_images/q7_9.png"><img alt="_images/q7_9.png" class="align-center" src="_images/q7_9.png" style="width: 200px;" /></a>
 <p>What will be the value of the variable <em>a</em> after the execution of the condition command, if the values of the variable <em>a</em> and <em>b</em> were previously: a=4 and b=2? <input type="text"></p>
 
         <script type="application/json">
-            [[{"regex": "^\\s*\u0434\u0430\\s*$", "regexFlags": "", "feedback": "<p>True</p>\n"}, {"regex": "^\\s*x\\s*$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
+            [[{"regex": "^ *\u0434\u0430 *$", "regexFlags": "", "feedback": "<p>True</p>\n"}, {"regex": "^ *x *$", "regexFlags": "", "feedback": "<p>The command, which adds the value 5 to the variable, is executed regardless of whether the branching condition has been fulfilled or not.</p>\n"}]]
         </script>
 
         </div>
@@ -696,13 +676,13 @@ The following figures represent the scripts added to the sprites <em>Number1</em
     </div>
 
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="if12">
-           <p>Q-10: Do these two conditional branching commands always perform the same job?</p>
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if12">
+            <p>Q-87: Do these two conditional branching commands always perform the same job?</p>
 <a class="reference internal image-reference" href="_images/q7_10.png"><img alt="_images/q7_10.png" class="align-center" src="_images/q7_10.png" style="width: 500px;" /></a>
 
-            <li data-component="answer"  id="if12_opt_a">yes</li><li data-component="feedback">For а=0 the first command assigns the value 5 to the variable b, and the second command the value 2.</li>
+            <li data-component="answer"  id="if12_opt_a">yes</li><li data-component="feedback" id="if12_opt_a">For а=0 the first command assigns the value 5 to the variable b, and the second command the value 2.</li>
             
-            <li data-component="answer" data-correct id="if12_opt_b">no</li><li data-component="feedback"></li>
+            <li data-component="answer" data-correct id="if12_opt_b">no</li><li data-component="feedback" id="if12_opt_b"></li>
             
 
             </ul>
@@ -717,32 +697,32 @@ The following figures represent the scripts added to the sprites <em>Number1</em
 <a class="reference internal image-reference" href="_images/q7_11.png"><img alt="_images/q7_11.png" class="align-center" src="_images/q7_11.png" style="width: 200px;" /></a>
 
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="if13a">
-           <p>Q-11: What will be the value of the variable <em>b</em> after the execution of the condition command if the value of the variable <em>b</em> was previously b=2?</p>
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if13a">
+            <p>Q-88: What will be the value of the variable <em>b</em> after the execution of the condition command if the value of the variable <em>b</em> was previously b=2?</p>
 
-            <li data-component="answer" data-correct id="if13a_opt_a">b=5</li><li data-component="feedback"></li>
+            <li data-component="answer" data-correct id="if13a_opt_a">b=5</li><li data-component="feedback" id="if13a_opt_a"></li>
             
-            <li data-component="answer"  id="if13a_opt_b">b=2</li><li data-component="feedback">The branching condition has been fulfilled; the initial value of the variable is increased.</li>
+            <li data-component="answer"  id="if13a_opt_b">b=2</li><li data-component="feedback" id="if13a_opt_b">The branching condition has been fulfilled; the initial value of the variable is increased.</li>
             
-            <li data-component="answer"  id="if13a_opt_c">b=6</li><li data-component="feedback"></li>
+            <li data-component="answer"  id="if13a_opt_c">b=6</li><li data-component="feedback" id="if13a_opt_c"></li>
             
-            <li data-component="answer"  id="if13a_opt_d">b=3</li><li data-component="feedback"></li>
+            <li data-component="answer"  id="if13a_opt_d">b=3</li><li data-component="feedback" id="if13a_opt_d"></li>
             
 
             </ul>
             </div>
             
             <div class="course-box course-box-question course-content">
-            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="if13b">
-           <p>Q-12: What will be the value of the variable <em>b</em> after the execution of the condition command if the value of the variable <em>b</em> was previously b=3?</p>
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="if13b">
+            <p>Q-89: What will be the value of the variable <em>b</em> after the execution of the condition command if the value of the variable <em>b</em> was previously b=3?</p>
 
-            <li data-component="answer"  id="if13b_opt_a">b=5</li><li data-component="feedback"></li>
+            <li data-component="answer"  id="if13b_opt_a">b=5</li><li data-component="feedback" id="if13b_opt_a"></li>
             
-            <li data-component="answer"  id="if13b_opt_b">b=2</li><li data-component="feedback"></li>
+            <li data-component="answer"  id="if13b_opt_b">b=2</li><li data-component="feedback" id="if13b_opt_b"></li>
             
-            <li data-component="answer"  id="if13b_opt_c">b=6</li><li data-component="feedback">The branching condition is not fulfilled; therefore, the initial value of the variable does not change.</li>
+            <li data-component="answer"  id="if13b_opt_c">b=6</li><li data-component="feedback" id="if13b_opt_c">The branching condition is not fulfilled; therefore, the initial value of the variable does not change.</li>
             
-            <li data-component="answer" data-correct id="if13b_opt_d">b=3</li><li data-component="feedback"></li>
+            <li data-component="answer" data-correct id="if13b_opt_d">b=3</li><li data-component="feedback" id="if13b_opt_d"></li>
             
 
             </ul>
@@ -758,7 +738,7 @@ The following figures represent the scripts added to the sprites <em>Number1</em
 
 <div class="course-box course-box-problem course-content">
 <ul data-component="dragndrop" id="if16">
-    <span data-component="question">Q-13: By dragging the rectangles, match the initial values of the variables with values received after the execution of the conditional command.</span>
+    <span data-component="question">Q-90: By dragging the rectangles, match the initial values of the variables with values received after the execution of the conditional command.</span>
 	<span data-component=feedback>Try again</span>
 
     <li data-component="draggable" id="if16_drag1">a=2 b=1</li>
@@ -897,7 +877,7 @@ The student added the following scripts to the cat sprite, but when the project 
 </dl>
 <a class="reference internal image-reference" href="_images/bug7_1.png"><img alt="_images/bug7_1.png" class="align-center" src="_images/bug7_1.png" style="width: 500px;" /></a>
 
-    <div data-component="reveal" id="сакривање15"   data-showtitle="Show the Answer" data-hidetitle="Hide the Answer" >
+    <div data-component="reveal" id="сакривање15"   data-showtitle="Show the Answer" data-hidetitle="Hide the Answer">
     <p><strong>Answer:</strong></p>
 <p>The condition is only checked immediately after the green flag has been clicked. It needs to be checked constantly, and this means that the conditional command should be placed in an infinite loop.</p>
 
@@ -916,7 +896,7 @@ The student added the following scripts to the cat sprite, but when the project 
 </dl>
 <a class="reference internal image-reference" href="_images/bug7_2.png"><img alt="_images/bug7_2.png" class="align-center" src="_images/bug7_2.png" style="width: 300px;" /></a>
 
-    <div data-component="reveal" id="сакривање1"   data-showtitle="Show the Answer" data-hidetitle="Hide the Answer" >
+    <div data-component="reveal" id="сакривање1"   data-showtitle="Show the Answer" data-hidetitle="Hide the Answer">
     <p><strong>Answer:</strong></p>
 <p>The sprite moves before it is pointed in the specific direction, so it steps in the direction determined by the previously executed command.</p>
 
@@ -935,7 +915,7 @@ The student added the following scripts to the cat sprite, but when the project 
 </dl>
 <a class="reference internal image-reference" href="_images/bug7_3.png"><img alt="_images/bug7_3.png" class="align-center" src="_images/bug7_3.png" style="width: 300px;" /></a>
 
-    <div data-component="reveal" id="сакривање2"   data-showtitle="Show" data-hidetitle="Hide" >
+    <div data-component="reveal" id="сакривање2"   data-showtitle="Show" data-hidetitle="Hide">
     <dl class="field-list simple">
 <dt class="field-odd">showtitle</dt>
 <dd class="field-odd"><p>Show the Answer</p>
