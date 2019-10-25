@@ -89,7 +89,7 @@ LineBasedGrader.prototype.grade = function() {
 		answerArea.addClass("incorrect");
 		feedbackArea.fadeIn(500);
 		feedbackArea.attr("class", "alert alert-danger");
-		feedbackArea.html($.i18n("msg_parson_too_short"));
+		feedbackArea.html("Your program is too short.  Add more blocks.");
 	} else {
 		// Determine whether the code is in the correct order
 		var isCorrectOrder = false;
@@ -117,7 +117,7 @@ LineBasedGrader.prototype.grade = function() {
 				state = "correct";
 				answerArea.addClass("correct");
 				feedbackArea.fadeIn(100);
-				feedbackArea.attr("class", "alert alert-success");
+				feedbackArea.attr("class", "alert alert-info");
 				if (problem.checkCount > 1)
 				{
 				   feedbackArea.html("Perfect!  It took you " + problem.checkCount + " tries to solve this.  Click Reset to try to solve it in one attempt.");
@@ -363,7 +363,7 @@ ParsonsBlock.prototype.consumeBlock = function(block) {
 	for (var i = 0; i < block.labels.length; i++) {
 		this.addLabel(block.labels[i][0], this.lines.length - block.lines.length + block.labels[i][1]);
 	}
-	
+
 	this.problem.blocks = newBlocks;
 	this.problem.state = undefined;
 	this.problem.updateView();
@@ -391,7 +391,7 @@ ParsonsBlock.prototype.addIndent = function() {
 ParsonsBlock.prototype.addLabel = function(label, line) {
 	var div = document.createElement("div");
 	$(div).addClass("block-label");
-	
+
 	if(this.problem.options.numbered == "right") {
 		$(div).addClass("right-label");
 	}
@@ -404,7 +404,7 @@ ParsonsBlock.prototype.addLabel = function(label, line) {
 	if(this.labels.length != 0) {
 		$(div).css("margin-top", (line - this.labels[this.labels.length - 1][1] - 1) * this.lines[line].view.offsetHeight);
 	}
-	
+
 	this.labels.push([label, line]);
 }
 
@@ -1118,6 +1118,9 @@ Parsons.prototype.init = function (opts) {
 	} else {
 		this.checkLocalStorage();
 	}
+
+	this.caption="Parsons"
+	this.addCaption('runestone')
 };
 
 // Based on the data-fields in the original HTML, initialize options
@@ -1133,7 +1136,7 @@ Parsons.prototype.initializeOptions = function() {
 
 	var numbered = $(this.origElem).data('numbered');
 	options["numbered"] = numbered;
- 
+
 	if (maxdist !== undefined) {
 	    options["maxdist"] = maxdist;
 	}
@@ -1215,7 +1218,7 @@ Parsons.prototype.initializeView = function () {
 	this.sourceLabel = document.createElement("div");
 	$(this.sourceLabel).attr("role", "tooltip");
 	this.sourceLabel.id = this.counterId + "-sourceTip";
-	this.sourceLabel.innerHTML = ($.i18n("msg_parson_drag_from_here"));
+	this.sourceLabel.innerHTML = "Drag from here";
 	this.sourceRegionDiv.appendChild(this.sourceLabel);
 	this.sortContainerDiv.appendChild(this.sourceRegionDiv);
 
@@ -1231,7 +1234,7 @@ Parsons.prototype.initializeView = function () {
 	this.answerLabel = document.createElement("div");
 	$(this.answerLabel).attr("role", "tooltip");
 	this.answerLabel.id = this.counterId + "-answerTip";
-	this.answerLabel.innerHTML = ($.i18n("msg_parson_drag_to_here"));
+	this.answerLabel.innerHTML = "Drop blocks here";
 	this.answerRegionDiv.appendChild(this.answerLabel);
 	this.sortContainerDiv.appendChild(this.answerRegionDiv);
 
@@ -1247,7 +1250,7 @@ Parsons.prototype.initializeView = function () {
 	var that = this;
 	this.checkButton = document.createElement("button");
 	$(this.checkButton).attr("class", "btn btn-success");
-	this.checkButton.textContent = $.i18n("msg_parson_check_me");
+	this.checkButton.textContent = "Check Me";
 	this.checkButton.id = this.counterId + "-check";
 	this.parsonsControlDiv.appendChild(this.checkButton);
 	this.checkButton.type = "button";
@@ -1257,7 +1260,7 @@ Parsons.prototype.initializeView = function () {
 	});
 	this.resetButton = document.createElement("button");
 	$(this.resetButton).attr("class", "btn btn-default");
-	this.resetButton.textContent =  $.i18n("msg_parson_reset");
+	this.resetButton.textContent = "Reset";
 	this.resetButton.id = this.counterId + "-reset";
 	this.resetButton.type = "button";
 	this.parsonsControlDiv.appendChild(this.resetButton);
@@ -1302,14 +1305,11 @@ Parsons.prototype.initializeLines = function(text) {
 	for (var i = 0; i < textBlocks.length; i++) {
 		var textBlock = textBlocks[i];
 
-		// Figure out options based on the #option and #option=value syntax
+		// Figure out options based on the #option
 		// Remove the options from the code
+		// only options are #paired or #distractor
 		var options = {};
-		textBlock = textBlock.replace(/#(\w+)=(\w+)/, function(mystring, arg1, arg2) {
-			options[arg1] = arg2;
-			return ""
-		});
-		textBlock = textBlock.replace(/#(\w+)/, function(mystring, arg1) {
+		textBlock = textBlock.replace(/#(paired|distractor)/, function(mystring, arg1) {
 			options[arg1] = true;
 			return ""
 		});
@@ -1416,17 +1416,29 @@ Parsons.prototype.initializeAreas = function(sourceBlocks, answerBlocks, options
 	// Establish the width and height of the droppable areas
 	var item, maxFunction;
 	areaHeight = 6;
+	var height_add = 0;
+	if(this.options.numbered != undefined) {
+		height_add = 1;
+	}
 	if (this.options.language == "natural") {
 		areaWidth = 300;
 		maxFunction = function(item) {
 			item.width(areaWidth - 22);
-			areaHeight += item.outerHeight(true);
+			var addition = 3.8;
+			if (item.outerHeight(true) != 38)
+				addition = 2.1*(item.outerHeight(true)-38)/21;
+			areaHeight += (item.outerHeight(true)+height_add*addition);
+
 		};
 	} else {
 		areaWidth = 0;
 		maxFunction = function(item) {
-			areaHeight += item.outerHeight(true);
+			var addition = 3.8;
+			if (item.outerHeight(true) != 38)
+				addition = 2.1;
+			areaHeight += (item.outerHeight(true)+height_add*addition);
 			areaWidth = Math.max(areaWidth, item.outerWidth(true));
+
 		};
 	}
 	for (i = 0; i < blocks.length; i++) {
@@ -1435,6 +1447,7 @@ Parsons.prototype.initializeAreas = function(sourceBlocks, answerBlocks, options
 	this.areaWidth = areaWidth;
 	if(this.options.numbered != undefined) {
 		this.areaWidth += 25;
+		//areaHeight += (blocks.length);
 	}
 	this.areaHeight = areaHeight;
 	$(this.sourceArea).css({
@@ -1450,7 +1463,7 @@ Parsons.prototype.initializeAreas = function(sourceBlocks, answerBlocks, options
 	} else {
 		$(this.answerArea).addClass("answer");
 	}
-	
+
 	// Initialize paired distractor decoration
 	var bins = [];
 	var bin = [];
@@ -1494,6 +1507,8 @@ Parsons.prototype.initializeAreas = function(sourceBlocks, answerBlocks, options
 		for (i = 0; i < pairedBins.length; i++) {
 			var pairedDiv = document.createElement("div");
 			$(pairedDiv).addClass("paired");
+			$(pairedDiv).html("<span id= 'st' style = 'vertical-align: middle; font-weight: bold'>or{</span>");
+
 			pairedDivs.push(pairedDiv);
 			this.sourceArea.appendChild(pairedDiv);
 		}
@@ -1506,7 +1521,7 @@ Parsons.prototype.initializeAreas = function(sourceBlocks, answerBlocks, options
 	if(this.options.numbered != undefined) {
 		this.addBlockLabels(sourceBlocks.concat(answerBlocks));
 	}
-	
+
 	// Update the view
 	this.state = undefined; // needs to be here for loading from storage
 	this.updateView();
@@ -1617,6 +1632,11 @@ Parsons.prototype.restoreAnswers = function(serverData) {
 
 // RunestoneBase: Load what is in local storage
 Parsons.prototype.checkLocalStorage = function () {
+
+	if (this.graderactive) {
+        return;
+    }
+
 	this.loadData(this.localData());
 };
 
@@ -1794,18 +1814,18 @@ Parsons.prototype.adaptBlocks = function(input) {
 			blocks.push(block);
 		}
 	}
-	
+
 	this.recentAttempts = localStorage.getItem(this.adaptiveId + "recentAttempts");
 	if(this.recentAttempts == undefined || this.recentAttempts == "NaN") {
 		this.recentAttempts = 3;
 	}
 
-	var lastestAttemptCount = this.recentAttempts; 
+	var lastestAttemptCount = this.recentAttempts;
 	var nBlocks = blocks.length;
 	var nBlocksToCombine = 0;
 	var nDistractors = distractors.length;
 	var nToRemove = 0;
-	this.pairDistractors = false;
+	this.pairDistractors = true;
 
 	var giveIndentation = false;
 	if(lastestAttemptCount < 2) { // 1 Try
@@ -1813,6 +1833,7 @@ Parsons.prototype.adaptBlocks = function(input) {
 		this.limitDistractors = false;
 	} else if(lastestAttemptCount < 4) { // 2-3 Tries
 		// Do nothing they are doing normal
+		this.pairDistractors = true;
 	} else if(lastestAttemptCount < 6) { // 4-5 Tries
 		// pair distractors
 		this.pairDistractors = true;
@@ -1824,7 +1845,7 @@ Parsons.prototype.adaptBlocks = function(input) {
 		// Remove all of distractors
 		nToRemove = nDistractors;
 		this.pairDistractors = true;
-	} 
+	}
 	/*
 	else if(lastestAttemptCount < 12) { //10-11
 		// Remove all distractors and give indentation
@@ -2027,7 +2048,7 @@ Parsons.prototype.blocksFromSource = function() {
 		//move pairs together
 		//Go through array looking for ditractor and its pair
 		for(i = 1; i < originalBlocks.length; i++) {
-			if(originalBlocks[i].lines[0].paired && $.inArray(originalBlocks[i], blocks) >= 0) { 
+			if(originalBlocks[i].lines[0].paired && $.inArray(originalBlocks[i], blocks) >= 0) {
 				var j = i;
 				while($.inArray(originalBlocks[j - 1], blocks) < 0) { // find the paired distractor or solution block it will be next to
 					j--;
@@ -2038,7 +2059,7 @@ Parsons.prototype.blocksFromSource = function() {
 				blocks.splice(indexTo, 0, originalBlocks[i]);
 			}
 		}
-	} 
+	}
 	return blocks;
 };
 
@@ -2213,8 +2234,8 @@ Parsons.prototype.checkMe = function() {
 			this.recentAttempts = this.checkCount;
 			this.checkCount = 0;
 			localStorage.setItem(this.adaptiveId + "recentAttempts", this.recentAttempts);
-		} 
-		localStorage.setItem(this.adaptiveId + this.divid + "Count", this.checkCount); 
+		}
+		localStorage.setItem(this.adaptiveId + this.divid + "Count", this.checkCount);
 
 		this.logAnswer(grade);
 		this.setLocalStorage();
@@ -2285,9 +2306,9 @@ Parsons.prototype.initializeAdaptive = function() {
 	}
 	this.checkCount = count;
 
-		
+
 	this.recentAttempts = localStorage.getItem(this.adaptiveId + "recentAttempts");
-	
+
 	if(this.recentAttempts == undefined || this.recentAttempts == "NaN") {
 		this.recentAttempts = 3;
 	}
@@ -2719,7 +2740,7 @@ Parsons.prototype.helpMe = function() {
 	//	this.helpCount = Math.max(this.helpCount, -1); // min 1 attempt before more help
 		//this.helpButton.disabled = true;
 	//}
-	
+
 	// if less than 3 attempts
 	if (this.numDistinct < 3)
 	{
@@ -2974,6 +2995,9 @@ Parsons.prototype.updateView = function() {
 				$(div).hide();
 			} else {
 				$(div).show();
+
+
+
 				var height = -5;
 				height += parseInt($(matching[matching.length - 1].view).css("top"));
 				height -= parseInt($(matching[0].view).css("top"));
@@ -2983,8 +3007,18 @@ Parsons.prototype.updateView = function() {
 					"top" : $(matching[0].view).css("top"),
 					"width" : baseWidth + 34,
 					"height" : height,
-					"z-index" : 1
+					"z-index" : 1,
+					"text-indent" : -30,
+					"padding-top": (height-70)/2,
+					"overflow": "visible",
+					"font-size": 43,
+					"vertical-align": "middle",
+					"color": "#7e7ee7"
 				});
+				$(div).html("<span id= 'st' style = 'vertical-align: middle; font-weight: bold; font-size: 15px'>or</span>{");
+			}
+			if (matching.length == 1) {
+				$(div).html("");
 			}
 		}
 	}
@@ -3101,7 +3135,7 @@ Parsons.prototype.addBlockLabels = function(blocks) {
 		}
 	}
 	for (var i = 0; i < blocks.length; i++) {
-		
+
 		var currentBin = blocks[i].pairedBin();
 		if(currentBin == -1 || currentBin != bin) {
 			bin = currentBin;
@@ -3115,7 +3149,7 @@ Parsons.prototype.addBlockLabels = function(blocks) {
 		blocks[i].addLabel(label, 0);
 		binChildren++;
 	}
-	
+
 	if(blocksNotInBins + this.pairedBins.length >= 10) {
 		this.areaWidth += 5;
 		$(this.sourceArea).css({
@@ -3124,7 +3158,7 @@ Parsons.prototype.addBlockLabels = function(blocks) {
 		$(this.answerArea).css({
 			'width' : $(this.answerArea).width() + 5,
 		});
-	}	
+	}
 }
 
 // Put all the blocks back into the source area, reshuffling as necessary
@@ -3174,8 +3208,7 @@ Parsons.prototype.resetView = function() {
 	document.body.scrollTop = scrollTop;
 };
 
-//$(document).bind("runestone:login-complete", function () {
-$(document).ready(function() {
+$(document).bind("runestone:login-complete", function () {
 	$("[data-component=parsons]").each(function (index) {
 		if ($(this).closest('[data-component=timedAssessment]').length == 0) {
 			prsList[this.id] = new Parsons({"orig": this, "useRunestoneServices": eBookConfig.useRunestoneServices});

@@ -39,6 +39,10 @@ DragNDrop.prototype.init = function (opts) {
     this.populate();   // Populates this.dragPairArray, this.feedback and this.question
 
     this.createNewElements();
+
+    this.caption="Drag-N-Drop"
+	this.addCaption('runestone')
+
 };
 /*======================
 === Update variables ===
@@ -87,11 +91,11 @@ DragNDrop.prototype.createNewElements = function () {
     this.containerDiv.appendChild(this.dragDropWrapDiv);
 
     this.draggableDiv = document.createElement("div");
-    $(this.draggableDiv).addClass("draggable dragzone");
+    $(this.draggableDiv).addClass("rsdraggable dragzone");
     this.addDragDivListeners();
 
     this.dropZoneDiv = document.createElement("div");
-    $(this.dropZoneDiv).addClass("draggable");
+    $(this.dropZoneDiv).addClass("rsdraggable");
     this.dragDropWrapDiv.appendChild(this.draggableDiv);
     this.dragDropWrapDiv.appendChild(this.dropZoneDiv);
 
@@ -146,7 +150,7 @@ DragNDrop.prototype.addDragDivListeners = function () {
 DragNDrop.prototype.createButtons = function () {
     this.buttonDiv = document.createElement("div");
     this.submitButton = document.createElement("button");    // Check me button
-    this.submitButton.textContent = $.i18n("msg_dragndrop_check_me");
+    this.submitButton.textContent = "Check Me";
     $(this.submitButton).attr({
         "class": "btn btn-success drag-button",
         "name": "do answer",
@@ -157,8 +161,8 @@ DragNDrop.prototype.createButtons = function () {
         this.dragEval(true);
     }.bind(this);
 
-    this.resetButton = document.createElement("button");    // Reset me button
-    this.resetButton.textContent = $.i18n("msg_dragndrop_reset");
+    this.resetButton = document.createElement("button");    // Check me button
+    this.resetButton.textContent = "Reset";
     $(this.resetButton).attr({
         "class": "btn btn-default drag-button drag-reset",
         "name": "do answer",
@@ -359,13 +363,11 @@ DragNDrop.prototype.renderFeedback = function () {
         this.renderFeedbackDiv();
     }
     this.feedBackDiv.style.display = "block";
-    var msgCorrect = $.i18n("msg_dragndrop_correct_answer");
-    var msgIncorrect = $.i18n($.i18n("msg_dragndrop_incorrect_answer"), this.correctNum, this.incorrectNum, this.dragNum, this.unansweredNum);
     if (this.correct) {
-        $(this.feedBackDiv).html(msgCorrect);
-        $(this.feedBackDiv).attr("class", "alert alert-success draggable-feedback");
+        $(this.feedBackDiv).html("You are correct!");
+        $(this.feedBackDiv).attr("class", "alert alert-info draggable-feedback");
     } else {
-        $(this.feedBackDiv).html(msgIncorrect + " " + this.feedback);
+        $(this.feedBackDiv).html("Incorrect. " + "You got " + this.correctNum + " correct and " + this.incorrectNum + " incorrect out of " + this.dragNum + ". You left " + this.unansweredNum + " blank. " + this.feedback);
         $(this.feedBackDiv).attr("class", "alert alert-danger draggable-feedback");
     }
 };
@@ -382,10 +384,15 @@ DragNDrop.prototype.restoreAnswers = function (data) {
 };
 
 DragNDrop.prototype.checkLocalStorage = function () {
+
+    if (this.graderactive) {
+        return;
+    }
+
     this.hasStoredDropzones = false;
     var len = localStorage.length;
     if (len > 0) {
-        var ex = localStorage.getItem(eBookConfig.email + ":" + this.divid + "-given");
+        var ex = localStorage.getItem(this.localStorageKey());
         if (ex !== null) {
             this.hasStoredDropzones = true;
             try {
@@ -394,7 +401,7 @@ DragNDrop.prototype.checkLocalStorage = function () {
             } catch (err) {
                 // error while parsing; likely due to bad value stored in storage
                 console.log(err.message);
-                localStorage.removeItem(eBookConfig.email + ":" + this.divid + "-given");
+                localStorage.removeItem(this.localStorageKey());
                 this.hasStoredDropzones = false;
                 this.finishSettingUp();
                 return;
@@ -429,14 +436,13 @@ DragNDrop.prototype.setLocalStorage = function (data) {
     var timeStamp = new Date();
     var correct = data.correct;
     var storageObj = {"answer": this.pregnantIndexArray.join(";"), "minHeight": this.minheight, "timestamp": timeStamp, "correct": correct};
-    localStorage.setItem(eBookConfig.email + ":" + this.divid + "-given", JSON.stringify(storageObj));
+    localStorage.setItem(this.localStorageKey(), JSON.stringify(storageObj));
 };
 /*=================================
 == Find the custom HTML tags and ==
 ==   execute our code on them    ==
 =================================*/
-//$(document).bind("runestone:login-complete", function () {
-$(document).ready(function () {    
+$(document).bind("runestone:login-complete", function () {
     $("[data-component=dragndrop]").each(function (index) {
         var opts = {"orig": this, 'useRunestoneServices':eBookConfig.useRunestoneServices};
         if ($(this).closest('[data-component=timedAssessment]').length == 0) {   // If this element exists within a timed component, don't render it here
