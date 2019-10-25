@@ -1,0 +1,400 @@
+﻿How to Program Faster – Procedures
+=====================================
+
+.. include:: blocks.txt
+
+.. include:: icons.txt
+
+.. infonote::
+
+ |intro8s|
+
+The projects we are about to study have a complex structure.
+To cope with this complexity, we will use an approach known as **structured programming** developed in the 1960s. This approach has simplified the process of writing, understanding, and maintaining complex programs. Instead of writing complex programs, which are hard to rewrite if there is a need for that (this is called maintenance), and where mistakes are hard to detect, we can separate them into small parts, each of which solves one part of the overall problem.
+
+To make projects with complex structure faster and easier, we will split large scripts into logical parts, each performing a single function. We call such parts **procedures**. Each procedure performs a specific function, and one script, the main program, calls them and connects them together, so they make a whole.
+
+.. topic:: Realization of Procedures in Scratch
+
+ In Scratch, one way of realizing procedures and braking down such complex algorithms into several simpler ones is by using messages, the same mechanism we used for synchronizing the behavior of different sprites. Another way to realize the procedures is to introduce your own commands. 
+
+ **Creating new blocks**
+
+ To create a new block, select the group *My blocks* (1), and then click on the button *Make a block* (2). A dialogue window, which enables the creation of new blocks, will appear. You need to enter the desired name in the input field (3), for example, *Draw a triangle* and confirm the creation by clicking on the button *OK* (4).
+ 
+ .. image:: ../_images/8/fig8_1.png
+    :width: 575px   
+    :align: center
+
+ The new block ``Draw a triangle`` (1) will appear in the block palette, and the new starting block ``define`` (2) will appear in the scripts area, other blocks that will be used for drawing a triangle (3)should be added to this starting block.
+ 
+ .. image:: ../_images/8/fig8_2.png
+    :width: 560px   
+    :align: center
+
+ The new block can also have input fields. Because of this, we are able to draw triangles with different lengths of sides with the same block. To achieve this, we need to select the option *Edit* from the shortcut menu, which we will get by right-clicking on the new block (1). The dialogue window *Make a block* will open again. From the three options offered for adding new fields to the block, you need to choose the *Add an input name or text* (2) and an input field will appear on the block (3); in this block we will enter *a* - the name of the variable for the length of the side of a triangle. 
+
+ .. image:: ../_images/8/fig8_3.png
+    :width: 920px   
+    :align: center
+ 
+ If we had selected *Add an input boolean*, the input field would have had a hexagonal shape and would have been able to receive only logical blocks, and the *Add a label* option would have enabled the text to be written behind the input fields. 
+ 
+ *Remember.* Wherever you want to use the variable *a* in definition blocks, you need to drag the reporter of this variable from the header of the block's definition (4). Therefore, not the letter a, nor the reporter *a* from the block palette, but the reporter from the definition header |nije_isto|
+
+ .. |nije_isto| image:: ../_images/8/fig8_4.png  
+ 
+ The name *a*, which we entered into the definition of the procedure *Draw a triangle* is called a **parameter**. Procedures can have more than one parameter. For example, we can create a procedure *Draw a polygon*, which draws regular polygons with different number of sides that have different lengths. Instead of defining separate blocks for drawing a triangle, a quadrilateral and other polygons, with a given length of sides, we will define just one block with the parameters *number of sides* and *lengths of the sides*. The specific values of parameters we will set as the **argument** of the newly introduced command. This argument will replace each appearance of the parameter number of sides in the procedure. We can say that the parameter is the named placeholder for the argument.     
+ 
+ 
+|study| Study the following examples
+----------------------------------------
+
+Example 1 - Project "Grid of Squares"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 3
+
+**Drawing horizontal lines**
+
+To draw a horizontal line (parallel to the x-axis) we need to connect all points that have the same value of the coordinate y. 
+For example, if x=0, then we will only draw the x-axis. At the beginning, we will place the pen on the left edge of the screen in the point (-240,0), put the pen down, so it leaves a mark when it moves, and then set it to glide to the point (240,0).
+There we will lift the pen (pen up block), and we can start drawing another line. 
+
+If we want to draw all horizontal lines whose coordinate y is a number ending with 0 (divisible by 8), we will repeat the previously described procedure for y=180, 170, ...,-180. 
+
+.. image:: ../_images/8/fig8_5.png
+    :width: 245px   
+    :align: center 
+          
+
+To make the process clearer, we will extract the instructions for drawing one horizontal line and create a separate part - a **procedure**, which we will call when needed. 
+
+
+.. image:: ../_images/8/fig8_6.png
+    :width: 450px   
+    :align: center 
+
+**Drawing vertical lines**
+
+Similar to drawing a horizontal line, to draw a vertical line, we need to connect all points that have the same value of the x coordinate.  
+At the beginning, we will place the pen on the upper edge of the screen, for example, in the point (0,180), put the pen down, so it leaves a mark when it moves, and then set it to glide to the point (0,-180). There we will lift the pen (pen up block), and we can start drawing another line.
+
+If we want to draw all vertical lines whose coordinate х is a number divisible by 10, we will repeat the previously described procedure for x=-240, -230, ... ,240. 
+
+.. image:: ../_images/8/fig8_7.png
+    :width: 470px   
+    :align: center 
+
+To save this image of the grid of squares obtained by drawing horizontal and vertical lines in this way, we will have to right-click on the stage. The option *Save image as* will appear. This option will enable us to save this image as a backdrop. (For now, this feature can only be used in the online editor)
+
+Save the entire project under the name *Grid*.
+
+.......
+
+Example 2 - Project "Various Grids"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 3
+
+We want to make the previous program more general and use it to draw a grid made up of smaller and larger squares, as well as to draw a grid, which does not have to start in the upper left corner of the screen and end in the lower right corner. We will introduce the variables *x min*, *x max*, *y min*, *y max* and *step*. 
+They will define the upper left point of the grid (x min, y max), the lower right point of the grid (x max, y min) and the size of the squares in the grid. 
+The initial values will be set from the input.
+
+This way we can change the project *Grid*, which draws only one grid and get a more general project *Various Grids*, which draws different grids depending on the input data. Apart from the variables we mentioned before, we will introduce the variable *end*, which has the initial value 0, and which changes only if the user wants to stop using the program. Any answer other than "yes" leaves the value unchanged. 
+
+When the user answers the question "Done (yes/no)?" with "yes", the variable will change its value to 1, which is the condition for exiting the loop, and the program will stop running.
+
+.. image:: ../_images/8/fig8_8.png
+    :width: 615px   
+    :align: center
+
+.......
+
+Example 3 - Project "Buildings"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 3
+
+In this project, we will draw complex images by using only one procedure with parameters. This is the procedure *Draw a rectangle* with the parameters *a* and *b* for the length of the sides. To make the main program readable, we also separated the pen's initialization into a special procedure *PenSetup*, which defines the color and the size (thickness) of the pen that will be used for drawing. The following figure represents the scripts that define these two procedures. The variable *unit* is defined in the main program, and it enables the drawing of proportional rectangles of different dimensions.
+
+.. image:: ../_images/8/fig8_9.png
+    :width: 450px   
+    :align: center
+    
+**Creating the project**
+
+Load the backdrop *Xy-grid-20px* from the backdrop library. This is a grid made up of 24x18 squares, with the sides 20x20 pixels. (You could have made this backdrop yourself by using the previous project). This backdrop is suitable because, on it, we can clearly see the proportions of the images we want to create.
+
+Using the built-in vector editor, draw a 8x8 pixels square. Use the tool |v_rectan|, choose the drawing mode without filling in the object with color and set the thickness of the outline to be 2. Set the center of the costume to be in the middle of the square.
+
+.. image:: ../_images/8/fig8_10.png
+    :width: 400px   
+    :align: center
+
+Any sprite can do the drawing, but this one is handy because it shows how drawings are formed, and we don't have to hide it since it is small enough and it doesn't cover the drawing.  
+
+The whole drawing will consist of 4 buildings, 5 backdrop squares wide and 13 squares high, i.e. 100x260 pixels. In our script, the variable *unit* is equal to the length of the side of one backdrop square. The program variables *а* and *b* store the coordinates of the point from which the drawing of the building will start. 
+
+Note. Local variables of the procedure *Draw a Rectangle* have the same names, but they are only visible within the procedure - these are **local variables**. Unlike them, the variables *a* and *b* of the main program are **global variables**, and they can be seen in the entire project. 
+
+At the beginning, the main program initializes the variables and then calls the building drawing procedure 4 times, each time with different coordinates of the point from which the drawing begins. The buildings are drawn side by side since the x coordinate of the starting point increases by the width of the building. The following figure shows the script of the main program and the image received from its running. 
+
+.. image:: ../_images/8/fig8_11.png
+    :width: 730px   
+    :align: center
+
+The procedure *DrawBuilding* first calls the procedure *DrawRectangle* 2 times, and then the procedure *DrawWindows*. In the first call, the procedure *DrawRectangle* receives the parameters for drawing the outlines of the building, and in the second for drawing the door. The following figure shows the scripts of the procedures *DrawBuilding* and *DrawWindows*.
+
+.. image:: ../_images/8/fig8_12.png
+    :width: 405px   
+    :align: center
+
+If we had set the size to be 10 pixels, we would have gotten an image that is two times smaller. The following figure shows the result of the program when the parameters are the same as in the explanation (A) and when the values of the variables are changed in the following manner: unit=10, the change of *a* in the main program *а = а + 10 x unit*, the change of the height of the rectangle from *13 x unit* to *23 x unit* and the number of repetitions in the procedure *DrawWindows* from 5 to 10.
+
+.. image:: ../_images/8/fig8_13.png
+    :width: 970px   
+    :align: center
+
+
+|ask| Answer the following questions
+-------------------------------------
+
+
+Question 1
+~~~~~~~~~~~
+
+.. level:: 1
+
+.. mchoice:: procedure1
+   :answer_a: yes
+   :answer_b: no
+   :correct: a
+   :feedback_a: Correct. 
+   :feedback_b: 
+   
+   Is the main program superior to procedures?
+
+Question 2
+~~~~~~~~~~~
+
+.. level:: 1
+
+.. mchoice:: procedure2
+   :answer_a: yes
+   :answer_b: no 
+   :correct: b
+   :feedback_a:  
+   :feedback_b: Correct.
+   
+   In Scratch, are the procedures realized in one way only?
+
+Question 3
+~~~~~~~~~~~
+
+.. level:: 1
+
+.. mchoice:: procedure3
+   :answer_a: yes
+   :answer_b: no
+   :correct: a
+   :feedback_a: Correct. 
+   :feedback_b: 
+   
+   Can the new block have input fields?
+
+Question 4
+~~~~~~~~~~~
+
+.. level:: 1
+
+.. mchoice:: procedure4
+   :answer_a: yes
+   :answer_b: no
+   :correct: b
+   :feedback_a: No, these are arguments. 
+   :feedback_b: Correct.
+
+   Is it true that the values entered into the input fields of the new block are called parameters?
+
+Question 5
+~~~~~~~~~~~
+
+.. image:: ../_images/8/q8_5.png
+   :width: 590px   
+   :align: center
+      
+.. mchoice:: procedure5
+   :answer_a: 
+   :answer_b: 
+   :answer_c: 
+   :answer_d: 
+   :correct: a, b, d
+   :feedback_a:  
+   :feedback_b: 
+   :feedback_c: 
+   :feedback_d: 
+   
+   Which block belongs to the group *Events*? (Select all correct answers)
+
+Question 6
+~~~~~~~~~~~
+
+.. image:: ../_images/8/q8_6.png
+   :width: 610px   
+   :align: center
+      
+.. mchoice:: procedure6
+   :answer_a: 
+   :answer_b: 
+   :answer_c: 
+   :answer_d: 
+   :correct: а, b, c
+   :feedback_a:  
+   :feedback_b: 
+   :feedback_c: 
+   :feedback_d: 
+   
+   Which block belongs to the group *Control*? (Select all correct answers)
+
+
+|try| Try it!
+--------------
+
+Exercise 1
+~~~~~~~~~~~
+
+.. level:: 3
+
+.. infonote::
+
+ Create a procedure *Square1* with the parameters: coordinates **x** and **y** of the upper left point and the length of the side **а**.
+ The procedure should draw a square with sides parallel to the x and y axes.
+ Then, create a script, which calls this procedure multiple times and draws concentric squares as presented in the following figure.
+
+ .. image:: ../_images/8/ex8_1.png
+         :width: 210px   
+         :align: center 
+        
+.......
+
+Exercise 2
+~~~~~~~~~~~
+
+.. level:: 2
+
+.. infonote::
+
+ Create the procedure *Square2* with the parameters: coordinates **x** and **y** of the upper left point, the length of the side **a** and the direction of the first side **angle**, which is drawn by the procedure. Then, create a script, which calls this procedure multiple times and draws 10 squares with the joint top left corner, with the same sides so that the direction of each subsequent first side is rotated 36 degrees from the direction of the first side of the previous square. 
+
+ .. image:: ../_images/8/ex8_2.png
+         :width: 290px   
+         :align: center 
+
+.......
+
+Exercise 3
+~~~~~~~~~~~
+
+.. level:: 3
+
+.. infonote::
+
+ Create the procedure **Rectangle** with the parameters: coordinates **x** and **y** of the upper left point, and the lengths of the sides **a** and **b**. 
+ The procedure should draw a rectangle with the length of the side **a** parallel to the x-axis, and **b** parallel to the y-axis.
+ Then, create a script, which calls this procedure and draws a rectangle with the arguments that are set randomly, similar to the figure below. 
+ 
+ .. image:: ../_images/8/ex8_3.png
+         :width: 235px   
+         :align: center 
+         
+
+|bug| Debug it!
+---------------------
+
+Bug 1
+~~~~~~~~
+.. level:: 1
+
+:Question:
+   The student wanted to make a script, which draws the border around the triangles, as shown in figure А. He made the appropriate script and separated the part that draws the triangle (shown on the left, next to the border). However, the result he received was the one shown in figure B. Where is the bug?
+
+.. image:: ../_images/8/bug8_1.png
+   :width: 630px   
+   :align: center
+
+.. reveal:: sаkrivаnjе8_1
+   :showtitle: Show the answer
+   :hidetitle: Hide the answer
+ 
+   **Answer:**
+     
+   Instead of the reporter of the parameter *a*, the student put the reporter of the variable *a* from the main program into the block ``move steps`` located in the procedure.
+
+|book| Summary
+----------------------
+
+In this lesson, we showed how we could realize procedures by introducing new commands in Scratch. We learned how to make new blocks, with or without input fields. New blocks that have input fields enable the arguments, entered into those input fields, to be forwarded to the definition of the block where they can be put instead of the corresponding parameters. This way, one block can realize multiple actions, depending on the value of the argument.   
+
+**Examples of Projects**: 8Studio_
+
+.. _8Studio: https://scratch.mit.edu/studios/25119482/
+
+**New concepts**: Procedure, imported commands, parameter.
+
+**New commands**: |my_blocks| - |custom_block|, |define_block| 
+
+
+|project| Create a project
+-----------------------------------------------
+
+Project 1 - "Geometric Shapes"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 1
+
+Create a version of the project "Geometric Shapes" from lesson 5, by using procedures. Procedures are realized with the use of imported commands.
+
+Project 2 - "City Street"
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 2
+
+Create procedures for the drawing of:
+
+- buildings and doors in the shape of rectangles of different sizes, 
+
+- windows of different shapes (squares, rectangles, circles) and sizes,
+
+- trapeze-shaped roofs with different base sizes and heights.
+
+Connect these procedures into the project "City Street", which displays a number of different buildings.
+
+
+Project 2 - "Arithmetic"
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. level:: 3
+
+Create procedures that should be connected into the Arithmetic project.  
+The procedures should test the knowledge of addition, subtraction, multiplication and division. The project should have the interface as in the following figure.
+
+.. image:: ../_images/8/aritmetika.png
+   :width: 200px   
+   :align: center 
+
+The two monitors on the top, between which the arithmetic sign is located, should display the numbers generated randomly, and the bottom four should display the numbers that could be the result, but only one should be the correct result. The player chooses the answer that he/she thinks is correct, by using the corresponding arrow key. If the player answers correctly, he/she will receive the appropriate message, and his/her score will increase by 1. The test is done when the player answers 20 questions and receives the message displaying the percentage of questions answered correctly.  
+
+Create the project in the following manner:
+
+1) In the procedure **Addition**, two numbers should be generated randomly, the sum c from the interval [10,20] and the first addend from the interval [1,15]. The second addend b = c - a and the three incorrect results from the interval [c-3,c+3] will be established based on these two numbers. 
+
+2) In the procedure **Subtraction**, two numbers should be generated randomly, Minuend a from the interval [10,20] and subtrahend b from the interval [1,a-2]. The difference c = a - b and the three incorrect results from the interval [c-2,c+2] will be established based on these two numbers. 
+
+3) In the procedure **Multiplication**, two factors from the interval [2,9] should be generated randomly. The product c = a * b and the three incorrect results from the interval [c-10,c+10] will be established based on these two factors. Make sure that the incorrect answers are larger than both factors (for example, if one of the incorrect answers generated for factors 2 and 3 is 2, the result should be generated again).
+
+4) In the procedure **Division**, two numbers should be generated randomly, quotient c from the interval [2,9] and divisor b from the interval [2,9]. The dividend a = b * c and the three incorrect results from the interval [c-3,c+3] will be established based on these two numbers. 
+
+5) In the main program, the initial values of the variables *points* and *attempts* should be 0. Then, in the loop that will repeat everything until the number of points reaches 20, you should generate the arithmetic operation, call the appropriate procedure and place the received operands into corresponding monitors with the arithmetic operation, and distribute the correct and 3 wrong answers randomly in the response monitors. (The arrangement of answers can also be achieved with a separate procedure)
+
+Then the program should accept the user's response and, depending on whether it is correct or not, display the appropriate message and change the variables *points* and *attempts*. Upon exiting the loop, the program should report on the percentage of tasks the user solved correctly.
