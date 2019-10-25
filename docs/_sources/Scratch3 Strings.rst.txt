@@ -7,7 +7,7 @@
 
 .. infonote::
 
- |intro10|
+ |intro10s|
 
 In this lesson, we will show how string variables can be used to solve different types of tasks. At the same time, we will learn how Scratch store stings and functions of blocks used to operate strings.
 

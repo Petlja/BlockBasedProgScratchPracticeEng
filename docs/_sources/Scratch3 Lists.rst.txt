@@ -7,7 +7,7 @@
 
 .. infonote::
 
- |intro9|
+ |intro9s|
 
 In the programs we created in the previous lessons, we used only simple data types - each variable kept the value of one piece of data. However, we often need to store a whole set of data under one name, for example, a set of numbers. If we want to store phone numbers of 10 of our friends, we will need to create 10 variables, which is not easy to maintain, so we will use a complex data type, which in Scratch is called a **list**.
 
@@ -344,7 +344,7 @@ Question 6
 .. mchoice:: lista6
    :answer_a: If the list includes the element strawberry, its size will not change; otherwise, the element strawberry will be added to the end of the list.
    :answer_b: Regardless of whether or not the element strawberry was included, it will add it to the end of the list.
-   :answer_c: If the list includes the element strawberry, its size will not change; otherwise, the element strawberry will be added to the beginning of the list.
+   :answer_c:If the list includes the element strawberry, its size will not change; otherwise, the element strawberry will be added to the beginning of the list.
    :correct: a
    :feedback_a: Correct.
    :feedback_b: List entry is accomplished if the list did not previously have the element strawberry.

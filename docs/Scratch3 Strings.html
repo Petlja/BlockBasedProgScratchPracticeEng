@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Strings &#8212; Block-based programming in Scratch - practice lessons</title>
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/activecode.css?v=78EE59F" />
+    <link rel="stylesheet" type="text/css" href="_static/codemirror.css?v=B28E0910" />
+    <link rel="stylesheet" type="text/css" href="_static/clickable.css?v=343A135B" />
+    <link rel="stylesheet" type="text/css" href="_static/pytutor.css?v=D101CC50" />
+    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css?v=931EACB9" />
+    <link rel="stylesheet" type="text/css" href="_static/datafile.css?v=BCD38BE" />
+    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css?v=A828DAB1" />
+    <link rel="stylesheet" type="text/css" href="_static/fitb.css?v=71852D76" />
+    <link rel="stylesheet" type="text/css" href="_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css?v=EA7C0F6C" />
+    <link rel="stylesheet" type="text/css" href="_static/parsons.css?v=A1E2433E" />
+    <link rel="stylesheet" type="text/css" href="_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="_static/poll.css?v=431459C5" />
+    <link rel="stylesheet" type="text/css" href="_static/reveal.css?v=7BF74A61" />
+    <link rel="stylesheet" type="text/css" href="_static/showEval.css?v=F960C0B4" />
+    <link rel="stylesheet" type="text/css" href="_static/spreadsheet.css?v=28549A88" />
+    <link rel="stylesheet" type="text/css" href="_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css?v=8435FFC1" />
+    <link rel="stylesheet" type="text/css" href="_static/video.css?v=E589DE38" />
+    <link rel="stylesheet" type="text/css" href="_static/karel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/notes.css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/flatly.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/petlja.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/runestonebase.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js?v=F48946A5"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js?v=269D65E7"></script>
+    <script type="text/javascript" src="_static/codemirror.js?v=77018329"></script>
+    <script type="text/javascript" src="_static/xml.js?v=2D028995"></script>
+    <script type="text/javascript" src="_static/css.js?v=DCA90274"></script>
+    <script type="text/javascript" src="_static/python.js?v=24485A53"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js?v=372C094F"></script>
+    <script type="text/javascript" src="_static/javascript.js?v=CEA7EE5E"></script>
+    <script type="text/javascript" src="_static/sql.js?v=4CD470E6"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js?v=6F1F5263"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js?v=998C78A1"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js?v=8EBB15E7"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js?v=5824D9C3"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js?v=98DF5447"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js?v=55219209"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js?v=4F0BEBCB"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=15D4678A"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js?v=DA169A22"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js?v=EEB8131E"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js?v=A9BBDEEE"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="_static/activecode.js?v=E17275B9"></script>
+    <script type="text/javascript" src="_static/clike.js?v=B985002B"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js?v=C841A5EC"></script>
+    <script type="text/javascript" src="_static/sql-wasm.js?v=DE2A0975"></script>
+    <script type="text/javascript" src="_static/animationbase.js?v=B45130AE"></script>
+    <script type="text/javascript" src="_static/mchoice.js?v=E53F18B1"></script>
+    <script type="text/javascript" src="_static/timedmc.js?v=9304523A"></script>
+    <script type="text/javascript" src="_static/timed.js?v=9D71EDF0"></script>
+    <script type="text/javascript" src="_static/clickable.js?v=FAD84541"></script>
+    <script type="text/javascript" src="_static/timedclickable.js?v=5BA90747"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js?v=ADE5D104"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js?v=C6DC1D07"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="_static/pytutor.js?v=DF08F5B7"></script>
+    <script type="text/javascript" src="_static/codelens.js?v=68D45700"></script>
+    <script type="text/javascript" src="_static/datafile.js?v=C14D6F8"></script>
+    <script type="text/javascript" src="_static/dragndrop.js?v=3019AEEE"></script>
+    <script type="text/javascript" src="_static/timeddnd.js?v=1A222EDB"></script>
+    <script type="text/javascript" src="_static/fitb.js?v=DDB11AB0"></script>
+    <script type="text/javascript" src="_static/timedfitb.js?v=D4FEAAC3"></script>
+    <script type="text/javascript" src="_static/lp.js?v=2701088E"></script>
+    <script type="text/javascript" src="_static/gas.js?v=D2930CED"></script>
+    <script type="text/javascript" src="_static/matrixeq.js?v=1FB22B23"></script>
+    <script type="text/javascript" src="_static/js_lib/prettify.js?v=D560DBAE"></script>
+    <script type="text/javascript" src="_static/js_lib/hammer.min.js?v=15E24CE5"></script>
+    <script type="text/javascript" src="_static/parsons.js?v=9072276F"></script>
+    <script type="text/javascript" src="_static/timedparsons.js?v=4BB0E482"></script>
+    <script type="text/javascript" src="_static/poll.js?v=BE3B3078"></script>
+    <script type="text/javascript" src="_static/reveal.js?v=83C3F10"></script>
+    <script type="text/javascript" src="_static/shortanswer.js?v=E01AA3D3"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js?v=90301BA9"></script>
+    <script type="text/javascript" src="_static/showEval.js?v=4F1D310E"></script>
+    <script type="text/javascript" src="_static/spreadsheet.js?v=80650DE7"></script>
+    <script type="text/javascript" src="_static/jexcel.js"></script>
+    <script type="text/javascript" src="_static/japp.js"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js?v=196A23BC"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js?v=255DE041"></script>
+    <script type="text/javascript" src="_static/karelCorner.js"></script>
+    <script type="text/javascript" src="_static/karelRobot.js"></script>
+    <script type="text/javascript" src="_static/karelWorld.js"></script>
+    <script type="text/javascript" src="_static/karelRobotDrawer.js"></script>
+    <script type="text/javascript" src="_static/karelUI.js"></script>
+    <script type="text/javascript" src="_static/karel.js"></script>
+    <script type="text/javascript" src="_static/karel-i18n.en.js?v=4ACA8461"></script>
+    <script type="text/javascript" src="_static/notes.js"></script>
+    <script type="text/javascript" src="_static/pygamelib-init.js"></script>
+    <script type="text/javascript" src="_static/blockly/blockly_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/blocks_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/python_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/msg-sr.js"></script>
+    <script type="text/javascript" src="_static/blockpy/utilities.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_errors.js"></script>
+    <script type="text/javascript" src="_static/blockpy/ast_node_visitor.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter.js"></script>
+    <script type="text/javascript" src="_static/blockpy/pytifa.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter_definitions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_to_blockly.js"></script>
+    <script type="text/javascript" src="_static/blockpy/imported.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/class.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comment.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comprehensions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/dict.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/if.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/io.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/lists.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/sets.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/loops.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/parking.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/tuple.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/turtles.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/text.js"></script>
+    <script type="text/javascript" src="_static/blockpy-modal.js"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lists" href="Scratch3 Lists.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="_static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'Scratch_eng';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'Scratch_eng';
+  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.imagesDir = '_images/';
+  eBookConfig.staticDir = '_static/';
+  if(typeof(Sk) != "undefined")
+      Sk.imgPath = eBookConfig.imagesDir;
+</script>
+
+<div id="fb-root"></div>
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+
+<nav id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <img src="_static/img/logo.png" style="width:80px; height: 80px;"> 
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px; margin-left: 25px;">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="./">Block-based programming in Scratch - practice lessons</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container col-md-12" id="continue-reading"></div>
+
+<div class="container col-md-8 col-md-offset-2" id="main-content">
+  
+  <div class="section" id="strings">
+<h1>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h1>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p><a href="#id1"><span class="problematic" id="id2">|intro10s|</span></a></p>
+
+    </p></div></div>
+<p>In this lesson, we will show how string variables can be used to solve different types of tasks. At the same time, we will learn how Scratch store stings and functions of blocks used to operate strings.</p>
+<p>A string represents a series of characters that are treated a single piece of data. Strings have a wide application in programming. We can create programs that combine, compare, sort, encode, and otherwise process text. You should bear in mind that numbers can also be treated as strings, but in that case, we are not dealing with values they represent, but with characters - digits they consist of.</p>
+<div class="topic">
+<p class="topic-title first">Operations performed on strings</p>
+<p>To better understand these operations, we will show the result of each operation performed on strings s1=BANANA and s2=ANA.</p>
+<p>In programming languages, the operations most frequently performed on strings are the following:</p>
+<ul>
+<li><dl class="simple">
+<dt>determining the length of the string</dt><dd><p><code class="docutils literal notranslate"><span class="pre">length</span> <span class="pre">of</span> <span class="pre">s1</span></code> → 6</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>comparing strings</dt><dd><p>determining which comes first alphabetically</p>
+<p><code class="docutils literal notranslate"><span class="pre">s1&lt;s2</span> <span class="pre">?</span></code> → false</p>
+<p>this is false because “BANANA” comes after “ANA” in alphabetical order,</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>connecting (joining) strings</dt><dd><p><code class="docutils literal notranslate"><span class="pre">join</span> <span class="pre">s1</span> <span class="pre">and</span> <span class="pre">s2</span></code> →BАNАNААNА,</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>selecting a character occupying a specific position in the text</dt><dd><p><code class="docutils literal notranslate"><span class="pre">letter</span> <span class="pre">3</span> <span class="pre">of</span> <span class="pre">s1</span></code> → N,</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>contains?</dt><dd><p>checks if string s1 contains the string s2</p>
+<p><code class="docutils literal notranslate"><span class="pre">s2</span> <span class="pre">in</span> <span class="pre">s1</span> <span class="pre">?</span></code> → true</p>
+<p>this is true because “BANANA” contains “ANA”,</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>position</dt><dd><p>determining the first position in the string, which contains the second string</p>
+<p>pos(s1,s2): <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">s2</span> <span class="pre">in</span> <span class="pre">s1</span></code> → 2,</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>copying</dt><dd><p>creating a new string out of a given number of characters d starting from a given position p in the initial string</p>
+<p>copy(s,p,d): <code class="docutils literal notranslate"><span class="pre">copy</span> <span class="pre">from</span> <span class="pre">s1</span> <span class="pre">characters</span> <span class="pre">4</span> <span class="pre">starting</span> <span class="pre">from</span> <span class="pre">3</span></code> → NАNА,</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>deleting</dt><dd><p>modifying string s1 by deleting a given number of characters d starting from the given position p in the initial string</p>
+<p>delete(s1,p,d): <code class="docutils literal notranslate"><span class="pre">delete</span> <span class="pre">from</span> <span class="pre">s1</span> <span class="pre">characters</span> <span class="pre">3</span> <span class="pre">starting</span> <span class="pre">from</span> <span class="pre">4</span></code> → BАNА,</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>inserting</dt><dd><p>modifying string s1 by inserting string s2 into the string s1 starting from the given position p</p>
+<p>insert(s1,s2,p): <code class="docutils literal notranslate"><span class="pre">insert</span> <span class="pre">s2</span> <span class="pre">into</span> <span class="pre">s1</span> <span class="pre">starting</span> <span class="pre">from</span> <span class="pre">3</span></code> → BААNАNАNА.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The last four are not built-in operations in Scratch. However, in the example “String Operations” we will show how we can implement them ourselves.</p>
+</div>
+<div class="section" id="study-study-the-following-examples">
+<h2><img alt="study" src="_images/study.png" /> Study the following examples<a class="headerlink" href="#study-study-the-following-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-1-project-parrot">
+<h3>Example 1 - Project “Parrot”<a class="headerlink" href="#example-1-project-parrot" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<p>The main sprite in this project is a parrot. First, the parrot asks the user his/her name and then waits for the user to type his/her name and press <em>Enter</em> or click on the check sign located in the right corner of the answer field. Then the parrot greets the user by his/her name and says what the first letter of name is and how many letters there are in the name. The conversation between the sprite and the user is presented in the figure below.</p>
+<a class="reference internal image-reference" href="_images/fig10_1.png"><img alt="_images/fig10_1.png" class="align-center" src="_images/fig10_1.png" style="width: 430px;" /></a>
+<p>To create this project, we used operations, which select the first letter from the name and determine how many letters are in the name.</p>
+<p>After executing the command <img alt="ask_wait" src="_images/ask_wait.png" />, Scratch stores the series of characters entered by a user into the space called <img alt="answer" src="_images/answer.png" />.</p>
+<p>The following figure shows how the answer is stored, which operations are used to extract the information broadcast by the sprite as output data with the command <code class="docutils literal notranslate"><span class="pre">say</span></code>.</p>
+<a class="reference internal image-reference" href="_images/fig10_2.png"><img alt="_images/fig10_2.png" class="align-center" src="_images/fig10_2.png" style="width: 600px;" /></a>
+<p>The third operation, which was used to compose the output message, is <img alt="join" src="_images/join.png" />.</p>
+<p>The script of the <em>Parrot</em> project is presented in the figure below.</p>
+<a class="reference internal image-reference" href="_images/fig10_3.png"><img alt="_images/fig10_3.png" class="align-center" src="_images/fig10_3.png" style="width: 475px;" /></a>
+<p>The project that follows will show you how you can use string operations to extract specific digits, which form numbers.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-2-project-exchange-digits">
+<h3>Example 2 - Project “Exchange Digits”<a class="headerlink" href="#example-2-project-exchange-digits" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p><strong>Project Scenario</strong></p>
+<p>The main part of this project is a script, which exchanges the first digit and the third digit in a three-digit natural number <em>x</em> entered through the input.</p>
+<p>The presenter, who is the main sprite in this project, asks the user to enter a three-digit number. The program checks whether a three-digit number has been entered. If not, the request will be repeated until a three-digit number is entered. Then, the first and the third digit are extracted, and the new
+<em>reversed</em> number is formed where the first and the third digit have been exchanged. This new number is created by using two operations <img alt="join" src="_images/join.png" />.
+In the end, the presenter broadcasts the original and the newly formed number.</p>
+<p>The project’s script is presented in the following figure.</p>
+<a class="reference internal image-reference" href="_images/fig10_4.png"><img alt="_images/fig10_4.png" class="align-center" src="_images/fig10_4.png" style="width: 645px;" /></a>
+<hr class="docutils" />
+<p>The following project checks whether the entered word is a palindrome. A <em>palindrome</em> is a word or a phrase, which reads the same from left to right and from right to left. For example, the word “madam” is a palindrome. A number that is a palindrome is similarly defined. For example, 12321 is a palindrome.</p>
+</div>
+<div class="section" id="example-3-project-palindrome">
+<h3>Example 3 - Project “Palindrome”<a class="headerlink" href="#example-3-project-palindrome" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>The presenter asks the user to enter a word. The variable <em>d</em> receives the length of the word as the value. The program compares the first with the last letter, the second with the penultimate, and so on until the middle of the word. The variable <em>i</em>, whose initial value is 0 and which increases by 1 within the loop, enables these comparisons to be performed with the following check.</p>
+<a class="reference internal image-reference" href="_images/fig10_5.png"><img alt="_images/fig10_5.png" class="align-center" src="_images/fig10_5.png" style="width: 485px;" /></a>
+<p>The variable <em>p</em> indicates the number of checks. If one of the checks determines that the letters, which are being compared are not the same, the word is not a palindrome, and this will be registered by assigning 0 to the variable <em>pal</em> (which is set at 1 at the beginning).
+After the program is done checking all the pairs of letters, it will write a message saying whether the word is a palindrome or not (<em>pal</em> = 1 yes, otherwise no).</p>
+<p>The script for the project <em>Palindrome</em> is presented in the following figure.</p>
+<a class="reference internal image-reference" href="_images/fig10_6.png"><img alt="_images/fig10_6.png" class="align-center" src="_images/fig10_6.png" style="width: 495px;" /></a>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-4-project-string-operations">
+<h3>Example 4 - Project “String Operations”<a class="headerlink" href="#example-4-project-string-operations" title="Permalink to this headline">¶</a></h3>
+<p>In this project, the user is asked to select one of the operations: <em>copy</em> or <em>delete</em>. Input is requested depending on what was selected, and then the result of the operation is written. The operation is set by clicking on the appropriate button, which then broadcasts the operation. When the message identifying the selected operation is received, the script that executes the given operation will run.
+There are two sprites participating in the project: the button <em>Copy</em> for making copies and <em>Delete</em> for deleting. The script that performs deletion is somewhat simpler. Based on the values entered for the number of characters and the positions from which they are taken, a new string s2 is established. This string is empty in the beginning, and it is established by adding one character at a time from a given part of the initial string.</p>
+<a class="reference internal image-reference" href="_images/fig10_7.png"><img alt="_images/fig10_7.png" class="align-center" src="_images/fig10_7.png" style="width: 330px;" /></a>
+<p>The scripts added to the receipt of the message <em>Copy</em> are presented in the following figure. Data entry and the formation of the output message are presented as separate procedures. These procedures can also be used when the <em>Delete</em> option is requested.</p>
+<a class="reference internal image-reference" href="_images/fig10_8.png"><img alt="_images/fig10_8.png" class="align-center" src="_images/fig10_8.png" style="width: 680px;" /></a>
+<p>The script for deleting does the opposite - it forms the string from the parts located in front of and behind the marked characters. It also starts with an empty string. First, it records characters from the part in front, which are followed by characters from the part behind.</p>
+</div>
+</div>
+<div class="section" id="ask-answer-the-following-questions">
+<h2><img alt="ask" src="_images/ask.png" /> Answer the following questions<a class="headerlink" href="#ask-answer-the-following-questions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="string1">
+           <p>Q-1:  Can a string contain signs for arithmetic operations?</p>
+
+            <li data-component="answer" data-correct id="string1_opt_a">yes</li><li data-component="feedback">Correct.</li>
+            
+            <li data-component="answer"  id="string1_opt_b">no</li><li data-component="feedback"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-2">
+<h3>Question 2<a class="headerlink" href="#question-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="string2">
+           <p>Q-2: What will be the result of the operation <code class="docutils literal notranslate"><span class="pre">letter</span> <span class="pre">2</span> <span class="pre">of</span> <span class="pre">LENA</span></code>?</p>
+
+            <li data-component="answer"  id="string2_opt_a">L</li><li data-component="feedback">This is letter 1.</li>
+            
+            <li data-component="answer" data-correct id="string2_opt_b">Е</li><li data-component="feedback">Correct.</li>
+            
+            <li data-component="answer"  id="string2_opt_c">N</li><li data-component="feedback">This is letter 3.</li>
+            
+            <li data-component="answer"  id="string2_opt_d">А</li><li data-component="feedback">This is letter 4.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-3">
+<h3>Question 3<a class="headerlink" href="#question-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<a class="reference internal image-reference" href="_images/q10_3.png"><img alt="_images/q10_3.png" class="align-center" src="_images/q10_3.png" style="width: 680px;" /></a>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="string3">
+           <p>Q-3:   Will the string say the same thing during the running of the commands A and B?</p>
+
+            <li data-component="answer"  id="string3_opt_a">yes</li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="string3_opt_b">no</li><li data-component="feedback">Correct.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-4">
+<h3>Question 4<a class="headerlink" href="#question-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="string4">
+           <p>Q-4:  What will be the result of the operation <code class="docutils literal notranslate"><span class="pre">length</span> <span class="pre">of</span> <span class="pre">LENA</span></code>?</p>
+
+            <li data-component="answer"  id="string4_opt_a">L</li><li data-component="feedback">This would be achieved with the operation letter of.</li>
+            
+            <li data-component="answer"  id="string4_opt_b">LENA</li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="string4_opt_c">4</li><li data-component="feedback">Correct.</li>
+            
+            <li data-component="answer"  id="string4_opt_d">Length of LENA</li><li data-component="feedback">This would be achieved by joining these two words.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-5">
+<h3>Question 5<a class="headerlink" href="#question-5" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="string5">
+           <p>Q-5: What will be the result of the operation <code class="docutils literal notranslate"><span class="pre">join</span> <span class="pre">BA</span> <span class="pre">and</span> <span class="pre">NANA</span></code>?</p>
+
+            <li data-component="answer"  id="string5_opt_a">BАNА</li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="string5_opt_b">BАNАNА</li><li data-component="feedback">Correct.</li>
+            
+            <li data-component="answer"  id="string5_opt_c">NАBАNА</li><li data-component="feedback"></li>
+            
+            <li data-component="answer"  id="string5_opt_d">NАNАBА</li><li data-component="feedback"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-6">
+<h3>Question 6<a class="headerlink" href="#question-6" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/q10_6.png"><img alt="_images/q10_6.png" class="align-center" src="_images/q10_6.png" style="width: 680px;" /></a>
+
+<div class="course-box course-box-problem course-content">
+<ul data-component="dragndrop" id="string6">
+    <span data-component="question">Q-6: By dragging, connect the commands with the return values.</span>
+	<span data-component=feedback>Try again</span>
+
+    <li data-component="draggable" id="string6_drag1">A</li>
+    <li data-component="dropzone" for="string6_drag1">A</li>
+
+    <li data-component="draggable" id="string6_drag2">B</li>
+    <li data-component="dropzone" for="string6_drag2">nothing returns</li>
+
+    <li data-component="draggable" id="string6_drag3">C</li>
+    <li data-component="dropzone" for="string6_drag3">1</li>
+
+    <li data-component="draggable" id="string6_drag4">D</li>
+    <li data-component="dropzone" for="string6_drag4">7</li>
+</ul></div></div>
+</div>
+<div class="section" id="try-try-it">
+<h2><img alt="try" src="_images/try.png" /> Try it!<a class="headerlink" href="#try-try-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Create a program, which will form a number from the same digits as in the natural number <strong>n</strong>, but arranged it the reverse order.</p>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Write a program that determines the sum of the digits and the number of digits for the natural number <strong>n</strong> (1&lt;= n &lt;1000). For example:</p>
+<ul class="simple">
+<li><p>n =12 the sum of the digits 3, and the number of digits is 2;</p></li>
+<li><p>n =102 the sum of the digits 3, and the number of digits is 3.</p></li>
+</ul>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Write a program that will make a list of all three-digit Armstrong numbers. A number is considered to be an Armstrong number if it is equal to the sum of the cubes of its digits.</p>
+
+    </p></div></div>
+</div>
+</div>
+<div class="section" id="book-summary">
+<h2><img alt="book" src="_images/book.png" /> Summary<a class="headerlink" href="#book-summary" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>In this lesson, we introduced the data type called string and the most common operations performed on this type of data. Through the project examples, we showed how the string variables can be used for solving different types of problems, and how to work with string operations that are built into Scratch.</p>
+</div></blockquote>
+<p><strong>Project Examples</strong>: <a class="reference external" href="https://scratch.mit.edu/studios/25119486/">10Studio</a></p>
+<p><strong>New concepts</strong>: string, palindrome.</p>
+<p><strong>New commands</strong>: <img alt="operator_blocks" src="_images/operators.png" /> - <img alt="text_contains" src="_images/text_contains.png" />, <img alt="letter" src="_images/letter.png" />, <img alt="length_text" src="_images/length_text.png" />.</p>
+</div>
+<div class="section" id="project-create-a-project">
+<h2><img alt="project" src="_images/project.png" /> Create a project<a class="headerlink" href="#project-create-a-project" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-1-encoding">
+<h3>Project 1 - “Encoding”<a class="headerlink" href="#project-1-encoding" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Create a project, which encodes and decodes the input text in the following manner.</p>
+<p>The list “original” stores 26 letters of the alphabet in the regular order. The list “code” stores 26 letters in any order that is different from the one in the list “original”. To make the decoding process harder, if there is a vowel in some position in one of the lists, there should also be a vowel in the same position in the other list.
+The user enters the text, which the project should encode and decode depending on whether the user clicked on the button “encode” or “decode”.</p>
+<p>For example, if the letters in the lists “original” and “code” are in the following orders:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+<col style="width: 4%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>A</p></td>
+<td><p>B</p></td>
+<td><p>C</p></td>
+<td><p>D</p></td>
+<td><p>E</p></td>
+<td><p>F</p></td>
+<td><p>G</p></td>
+<td><p>H</p></td>
+<td><p>I</p></td>
+<td><p>J</p></td>
+<td><p>K</p></td>
+<td><p>L</p></td>
+<td><p>M</p></td>
+<td><p>N</p></td>
+<td><p>O</p></td>
+<td><p>P</p></td>
+<td><p>Q</p></td>
+<td><p>R</p></td>
+<td><p>S</p></td>
+<td><p>T</p></td>
+<td><p>U</p></td>
+<td><p>V</p></td>
+<td><p>W</p></td>
+<td><p>X</p></td>
+<td><p>Y</p></td>
+<td><p>Z</p></td>
+</tr>
+<tr class="row-even"><td><p>V</p></td>
+<td><p>U</p></td>
+<td><p>B</p></td>
+<td><p>G</p></td>
+<td><p>D</p></td>
+<td><p>Q</p></td>
+<td><p>X</p></td>
+<td><p>Y</p></td>
+<td><p>Z</p></td>
+<td><p>E</p></td>
+<td><p>Ј</p></td>
+<td><p>K</p></td>
+<td><p>L</p></td>
+<td><p>O</p></td>
+<td><p>М</p></td>
+<td><p>N</p></td>
+<td><p>А</p></td>
+<td><p>W</p></td>
+<td><p>P</p></td>
+<td><p>R</p></td>
+<td><p>S</p></td>
+<td><p>Т</p></td>
+<td><p>F</p></td>
+<td><p>H</p></td>
+<td><p>C</p></td>
+<td><p>I</p></td>
+</tr>
+</tbody>
+</table>
+<p>and the user enters the text MASK, the program will encode it as LVPJ.</p>
+<p>However, if the input text MASK should be decoded, the program will turn it into ОQUL.</p>
+</div>
+<div class="section" id="project-2-backward">
+<h3>Project 2 - “Backward”<a class="headerlink" href="#project-2-backward" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Create a project where the user is asked to enter how many words he or she wants to transform (n), and then enters a name into the loop that will be repeated n number of times, the name is entered into the list “names”, and then transformed into the string obtained when the name is read from right to left, after which it will be entered into the list “backward”.</p>
+<p>For example, if the user entered n=3 and then names: LENA, MARIO, KATARINA; the list “backward” should contain:
+ANEL, OIRAM and ANIRATAK.</p>
+</div>
+<div class="section" id="project-3-numbers">
+<h3>Project 3 - “Numbers”<a class="headerlink" href="#project-3-numbers" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Create a project, which makes a list of all three-digit numbers, which can be divided by the number obtained when the middle digit is taken out.</p>
+</div>
+</div>
+</div>
+
+
+  
+      <div class="col-md-12">
+<ul class="pager">
+        <li id="relations-prev" title='Previous chapter - Lists' data-toggle="tooltip"><a href="Scratch3 Lists.html">Previous chapter</a></li>
+    
+</ul>
+
+<!-- <ul class="pager"> -->
+    <!-- -->
+        <!-- <li id="relations-prev" title='Претходно поглавље - Lists' data-toggle="tooltip"><a href="Scratch3 Lists.html">Претходно поглавље</a></li> -->
+    <!--  -->
+    <!-- -->
+<!-- </ul> -->
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+</div>
+  
+</div>
+<footer class="footer col-md-12">
+    <div class="container">
+        <div class="text-center">
+            <hr>
+            <p class="text-muted">
+                <span class="text-center">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
+                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+                  
+                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

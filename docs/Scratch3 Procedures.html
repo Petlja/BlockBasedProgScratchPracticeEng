@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>How to Program Faster – Procedures &#8212; Block-based programming in Scratch - practice lessons</title>
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/activecode.css?v=78EE59F" />
+    <link rel="stylesheet" type="text/css" href="_static/codemirror.css?v=B28E0910" />
+    <link rel="stylesheet" type="text/css" href="_static/clickable.css?v=343A135B" />
+    <link rel="stylesheet" type="text/css" href="_static/pytutor.css?v=D101CC50" />
+    <link rel="stylesheet" type="text/css" href="_static/modal-basic.css?v=931EACB9" />
+    <link rel="stylesheet" type="text/css" href="_static/datafile.css?v=BCD38BE" />
+    <link rel="stylesheet" type="text/css" href="_static/dragndrop.css?v=A828DAB1" />
+    <link rel="stylesheet" type="text/css" href="_static/fitb.css?v=71852D76" />
+    <link rel="stylesheet" type="text/css" href="_static/CodeChat.css" />
+    <link rel="stylesheet" type="text/css" href="_static/matrixeq.css?v=EA7C0F6C" />
+    <link rel="stylesheet" type="text/css" href="_static/parsons.css?v=A1E2433E" />
+    <link rel="stylesheet" type="text/css" href="_static/js_lib/prettify.css?v=2A364B6B" />
+    <link rel="stylesheet" type="text/css" href="_static/poll.css?v=431459C5" />
+    <link rel="stylesheet" type="text/css" href="_static/reveal.css?v=7BF74A61" />
+    <link rel="stylesheet" type="text/css" href="_static/showEval.css?v=F960C0B4" />
+    <link rel="stylesheet" type="text/css" href="_static/spreadsheet.css?v=28549A88" />
+    <link rel="stylesheet" type="text/css" href="_static/jexcel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/japp.css" />
+    <link rel="stylesheet" type="text/css" href="_static/tabbedstuff.css?v=8435FFC1" />
+    <link rel="stylesheet" type="text/css" href="_static/video.css?v=E589DE38" />
+    <link rel="stylesheet" type="text/css" href="_static/karel.css" />
+    <link rel="stylesheet" type="text/css" href="_static/notes.css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-4.0.0-dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/flatly.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/petlja.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/runestonebase.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js?v=F48946A5"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js?v=269D65E7"></script>
+    <script type="text/javascript" src="_static/codemirror.js?v=77018329"></script>
+    <script type="text/javascript" src="_static/xml.js?v=2D028995"></script>
+    <script type="text/javascript" src="_static/css.js?v=DCA90274"></script>
+    <script type="text/javascript" src="_static/python.js?v=24485A53"></script>
+    <script type="text/javascript" src="_static/htmlmixed.js?v=372C094F"></script>
+    <script type="text/javascript" src="_static/javascript.js?v=CEA7EE5E"></script>
+    <script type="text/javascript" src="_static/sql.js?v=4CD470E6"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/CLDRPluralRuleParser.js?v=6F1F5263"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.js?v=998C78A1"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.messagestore.js?v=8EBB15E7"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.fallbacks.js?v=5824D9C3"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.language.js?v=98DF5447"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.parser.js?v=55219209"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.js?v=4F0BEBCB"></script>
+    <script type="text/javascript" src="_static/jquery_i18n/jquery.i18n.emitter.bidi.js?v=15D4678A"></script>
+    <script type="text/javascript" src="_static/activecode-i18n.en.js?v=DA169A22"></script>
+    <script type="text/javascript" src="_static/skulpt.min.js?v=EEB8131E"></script>
+    <script type="text/javascript" src="_static/skulpt-stdlib.js?v=A9BBDEEE"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="_static/activecode.js?v=E17275B9"></script>
+    <script type="text/javascript" src="_static/clike.js?v=B985002B"></script>
+    <script type="text/javascript" src="_static/timed_activecode.js?v=C841A5EC"></script>
+    <script type="text/javascript" src="_static/sql-wasm.js?v=DE2A0975"></script>
+    <script type="text/javascript" src="_static/animationbase.js?v=B45130AE"></script>
+    <script type="text/javascript" src="_static/mchoice.js?v=E53F18B1"></script>
+    <script type="text/javascript" src="_static/timedmc.js?v=9304523A"></script>
+    <script type="text/javascript" src="_static/timed.js?v=9D71EDF0"></script>
+    <script type="text/javascript" src="_static/clickable.js?v=FAD84541"></script>
+    <script type="text/javascript" src="_static/timedclickable.js?v=5BA90747"></script>
+    <script type="text/javascript" src="_static/d3.v2.min.js?v=ADE5D104"></script>
+    <script type="text/javascript" src="_static/jquery.ba-bbq.min.js?v=C6DC1D07"></script>
+    <script type="text/javascript" src="_static/jquery.jsPlumb-1.3.10-all-min.js?v=42F9EBEA"></script>
+    <script type="text/javascript" src="_static/pytutor.js?v=DF08F5B7"></script>
+    <script type="text/javascript" src="_static/codelens.js?v=68D45700"></script>
+    <script type="text/javascript" src="_static/datafile.js?v=C14D6F8"></script>
+    <script type="text/javascript" src="_static/dragndrop.js?v=3019AEEE"></script>
+    <script type="text/javascript" src="_static/timeddnd.js?v=1A222EDB"></script>
+    <script type="text/javascript" src="_static/fitb.js?v=DDB11AB0"></script>
+    <script type="text/javascript" src="_static/timedfitb.js?v=D4FEAAC3"></script>
+    <script type="text/javascript" src="_static/lp.js?v=2701088E"></script>
+    <script type="text/javascript" src="_static/gas.js?v=D2930CED"></script>
+    <script type="text/javascript" src="_static/matrixeq.js?v=1FB22B23"></script>
+    <script type="text/javascript" src="_static/js_lib/prettify.js?v=D560DBAE"></script>
+    <script type="text/javascript" src="_static/js_lib/hammer.min.js?v=15E24CE5"></script>
+    <script type="text/javascript" src="_static/parsons.js?v=9072276F"></script>
+    <script type="text/javascript" src="_static/timedparsons.js?v=4BB0E482"></script>
+    <script type="text/javascript" src="_static/poll.js?v=BE3B3078"></script>
+    <script type="text/javascript" src="_static/reveal.js?v=83C3F10"></script>
+    <script type="text/javascript" src="_static/shortanswer.js?v=E01AA3D3"></script>
+    <script type="text/javascript" src="_static/timed_shortanswer.js?v=90301BA9"></script>
+    <script type="text/javascript" src="_static/showEval.js?v=4F1D310E"></script>
+    <script type="text/javascript" src="_static/spreadsheet.js?v=80650DE7"></script>
+    <script type="text/javascript" src="_static/jexcel.js"></script>
+    <script type="text/javascript" src="_static/japp.js"></script>
+    <script type="text/javascript" src="_static/tabbedstuff.js?v=196A23BC"></script>
+    <script type="text/javascript" src="_static/runestonevideo.js?v=255DE041"></script>
+    <script type="text/javascript" src="_static/karelCorner.js"></script>
+    <script type="text/javascript" src="_static/karelRobot.js"></script>
+    <script type="text/javascript" src="_static/karelWorld.js"></script>
+    <script type="text/javascript" src="_static/karelRobotDrawer.js"></script>
+    <script type="text/javascript" src="_static/karelUI.js"></script>
+    <script type="text/javascript" src="_static/karel.js"></script>
+    <script type="text/javascript" src="_static/karel-i18n.en.js?v=4ACA8461"></script>
+    <script type="text/javascript" src="_static/notes.js"></script>
+    <script type="text/javascript" src="_static/pygamelib-init.js"></script>
+    <script type="text/javascript" src="_static/blockly/blockly_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/blocks_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/python_compressed.js"></script>
+    <script type="text/javascript" src="_static/blockly/msg-sr.js"></script>
+    <script type="text/javascript" src="_static/blockpy/utilities.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_errors.js"></script>
+    <script type="text/javascript" src="_static/blockpy/ast_node_visitor.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter.js"></script>
+    <script type="text/javascript" src="_static/blockpy/pytifa.js"></script>
+    <script type="text/javascript" src="_static/blockpy/abstract_interpreter_definitions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/python_to_blockly.js"></script>
+    <script type="text/javascript" src="_static/blockpy/imported.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/class.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comment.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/comprehensions.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/dict.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/if.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/io.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/lists.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/sets.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/loops.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/parking.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/tuple.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/turtles.js"></script>
+    <script type="text/javascript" src="_static/blockpy/blocks/text.js"></script>
+    <script type="text/javascript" src="_static/blockpy-modal.js"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-4.0.0-dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lists" href="Scratch3 Lists.html" />
+    <link rel="prev" title="Variables" href="Scratch3 Variables.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<link rel="shortcut icon" href="_static/favicon.ico" type="image/ico" />
+
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'Scratch_eng';
+  eBookConfig.logLevel = 0;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = false;
+  eBookConfig.python3 = false;
+  eBookConfig.basecourse = 'Scratch_eng';
+  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.imagesDir = '_images/';
+  eBookConfig.staticDir = '_static/';
+  if(typeof(Sk) != "undefined")
+      Sk.imgPath = eBookConfig.imagesDir;
+</script>
+
+<div id="fb-root"></div>
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+
+<nav id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <img src="_static/img/logo.png" style="width:80px; height: 80px;"> 
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-top: 10px; margin-left: 25px;">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="./">Block-based programming in Scratch - practice lessons</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container col-md-12" id="continue-reading"></div>
+
+<div class="container col-md-8 col-md-offset-2" id="main-content">
+  
+  <div class="section" id="how-to-program-faster-procedures">
+<h1>How to Program Faster – Procedures<a class="headerlink" href="#how-to-program-faster-procedures" title="Permalink to this headline">¶</a></h1>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p><a href="#id1"><span class="problematic" id="id2">|intro8s|</span></a></p>
+
+    </p></div></div>
+<p>The projects we are about to study have a complex structure.
+To cope with this complexity, we will use an approach known as <strong>structured programming</strong> developed in the 1960s. This approach has simplified the process of writing, understanding, and maintaining complex programs. Instead of writing complex programs, which are hard to rewrite if there is a need for that (this is called maintenance), and where mistakes are hard to detect, we can separate them into small parts, each of which solves one part of the overall problem.</p>
+<p>To make projects with complex structure faster and easier, we will split large scripts into logical parts, each performing a single function. We call such parts <strong>procedures</strong>. Each procedure performs a specific function, and one script, the main program, calls them and connects them together, so they make a whole.</p>
+<div class="topic">
+<p class="topic-title first">Realization of Procedures in Scratch</p>
+<p>In Scratch, one way of realizing procedures and braking down such complex algorithms into several simpler ones is by using messages, the same mechanism we used for synchronizing the behavior of different sprites. Another way to realize the procedures is to introduce your own commands.</p>
+<p><strong>Creating new blocks</strong></p>
+<p>To create a new block, select the group <em>My blocks</em> (1), and then click on the button <em>Make a block</em> (2). A dialogue window, which enables the creation of new blocks, will appear. You need to enter the desired name in the input field (3), for example, <em>Draw a triangle</em> and confirm the creation by clicking on the button <em>OK</em> (4).</p>
+<a class="reference internal image-reference" href="_images/fig8_1.png"><img alt="_images/fig8_1.png" class="align-center" src="_images/fig8_1.png" style="width: 575px;" /></a>
+<p>The new block <code class="docutils literal notranslate"><span class="pre">Draw</span> <span class="pre">a</span> <span class="pre">triangle</span></code> (1) will appear in the block palette, and the new starting block <code class="docutils literal notranslate"><span class="pre">define</span></code> (2) will appear in the scripts area, other blocks that will be used for drawing a triangle (3)should be added to this starting block.</p>
+<a class="reference internal image-reference" href="_images/fig8_2.png"><img alt="_images/fig8_2.png" class="align-center" src="_images/fig8_2.png" style="width: 560px;" /></a>
+<p>The new block can also have input fields. Because of this, we are able to draw triangles with different lengths of sides with the same block. To achieve this, we need to select the option <em>Edit</em> from the shortcut menu, which we will get by right-clicking on the new block (1). The dialogue window <em>Make a block</em> will open again. From the three options offered for adding new fields to the block, you need to choose the <em>Add an input name or text</em> (2) and an input field will appear on the block (3); in this block we will enter <em>a</em> - the name of the variable for the length of the side of a triangle.</p>
+<a class="reference internal image-reference" href="_images/fig8_3.png"><img alt="_images/fig8_3.png" class="align-center" src="_images/fig8_3.png" style="width: 920px;" /></a>
+<p>If we had selected <em>Add an input boolean</em>, the input field would have had a hexagonal shape and would have been able to receive only logical blocks, and the <em>Add a label</em> option would have enabled the text to be written behind the input fields.</p>
+<p><em>Remember.</em> Wherever you want to use the variable <em>a</em> in definition blocks, you need to drag the reporter of this variable from the header of the block’s definition (4). Therefore, not the letter a, nor the reporter <em>a</em> from the block palette, but the reporter from the definition header <img alt="nije_isto" src="_images/fig8_4.png" /></p>
+<p>The name <em>a</em>, which we entered into the definition of the procedure <em>Draw a triangle</em> is called a <strong>parameter</strong>. Procedures can have more than one parameter. For example, we can create a procedure <em>Draw a polygon</em>, which draws regular polygons with different number of sides that have different lengths. Instead of defining separate blocks for drawing a triangle, a quadrilateral and other polygons, with a given length of sides, we will define just one block with the parameters <em>number of sides</em> and <em>lengths of the sides</em>. The specific values of parameters we will set as the <strong>argument</strong> of the newly introduced command. This argument will replace each appearance of the parameter number of sides in the procedure. We can say that the parameter is the named placeholder for the argument.</p>
+</div>
+<div class="section" id="study-study-the-following-examples">
+<h2><img alt="study" src="_images/study.png" /> Study the following examples<a class="headerlink" href="#study-study-the-following-examples" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-1-project-grid-of-squares">
+<h3>Example 1 - Project “Grid of Squares”<a class="headerlink" href="#example-1-project-grid-of-squares" title="Permalink to this headline">¶</a></h3>
+<div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<span class="docutils literal">D:\work\BlockBasedProgScratchPracticeEng\_sources\Scratch3 Procedures.rst</span>, line 54)</p>
+<p>Title underline too short.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Example</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">Project</span> <span class="s2">&quot;Grid of Squares&quot;</span>
+<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</pre></div>
+</div>
+</div>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p><strong>Drawing horizontal lines</strong></p>
+<p>To draw a horizontal line (parallel to the x-axis) we need to connect all points that have the same value of the coordinate y.
+For example, if x=0, then we will only draw the x-axis. At the beginning, we will place the pen on the left edge of the screen in the point (-240,0), put the pen down, so it leaves a mark when it moves, and then set it to glide to the point (240,0).
+There we will lift the pen (pen up block), and we can start drawing another line.</p>
+<p>If we want to draw all horizontal lines whose coordinate y is a number ending with 0 (divisible by 8), we will repeat the previously described procedure for y=180, 170, …,-180.</p>
+<a class="reference internal image-reference" href="_images/fig8_5.png"><img alt="_images/fig8_5.png" class="align-center" src="_images/fig8_5.png" style="width: 245px;" /></a>
+<p>To make the process clearer, we will extract the instructions for drawing one horizontal line and create a separate part - a <strong>procedure</strong>, which we will call when needed.</p>
+<a class="reference internal image-reference" href="_images/fig8_6.png"><img alt="_images/fig8_6.png" class="align-center" src="_images/fig8_6.png" style="width: 450px;" /></a>
+<p><strong>Drawing vertical lines</strong></p>
+<p>Similar to drawing a horizontal line, to draw a vertical line, we need to connect all points that have the same value of the x coordinate.
+At the beginning, we will place the pen on the upper edge of the screen, for example, in the point (0,180), put the pen down, so it leaves a mark when it moves, and then set it to glide to the point (0,-180). There we will lift the pen (pen up block), and we can start drawing another line.</p>
+<p>If we want to draw all vertical lines whose coordinate х is a number divisible by 10, we will repeat the previously described procedure for x=-240, -230, … ,240.</p>
+<a class="reference internal image-reference" href="_images/fig8_7.png"><img alt="_images/fig8_7.png" class="align-center" src="_images/fig8_7.png" style="width: 470px;" /></a>
+<p>To save this image of the grid of squares obtained by drawing horizontal and vertical lines in this way, we will have to right-click on the stage. The option <em>Save image as</em> will appear. This option will enable us to save this image as a backdrop. (For now, this feature can only be used in the online editor)</p>
+<p>Save the entire project under the name <em>Grid</em>.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-2-project-various-grids">
+<h3>Example 2 - Project “Various Grids”<a class="headerlink" href="#example-2-project-various-grids" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>We want to make the previous program more general and use it to draw a grid made up of smaller and larger squares, as well as to draw a grid, which does not have to start in the upper left corner of the screen and end in the lower right corner. We will introduce the variables <em>x min</em>, <em>x max</em>, <em>y min</em>, <em>y max</em> and <em>step</em>.
+They will define the upper left point of the grid (x min, y max), the lower right point of the grid (x max, y min) and the size of the squares in the grid.
+The initial values will be set from the input.</p>
+<p>This way we can change the project <em>Grid</em>, which draws only one grid and get a more general project <em>Various Grids</em>, which draws different grids depending on the input data. Apart from the variables we mentioned before, we will introduce the variable <em>end</em>, which has the initial value 0, and which changes only if the user wants to stop using the program. Any answer other than “yes” leaves the value unchanged.</p>
+<p>When the user answers the question “Done (yes/no)?” with “yes”, the variable will change its value to 1, which is the condition for exiting the loop, and the program will stop running.</p>
+<a class="reference internal image-reference" href="_images/fig8_8.png"><img alt="_images/fig8_8.png" class="align-center" src="_images/fig8_8.png" style="width: 615px;" /></a>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-3-project-buildings">
+<h3>Example 3 - Project “Buildings”<a class="headerlink" href="#example-3-project-buildings" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>In this project, we will draw complex images by using only one procedure with parameters. This is the procedure <em>Draw a rectangle</em> with the parameters <em>a</em> and <em>b</em> for the length of the sides. To make the main program readable, we also separated the pen’s initialization into a special procedure <em>PenSetup</em>, which defines the color and the size (thickness) of the pen that will be used for drawing. The following figure represents the scripts that define these two procedures. The variable <em>unit</em> is defined in the main program, and it enables the drawing of proportional rectangles of different dimensions.</p>
+<a class="reference internal image-reference" href="_images/fig8_9.png"><img alt="_images/fig8_9.png" class="align-center" src="_images/fig8_9.png" style="width: 450px;" /></a>
+<p><strong>Creating the project</strong></p>
+<p>Load the backdrop <em>Xy-grid-20px</em> from the backdrop library. This is a grid made up of 24x18 squares, with the sides 20x20 pixels. (You could have made this backdrop yourself by using the previous project). This backdrop is suitable because, on it, we can clearly see the proportions of the images we want to create.</p>
+<p>Using the built-in vector editor, draw a 8x8 pixels square. Use the tool <img alt="v_rectan" src="_images/v_rectan.png" />, choose the drawing mode without filling in the object with color and set the thickness of the outline to be 2. Set the center of the costume to be in the middle of the square.</p>
+<a class="reference internal image-reference" href="_images/fig8_10.png"><img alt="_images/fig8_10.png" class="align-center" src="_images/fig8_10.png" style="width: 400px;" /></a>
+<p>Any sprite can do the drawing, but this one is handy because it shows how drawings are formed, and we don’t have to hide it since it is small enough and it doesn’t cover the drawing.</p>
+<p>The whole drawing will consist of 4 buildings, 5 backdrop squares wide and 13 squares high, i.e. 100x260 pixels. In our script, the variable <em>unit</em> is equal to the length of the side of one backdrop square. The program variables <em>а</em> and <em>b</em> store the coordinates of the point from which the drawing of the building will start.</p>
+<p>Note. Local variables of the procedure <em>Draw a Rectangle</em> have the same names, but they are only visible within the procedure - these are <strong>local variables</strong>. Unlike them, the variables <em>a</em> and <em>b</em> of the main program are <strong>global variables</strong>, and they can be seen in the entire project.</p>
+<p>At the beginning, the main program initializes the variables and then calls the building drawing procedure 4 times, each time with different coordinates of the point from which the drawing begins. The buildings are drawn side by side since the x coordinate of the starting point increases by the width of the building. The following figure shows the script of the main program and the image received from its running.</p>
+<a class="reference internal image-reference" href="_images/fig8_11.png"><img alt="_images/fig8_11.png" class="align-center" src="_images/fig8_11.png" style="width: 730px;" /></a>
+<p>The procedure <em>DrawBuilding</em> first calls the procedure <em>DrawRectangle</em> 2 times, and then the procedure <em>DrawWindows</em>. In the first call, the procedure <em>DrawRectangle</em> receives the parameters for drawing the outlines of the building, and in the second for drawing the door. The following figure shows the scripts of the procedures <em>DrawBuilding</em> and <em>DrawWindows</em>.</p>
+<a class="reference internal image-reference" href="_images/fig8_12.png"><img alt="_images/fig8_12.png" class="align-center" src="_images/fig8_12.png" style="width: 405px;" /></a>
+<p>If we had set the size to be 10 pixels, we would have gotten an image that is two times smaller. The following figure shows the result of the program when the parameters are the same as in the explanation (A) and when the values of the variables are changed in the following manner: unit=10, the change of <em>a</em> in the main program <em>а = а + 10 x unit</em>, the change of the height of the rectangle from <em>13 x unit</em> to <em>23 x unit</em> and the number of repetitions in the procedure <em>DrawWindows</em> from 5 to 10.</p>
+<a class="reference internal image-reference" href="_images/fig8_13.png"><img alt="_images/fig8_13.png" class="align-center" src="_images/fig8_13.png" style="width: 970px;" /></a>
+</div>
+</div>
+<div class="section" id="ask-answer-the-following-questions">
+<h2><img alt="ask" src="_images/ask.png" /> Answer the following questions<a class="headerlink" href="#ask-answer-the-following-questions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="question-1">
+<h3>Question 1<a class="headerlink" href="#question-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="procedure1">
+           <p>Q-1: Is the main program superior to procedures?</p>
+
+            <li data-component="answer" data-correct id="procedure1_opt_a">yes</li><li data-component="feedback">Correct.</li>
+            
+            <li data-component="answer"  id="procedure1_opt_b">no</li><li data-component="feedback"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-2">
+<h3>Question 2<a class="headerlink" href="#question-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="procedure2">
+           <p>Q-2: In Scratch, are the procedures realized in one way only?</p>
+
+            <li data-component="answer"  id="procedure2_opt_a">yes</li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="procedure2_opt_b">no</li><li data-component="feedback">Correct.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-3">
+<h3>Question 3<a class="headerlink" href="#question-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="procedure3">
+           <p>Q-3: Can the new block have input fields?</p>
+
+            <li data-component="answer" data-correct id="procedure3_opt_a">yes</li><li data-component="feedback">Correct.</li>
+            
+            <li data-component="answer"  id="procedure3_opt_b">no</li><li data-component="feedback"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-4">
+<h3>Question 4<a class="headerlink" href="#question-4" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  data-showcomparebutton=true id="procedure4">
+           <p>Q-4: Is it true that the values entered into the input fields of the new block are called parameters?</p>
+
+            <li data-component="answer"  id="procedure4_opt_a">yes</li><li data-component="feedback">No, these are arguments.</li>
+            
+            <li data-component="answer" data-correct id="procedure4_opt_b">no</li><li data-component="feedback">Correct.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-5">
+<h3>Question 5<a class="headerlink" href="#question-5" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/q8_5.png"><img alt="_images/q8_5.png" class="align-center" src="_images/q8_5.png" style="width: 590px;" /></a>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  data-showcomparebutton=true id="procedure5">
+           <p>Q-5: Which block belongs to the group <em>Events</em>? (Select all correct answers)</p>
+
+            <li data-component="answer" data-correct id="procedure5_opt_a"></li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="procedure5_opt_b"></li><li data-component="feedback"></li>
+            
+            <li data-component="answer"  id="procedure5_opt_c"></li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="procedure5_opt_d"></li><li data-component="feedback"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+<div class="section" id="question-6">
+<h3>Question 6<a class="headerlink" href="#question-6" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/q8_6.png"><img alt="_images/q8_6.png" class="align-center" src="_images/q8_6.png" style="width: 610px;" /></a>
+
+            <div class="course-box course-box-question course-content">
+            <ul data-component="multiplechoice" data-multipleanswers="true"  data-showcomparebutton=true id="procedure6">
+           <p>Q-6: Which block belongs to the group <em>Control</em>? (Select all correct answers)</p>
+
+            <li data-component="answer"  id="procedure6_opt_a"></li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="procedure6_opt_b"></li><li data-component="feedback"></li>
+            
+            <li data-component="answer" data-correct id="procedure6_opt_c"></li><li data-component="feedback"></li>
+            
+            <li data-component="answer"  id="procedure6_opt_d"></li><li data-component="feedback"></li>
+            
+
+            </ul>
+            </div>
+            </div>
+</div>
+<div class="section" id="try-try-it">
+<h2><img alt="try" src="_images/try.png" /> Try it!<a class="headerlink" href="#try-try-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercise-1">
+<h3>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Create a procedure <em>Square1</em> with the parameters: coordinates <strong>x</strong> and <strong>y</strong> of the upper left point and the length of the side <strong>а</strong>.
+The procedure should draw a square with sides parallel to the x and y axes.
+Then, create a script, which calls this procedure multiple times and draws concentric squares as presented in the following figure.</p>
+<a class="reference internal image-reference" href="_images/ex8_1.png"><img alt="_images/ex8_1.png" class="align-center" src="_images/ex8_1.png" style="width: 210px;" /></a>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-2">
+<h3>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Create the procedure <em>Square2</em> with the parameters: coordinates <strong>x</strong> and <strong>y</strong> of the upper left point, the length of the side <strong>a</strong> and the direction of the first side <strong>angle</strong>, which is drawn by the procedure. Then, create a script, which calls this procedure multiple times and draws 10 squares with the joint top left corner, with the same sides so that the direction of each subsequent first side is rotated 36 degrees from the direction of the first side of the previous square.</p>
+<a class="reference internal image-reference" href="_images/ex8_2.png"><img alt="_images/ex8_2.png" class="align-center" src="_images/ex8_2.png" style="width: 290px;" /></a>
+
+    </p></div></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="exercise-3">
+<h3>Exercise 3<a class="headerlink" href="#exercise-3" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+
+    <div class="course-box course-box-info">
+        <div class="course-content">
+            <p>
+<p>Create the procedure <strong>Rectangle</strong> with the parameters: coordinates <strong>x</strong> and <strong>y</strong> of the upper left point, and the lengths of the sides <strong>a</strong> and <strong>b</strong>.
+The procedure should draw a rectangle with the length of the side <strong>a</strong> parallel to the x-axis, and <strong>b</strong> parallel to the y-axis.
+Then, create a script, which calls this procedure and draws a rectangle with the arguments that are set randomly, similar to the figure below.</p>
+<a class="reference internal image-reference" href="_images/ex8_3.png"><img alt="_images/ex8_3.png" class="align-center" src="_images/ex8_3.png" style="width: 235px;" /></a>
+
+    </p></div></div>
+</div>
+</div>
+<div class="section" id="bug-debug-it">
+<h2><img alt="bug" src="_images/bug.png" /> Debug it!<a class="headerlink" href="#bug-debug-it" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bug-1">
+<h3>Bug 1<a class="headerlink" href="#bug-1" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<dl class="field-list simple">
+<dt class="field-odd">Question</dt>
+<dd class="field-odd"><p>The student wanted to make a script, which draws the border around the triangles, as shown in figure А. He made the appropriate script and separated the part that draws the triangle (shown on the left, next to the border). However, the result he received was the one shown in figure B. Where is the bug?</p>
+</dd>
+</dl>
+<a class="reference internal image-reference" href="_images/bug8_1.png"><img alt="_images/bug8_1.png" class="align-center" src="_images/bug8_1.png" style="width: 630px;" /></a>
+
+    <div data-component="reveal" id="sаkrivаnjе8_1"   data-showtitle="Show the answer" data-hidetitle="Hide the answer" >
+    <p><strong>Answer:</strong></p>
+<p>Instead of the reporter of the parameter <em>a</em>, the student put the reporter of the variable <em>a</em> from the main program into the block <code class="docutils literal notranslate"><span class="pre">move</span> <span class="pre">steps</span></code> located in the procedure.</p>
+
+    </div>
+    </div>
+</div>
+<div class="section" id="book-summary">
+<h2><img alt="book" src="_images/book.png" /> Summary<a class="headerlink" href="#book-summary" title="Permalink to this headline">¶</a></h2>
+<p>In this lesson, we showed how we could realize procedures by introducing new commands in Scratch. We learned how to make new blocks, with or without input fields. New blocks that have input fields enable the arguments, entered into those input fields, to be forwarded to the definition of the block where they can be put instead of the corresponding parameters. This way, one block can realize multiple actions, depending on the value of the argument.</p>
+<p><strong>Examples of Projects</strong>: <a class="reference external" href="https://scratch.mit.edu/studios/25119482/">8Studio</a></p>
+<p><strong>New concepts</strong>: Procedure, imported commands, parameter.</p>
+<p><strong>New commands</strong>: <img alt="my_blocks" src="_images/my_blocks.png" /> - <img alt="custom_block" src="_images/custom_block.png" />, <img alt="define_block" src="_images/define_block.png" /></p>
+</div>
+<div class="section" id="project-create-a-project">
+<h2><img alt="project" src="_images/project.png" /> Create a project<a class="headerlink" href="#project-create-a-project" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-1-geometric-shapes">
+<h3>Project 1 - “Geometric Shapes”<a class="headerlink" href="#project-1-geometric-shapes" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="1" style="display:none">
+
+    </div>
+<p>Create a version of the project “Geometric Shapes” from lesson 5, by using procedures. Procedures are realized with the use of imported commands.</p>
+</div>
+<div class="section" id="project-2-city-street">
+<h3>Project 2 - “City Street”<a class="headerlink" href="#project-2-city-street" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="2" style="display:none">
+
+    </div>
+<p>Create procedures for the drawing of:</p>
+<ul class="simple">
+<li><p>buildings and doors in the shape of rectangles of different sizes,</p></li>
+<li><p>windows of different shapes (squares, rectangles, circles) and sizes,</p></li>
+<li><p>trapeze-shaped roofs with different base sizes and heights.</p></li>
+</ul>
+<p>Connect these procedures into the project “City Street”, which displays a number of different buildings.</p>
+</div>
+<div class="section" id="project-2-arithmetic">
+<h3>Project 2 - “Arithmetic”<a class="headerlink" href="#project-2-arithmetic" title="Permalink to this headline">¶</a></h3>
+
+    <div data-level="3" style="display:none">
+
+    </div>
+<p>Create procedures that should be connected into the Arithmetic project.
+The procedures should test the knowledge of addition, subtraction, multiplication and division. The project should have the interface as in the following figure.</p>
+<a class="reference internal image-reference" href="_images/aritmetika.png"><img alt="_images/aritmetika.png" class="align-center" src="_images/aritmetika.png" style="width: 200px;" /></a>
+<p>The two monitors on the top, between which the arithmetic sign is located, should display the numbers generated randomly, and the bottom four should display the numbers that could be the result, but only one should be the correct result. The player chooses the answer that he/she thinks is correct, by using the corresponding arrow key. If the player answers correctly, he/she will receive the appropriate message, and his/her score will increase by 1. The test is done when the player answers 20 questions and receives the message displaying the percentage of questions answered correctly.</p>
+<p>Create the project in the following manner:</p>
+<ol class="arabic simple">
+<li><p>In the procedure <strong>Addition</strong>, two numbers should be generated randomly, the sum c from the interval [10,20] and the first addend from the interval [1,15]. The second addend b = c - a and the three incorrect results from the interval [c-3,c+3] will be established based on these two numbers.</p></li>
+<li><p>In the procedure <strong>Subtraction</strong>, two numbers should be generated randomly, Minuend a from the interval [10,20] and subtrahend b from the interval [1,a-2]. The difference c = a - b and the three incorrect results from the interval [c-2,c+2] will be established based on these two numbers.</p></li>
+<li><p>In the procedure <strong>Multiplication</strong>, two factors from the interval [2,9] should be generated randomly. The product c = a * b and the three incorrect results from the interval [c-10,c+10] will be established based on these two factors. Make sure that the incorrect answers are larger than both factors (for example, if one of the incorrect answers generated for factors 2 and 3 is 2, the result should be generated again).</p></li>
+<li><p>In the procedure <strong>Division</strong>, two numbers should be generated randomly, quotient c from the interval [2,9] and divisor b from the interval [2,9]. The dividend a = b * c and the three incorrect results from the interval [c-3,c+3] will be established based on these two numbers.</p></li>
+<li><p>In the main program, the initial values of the variables <em>points</em> and <em>attempts</em> should be 0. Then, in the loop that will repeat everything until the number of points reaches 20, you should generate the arithmetic operation, call the appropriate procedure and place the received operands into corresponding monitors with the arithmetic operation, and distribute the correct and 3 wrong answers randomly in the response monitors. (The arrangement of answers can also be achieved with a separate procedure)</p></li>
+</ol>
+<p>Then the program should accept the user’s response and, depending on whether it is correct or not, display the appropriate message and change the variables <em>points</em> and <em>attempts</em>. Upon exiting the loop, the program should report on the percentage of tasks the user solved correctly.</p>
+</div>
+</div>
+</div>
+
+
+  
+      <div class="col-md-12">
+<ul class="pager">
+        <li id="relations-prev" title='Previous chapter - Variables' data-toggle="tooltip"><a href="Scratch3 Variables.html">Previous chapter</a></li>
+    
+        <li id="relations-next" title='Next chapter - Lists' data-toggle="tooltip"><a href="Scratch3 Lists.html">Next chapter</a></li>
+</ul>
+
+<!-- <ul class="pager"> -->
+    <!-- -->
+        <!-- <li id="relations-prev" title='Претходно поглавље - Variables' data-toggle="tooltip"><a href="Scratch3 Variables.html">Претходно поглавље</a></li> -->
+    <!--  -->
+    <!-- -->
+        <!-- <li id="relations-next" title='Следеће поглавље - Lists' data-toggle="tooltip"><a href="Scratch3 Lists.html">Следеће поглавље</a></li> -->
+    <!-- -->
+<!-- </ul> -->
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+
+</script>
+</div>
+  
+</div>
+<footer class="footer col-md-12">
+    <div class="container">
+        <div class="text-center">
+            <hr>
+            <p class="text-muted">
+                <span class="text-center">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
+                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
+                  
+                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
