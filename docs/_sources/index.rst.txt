@@ -28,4 +28,7 @@ Content
     Scratch3 Repeating.rst
     Scratch3 Branching.rst
     Scratch3 Variables.rst
+    Scratch3 Procedures.rst
+    Scratch3 Lists.rst
+    Scratch3 Strings.rst
 

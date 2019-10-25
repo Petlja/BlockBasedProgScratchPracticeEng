@@ -149,11 +149,6 @@
     overflow: hidden;
     cursor: move;
 }
-.parsons-button {
-    margin-right: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
 .parsons .block.disabled {
 	opacity: 0.3;
 }
@@ -182,6 +177,11 @@
     float: left;
     background-color: transparent;
 }
+
+.parsons-text code {
+	float: none;
+}
+
 
 .parsons .block p {
 	margin: 0;
@@ -269,8 +269,8 @@
 
 .block-label {
 	font-family: "Courier";
-	font-size: 10px;
-	color: #b0b0b0;
+	font-size: 90%;
+	color: #7e7ee7;
 	vertical-align: top;
 	white-space: pre;
 }

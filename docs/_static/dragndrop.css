@@ -1,4 +1,4 @@
-.draggable {
+.rsdraggable {
     margin-left: 2%;
     margin-top: 5px;
     display:inline;
@@ -16,8 +16,6 @@
 }
 .drag-button {
     display: inline-block;
-    margin-right: 15px;
-    margin-top: 15px
 }
 .drag-reset {
     background-color: #474949;
