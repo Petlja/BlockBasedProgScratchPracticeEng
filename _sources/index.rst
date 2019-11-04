@@ -31,4 +31,5 @@ Content
     Scratch3 Procedures.rst
     Scratch3 Lists.rst
     Scratch3 Strings.rst
+    Scratch3 Appendix.rst
 

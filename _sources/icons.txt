@@ -16,6 +16,8 @@
 
 .. |redo| image:: ../_images/icons/redo.png
 
+.. |fill| image:: ../_images/icons/fill.png
+
 .. |flip_h| image:: ../_images/icons/flip_h.png
 
 .. |flip_v| image:: ../_images/icons/flip_v.png
@@ -24,8 +26,20 @@
 
 .. |copy| image:: ../_images/icons/copy.png
 
+.. |vector_bmp| image:: ../_images/icons/vector_bmp.png
+
+.. |bmp_vector| image:: ../_images/icons/bmp_vector.png
+
 
 .. |center| image:: ../_images/icons/center.png
+
+.. |name| image:: ../_images/icons/name.png
+
+.. |outline| image:: ../_images/icons/outline.png
+
+.. |b_size| image:: ../_images/icons/b_size.png
+
+.. |swap| image:: ../_images/icons/swap.png
 
 .. |rot_style| image:: ../_images/icons/rot_style.png
 
@@ -130,7 +144,11 @@
 
 .. |receive| image:: ../_images/icons/receive.png
 
+.. |trim| image:: ../_images/icons/trim.png
+
 .. |zoom| image:: ../_images/icons/zoom.png
+
+.. |requires| image:: ../_images/icons/requires.png
 
 
 .. |1| image:: ../_images/icons/1.png
@@ -188,4 +206,27 @@
 .. |intro10| image:: ../_images/icons/intro10.png
 
 .. |intro11| image:: ../_images/icons/intro11.png
+
+
+.. |intro1s| image:: ../_images/icons/intro1s.png
+
+.. |intro2s| image:: ../_images/icons/intro2s.png
+
+.. |intro3s| image:: ../_images/icons/intro3s.png
+
+.. |intro4s| image:: ../_images/icons/intro4s.png
+
+.. |intro5s| image:: ../_images/icons/intro5s.png
+
+.. |intro6s| image:: ../_images/icons/intro6s.png
+
+.. |intro7s| image:: ../_images/icons/intro7s.png
+
+.. |intro8s| image:: ../_images/icons/intro8s.png
+
+.. |intro9s| image:: ../_images/icons/intro9s.png
+
+.. |intro10s| image:: ../_images/icons/intro10s.png
+
+.. |intro11s| image:: ../_images/icons/intro11s.png
 
