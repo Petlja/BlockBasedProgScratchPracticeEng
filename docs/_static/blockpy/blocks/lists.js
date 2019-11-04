@@ -15,13 +15,13 @@ Blockly.Blocks['lists_create'] = {
    * @this Blockly.Block
    */
   init: function() {
-    this.setHelpUrl(Blockly.Msg.LISTS_CREATE_WITH_HELPURL[$.i18n().locale]);
+    this.setHelpUrl(Blockly.Msg.LISTS_CREATE_WITH_HELPURL);
     this.setColour(Blockly.Blocks.lists.HUE);
     this.itemCount_ = 3;
     this.updateShape_();
     this.setOutput(true, 'Array');
     this.setInputsInline(true);
-    this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP[$.i18n().locale]);
+    this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
   },
   /**
    * Create XML to represent list inputs.
@@ -57,26 +57,26 @@ Blockly.Blocks['lists_getIndex_only'] = {
    */
   init: function() {
     var MODE =
-        [[Blockly.Msg.LISTS_GET_INDEX_GET[$.i18n().locale], 'GET']];
+        [[Blockly.Msg.LISTS_GET_INDEX_GET, 'GET']];
     this.WHERE_OPTIONS =
-        [[Blockly.Msg.LISTS_GET_INDEX_FROM_START[$.i18n().locale], 'FROM_START'],
-         [Blockly.Msg.LISTS_GET_INDEX_FROM_END[$.i18n().locale], 'FROM_END'],
-         [Blockly.Msg.LISTS_GET_INDEX_FIRST[$.i18n().locale], 'FIRST'],
-         [Blockly.Msg.LISTS_GET_INDEX_LAST[$.i18n().locale], 'LAST'],
-         [Blockly.Msg.LISTS_GET_INDEX_RANDOM[$.i18n().locale], 'RANDOM']
+        [[Blockly.Msg.LISTS_GET_INDEX_FROM_START, 'FROM_START'],
+         [Blockly.Msg.LISTS_GET_INDEX_FROM_END, 'FROM_END'],
+         [Blockly.Msg.LISTS_GET_INDEX_FIRST, 'FIRST'],
+         [Blockly.Msg.LISTS_GET_INDEX_LAST, 'LAST'],
+         [Blockly.Msg.LISTS_GET_INDEX_RANDOM, 'RANDOM']
          ];
-    this.setHelpUrl(Blockly.Msg.LISTS_GET_INDEX_HELPURL[$.i18n().locale]);
+    this.setHelpUrl(Blockly.Msg.LISTS_GET_INDEX_HELPURL);
     this.setColour(Blockly.Blocks.lists.HUE);
     this.appendValueInput('VALUE')
         .setCheck(['String', 'Array'])
-        .appendField(Blockly.Msg.LISTS_GET_INDEX_INPUT_IN_LIST[$.i18n().locale]);
+        .appendField(Blockly.Msg.LISTS_GET_INDEX_INPUT_IN_LIST);
     this.appendDummyInput()
-        .appendField(Blockly.Msg.LISTS_GET_INDEX_GET[$.i18n().locale])
+        .appendField(Blockly.Msg.LISTS_GET_INDEX_GET)
         .appendField('', 'SPACE');
     this.appendDummyInput('AT');
-    if (Blockly.Msg.LISTS_GET_INDEX_TAIL[$.i18n().locale]) {
+    if (Blockly.Msg.LISTS_GET_INDEX_TAIL) {
       this.appendDummyInput('TAIL')
-          .appendField(Blockly.Msg.LISTS_GET_INDEX_TAIL[$.i18n().locale]);
+          .appendField(Blockly.Msg.LISTS_GET_INDEX_TAIL);
     }
     this.setInputsInline(true);
     this.setOutput(true);
@@ -90,48 +90,48 @@ Blockly.Blocks['lists_getIndex_only'] = {
       switch (mode + ' ' + where) {
         case 'GET FROM_START':
         case 'GET FROM_END':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FROM;
           break;
         case 'GET FIRST':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FIRST[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_FIRST;
           break;
         case 'GET LAST':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_LAST[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_LAST;
           break;
         case 'GET RANDOM':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_RANDOM[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_RANDOM;
           break;
         case 'GET_REMOVE FROM_START':
         case 'GET_REMOVE FROM_END':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FROM;
           break;
         case 'GET_REMOVE FIRST':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FIRST[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_FIRST;
           break;
         case 'GET_REMOVE LAST':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_LAST[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_LAST;
           break;
         case 'GET_REMOVE RANDOM':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_GET_REMOVE_RANDOM;
           break;
         case 'REMOVE FROM_START':
         case 'REMOVE FROM_END':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FROM;
           break;
         case 'REMOVE FIRST':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FIRST[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_FIRST;
           break;
         case 'REMOVE LAST':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_LAST[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_LAST;
           break;
         case 'REMOVE RANDOM':
-          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_RANDOM[$.i18n().locale];
+          tooltip = Blockly.Msg.LISTS_GET_INDEX_TOOLTIP_REMOVE_RANDOM;
           break;
       }
       if (where == 'FROM_START' || where == 'FROM_END') {
         var msg = (where == 'FROM_START') ?
-            Blockly.Msg.LISTS_INDEX_FROM_START_TOOLTIP[$.i18n().locale] :
-            Blockly.Msg.LISTS_INDEX_FROM_END_TOOLTIP[$.i18n().locale];
+            Blockly.Msg.LISTS_INDEX_FROM_START_TOOLTIP :
+            Blockly.Msg.LISTS_INDEX_FROM_END_TOOLTIP;
         tooltip += '  ' + msg.replace('%1',
                 thisBlock.workspace.options.oneBasedIndex ? '#1' : '#0');
       }
@@ -200,9 +200,9 @@ Blockly.Blocks['lists_getIndex_only'] = {
     // Create either a value 'AT' input or a dummy input.
     if (isAt) {
       this.appendValueInput('AT').setCheck('Number');
-      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX[$.i18n().locale]) {
+      if (Blockly.Msg.ORDINAL_NUMBER_SUFFIX) {
         this.appendDummyInput('ORDINAL')
-            .appendField(Blockly.Msg.ORDINAL_NUMBER_SUFFIX[$.i18n().locale]);
+            .appendField(Blockly.Msg.ORDINAL_NUMBER_SUFFIX);
       }
     } else {
       this.appendDummyInput('AT');
@@ -220,7 +220,7 @@ Blockly.Blocks['lists_getIndex_only'] = {
       return undefined;
     });
     this.getInput('AT').appendField(menu, 'WHERE');
-    if (Blockly.Msg.LISTS_GET_INDEX_TAIL[$.i18n().locale]) {
+    if (Blockly.Msg.LISTS_GET_INDEX_TAIL) {
       this.moveInputBefore('TAIL', null);
     }
   }

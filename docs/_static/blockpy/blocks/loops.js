@@ -5,7 +5,7 @@ Blockly.Blocks['controls_forEach'] = {
    */
   init: function() {
     this.jsonInit({
-      "message0": Blockly.Msg.CONTROLS_FOREACH_TITLE[$.i18n().locale] + " : ", 
+      "message0": Blockly.Msg.CONTROLS_FOREACH_TITLE + " : ", 
       "args0": [
         {
           "type": "input_value",
@@ -22,15 +22,15 @@ Blockly.Blocks['controls_forEach'] = {
       "previousStatement": null,
       "nextStatement": null,
       "colour": Blockly.Blocks.loops.HUE,
-      "helpUrl": Blockly.Msg.CONTROLS_FOREACH_HELPURL[$.i18n().locale]
+      "helpUrl": Blockly.Msg.CONTROLS_FOREACH_HELPURL
     });
     this.appendStatementInput('DO')
-        .appendField(Blockly.Msg.CONTROLS_FOREACH_INPUT_DO[$.i18n().locale]);
+        .appendField(Blockly.Msg.CONTROLS_FOREACH_INPUT_DO);
     this.setInputsInline(true);
     // Assign 'this' to a variable for use in the tooltip closure below.
     var thisBlock = this;
     this.setTooltip(function() {
-      return Blockly.Msg.CONTROLS_FOREACH_TOOLTIP[$.i18n().locale].replace('%1',
+      return Blockly.Msg.CONTROLS_FOREACH_TOOLTIP.replace('%1',
           Blockly.Python.valueToCode(thisBlock, 'VAR', Blockly.Python.ORDER_RELATIONAL) || '___');
     });
   },
