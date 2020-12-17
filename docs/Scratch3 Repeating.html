@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Repeating Steps &#8212; Block-based programming in Scratch - practice lessons</title>
+<title>Repeating Steps &#8212; Block-based programming in Scratch - practice lessons</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/activecode.css" />
@@ -160,7 +160,7 @@
   eBookConfig.useRunestoneServices = false;
   eBookConfig.python3 = false;
   eBookConfig.basecourse = 'Scratch_eng';
-  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.runestone_version = '';
   eBookConfig.imagesDir = '_images/';
   eBookConfig.staticDir = '_static/';
   if(typeof(Sk) != "undefined")
@@ -201,7 +201,7 @@
 
 <div class="container col-md-12" id="continue-reading"></div>
 
-<div class="container col-md-8 col-md-offset-2" id="main-content">
+<div class="container col-md-8 col-md-offset-2" id="main-content" style="margin-top: 70px;">
   
   <div class="section" id="repeating-steps">
 <h1>Repeating Steps<a class="headerlink" href="#repeating-steps" title="Permalink to this headline">¶</a></h1>
@@ -216,7 +216,7 @@
 For example, instead of adding 400 commands to draw a dotted line that is 400 pixels long, we added only five: four which repeat a pattern, and the fifth which sets the number of required repetitions.</p>
 <p>In this lesson, we will connect the repetition commands to the motion and looks commands, so we can create different animations. In addition, we will introduce a command which allows you to enter input data, and blocks that store the values ​​of logical expressions.</p>
 <div class="topic">
-<p class="topic-title first">Blocks which enable repetition</p>
+<p class="topic-title">Blocks which enable repetition</p>
 <p>One of the simplest examples of repetition commands is the command for the description of the so-called “forever loop”. The repeating commands make up the <strong>loop body</strong>. Their running can be stopped only by stopping the program.</p>
 <a class="reference internal image-reference" href="_images/fig5_1.png"><img alt="_images/fig5_1.png" class="align-center" src="_images/fig5_1.png" style="width: 310px;" /></a>
 <p>For example, if you want to achieve an illusion that the cat is walking, the ballerina is dancing, and the butterfly is flying, all you need to do is add a script to them that repeats the blocks <img alt="next_costume" src="_images/next_costume.png" /> and <img alt="wait_sec" src="_images/wait_sec.png" /> in a forever loop.</p>
@@ -260,7 +260,7 @@ It may also happen that the loop will continue running indefinitely if the condi
 <p><img alt="fig1" src="_images/fig5_6.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Task 1</p>
+<p class="topic-title">Task 1</p>
 <p>Write a program which will draw 4 stars side by side, from the left to the right edge of the stage, they should all be differently colored and their size should be 120 pixels. The drawing should be done by using the <img alt="stamp" src="_images/stamp.png" /> command.</p>
 <p>The desired result of completing the task can be seen in Image 1.</p>
 <p>This result can be achieved by completing the following steps:</p>
@@ -291,7 +291,7 @@ It may also happen that the loop will continue running indefinitely if the condi
 <p><img alt="fig2" src="_images/fig5_8.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Task 2</p>
+<p class="topic-title">Task 2</p>
 <p>Write a program which will draw 12 stars side by side, from the left to the right edge of the stage, as shown in Image 2, the size of the stars should be 40x40.</p>
 <p>This task will be similar to the previous one, but we don’t need to change the dimensions of the sprite. First, we need to put our sprite in the position x=-220, y=0, and then stamp it. After this, we should repeat the steps 4-6 from the previous task 11 times, with the difference that we would move the sprite 40 instead of 120 steps. How much time would it take to write this simple program without using the command for repetition?</p>
 <p>The solution to the task is given in the following Figure.</p>
@@ -302,7 +302,7 @@ It may also happen that the loop will continue running indefinitely if the condi
 <p><img alt="fig3" src="_images/fig5_10.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Task 3</p>
+<p class="topic-title">Task 3</p>
 <p>Write a program which will draw 15 differently colored stars one on top of the other in the center of the stage, the size of the first star should be 320x320 (800% larger than the original), and each one after that should be smaller by 50, as is presented in the Image 3.</p>
 <p>However, when we say smaller by 50, we mean 750%, 700% … larger than the original (and not 50 pixels smaller, or 50% of 800%). In order to avoid mixing the new image with the one made during the previous run, we need to add the erase all command at the beginning.</p>
 <p>The solution to the task is given in the following Figure.</p>
@@ -313,7 +313,7 @@ It may also happen that the loop will continue running indefinitely if the condi
 <p><img alt="fig4" src="_images/fig5_12.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Task 4</p>
+<p class="topic-title">Task 4</p>
 <p>Write a program that will draw a frame around the stage made up of differently colored stars, as seen in Image 4.</p>
 <p>We can devise a solution by connecting solutions to 4 simpler problems.</p>
 <ol class="arabic simple">
@@ -333,7 +333,7 @@ The third and the fourth problem can be solved similarly you only need to change
 <p><img alt="fig5" src="_images/fig5_14.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Task 5</p>
+<p class="topic-title">Task 5</p>
 <p>Write a program which will draw 4 stars side by side, from the left to the right edge of the stage, the size of the star should be 120 pixels. Each star should be composed of multiple stars of various sizes and colors, as the star from Task 3.</p>
 <p>The result should look like Image 5.</p>
 <p>The solution to this task has a complex structure. We will have to insert the loop form Task 3, which stamps smaller stars on top of larger ones, into the loop that should be repeated 4 times, which draws large stars side by side, like in Task 1. The complete solution is presented in the following Figure.</p>
@@ -845,10 +845,7 @@ e) obtuse.</p>
         <div class="text-center">
             <hr>
             <p class="text-muted">
-                <span class="text-center">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
-                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
-                  
-                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+                <span class="pull-left">&copy; 2019 Petlja (Created using  <a href="https://pypi.org/project/Sphinx/">Swinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
             </p>
         </div>
     </div>

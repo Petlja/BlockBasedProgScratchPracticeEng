@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Tell Me Where To Go - Coordinates And Direction &#8212; Block-based programming in Scratch - practice lessons</title>
+<title>Tell Me Where To Go - Coordinates And Direction &#8212; Block-based programming in Scratch - practice lessons</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/activecode.css" />
@@ -160,7 +160,7 @@
   eBookConfig.useRunestoneServices = false;
   eBookConfig.python3 = false;
   eBookConfig.basecourse = 'Scratch_eng';
-  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.runestone_version = '';
   eBookConfig.imagesDir = '_images/';
   eBookConfig.staticDir = '_static/';
   if(typeof(Sk) != "undefined")
@@ -201,7 +201,7 @@
 
 <div class="container col-md-12" id="continue-reading"></div>
 
-<div class="container col-md-8 col-md-offset-2" id="main-content">
+<div class="container col-md-8 col-md-offset-2" id="main-content" style="margin-top: 70px;">
   
   <div class="section" id="tell-me-where-to-go-coordinates-and-direction">
 <h1>Tell Me Where To Go - Coordinates And Direction<a class="headerlink" href="#tell-me-where-to-go-coordinates-and-direction" title="Permalink to this headline">¶</a></h1>
@@ -218,23 +218,23 @@
 <p><img alt="stage" src="_images/fig2_1.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">The Stage</p>
+<p class="topic-title">The Stage</p>
 <p>When you open Scratch, the stage is automatically created: a white rectangle 480 dots wide and 360 dots high. The smallest dot that can be displayed on a computer graphics screen is called <em>Pixel</em>.</p>
 <p>The Stage is where your stories, games and animations will run. It is stationary, like an aquarium, but its inhabitants - Sprites are always moving and interacting with each other. In order to control the sprites’ movements easily, each spot on the stage is assigned an address - <em>coordinates x and y</em>, these coordinates represent the distance of that particular spot from the center of the stage. The spot, which is located at the center of the stage has the coordinates х=0 and у=0, or (0,0).</p>
 <p>The coordinates allow us to accurately move our sprites around the stage and position them anywhere we want (x, y). The current position of the sprite can be seen in the active sprite’s information.</p>
 </div>
 <div class="topic">
-<p class="topic-title first">Functions of the <em>Motion</em> Blocks</p>
+<p class="topic-title">Functions of the <em>Motion</em> Blocks</p>
 <p>All commands, which enable positioning of the sprite in the desired location and control its direction and movement, are located in the group of blocks called <em>Motion</em>. In this lesson, you are going to learn more about motion blocks and how to use <strong>reporter blocks</strong>, by looking at examples and doing exercises. Reporter blocks do not correspond to language commands, and they cannot stand independently in a script. The function of a reporter block from the <em>Motion</em> group is to store the current coordinates and directions of Sprites.</p>
 </div>
 <div class="topic">
-<p class="topic-title first">Motion Reporters</p>
+<p class="topic-title">Motion Reporters</p>
 <p>In this group there are <img alt="x_position" src="_images/x_position.png" /> and <img alt="y_position" src="_images/y_position.png" /> blocks, which contain the current information on the position of the sprite (its x and y coordinates), and the <img alt="direction" src="_images/direction.png" /> block, which represents the direction of the sprite.</p>
 <p>If you want to see the current coordinates and the direction of the sprite, you need to click on the checkbox next to the desired block. If you click on the checkboxes next to motion reporters, displays with which you can monitor the current coordinates and direction of the sprite will appear on the stage.</p>
 <a class="reference internal image-reference" href="_images/fig2_2.png"><img alt="_images/fig2_2.png" class="align-center" src="_images/fig2_2.png" style="width: 400px;" /></a>
 </div>
 <div class="topic">
-<p class="topic-title first">Absolute and Relative Motion</p>
+<p class="topic-title">Absolute and Relative Motion</p>
 <p>You can send your sprite to a specific spot on the stage in two different ways: with absolute or relative motion.</p>
 <p><strong>Absolute Motion</strong> is moving to a specific spot - destination, regardless of the current position of the sprite.</p>
 <p>In Scratch you can send your sprite to a given position (х,у) on the stage, that is to say, you can perform absolute motion by using the following blocks:</p>
@@ -272,7 +272,7 @@
 <p><img alt="direction2" src="_images/fig2_4.png" /></p>
 </div>
 <div class="topic">
-<p class="topic-title first">Direction and Rotation</p>
+<p class="topic-title">Direction and Rotation</p>
 <p>In addition to the rotation blocks <img alt="turn_right" src="_images/turn_right.png" /> and <img alt="turn_left" src="_images/turn_left.png" />, which allow you to change the direction in relation to the current direction of the sprite, in Scratch, there is an option to use blocks that set the direction regardless of the current position of the Sprite.</p>
 <p>These are <img alt="point_direction" src="_images/point_direction.png" /> and <img alt="point_towards" src="_images/point_towards.png" /> blocks.</p>
 <p>On the following Figure you can find the main direction values which you can set in the input field of the first block: <em>up</em> (North), <em>right</em> (East), <em>down</em> (South) and <em>left</em> (West).</p>
@@ -860,10 +860,7 @@
         <div class="text-center">
             <hr>
             <p class="text-muted">
-                <span class="text-center">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
-                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
-                  
-                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+                <span class="pull-left">&copy; 2019 Petlja (Created using  <a href="https://pypi.org/project/Sphinx/">Swinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
             </p>
         </div>
     </div>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Let’s Draw - Turtle Graphics &#8212; Block-based programming in Scratch - practice lessons</title>
+<title>Let’s Draw - Turtle Graphics &#8212; Block-based programming in Scratch - practice lessons</title>
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/activecode.css" />
@@ -160,7 +160,7 @@
   eBookConfig.useRunestoneServices = false;
   eBookConfig.python3 = false;
   eBookConfig.basecourse = 'Scratch_eng';
-  eBookConfig.runestone_version = '3.1.1';
+  eBookConfig.runestone_version = '';
   eBookConfig.imagesDir = '_images/';
   eBookConfig.staticDir = '_static/';
   if(typeof(Sk) != "undefined")
@@ -201,7 +201,7 @@
 
 <div class="container col-md-12" id="continue-reading"></div>
 
-<div class="container col-md-8 col-md-offset-2" id="main-content">
+<div class="container col-md-8 col-md-offset-2" id="main-content" style="margin-top: 70px;">
   
   <div class="section" id="let-s-draw-turtle-graphics">
 <h1>Let’s Draw - Turtle Graphics<a class="headerlink" href="#let-s-draw-turtle-graphics" title="Permalink to this headline">¶</a></h1>
@@ -214,7 +214,7 @@
     </p></div></div>
 <p>In the previous lessons, we learned how we could move the sprite by using our mouse and keyboard. Now, we will learn how we can make our sprite leave a mark while moving. We will use various examples to explore the functions of blocks from the group called <em>Pen</em>, which allow the sprite to leave a mark on the stage when it moves. This type of drawing is called turtle graphics. We have also learned how we can synchronize the behavior of our sprites by adding wait blocks to their scripts. In this lesson we will show a more efficient way of doing this - synchronizing sprites by exchanging messages.</p>
 <div class="topic">
-<p class="topic-title first">Turtle Graphics</p>
+<p class="topic-title">Turtle Graphics</p>
 <p>Scratch is one of the modern programming languages that include turtle graphics options, introduced for the first time in the <em>Logo</em> language some fifty years ago.</p>
 <p><em>Logo</em> enabled the control of a turtle device, a type of robot, which was connected to the computer. The turtle could move on a horizontal surface back and forth and change its direction and orientation. If a piece of paper was placed under the turtle, it could leave a mark, thus forming graphics called the <em>turtle graphics</em>.</p>
 <p>This way of setting an image as a collection of figures, together with their data (parameters), which define how the figure will be drawn and where it will be placed is called <strong>vector graphics</strong>.</p>
@@ -222,7 +222,7 @@
 <p>In Scratch, every sprite has the option to behave like the Logo turtle: you can determine their position, direction and orientation of movement, and they can leave a mark when they move. The size, the shape and the color of the sprite do not affect the mark they leave, because the sprites are drawing with a pen. The sprite can also be invisible or composed of only one dot, and this does not affect its drawing.</p>
 </div>
 <div class="topic">
-<p class="topic-title first">Functions of the <em>Pen</em> blocks</p>
+<p class="topic-title">Functions of the <em>Pen</em> blocks</p>
 <p>The <em>Pen</em> group of blocks, which enable the sprites to leave a mark when they move, i.e. to support the turtle graphics are located among the extensions.</p>
 <p>In order to use blocks from this group, you need to:</p>
 <ol class="arabic simple">
@@ -250,7 +250,7 @@
 <p>Note.  <img alt="erase_all" src="_images/erase_all.png" /> <img alt="!=" src="_images/not_equal.png" /> <img alt="hide" src="_images/hide.png" />. The first block refers to drawings and the second to the sprites.</p>
 </div>
 <div class="topic">
-<p class="topic-title first">Using messages for synchronization</p>
+<p class="topic-title">Using messages for synchronization</p>
 <p>The behavior is always triggered by an event, which can be an action or receipt of a message. In the previous lessons and projects, we used the <code class="docutils literal notranslate"><span class="pre">wait</span></code> block when we wanted to synchronize the behavior of our sprites. In the “Calculation” project we enabled our girl and boy sprites to have a synchronized conversation - when the girl was speaking, the boy was listening and vice versa.</p>
 <p>We will now show how the actions of the sprites (and the stage) can be coordinated, depending on whether a broadcast message event has occurred.
 You noticed that we didn’t say that we <strong>send</strong> a message, but that we <strong>broadcast</strong> it. This is because, in Scratch, the message is directed to all objects, and not just one. Broadcasting and receiving messages in Scratch is achieved with the following blocks <img alt="broadcast" src="_images/broadcast.png" />, <img alt="broadcast_wait" src="_images/broadcast_wait.png" /> and <img alt="when_receive" src="_images/when_receive.png" /> from the <em>Events</em> group.</p>
@@ -790,10 +790,7 @@ The mistake will be corrected if the pen is lifted up before it goes back to its
         <div class="text-center">
             <hr>
             <p class="text-muted">
-                <span class="text-center">&copy; 2019 <a href="https://petlja.org">Petlja.org</a> 
-                  <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; vertical-align: text-bottom" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" /></a>
-                  
-                  (Created using  <a href="https://pypi.org/project/Sphinx/">Sphinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
+                <span class="pull-left">&copy; 2019 Petlja (Created using  <a href="https://pypi.org/project/Sphinx/">Swinx</a>, <a href="http://runestoneinteractive.org/">RunestoneComponents</a> and <a href="https://github.com/Petlja/PetljaDoc">PetljaDoc</a>)</span>
             </p>
         </div>
     </div>
